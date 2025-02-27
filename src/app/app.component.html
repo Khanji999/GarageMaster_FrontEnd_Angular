@@ -1,0 +1,10 @@
+<app-progress-bar></app-progress-bar>
+
+<app-navbar-before-login *ngIf="isBeforeLoginRoute()"></app-navbar-before-login>
+
+<app-navbar-after-login *ngIf="!isBeforeLoginRoute()"></app-navbar-after-login>
+
+<h1 class="text-3xl font-bold underline">
+    Hello world!
+  </h1>
+<router-outlet></router-outlet>

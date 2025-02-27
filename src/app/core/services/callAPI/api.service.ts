@@ -6728,6 +6728,64 @@ export class Client {
     /**
      * @return OK
      */
+    getMenu(): Observable<MenuDTO[]> {
+        let url_ = this.baseUrl + "/api/MenuContro/GetMenu";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetMenu(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetMenu(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<MenuDTO[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<MenuDTO[]>;
+        }));
+    }
+
+    protected processGetMenu(response: HttpResponseBase): Observable<MenuDTO[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(MenuDTO.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @return OK
+     */
     getAll22(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/MenuContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
@@ -12471,7 +12529,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    login(body: LoginDTO | undefined): Observable<string> {
+    login(body: LoginDTO | undefined): Observable<ApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/UserContro/Login";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -12494,14 +12552,14 @@ export class Client {
                 try {
                     return this.processLogin(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<string>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<string>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processLogin(response: HttpResponseBase): Observable<string> {
+    protected processLogin(response: HttpResponseBase): Observable<ApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12512,8 +12570,7 @@ export class Client {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-                result200 = resultData200 !== undefined ? resultData200 : <any>null;
-    
+            result200 = ApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -15876,6 +15933,10 @@ export interface IMaintenaceServiceDTO {
 
 export class MenuDTO implements IMenuDTO {
     id?: number;
+    submenuId?: number | undefined;
+    roleId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
 
     constructor(data?: IMenuDTO) {
         if (data) {
@@ -15889,6 +15950,10 @@ export class MenuDTO implements IMenuDTO {
     init(_data?: any) {
         if (_data) {
             this.id = _data["id"];
+            this.submenuId = _data["submenuId"];
+            this.roleId = _data["roleId"];
+            this.name = _data["name"];
+            this.nameInArabic = _data["nameInArabic"];
         }
     }
 
@@ -15902,12 +15967,20 @@ export class MenuDTO implements IMenuDTO {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
+        data["submenuId"] = this.submenuId;
+        data["roleId"] = this.roleId;
+        data["name"] = this.name;
+        data["nameInArabic"] = this.nameInArabic;
         return data;
     }
 }
 
 export interface IMenuDTO {
     id?: number;
+    submenuId?: number | undefined;
+    roleId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
 }
 
 export class MontlyCustomerVisitDTO implements IMontlyCustomerVisitDTO {
@@ -21932,6 +22005,54 @@ export interface IApiResponse_1OfOfIEnumerable_1OfOfVipStatusDTOAndBLLAnd_0AndCu
     statusCode?: number;
     message?: string | undefined;
     result?: VipStatusDTO[] | undefined;
+}
+
+export class ApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: string | undefined;
+
+    constructor(data?: IApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"];
+            this.statusCode = _data["statusCode"];
+            this.message = _data["message"];
+            this.result = _data["result"];
+        }
+    }
+
+    static fromJS(data: any): ApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success;
+        data["statusCode"] = this.statusCode;
+        data["message"] = this.message;
+        data["result"] = this.result;
+        return data;
+    }
+}
+
+export interface IApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: string | undefined;
 }
 
 function formatDate(d: Date) {

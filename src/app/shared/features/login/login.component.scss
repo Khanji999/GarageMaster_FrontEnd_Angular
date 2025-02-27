@@ -1,0 +1,22 @@
+.content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width :50%;
+    text-align: center;
+    color: white;
+    background-color: #0000008a;
+}
+
+/* Custom Snackbar styles */
+.snack-bar-success {
+    background-color: #4caf50; /* Green color for success */
+    color: white;
+}
+
+.snack-bar-error {
+    background-color: #f44336; /* Red color for error */
+    color: white;
+}
