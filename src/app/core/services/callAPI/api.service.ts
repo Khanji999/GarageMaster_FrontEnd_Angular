@@ -15931,57 +15931,6 @@ export interface IMaintenaceServiceDTO {
     isTested?: boolean;
 }
 
-export class MenuDTO implements IMenuDTO {
-    id?: number;
-    submenuId?: number | undefined;
-    roleId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
-
-    constructor(data?: IMenuDTO) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.id = _data["id"];
-            this.submenuId = _data["submenuId"];
-            this.roleId = _data["roleId"];
-            this.name = _data["name"];
-            this.nameInArabic = _data["nameInArabic"];
-        }
-    }
-
-    static fromJS(data: any): MenuDTO {
-        data = typeof data === 'object' ? data : {};
-        let result = new MenuDTO();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["submenuId"] = this.submenuId;
-        data["roleId"] = this.roleId;
-        data["name"] = this.name;
-        data["nameInArabic"] = this.nameInArabic;
-        return data;
-    }
-}
-
-export interface IMenuDTO {
-    id?: number;
-    submenuId?: number | undefined;
-    roleId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
-}
 
 export class MontlyCustomerVisitDTO implements IMontlyCustomerVisitDTO {
     id?: number;
@@ -22107,3 +22056,67 @@ function blobToText(blob: any): Observable<string> {
         }
     });
 }
+// menu.dto.ts
+export interface IMenuDTO {
+    id?: number;
+    submenuId?: number | undefined;
+    roleId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    route?: string; // Route for menu items without children
+    children?: MenuDTO[]; // Submenu items
+    expanded?: boolean; // Add this line
+  }
+  
+  export class MenuDTO implements IMenuDTO {
+    id?: number;
+    submenuId?: number | undefined;
+    roleId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    route?: string; // Route for menu items without children
+    children?: MenuDTO[]; // Submenu items
+    expanded?: boolean; // Add this line
+  
+    constructor(data?: IMenuDTO) {
+      if (data) {
+        for (var property in data) {
+          if (data.hasOwnProperty(property))
+            (<any>this)[property] = (<any>data)[property];
+        }
+      }
+    }
+  
+    init(_data?: any) {
+      if (_data) {
+        this.id = _data["id"];
+        this.submenuId = _data["submenuId"];
+        this.roleId = _data["roleId"];
+        this.name = _data["name"];
+        this.nameInArabic = _data["nameInArabic"];
+        this.route = _data["route"]; // Route for menu items without children
+        this.children = _data["children"]; // Submenu items
+        this.expanded = _data["expanded"]; // Add this line
+      }
+    }
+  
+    static fromJS(data: any): MenuDTO {
+      data = typeof data === 'object' ? data : {};
+      let result = new MenuDTO();
+      result.init(data);
+      return result;
+    }
+  
+    toJSON(data?: any) {
+      data = typeof data === 'object' ? data : {};
+      data["id"] = this.id;
+      data["submenuId"] = this.submenuId;
+      data["roleId"] = this.roleId;
+      data["name"] = this.name;
+      data["nameInArabic"] = this.nameInArabic;
+      data["route"] = this.route; // Route for menu items without children
+      data["children"] = this.children; // Submenu items
+      data["expanded"] = this.expanded; // Add this line
+      return data;
+    }
+  }

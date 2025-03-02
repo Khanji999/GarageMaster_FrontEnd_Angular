@@ -9,7 +9,7 @@ import { noAccessBeforeLoginGuard } from './core/guards/no-access-before-login.g
 export const routes: Routes = [
     {path:'', component: HomeComponent, canActivate:[noAccessAfterLoginGuard]},
     {path:'login', component: LoginComponent, canActivate:[noAccessAfterLoginGuard]},
-    {path:'aboutUs', component: AboutUsComponent,canActivate:[noAccessAfterLoginGuard] },
-    {path:'dashboard', component: DashboardComponent, canActivate:[noAccessBeforeLoginGuard]},
+    {path:'dashboard', component: DashboardComponent, },
+    {path:'user-management', component: AboutUsComponent , },
     {path: '**', redirectTo:''},
 ];
