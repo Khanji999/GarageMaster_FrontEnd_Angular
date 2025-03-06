@@ -1,6 +1,6 @@
 <app-progress-bar></app-progress-bar>
 <!-- this layout will load only for : login, aboutUs, Home  -->
 <app-layout-before-login *ngIf="isBeforeLoginRoute()"></app-layout-before-login>
-<!-- this layout will load only for : Dashboard,User   -->
 
+<!-- this layout will load only for : Dashboard,User   -->
 <app-layout-after-login *ngIf="!isBeforeLoginRoute()"></app-layout-after-login>

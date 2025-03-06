@@ -39,11 +39,24 @@ export class AuthenticationService {
   }
 
   isLoggedIn() {
-
     var token =  localStorage.getItem('token');
     if(token == null || token ==""){
       return false
     }
-  return true
+    try {
+      const payloadBase64 = token.split('.')[1]; // Extract payload
+      const decodedPayload = JSON.parse(atob(payloadBase64)); // Decode Base64
+      const currentTime = Math.floor(Date.now() / 1000);
+
+      if (decodedPayload.exp < currentTime) {
+          localStorage.removeItem('token'); // Delete expired token
+          return false;
+      }
+
+      return true;
+  } catch (error) {
+      localStorage.removeItem('token'); // Delete invalid token
+      return false;
+  }
   }
 }

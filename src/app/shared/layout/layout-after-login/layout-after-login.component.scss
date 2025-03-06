@@ -1,5 +1,9 @@
-@media (max-width: 768px) {
-    .mobile{
-        flex:35%
+@media (max-width:768px) {
+    .for-mobile {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        z-index: 999;
     }
 }

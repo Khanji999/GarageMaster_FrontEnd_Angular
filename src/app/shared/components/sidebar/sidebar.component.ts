@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Client, MenuDTO } from '../../../core/services/callAPI/api.service';
 import { DynamicMenuService } from '../../../core/services/dynamicMenu/dynamic-menu.service';
 import { RouterModule } from '@angular/router';
+import { UserServiceService } from '../../../core/services/userService/user-service.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,7 +14,7 @@ import { RouterModule } from '@angular/router';
 export class SidebarComponent implements OnInit {
   menuTree: MenuDTO[] = [];
 
-  constructor(private menuService: DynamicMenuService) {}
+  constructor(private menuService: DynamicMenuService ,public userService :UserServiceService) {}
 
   ngOnInit() {
     this.menuService.getMenu().subscribe((menuTree: MenuDTO[]) => {
@@ -30,7 +31,7 @@ export class SidebarComponent implements OnInit {
   // Toggle submenu expansion
   toggleSubMenu(menu: MenuDTO) {
     if (menu.children) {
-      menu.expanded = !menu.expanded; // Toggle the expanded state
+      menu.expanded = !menu.expanded; 
     }
   }
 

@@ -5,11 +5,12 @@ import { AboutUsComponent } from './shared/features/about-us/about-us.component'
 import { noAccessAfterLoginGuard } from './core/guards/no-access-after-login.guard';
 import { DashboardComponent } from './shared/features/dashboard/dashboard.component';
 import { noAccessBeforeLoginGuard } from './core/guards/no-access-before-login.guard';
+import { UserPageComponent } from './shared/features/user-page/user-page.component';
 
 export const routes: Routes = [
     {path:'', component: HomeComponent, canActivate:[noAccessAfterLoginGuard]},
     {path:'login', component: LoginComponent, canActivate:[noAccessAfterLoginGuard]},
-    {path:'dashboard', component: DashboardComponent, },
-    {path:'user-management', component: AboutUsComponent , },
-    {path: '**', redirectTo:''},
+    {path:'dashboard', component: DashboardComponent,canActivate:[noAccessBeforeLoginGuard] },
+    {path:'user-management', component: UserPageComponent ,canActivate:[noAccessBeforeLoginGuard] },
+    {path: '**', redirectTo:'',canActivate:[noAccessBeforeLoginGuard]},
 ];
