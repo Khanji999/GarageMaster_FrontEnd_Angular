@@ -5769,6 +5769,113 @@ export class Client {
     }
 
     /**
+     * @param file (optional) 
+     * @return OK
+     */
+    upload(file: FileParameter | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/ImageContro/Upload";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = new FormData();
+        if (file === null || file === undefined)
+            throw new Error("The parameter 'file' cannot be null.");
+        else
+            content_.append("File", file.data, file.fileName ? file.fileName : "File");
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpload(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpload(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processUpload(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param fileName (optional) 
+     * @return OK
+     */
+    download(fileName: string | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/ImageContro/Download?";
+        if (fileName === null)
+            throw new Error("The parameter 'fileName' cannot be null.");
+        else if (fileName !== undefined)
+            url_ += "fileName=" + encodeURIComponent("" + fileName) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDownload(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDownload(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processDownload(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
      * @return OK
      */
     getAll19(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
@@ -12209,6 +12316,57 @@ export class Client {
     /**
      * @return OK
      */
+    getCurrentTenant(): Observable<TenantDTO> {
+        let url_ = this.baseUrl + "/api/TenantContro/GetCurrentTenant";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetCurrentTenant(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetCurrentTenant(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<TenantDTO>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<TenantDTO>;
+        }));
+    }
+
+    protected processGetCurrentTenant(response: HttpResponseBase): Observable<TenantDTO> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = TenantDTO.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @return OK
+     */
     getAll39(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/TenantContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
@@ -15931,6 +16089,77 @@ export interface IMaintenaceServiceDTO {
     isTested?: boolean;
 }
 
+export class MenuDTO implements IMenuDTO {
+    id?: number;
+    submenuId?: number | undefined;
+    roleId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    route?: string | undefined;
+    children?: MenuDTO[] | undefined;
+    expanded?: boolean;
+
+    constructor(data?: IMenuDTO) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.submenuId = _data["submenuId"];
+            this.roleId = _data["roleId"];
+            this.name = _data["name"];
+            this.nameInArabic = _data["nameInArabic"];
+            this.route = _data["route"];
+            if (Array.isArray(_data["children"])) {
+                this.children = [] as any;
+                for (let item of _data["children"])
+                    this.children!.push(MenuDTO.fromJS(item));
+            }
+            this.expanded = _data["expanded"];
+        }
+    }
+
+    static fromJS(data: any): MenuDTO {
+        data = typeof data === 'object' ? data : {};
+        let result = new MenuDTO();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["submenuId"] = this.submenuId;
+        data["roleId"] = this.roleId;
+        data["name"] = this.name;
+        data["nameInArabic"] = this.nameInArabic;
+        data["route"] = this.route;
+        if (Array.isArray(this.children)) {
+            data["children"] = [];
+            for (let item of this.children)
+                data["children"].push(item.toJSON());
+        }
+        data["expanded"] = this.expanded;
+        return data;
+    }
+}
+
+export interface IMenuDTO {
+    id?: number;
+    submenuId?: number | undefined;
+    roleId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    route?: string | undefined;
+    children?: MenuDTO[] | undefined;
+    expanded?: boolean;
+}
 
 export class MontlyCustomerVisitDTO implements IMontlyCustomerVisitDTO {
     id?: number;
@@ -22010,6 +22239,11 @@ function formatDate(d: Date) {
         (d.getDate() < 10 ? ('0' + d.getDate()) : d.getDate());
 }
 
+export interface FileParameter {
+    data: any;
+    fileName: string;
+}
+
 export class ApiException extends Error {
     override message: string;
     status: number;
@@ -22056,67 +22290,3 @@ function blobToText(blob: any): Observable<string> {
         }
     });
 }
-// menu.dto.ts
-export interface IMenuDTO {
-    id?: number;
-    submenuId?: number | undefined;
-    roleId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
-    route?: string; // Route for menu items without children
-    children?: MenuDTO[]; // Submenu items
-    expanded?: boolean; // Add this line
-  }
-  
-  export class MenuDTO implements IMenuDTO {
-    id?: number;
-    submenuId?: number | undefined;
-    roleId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
-    route?: string; // Route for menu items without children
-    children?: MenuDTO[]; // Submenu items
-    expanded?: boolean; // Add this line
-  
-    constructor(data?: IMenuDTO) {
-      if (data) {
-        for (var property in data) {
-          if (data.hasOwnProperty(property))
-            (<any>this)[property] = (<any>data)[property];
-        }
-      }
-    }
-  
-    init(_data?: any) {
-      if (_data) {
-        this.id = _data["id"];
-        this.submenuId = _data["submenuId"];
-        this.roleId = _data["roleId"];
-        this.name = _data["name"];
-        this.nameInArabic = _data["nameInArabic"];
-        this.route = _data["route"]; // Route for menu items without children
-        this.children = _data["children"]; // Submenu items
-        this.expanded = _data["expanded"]; // Add this line
-      }
-    }
-  
-    static fromJS(data: any): MenuDTO {
-      data = typeof data === 'object' ? data : {};
-      let result = new MenuDTO();
-      result.init(data);
-      return result;
-    }
-  
-    toJSON(data?: any) {
-      data = typeof data === 'object' ? data : {};
-      data["id"] = this.id;
-      data["submenuId"] = this.submenuId;
-      data["roleId"] = this.roleId;
-      data["name"] = this.name;
-      data["nameInArabic"] = this.nameInArabic;
-      data["route"] = this.route; // Route for menu items without children
-      data["children"] = this.children; // Submenu items
-      data["expanded"] = this.expanded; // Add this line
-      return data;
-    }
-  }

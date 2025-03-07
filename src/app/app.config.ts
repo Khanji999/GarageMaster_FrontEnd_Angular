@@ -25,6 +25,9 @@ export const appConfig: ApplicationConfig = {
     multi: true
   },
     { provide: API_BASE_URL,
+      useValue: 'https://localhost:7077', 
+    },       
+    { provide: API_BASE_URL,
       useValue: 'http://192.168.1.2:5000', 
     },       
   ]

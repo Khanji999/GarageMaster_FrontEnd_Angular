@@ -3,12 +3,15 @@
   bg-[#6B7C9D]
   w-full overflow-y-auto 
   h-full
-  for-mobily
   ">
-  <div class="w-[96%]  m-auto mt-3 ">
+  <div class="w-[93%]  m-auto mt-3 ">
     <!-- Header -->
     <div class="py-2 text-center">
-      <h1 class="dynamic-font ml-1 px-2 py-1">Tenant Brand</h1>
+      @if (tenant) {
+        <h1 class="dynamic-font ml-1 px-2 py-1 ">
+          {{ tenant.name }}
+        </h1>
+      }
     </div>
 
     <div class="mx-2 my-4 bg-[#E2DAD6] h-[2px]"></div> 
@@ -41,7 +44,7 @@
       </div>
 
       <!-- Submenu Items (if expanded) -->
-      <ng-container *ngIf="menu.children && menu.expanded">
+      <ng-container *ngIf="menu && menu.expanded">
         <div *ngFor="let submenu of menu.children" class="pl-8">
           <!-- Submenu Item -->
           <div
@@ -57,6 +60,6 @@
         </div>
       </ng-container>
     </ng-container>
+
   </div>
-  
 </div>

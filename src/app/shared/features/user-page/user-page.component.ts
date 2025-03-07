@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { GenericTableComponent } from '../../components/generic-table/generic-table.component';
 import { SpinnerComponent } from '../../components/spinner/spinner.component';
 import { TableColumn } from '../../../core/models/table-column.model';
-import { UserServiceService } from '../../../core/services/userService/user-service.service';
+import { UserService } from '../../../core/services/userService/user-service.service';
 
 @Component({
   selector: 'app-user-page',
@@ -21,17 +21,13 @@ export class UserPageComponent {
   data: any[] = [];
   isLoading: boolean = true;
   
-  constructor(private userService: UserServiceService) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
     this.userService.getUsers().subscribe(
       (response: any[]) => {
         this.data = response; // Assign the response to the data array
         this.isLoading = false; // Data has been loaded
-      },
-      (error) => {
-        console.error('Error fetching users:', error);
-        this.isLoading = false; // Stop loading even if there's an error
       }
     );
   }

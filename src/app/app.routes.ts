@@ -8,9 +8,29 @@ import { noAccessBeforeLoginGuard } from './core/guards/no-access-before-login.g
 import { UserPageComponent } from './shared/features/user-page/user-page.component';
 
 export const routes: Routes = [
-    {path:'', component: HomeComponent, canActivate:[noAccessAfterLoginGuard]},
-    {path:'login', component: LoginComponent, canActivate:[noAccessAfterLoginGuard]},
-    {path:'dashboard', component: DashboardComponent,canActivate:[noAccessBeforeLoginGuard] },
-    {path:'user-management', component: UserPageComponent ,canActivate:[noAccessBeforeLoginGuard] },
-    {path: '**', redirectTo:'',canActivate:[noAccessBeforeLoginGuard]},
+    {path:'',
+        component: HomeComponent,
+        canActivate:[noAccessAfterLoginGuard]},
+
+    {path:'login',
+        component: LoginComponent,
+        canActivate:[noAccessAfterLoginGuard]},
+
+    {path:'dashboard',
+        component: DashboardComponent,
+        title:'Dashboard',
+        canActivate:[noAccessBeforeLoginGuard] },
+
+    {  
+        path: 'user-management',
+        component: UserPageComponent,
+        data: { title: 'User Management' },
+        title: 'User Management',
+        canActivate:[noAccessBeforeLoginGuard]
+    },
+
+    {path: '**',
+        redirectTo:'',
+        canActivate:[noAccessBeforeLoginGuard]},
+        
 ];

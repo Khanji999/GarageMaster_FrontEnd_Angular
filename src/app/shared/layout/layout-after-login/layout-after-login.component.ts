@@ -4,8 +4,7 @@ import { SidebarHamburgerComponent } from "../../components/sidebar-hamburger/si
 import { RouterOutlet } from '@angular/router';
 import { SidebarStateService } from '../../../core/services/sidebarState/sidebar-state.service';
 import { CommonModule } from '@angular/common';
-import { UserDTO } from '../../../core/services/callAPI/api.service';
-import { UserServiceService } from '../../../core/services/userService/user-service.service';
+import { UserService } from '../../../core/services/userService/user-service.service';
 import { NavbarAfterLoginComponent } from "../../components/navbar-after-login/navbar-after-login.component";
 import { FooterComponent } from "../../components/footer/footer.component";
 
@@ -18,7 +17,7 @@ import { FooterComponent } from "../../components/footer/footer.component";
 export class LayoutAfterLoginComponent {
   isSidebarOpen = false;
 
-  constructor(private sidebarState: SidebarStateService, private userService: UserServiceService) {
+  constructor(private sidebarState: SidebarStateService, private userService: UserService) {
     this.sidebarState.isSidebarOpen$.subscribe((isOpen) => {
       this.isSidebarOpen = isOpen;
     });
