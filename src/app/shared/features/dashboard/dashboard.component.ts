@@ -6,28 +6,33 @@ import { GenericTableComponent } from "../../components/generic-table/generic-ta
 import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from "../../components/spinner/spinner.component";
 import { ImageService } from '../../../core/services/dealingWithImage/image.service';
+import { WebcamModule } from 'ngx-webcam';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [WebcamModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-  selectedFile: File | null = null;
+  status : any = null;
+  steam :any | undefined
 
-  constructor(private imageService: ImageService) {}
+  checkPermission(){
+    navigator.mediaDevices.getUserMedia(
+      {video : {width:500 , height :500} }
+    ).then( (res) => {
+      this.steam = res;
+      this.status = "Camera is Running now"
 
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
-  }
-
-  upload() {
-    if (this.selectedFile) {
-      this.imageService.uploadImage(this.selectedFile).subscribe({
-        next: () => alert("Upload successful!"),
-        error: (err) => alert("Upload failed: " + err.message)
-      });
     }
+    ).catch(err =>{
+      console.log(err);
+      if(err?.message === "Permission denied"){
+        this.status = "Permission denied , Please Enable Camera";
+        console.log(this.status)
+      }
+    })
   }
+  
 }

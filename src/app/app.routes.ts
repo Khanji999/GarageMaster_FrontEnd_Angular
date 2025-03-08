@@ -19,7 +19,7 @@ export const routes: Routes = [
     {path:'dashboard',
         component: DashboardComponent,
         title:'Dashboard',
-        canActivate:[noAccessBeforeLoginGuard] },
+         },
 
     {  
         path: 'user-management',
