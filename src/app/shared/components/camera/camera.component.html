@@ -1,0 +1,34 @@
+<!-- Camera Icon to Open Camera Popup -->
+<div class="camera-icon-container">
+  <button (click)="openCameraPopup()" class="camera-icon">
+      click me
+  </button>
+</div>
+
+<!-- Popup Form for Camera -->
+<div *ngIf="cameraPopupVisible" class="camera-popup">
+  <div class="camera-popup-content">
+    <button (click)="closeCameraPopup()" class="close-btn">X</button>
+    
+    <!-- Webcam Container -->
+    <div *ngIf="!previewImage">
+      <webcam
+        [trigger]="$trigger"
+        [width]="500"
+        [height]="500"
+        [allowCameraSwitch]="false"
+        [videoOptions]="videoOptions"
+        (imageCapture)="snapshot($event)"
+        class="camera-view"
+      ></webcam>
+      <button (click)="captureImage()">Capture Image</button>
+    </div>
+
+    <!-- Preview Section -->
+    <div *ngIf="previewImage">
+      <img [src]="previewImage" class="captured-image" alt="Captured Image" />
+      <button (click)="reset()" class="recapture-btn">Re-capture</button>
+      <button (click)="save()" class="save-btn">Save</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+.sa-plate-container {
+    border: 2.5px solid black;
+    box-shadow:  1px 1px 5px black;
+    height: 180px;
+}
+
+.sa-logo img {
+    height: 100px;
+    width: 120px;
+}
+
+.sa-plate-numbers,
+.sa-plate-letters {
+    width: 35%;
+}
+.sa-logo {
+    width: 30%;
+}
+
+.sa-plate-letters,
+.sa-plate-numbers{
+    font-size: 30px;
+}

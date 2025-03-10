@@ -26,7 +26,6 @@ export const routes: Routes = [
         component: UserPageComponent,
         data: { title: 'User Management' },
         title: 'User Management',
-        canActivate:[noAccessBeforeLoginGuard]
     },
 
     {path: '**',

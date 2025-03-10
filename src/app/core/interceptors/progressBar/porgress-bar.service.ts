@@ -12,7 +12,7 @@ export class PorgressBarService implements HttpInterceptor {
     this.loaderService.isLoading.next(true);
     return next.handle(req).pipe(
       finalize( 
-        ()=>setTimeout(() => this.loaderService.hide(), 2000)
+        ()=>setTimeout(() => this.loaderService.hide(),400)
       )
     )
   }

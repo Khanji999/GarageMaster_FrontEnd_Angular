@@ -22,6 +22,7 @@
     "@tailwindcss/postcss": "^4.0.9",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "ngx-cam-shoot": "^1.18.0",
     "ngx-webcam": "^0.4.1",
     "postcss": "^8.5.3",
     "rxjs": "~7.8.0",

@@ -8,6 +8,7 @@ import { SidebarComponent } from "./shared/components/sidebar/sidebar.component"
 import { SidebarHamburgerComponent } from "./shared/components/sidebar-hamburger/sidebar-hamburger.component";
 import { LayoutAfterLoginComponent } from "./shared/layout/layout-after-login/layout-after-login.component";
 import { LayoutBeforeLoginComponent } from "./shared/layout/layout-before-login/layout-before-login.component";
+import { FooterComponent } from "./shared/components/footer/footer.component";
 
 
 @Component({
@@ -16,7 +17,7 @@ import { LayoutBeforeLoginComponent } from "./shared/layout/layout-before-login/
     ProgressBarComponent,
     CommonModule,
     LayoutAfterLoginComponent,
-    LayoutBeforeLoginComponent
+    LayoutBeforeLoginComponent,
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

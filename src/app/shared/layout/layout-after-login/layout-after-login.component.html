@@ -1,33 +1,35 @@
-<!-- Main -->
+<!-- Main Container -->
 <div class="w-full flex h-svh max-h-svh">
-    <div class=" 
-     md:flex-[0.3] lg:flex-[0.28] xl:flex-[0.22]
-    hidden md:block
-    for-mobile
-    
+  <!-- Sidebar Container -->
+  <div
+    class="
+      md:flex-[0.3] lg:flex-[0.28] xl:flex-[0.22]
+      hidden md:block
+      for-mobile
+      overflow-y-auto 
     "
-    [ngClass]="{ 'hidden': !isSidebarOpen, 'md:block': true }">
+    [ngClass]="{ 'hidden': !isSidebarOpen, 'md:block': true }"
+  >
     <!-- Left Sidebar -->
     <app-sidebar></app-sidebar>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="flex flex-1 flex-col overflow-y-auto"> <!-- Enable scrolling -->
+    <!-- Header -->
+    <div class="sticky top-0 w-full">
+      <app-sidebar-hamburger></app-sidebar-hamburger>
+      <app-navbar-after-login></app-navbar-after-login>
     </div>
-    <div class="flex flex-1 flex-col ">
-    <!-- Main Content Area-->
-    <div class="flex h-full flex-col justify-between router-bg">
-      <div class="sticky top-0 w-full">
-      <!-- Header -->
-        <app-sidebar-hamburger></app-sidebar-hamburger>
-        <app-navbar-after-login></app-navbar-after-login> 
-        </div>
-        <!-- Content -->
-        <div>
-          <router-outlet></router-outlet>
-        </div>
-      
-      <div >
-      <!-- Footer -->
+
+    <!-- Content -->
+    <div class="flex-1 m-2"> 
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- Footer -->
+    <div>
       <app-footer></app-footer>
-      </div>
-      
     </div>
   </div>
 </div>
