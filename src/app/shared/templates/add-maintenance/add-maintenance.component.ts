@@ -27,6 +27,8 @@ export class AddMaintenanceComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       userName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      phoneNumber: ['',],
       customerVehicle: ['', Validators.required],
     });
 

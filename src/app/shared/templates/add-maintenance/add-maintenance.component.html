@@ -1,50 +1,47 @@
 
 <div class="form-container
-p-2  border-[5px]">
+h-full">
   <!-- Title -->
-   <div class="flex gap-3  items-center  p-2 ">
-    <i class="bi bi-database-fill-add text-[35px]"></i>
-    <p class="text-[35px] pt-2">Add Maintenance</p>
-   </div>
-   <!-- Form Content -->
+  <div class="flex gap-3 ml-5 items-center  p-2 ">
+    <i class="bi bi-database-fill-add text-3xl lg:text-4xl]"></i>
+    <p class="pt-3 text-2xl md:text-3xl lg:text-4xl">Add Maintenance</p>
+  </div>
+  <!-- Form Content -->
   <form [formGroup]="form">
-      <div class=" bg-gray-700 p-2 mx-auto">
-        <div class="flex text-white gap-3">
-        </div>
-        <input
+    <div class="row-1 mx-auto w-[95%] flex gap-3">
+      <input
         type="text"
         formControlName="userName"
-        placeholder="Search for a customer..."
-        class="input-class  w-[80%] rounded-[5px]"
+        placeholder="First Name"
+        class="input-class w-[31%] p-2 rounded-[5px] border-2 border-gray-700 
+        focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+        autofocus 
       />
+      
+      <input
+        type="text"
+        formControlName="userName"
+        placeholder="Last Name"
+        class="input-class w-[31%] p-2 rounded-[5px] border-2 border-gray-700 
+        focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+      />
+      <input
+        type="text"
+        formControlName="userName"
+        placeholder="Phone Number"
+        class="input-class w-[31%] p-2 rounded-[5px] border-2 border-gray-700 
+        focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+      />
+      <button class="w-[15%] p-2 rounded-[15px] border-2 border-gray-700">Search</button>
+
     </div>
- 
-    </form>
-    
-    <!-- Customer Dropdown Menu -->
-    <div *ngIf="customers$ | async as customers">
-      <ul class="dropdown-class">
-        <li *ngFor="let customer of customers" (click)="onSelectCustomer(customer)">
-          {{ customer.firstName }} {{ customer.lastName }}
-        </li>
-      </ul>
+    <div class="row-2 mt-3 bg-gray-200 mx-auto w-[90%]" *ngIf="customers$ | async as customers">
+        <ul class="dropdown-class">
+          <li class="p-2"
+          *ngFor="let customer of customers" (click)="onSelectCustomer(customer)">
+            {{ customer.firstName }} {{ customer.lastName }} 
+          </li>
+        </ul>    
     </div>
- 
-<hr>
-  <!-- Customer Vehicles Dropdown (appears once a customer is selected) -->
-  <div class="w-full max-w-sm" >
-      <input type="text" placeholder="customerVehicles">
-      <div *ngIf="vehicles$ | async as vehicles">
-      <ul class="dropdown-class">
-        <li *ngFor="let vehicle of vehicles">
-          {{ vehicle }}
-        </li>
-      @if(flagCar){
-        <li>
-          + Add New Car
-        </li>
-      }
-      </ul>
-    </div>
-  </div>
-</div>
+  </form>
+</div> 
