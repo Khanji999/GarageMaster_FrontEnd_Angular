@@ -1,24 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Observable, of, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
-import { CustomerDTO, CustomerVehicleDTO } from '../../../core/services/callAPI/api.service';
+import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { Observable, of, debounceTime, switchMap, distinctUntilChanged } from 'rxjs';
+import { CustomerDTO, CustomerVehicleDTO, CustomerVehicleWithDetailsDTO } from '../../../core/services/callAPI/api.service';
 import { CustomerService } from '../../../core/services/customerService/customer.service';
 import { CommonModule } from '@angular/common';
+import { GenericTableComponent } from "../../components/generic-table/generic-table.component";
+import { AddCarFormComponent } from "../../forms/add-car-form/add-car-form.component";
 
 @Component({
   selector: 'app-add-maintenance',
-  imports: [CommonModule , ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, GenericTableComponent, AddCarFormComponent],
   templateUrl: './add-maintenance.component.html',
-  styleUrl: './add-maintenance.component.scss'
-})
-export class AddMaintenanceComponent implements OnInit {
+  styleUrl: './add-maintenance.component.scss',
+})export class AddMaintenanceComponent implements OnInit {
+
+  columns = [
+    { header: 'Brand', key: 'vehicleModel.vehicleBrand.name' },
+    { header: 'Model', key: 'vehicleModel.name' },
+    { header: 'Year', key: 'yearModel' },
+    { header: 'Engine Cylinders', key: 'vehicleEngine.numberOfCylinders' },
+    { header: 'Engine Type', key: 'vehicleEngine.engineStructure.engineType' },
+    { header: 'Fuel Type', key: 'vehicleEngine.engineFuel.engineFuelType' },
+    { header: 'Color', key: 'customerVehicleColors.0.color.name' },
+    { header: 'Plate', key: 'customerVehiclePlates.0.plate.number' }
+  ];
   form!: FormGroup;
   customers$: Observable<CustomerDTO[]> = of([]);
+  vehicles? : CustomerVehicleWithDetailsDTO[]
   selectedCustomer: CustomerDTO | null = null;
-  vehicles$: Observable<CustomerVehicleDTO[]> = of([]);
-  flagCar: boolean = false;
-  isProgrammaticUpdate: boolean = false; // Flag to track programmatic updates
-
+  selectedVehicle: CustomerVehicleWithDetailsDTO | null = null;
+  isProgrammaticUpdate = false;
+  flagCar?: boolean;
+  flagCustomer = false;
+  isTableVisible = true;
+  isFormOpen = false;
+  
   constructor(
     private formBuilder: FormBuilder,
     public customerService: CustomerService
@@ -26,60 +42,81 @@ export class AddMaintenanceComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      userName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      phoneNumber: ['',],
-      customerVehicle: ['', Validators.required],
+      firstName: [''],
+      lastName: [''],
+      phoneNumber: [''],
+      customerVehicle: [''],
     });
 
-    // Call backend to search for customers
-    this.customers$ = this.form.controls['userName'].valueChanges.pipe(
-      debounceTime(400),
-      distinctUntilChanged(),
-      switchMap((name) => {
-        // Skip if the update is programmatic
+    this.customers$ = this.form.valueChanges.pipe(
+      debounceTime(340), 
+      distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)), 
+      switchMap(({ firstName, lastName }) => {
         if (this.isProgrammaticUpdate) {
-          this.isProgrammaticUpdate = false; // Reset the flag
+          this.isProgrammaticUpdate = false;
+          this.flagCustomer = false;
           return of([]);
         }
+        this.flagCustomer = true;
+        if (firstName?.length > 2 && lastName?.length > 2) {
+          return this.customerService.getCustomerByFirstAndLastName(firstName, lastName);
+        }
 
-        // Reset vehicles and flagCar when the search input changes
-        this.vehicles$ = of([]);
-        this.flagCar = false;
-
-        if (name.length > 2) {
-          return this.customerService.getCustomerBySeaching(name);
-        } else {
-          return of([]);
+        if (!firstName && lastName?.length > 2) {
+          return this.customerService.getCustomerByLastName(lastName);
+        }
+        if (firstName?.length > 2 && !lastName) {
+          return this.customerService.getCustomerByFirstName(firstName);
+        }
+        else{
+          this.flagCustomer=false
+          return of([]); 
         }
       })
     );
   }
 
   onSelectCustomer(customer: CustomerDTO): void {
-    this.selectedCustomer = customer;
-
-    // Set the flag to indicate a programmatic update
-    this.isProgrammaticUpdate = true;
-
-    // Update the input value with the selected customer's name
-    this.form.controls['userName'].setValue(`${customer.firstName} ${customer.lastName}`);
-
-    // Fetch vehicles for the selected customer
+    this.isProgrammaticUpdate = true; // stop showing list of customer , can not block the listener because I need it For make search again.
+    this.selectedCustomer = customer; 
+    this.form.controls['firstName'].setValue(customer.firstName);
+    this.form.controls['lastName'].setValue(customer.lastName);
     this.fetchCustomerVehicles();
   }
 
   fetchCustomerVehicles(): void {
+    this.isTableVisible = true;
     if (this.selectedCustomer?.id) {
       this.customerService.getCustomerVehicles(this.selectedCustomer.id).subscribe(
-        (vehicles: CustomerVehicleDTO[]) => {
-          this.vehicles$ = of(vehicles);
-          this.flagCar = true;
+        (response: CustomerVehicleWithDetailsDTO[]) => {
+          this.vehicles =  response
+          this.flagCar = true; // show Add Car button after selecting a Customer 
         },
         (error) => {
           console.error('Error fetching vehicles:', error);
         }
       );
     }
+  }
+
+  removeSearch(){
+    this.vehicles = undefined
+    this.selectedVehicle = null
+    this.selectedCustomer = null
+    this.form.reset(); 
+  }
+
+  handleRowSelection(selectedRow: any) {
+    this.selectedVehicle = selectedRow;
+    this.isTableVisible = false;
+  }
+  
+  changeCar(){
+    this.selectedVehicle = null;
+    this.isTableVisible = true;
+  }
+
+  openFormToAddCar(){
+    this.isFormOpen = true;
   }
 }

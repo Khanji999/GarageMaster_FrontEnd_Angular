@@ -1366,6 +1366,200 @@ export class Client {
     }
 
     /**
+     * @param c (optional) 
+     * @return OK
+     */
+    searchForCustomerByFirstName(c: string | undefined): Observable<CustomerDTO[]> {
+        let url_ = this.baseUrl + "/api/CustomerContro/searchForCustomerByFirstName?";
+        if (c === null)
+            throw new Error("The parameter 'c' cannot be null.");
+        else if (c !== undefined)
+            url_ += "c=" + encodeURIComponent("" + c) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processSearchForCustomerByFirstName(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processSearchForCustomerByFirstName(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<CustomerDTO[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<CustomerDTO[]>;
+        }));
+    }
+
+    protected processSearchForCustomerByFirstName(response: HttpResponseBase): Observable<CustomerDTO[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(CustomerDTO.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param c (optional) 
+     * @return OK
+     */
+    searchForCustomerByLastName(c: string | undefined): Observable<CustomerDTO[]> {
+        let url_ = this.baseUrl + "/api/CustomerContro/searchForCustomerByLastName?";
+        if (c === null)
+            throw new Error("The parameter 'c' cannot be null.");
+        else if (c !== undefined)
+            url_ += "c=" + encodeURIComponent("" + c) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processSearchForCustomerByLastName(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processSearchForCustomerByLastName(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<CustomerDTO[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<CustomerDTO[]>;
+        }));
+    }
+
+    protected processSearchForCustomerByLastName(response: HttpResponseBase): Observable<CustomerDTO[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(CustomerDTO.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param f (optional) 
+     * @param l (optional) 
+     * @return OK
+     */
+    searchForCustomerByFirstAndLastName(f: string | undefined, l: string | undefined): Observable<CustomerDTO[]> {
+        let url_ = this.baseUrl + "/api/CustomerContro/searchForCustomerByFirstAndLastName?";
+        if (f === null)
+            throw new Error("The parameter 'f' cannot be null.");
+        else if (f !== undefined)
+            url_ += "f=" + encodeURIComponent("" + f) + "&";
+        if (l === null)
+            throw new Error("The parameter 'l' cannot be null.");
+        else if (l !== undefined)
+            url_ += "l=" + encodeURIComponent("" + l) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processSearchForCustomerByFirstAndLastName(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processSearchForCustomerByFirstAndLastName(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<CustomerDTO[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<CustomerDTO[]>;
+        }));
+    }
+
+    protected processSearchForCustomerByFirstAndLastName(response: HttpResponseBase): Observable<CustomerDTO[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(CustomerDTO.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
      * @return OK
      */
     getAll5(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
@@ -2326,7 +2520,7 @@ export class Client {
      * @param customerID (optional) 
      * @return OK
      */
-    getAllCustomerVehicles(customerID: number | undefined): Observable<CustomerVehicleDTO[]> {
+    getAllCustomerVehicles(customerID: number | undefined): Observable<CustomerVehicleWithDetailsDTO[]> {
         let url_ = this.baseUrl + "/api/CustomerVehicleContro/GetAllCustomerVehicles?";
         if (customerID === null)
             throw new Error("The parameter 'customerID' cannot be null.");
@@ -2349,14 +2543,14 @@ export class Client {
                 try {
                     return this.processGetAllCustomerVehicles(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<CustomerVehicleDTO[]>;
+                    return _observableThrow(e) as any as Observable<CustomerVehicleWithDetailsDTO[]>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<CustomerVehicleDTO[]>;
+                return _observableThrow(response_) as any as Observable<CustomerVehicleWithDetailsDTO[]>;
         }));
     }
 
-    protected processGetAllCustomerVehicles(response: HttpResponseBase): Observable<CustomerVehicleDTO[]> {
+    protected processGetAllCustomerVehicles(response: HttpResponseBase): Observable<CustomerVehicleWithDetailsDTO[]> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2370,7 +2564,7 @@ export class Client {
             if (Array.isArray(resultData200)) {
                 result200 = [] as any;
                 for (let item of resultData200)
-                    result200!.push(CustomerVehicleDTO.fromJS(item));
+                    result200!.push(CustomerVehicleWithDetailsDTO.fromJS(item));
             }
             else {
                 result200 = <any>null;
@@ -12491,6 +12685,58 @@ export class Client {
     }
 
     /**
+     * @param tenantId (optional) 
+     * @return OK
+     */
+    ook(tenantId: number | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/TenantContro/ook?";
+        if (tenantId === null)
+            throw new Error("The parameter 'tenantId' cannot be null.");
+        else if (tenantId !== undefined)
+            url_ += "tenantId=" + encodeURIComponent("" + tenantId) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processOok(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processOok(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processOok(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
      * @return OK
      */
     getAll39(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
@@ -13813,6 +14059,69 @@ export class Client {
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param brandID (optional) 
+     * @return OK
+     */
+    getAllModelsByBrandID(brandID: number | undefined): Observable<VehicleModelDTO[]> {
+        let url_ = this.baseUrl + "/api/VehicleModelContro/GetAllModelsByBrandID?";
+        if (brandID === null)
+            throw new Error("The parameter 'brandID' cannot be null.");
+        else if (brandID !== undefined)
+            url_ += "brandID=" + encodeURIComponent("" + brandID) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllModelsByBrandID(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllModelsByBrandID(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<VehicleModelDTO[]>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<VehicleModelDTO[]>;
+        }));
+    }
+
+    protected processGetAllModelsByBrandID(response: HttpResponseBase): Observable<VehicleModelDTO[]> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(VehicleModelDTO.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -15396,6 +15705,7 @@ export class CustomerVehicleColorDTO implements ICustomerVehicleColorDTO {
     tenantId?: number;
     colorId?: number;
     customerVehicleId?: number;
+    isActive?: boolean;
     date?: Date;
 
     constructor(data?: ICustomerVehicleColorDTO) {
@@ -15413,6 +15723,7 @@ export class CustomerVehicleColorDTO implements ICustomerVehicleColorDTO {
             this.tenantId = _data["tenantId"];
             this.colorId = _data["colorId"];
             this.customerVehicleId = _data["customerVehicleId"];
+            this.isActive = _data["isActive"];
             this.date = _data["date"] ? new Date(_data["date"].toString()) : <any>undefined;
         }
     }
@@ -15430,6 +15741,7 @@ export class CustomerVehicleColorDTO implements ICustomerVehicleColorDTO {
         data["tenantId"] = this.tenantId;
         data["colorId"] = this.colorId;
         data["customerVehicleId"] = this.customerVehicleId;
+        data["isActive"] = this.isActive;
         data["date"] = this.date ? this.date.toISOString() : <any>undefined;
         return data;
     }
@@ -15440,6 +15752,59 @@ export interface ICustomerVehicleColorDTO {
     tenantId?: number;
     colorId?: number;
     customerVehicleId?: number;
+    isActive?: boolean;
+    date?: Date;
+}
+
+export class CustomerVehicleColorWithDetailsDTO implements ICustomerVehicleColorWithDetailsDTO {
+    id?: number;
+    tenantId?: number;
+    isActive?: boolean;
+    color?: ColorDTO;
+    date?: Date;
+
+    constructor(data?: ICustomerVehicleColorWithDetailsDTO) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.isActive = _data["isActive"];
+            this.color = _data["color"] ? ColorDTO.fromJS(_data["color"]) : <any>undefined;
+            this.date = _data["date"] ? new Date(_data["date"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): CustomerVehicleColorWithDetailsDTO {
+        data = typeof data === 'object' ? data : {};
+        let result = new CustomerVehicleColorWithDetailsDTO();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["isActive"] = this.isActive;
+        data["color"] = this.color ? this.color.toJSON() : <any>undefined;
+        data["date"] = this.date ? this.date.toISOString() : <any>undefined;
+        return data;
+    }
+}
+
+export interface ICustomerVehicleColorWithDetailsDTO {
+    id?: number;
+    tenantId?: number;
+    isActive?: boolean;
+    color?: ColorDTO;
     date?: Date;
 }
 
@@ -15450,7 +15815,7 @@ export class CustomerVehicleDTO implements ICustomerVehicleDTO {
     vehicleModelId?: number;
     vehicleEngineId?: number;
     vin?: string | undefined;
-    yearModel?: Date;
+    yearModel?: number;
 
     constructor(data?: ICustomerVehicleDTO) {
         if (data) {
@@ -15469,7 +15834,7 @@ export class CustomerVehicleDTO implements ICustomerVehicleDTO {
             this.vehicleModelId = _data["vehicleModelId"];
             this.vehicleEngineId = _data["vehicleEngineId"];
             this.vin = _data["vin"];
-            this.yearModel = _data["yearModel"] ? new Date(_data["yearModel"].toString()) : <any>undefined;
+            this.yearModel = _data["yearModel"];
         }
     }
 
@@ -15488,7 +15853,7 @@ export class CustomerVehicleDTO implements ICustomerVehicleDTO {
         data["vehicleModelId"] = this.vehicleModelId;
         data["vehicleEngineId"] = this.vehicleEngineId;
         data["vin"] = this.vin;
-        data["yearModel"] = this.yearModel ? formatDate(this.yearModel) : <any>undefined;
+        data["yearModel"] = this.yearModel;
         return data;
     }
 }
@@ -15500,7 +15865,7 @@ export interface ICustomerVehicleDTO {
     vehicleModelId?: number;
     vehicleEngineId?: number;
     vin?: string | undefined;
-    yearModel?: Date;
+    yearModel?: number;
 }
 
 export class CustomerVehicleImageDTO implements ICustomerVehicleImageDTO {
@@ -15605,6 +15970,7 @@ export class CustomerVehiclePlateDTO implements ICustomerVehiclePlateDTO {
     plateId?: number;
     customerVehicleId?: number;
     date?: Date;
+    isActive?: boolean;
 
     constructor(data?: ICustomerVehiclePlateDTO) {
         if (data) {
@@ -15622,6 +15988,7 @@ export class CustomerVehiclePlateDTO implements ICustomerVehiclePlateDTO {
             this.plateId = _data["plateId"];
             this.customerVehicleId = _data["customerVehicleId"];
             this.date = _data["date"] ? new Date(_data["date"].toString()) : <any>undefined;
+            this.isActive = _data["isActive"];
         }
     }
 
@@ -15639,6 +16006,7 @@ export class CustomerVehiclePlateDTO implements ICustomerVehiclePlateDTO {
         data["plateId"] = this.plateId;
         data["customerVehicleId"] = this.customerVehicleId;
         data["date"] = this.date ? this.date.toISOString() : <any>undefined;
+        data["isActive"] = this.isActive;
         return data;
     }
 }
@@ -15649,6 +16017,147 @@ export interface ICustomerVehiclePlateDTO {
     plateId?: number;
     customerVehicleId?: number;
     date?: Date;
+    isActive?: boolean;
+}
+
+export class CustomerVehiclePlateWithDetailsDTO implements ICustomerVehiclePlateWithDetailsDTO {
+    id?: number;
+    tenantId?: number;
+    plateId?: number;
+    isActive?: boolean;
+    plate?: PlateDTO;
+    date?: Date;
+
+    constructor(data?: ICustomerVehiclePlateWithDetailsDTO) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.plateId = _data["plateId"];
+            this.isActive = _data["isActive"];
+            this.plate = _data["plate"] ? PlateDTO.fromJS(_data["plate"]) : <any>undefined;
+            this.date = _data["date"] ? new Date(_data["date"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): CustomerVehiclePlateWithDetailsDTO {
+        data = typeof data === 'object' ? data : {};
+        let result = new CustomerVehiclePlateWithDetailsDTO();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["plateId"] = this.plateId;
+        data["isActive"] = this.isActive;
+        data["plate"] = this.plate ? this.plate.toJSON() : <any>undefined;
+        data["date"] = this.date ? this.date.toISOString() : <any>undefined;
+        return data;
+    }
+}
+
+export interface ICustomerVehiclePlateWithDetailsDTO {
+    id?: number;
+    tenantId?: number;
+    plateId?: number;
+    isActive?: boolean;
+    plate?: PlateDTO;
+    date?: Date;
+}
+
+export class CustomerVehicleWithDetailsDTO implements ICustomerVehicleWithDetailsDTO {
+    id?: number;
+    tenantId?: number;
+    customer?: CustomerDTO;
+    vehicleModel?: VehicleModelWithDetailsDTO;
+    vehicleEngine?: VehicleEngineWithDetailsDTO;
+    customerVehiclePlates?: CustomerVehiclePlateWithDetailsDTO[] | undefined;
+    customerVehicleColors?: CustomerVehicleColorWithDetailsDTO[] | undefined;
+    vin?: string | undefined;
+    yearModel?: number;
+
+    constructor(data?: ICustomerVehicleWithDetailsDTO) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.customer = _data["customer"] ? CustomerDTO.fromJS(_data["customer"]) : <any>undefined;
+            this.vehicleModel = _data["vehicleModel"] ? VehicleModelWithDetailsDTO.fromJS(_data["vehicleModel"]) : <any>undefined;
+            this.vehicleEngine = _data["vehicleEngine"] ? VehicleEngineWithDetailsDTO.fromJS(_data["vehicleEngine"]) : <any>undefined;
+            if (Array.isArray(_data["customerVehiclePlates"])) {
+                this.customerVehiclePlates = [] as any;
+                for (let item of _data["customerVehiclePlates"])
+                    this.customerVehiclePlates!.push(CustomerVehiclePlateWithDetailsDTO.fromJS(item));
+            }
+            if (Array.isArray(_data["customerVehicleColors"])) {
+                this.customerVehicleColors = [] as any;
+                for (let item of _data["customerVehicleColors"])
+                    this.customerVehicleColors!.push(CustomerVehicleColorWithDetailsDTO.fromJS(item));
+            }
+            this.vin = _data["vin"];
+            this.yearModel = _data["yearModel"];
+        }
+    }
+
+    static fromJS(data: any): CustomerVehicleWithDetailsDTO {
+        data = typeof data === 'object' ? data : {};
+        let result = new CustomerVehicleWithDetailsDTO();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["customer"] = this.customer ? this.customer.toJSON() : <any>undefined;
+        data["vehicleModel"] = this.vehicleModel ? this.vehicleModel.toJSON() : <any>undefined;
+        data["vehicleEngine"] = this.vehicleEngine ? this.vehicleEngine.toJSON() : <any>undefined;
+        if (Array.isArray(this.customerVehiclePlates)) {
+            data["customerVehiclePlates"] = [];
+            for (let item of this.customerVehiclePlates)
+                data["customerVehiclePlates"].push(item.toJSON());
+        }
+        if (Array.isArray(this.customerVehicleColors)) {
+            data["customerVehicleColors"] = [];
+            for (let item of this.customerVehicleColors)
+                data["customerVehicleColors"].push(item.toJSON());
+        }
+        data["vin"] = this.vin;
+        data["yearModel"] = this.yearModel;
+        return data;
+    }
+}
+
+export interface ICustomerVehicleWithDetailsDTO {
+    id?: number;
+    tenantId?: number;
+    customer?: CustomerDTO;
+    vehicleModel?: VehicleModelWithDetailsDTO;
+    vehicleEngine?: VehicleEngineWithDetailsDTO;
+    customerVehiclePlates?: CustomerVehiclePlateWithDetailsDTO[] | undefined;
+    customerVehicleColors?: CustomerVehicleColorWithDetailsDTO[] | undefined;
+    vin?: string | undefined;
+    yearModel?: number;
 }
 
 export class CustomerVipStatusDTO implements ICustomerVipStatusDTO {
@@ -17331,6 +17840,58 @@ export interface IVehicleEngineDTO {
     numberOfCylinders?: number;
 }
 
+export class VehicleEngineWithDetailsDTO implements IVehicleEngineWithDetailsDTO {
+    id?: number;
+    tenantId?: number;
+    engineFuel?: EngineFuelDTO;
+    engineStructure?: EngineStructureDTO;
+    numberOfCylinders?: number;
+
+    constructor(data?: IVehicleEngineWithDetailsDTO) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.engineFuel = _data["engineFuel"] ? EngineFuelDTO.fromJS(_data["engineFuel"]) : <any>undefined;
+            this.engineStructure = _data["engineStructure"] ? EngineStructureDTO.fromJS(_data["engineStructure"]) : <any>undefined;
+            this.numberOfCylinders = _data["numberOfCylinders"];
+        }
+    }
+
+    static fromJS(data: any): VehicleEngineWithDetailsDTO {
+        data = typeof data === 'object' ? data : {};
+        let result = new VehicleEngineWithDetailsDTO();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["engineFuel"] = this.engineFuel ? this.engineFuel.toJSON() : <any>undefined;
+        data["engineStructure"] = this.engineStructure ? this.engineStructure.toJSON() : <any>undefined;
+        data["numberOfCylinders"] = this.numberOfCylinders;
+        return data;
+    }
+}
+
+export interface IVehicleEngineWithDetailsDTO {
+    id?: number;
+    tenantId?: number;
+    engineFuel?: EngineFuelDTO;
+    engineStructure?: EngineStructureDTO;
+    numberOfCylinders?: number;
+}
+
 export class VehicleModelDTO implements IVehicleModelDTO {
     id?: number;
     tenantId?: number;
@@ -17379,6 +17940,58 @@ export interface IVehicleModelDTO {
     id?: number;
     tenantId?: number;
     vehicleBrandId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+}
+
+export class VehicleModelWithDetailsDTO implements IVehicleModelWithDetailsDTO {
+    id?: number;
+    tenantId?: number;
+    vehicleBrand?: VehicleBrandDTO;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+
+    constructor(data?: IVehicleModelWithDetailsDTO) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.vehicleBrand = _data["vehicleBrand"] ? VehicleBrandDTO.fromJS(_data["vehicleBrand"]) : <any>undefined;
+            this.name = _data["name"];
+            this.nameInArabic = _data["nameInArabic"];
+        }
+    }
+
+    static fromJS(data: any): VehicleModelWithDetailsDTO {
+        data = typeof data === 'object' ? data : {};
+        let result = new VehicleModelWithDetailsDTO();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["vehicleBrand"] = this.vehicleBrand ? this.vehicleBrand.toJSON() : <any>undefined;
+        data["name"] = this.name;
+        data["nameInArabic"] = this.nameInArabic;
+        return data;
+    }
+}
+
+export interface IVehicleModelWithDetailsDTO {
+    id?: number;
+    tenantId?: number;
+    vehicleBrand?: VehicleBrandDTO;
     name?: string | undefined;
     nameInArabic?: string | undefined;
 }

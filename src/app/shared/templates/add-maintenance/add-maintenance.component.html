@@ -1,5 +1,5 @@
 
-<div class="form-container
+<div class="form-container w-[95%] mx-auto 
 h-full">
   <!-- Title -->
   <div class="flex gap-3 ml-5 items-center  p-2 ">
@@ -8,40 +8,75 @@ h-full">
   </div>
   <!-- Form Content -->
   <form [formGroup]="form">
-    <div class="row-1 mx-auto w-[95%] flex gap-3">
+  <div class="row-1 relative"> 
+    <!-- Input and clear button -->
+    <div class=" w-[100%] flex gap-3 ">
       <input
         type="text"
-        formControlName="userName"
+        formControlName="firstName"
         placeholder="First Name"
-        class="input-class w-[31%] p-2 rounded-[5px] border-2 border-gray-700 
+        class="input-class w-[33%] p-2 rounded-[5px] border-2 border-gray-700 
         focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
-        autofocus 
       />
-      
+  
       <input
         type="text"
-        formControlName="userName"
+        formControlName="lastName"
         placeholder="Last Name"
-        class="input-class w-[31%] p-2 rounded-[5px] border-2 border-gray-700 
+        class="input-class w-[33%] p-2 rounded-[5px] border-2 border-gray-700 
         focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
       />
+  
       <input
         type="text"
-        formControlName="userName"
+        formControlName="phoneNumber"
         placeholder="Phone Number"
-        class="input-class w-[31%] p-2 rounded-[5px] border-2 border-gray-700 
+        class="input-class w-[33%] p-2 rounded-[5px] border-2 border-gray-700 
         focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
       />
-      <button class="w-[15%] p-2 rounded-[15px] border-2 border-gray-700">Search</button>
-
+      <button class="bg-red-500 py-2 px-3 text-white text-xl rounded" (click)="removeSearch()"> clear </button>
+    </div>  
+    <!-- List of Customers -->
+    <div class="mt-1 absolute w-full" *ngIf="customers$ | async as customers" >
+      <ul class="dropdown-class bg-gray-200 p-0">
+        <li class=" hover:dark:bg-blue-300 p-2 font-bold rounded " *ngFor="let customer of customers" (click)="onSelectCustomer(customer)">
+            {{ customer.firstName }} {{ customer.lastName }}
+        </li>
+        <!-- Created this var to show the button  -->
+        @if(flagCustomer){
+          <li  class="hover:dark:bg-blue-300 p-2 font-bold rounded">+Add New Customer</li>
+        }      
+      </ul>
     </div>
-    <div class="row-2 mt-3 bg-gray-200 mx-auto w-[90%]" *ngIf="customers$ | async as customers">
-        <ul class="dropdown-class">
-          <li class="p-2"
-          *ngFor="let customer of customers" (click)="onSelectCustomer(customer)">
-            {{ customer.firstName }} {{ customer.lastName }} 
-          </li>
-        </ul>    
-    </div>
-  </form>
+  </div>
+  <!-- Created this var to show the Table   -->
+    @if(isTableVisible){
+      <div class="row-3 mt-3" *ngIf="vehicles">
+        <p>Customer Vehicles</p>
+        <app-generic-table class="w-[full]" [data]="vehicles" [columns]="columns" 
+          (rowSelected)="handleRowSelection($event)">
+          ></app-generic-table>
+        <div *ngIf="flagCar"> 
+          <button class="m-2 p-2 bg-blue-500 text-white rounded hover:dark:bg-blue-800 duration-200" (click)="openFormToAddCar()">+ Add New Car</button>
+        </div>
+      </div>  
+      @if(isFormOpen){
+        <app-add-car-form  (closeForm)="isFormOpen = false"></app-add-car-form>
+      }
+    }
+<!-- when selected vehilce and table isnot visible : details to help user know which car was selected -->
+    @if(selectedVehicle && !isTableVisible){
+      <div class="flex items-center gap-2 my-4">
+        <p class=" text-xl pt-3">
+          The selected car is: {{ selectedVehicle.vehicleModel?.vehicleBrand?.name}}  {{ selectedVehicle.vehicleModel?.name}}
+          {{ selectedVehicle.yearModel}} 
+        </p>
+        <button
+          class="p-1.5 bg-blue-500 text-white rounded hover:dark:bg-blue-800 transition-colors duration-200"
+          (click)="changeCar()">
+          Want to change the car?
+        </button>
+      </div>
+    }
+  </form>  
 </div> 

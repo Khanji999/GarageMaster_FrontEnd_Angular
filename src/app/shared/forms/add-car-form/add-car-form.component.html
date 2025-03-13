@@ -1,0 +1,60 @@
+<div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50  ">
+    <div class="bg-white p-6 rounded shadow-lg w-[80%] sm:w-[60%]">
+        <h2 class="text-lg font-semibold mb-3 ">Add New Car</h2>
+
+        <form [formGroup]="form">
+            
+            <div class="row-1 flex justify-between gap-3 my-2">
+                <select class="p-2 border rounded w-full" formControlName="brand">
+                    <option value="" disabled selected>Select a Brand</option>
+                    <option class="text-black" *ngFor="let brand of brands" [value]="brand.id">
+                    {{ brand.name }}
+                    </option>
+                    <option class="text-black"> + Add New Brand </option>
+                </select>
+            
+                <select class="p-2 border rounded w-full" formControlName="model">
+                    <option value="" disabled selected>Select a Model</option>
+                    <option class="text-black" *ngFor="let model of models" [value]="model.id">
+                    {{ model.name }}
+                    </option>
+                    <option class="text-black"> + Add New Model </option>
+                </select>
+            </div>
+
+            <div class="row-2 flex justify-between gap-3 my-2">
+                <select class="p-2 border rounded w-full" formControlName="engineFuel">
+                    <option value="" disabled selected>Select a Fuel</option>
+                    <option class="text-black" *ngFor="let engineFuel of engineFuels" [value]="engineFuel.id">
+                    {{ engineFuel.engineFuelType }}
+                    </option>
+                    <option class="text-black"> + Add New Fuel </option>
+                </select>
+                <select class="p-2 border rounded w-full" formControlName="engineFuel">
+                    <option value="" disabled selected>Select an Engine Structure</option>
+                    <option class="text-black" *ngFor="let engineStructure of engineStructures" [value]="engineStructure.id">
+                    {{ engineStructure.engineType }}
+                    </option>
+                    <option class="text-black"> + Add New Engine </option>
+                </select>
+            </div>
+
+            <div class="row-3 flex justify-between gap-3 my-2">
+                <input  type="number" min="0" max="16"
+                placeholder="Enter a Number of Cylinders"
+                class="p-2 border rounded w-full" formControlName="numberOfCylinders">
+
+                <input  type="number" 
+                placeholder="Enter a Model Year"
+                class="p-2 border rounded w-full" formControlName="modelYear">
+            </div>
+
+        </form>
+
+    
+        <div class="flex justify-end mt-3 gap-2 ">
+            <button (click)="submitForm()" class="p-2 bg-green-500 text-white rounded ">Submit</button>
+            <button (click)="closeFormAndDestroy()" class="p-2 bg-red-500 text-white rounded">Cancel</button>
+        </div>
+    </div>
+</div>

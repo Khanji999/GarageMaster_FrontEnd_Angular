@@ -28,12 +28,12 @@ export const appConfig: ApplicationConfig = {
     useClass: PorgressBarService,
     multi: true
   },
-    { provide: API_BASE_URL,
-      useValue: 'http://localhost:7777', 
-    },       
     // { provide: API_BASE_URL,
-    //   useValue: 'http://192.168.1.2:5000', 
-    // },   
+    //   useValue: 'http://localhost:7777', 
+    // },       
+    { provide: API_BASE_URL,
+      useValue: 'http://192.168.1.2:5000', 
+    },   
   ],
 
 };

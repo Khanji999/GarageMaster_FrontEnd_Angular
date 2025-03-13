@@ -1,6 +1,5 @@
-<!-- generic-table.component.html -->
-<div class="">
-    <table class="min-w-full bg-white border border-gray-300">
+<div class="overflow-y-auto  max-h-96">
+    <table class="w-full bg-white border border-gray-300">
       <!-- Table Header -->
       <thead>
         <tr class="bg-gray-100">
@@ -9,11 +8,13 @@
           </th>
         </tr>
       </thead>
-      <!-- Table Body -->
       <tbody>
-        <tr *ngFor="let row of data" class="hover:bg-gray-50">
+        <tr    
+        *ngFor="let row of data" class="hover:bg-blue-300"
+        (click)="selectRow(row)" 
+        [class.selected]="selectedRow === row">
           <td *ngFor="let column of columns" class="px-4 py-2 border">
-            {{ row[column.key] }}
+            {{ getNestedValue(row, column.key) }}
           </td>
         </tr>
       </tbody>
