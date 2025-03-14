@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs'; 
-import { Client, LoginDTO } from '../services/callAPI/api.service';
+import {  LoginDTO, UserContro } from '../services/callAPI/api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  constructor(private client: Client, private router: Router) { }
+  constructor(private userContro: UserContro, private router: Router) { }
 
   login(userName: string, password: string): Observable<boolean> {
     const loginData: LoginDTO = new LoginDTO({ userName, password });
     return new Observable<boolean>((observer) => {
-      this.client.login(loginData).subscribe(
+      this.userContro.login(loginData).subscribe(
         (response: any) => {
           console.log(response);
           

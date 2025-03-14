@@ -11,12 +11,14 @@
 import { mergeMap as _observableMergeMap, catchError as _observableCatch } from 'rxjs/operators';
 import { Observable, throwError as _observableThrow, of as _observableOf } from 'rxjs';
 import { Injectable, Inject, Optional, InjectionToken } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase, HttpContext } from '@angular/common/http';
 
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
-@Injectable()
-export class Client {
+@Injectable({
+    providedIn: 'root'
+})
+export class CityContro {
     private http: HttpClient;
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
@@ -29,13 +31,14 @@ export class Client {
     /**
      * @return OK
      */
-    getAll(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CityContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
@@ -80,7 +83,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById(id: number): Observable<ApiResponse_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CityContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -90,6 +93,7 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
@@ -135,7 +139,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add(body: CityDTO | undefined): Observable<ApiResponse_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: CityDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CityContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -145,6 +149,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -191,7 +196,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update(body: CityDTO | undefined): Observable<ApiResponse_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: CityDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CityContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -201,6 +206,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -246,7 +252,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CityContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -256,6 +262,7 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
@@ -297,7 +304,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: CityDTO | undefined): Observable<void> {
+    delete(body: CityDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CityContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -307,6 +314,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
@@ -344,28 +352,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ColorContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll2(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/ColorContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll2(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll2(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -374,7 +397,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll2(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -399,7 +422,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById2(id: number): Observable<ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/ColorContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -409,17 +432,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById2(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById2(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -428,7 +452,7 @@ export class Client {
         }));
     }
 
-    protected processGetById2(response: HttpResponseBase): Observable<ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -454,7 +478,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add2(body: ColorDTO | undefined): Observable<ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: ColorDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/ColorContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -464,6 +488,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -471,11 +496,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd2(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd2(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -484,7 +509,7 @@ export class Client {
         }));
     }
 
-    protected processAdd2(response: HttpResponseBase): Observable<ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -510,7 +535,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update2(body: ColorDTO | undefined): Observable<ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: ColorDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/ColorContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -520,6 +545,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -527,11 +553,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate2(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate2(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -540,7 +566,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate2(response: HttpResponseBase): Observable<ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -565,7 +591,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById2(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/ColorContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -575,16 +601,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById2(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById2(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -593,7 +620,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById2(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -616,7 +643,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete2(body: ColorDTO | undefined): Observable<void> {
+    delete(body: ColorDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/ColorContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -626,17 +653,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete2(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete2(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -645,7 +673,7 @@ export class Client {
         }));
     }
 
-    protected processDelete2(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -663,28 +691,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class CountryContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll3(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CountryContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll3(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll3(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -693,7 +736,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll3(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -718,7 +761,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById3(id: number): Observable<ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CountryContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -728,17 +771,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById3(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById3(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -747,7 +791,7 @@ export class Client {
         }));
     }
 
-    protected processGetById3(response: HttpResponseBase): Observable<ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -773,7 +817,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add3(body: CountryDTO | undefined): Observable<ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: CountryDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CountryContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -783,6 +827,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -790,11 +835,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd3(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd3(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -803,7 +848,7 @@ export class Client {
         }));
     }
 
-    protected processAdd3(response: HttpResponseBase): Observable<ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -829,7 +874,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update3(body: CountryDTO | undefined): Observable<ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: CountryDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CountryContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -839,6 +884,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -846,11 +892,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate3(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate3(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -859,7 +905,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate3(response: HttpResponseBase): Observable<ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -884,7 +930,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById3(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CountryContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -894,16 +940,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById3(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById3(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -912,7 +959,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById3(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -935,7 +982,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete3(body: CountryDTO | undefined): Observable<void> {
+    delete(body: CountryDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CountryContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -945,17 +992,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete3(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete3(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -964,7 +1012,7 @@ export class Client {
         }));
     }
 
-    protected processDelete3(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -982,28 +1030,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class CustomerContactNumberContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll4(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerContactNumberContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll4(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll4(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -1012,7 +1075,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll4(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1037,7 +1100,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById4(id: number): Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerContactNumberContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -1047,17 +1110,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById4(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById4(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -1066,7 +1130,7 @@ export class Client {
         }));
     }
 
-    protected processGetById4(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1092,7 +1156,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add4(body: CustomerContactNumberDTO | undefined): Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: CustomerContactNumberDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerContactNumberContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1102,6 +1166,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -1109,11 +1174,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd4(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd4(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -1122,7 +1187,7 @@ export class Client {
         }));
     }
 
-    protected processAdd4(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1148,7 +1213,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update4(body: CustomerContactNumberDTO | undefined): Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: CustomerContactNumberDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerContactNumberContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1158,6 +1223,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -1165,11 +1231,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate4(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate4(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -1178,7 +1244,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate4(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1203,7 +1269,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById4(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CustomerContactNumberContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -1213,16 +1279,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById4(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById4(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -1231,7 +1298,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById4(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1254,7 +1321,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete4(body: CustomerContactNumberDTO | undefined): Observable<void> {
+    delete(body: CustomerContactNumberDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CustomerContactNumberContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1264,17 +1331,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete4(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete4(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -1283,7 +1351,7 @@ export class Client {
         }));
     }
 
-    protected processDelete4(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1301,12 +1369,26 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class CustomerContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @param query (optional) 
      * @return OK
      */
-    searchForCustomer(query: string | undefined): Observable<CustomerDTO[]> {
+    searchForCustomer(query: string | undefined, httpContext?: HttpContext): Observable<CustomerDTO[]> {
         let url_ = this.baseUrl + "/api/CustomerContro/searchForCustomer?";
         if (query === null)
             throw new Error("The parameter 'query' cannot be null.");
@@ -1317,6 +1399,7 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
@@ -1369,7 +1452,7 @@ export class Client {
      * @param c (optional) 
      * @return OK
      */
-    searchForCustomerByFirstName(c: string | undefined): Observable<CustomerDTO[]> {
+    searchForCustomerByFirstName(c: string | undefined, httpContext?: HttpContext): Observable<CustomerDTO[]> {
         let url_ = this.baseUrl + "/api/CustomerContro/searchForCustomerByFirstName?";
         if (c === null)
             throw new Error("The parameter 'c' cannot be null.");
@@ -1380,6 +1463,7 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
@@ -1432,7 +1516,7 @@ export class Client {
      * @param c (optional) 
      * @return OK
      */
-    searchForCustomerByLastName(c: string | undefined): Observable<CustomerDTO[]> {
+    searchForCustomerByLastName(c: string | undefined, httpContext?: HttpContext): Observable<CustomerDTO[]> {
         let url_ = this.baseUrl + "/api/CustomerContro/searchForCustomerByLastName?";
         if (c === null)
             throw new Error("The parameter 'c' cannot be null.");
@@ -1443,6 +1527,7 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
@@ -1496,7 +1581,7 @@ export class Client {
      * @param l (optional) 
      * @return OK
      */
-    searchForCustomerByFirstAndLastName(f: string | undefined, l: string | undefined): Observable<CustomerDTO[]> {
+    searchForCustomerByFirstAndLastName(f: string | undefined, l: string | undefined, httpContext?: HttpContext): Observable<CustomerDTO[]> {
         let url_ = this.baseUrl + "/api/CustomerContro/searchForCustomerByFirstAndLastName?";
         if (f === null)
             throw new Error("The parameter 'f' cannot be null.");
@@ -1511,6 +1596,7 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
@@ -1562,24 +1648,25 @@ export class Client {
     /**
      * @return OK
      */
-    getAll5(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll5(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll5(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -1588,7 +1675,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll5(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1613,7 +1700,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById5(id: number): Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -1623,17 +1710,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById5(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById5(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -1642,7 +1730,7 @@ export class Client {
         }));
     }
 
-    protected processGetById5(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1668,7 +1756,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add5(body: CustomerDTO | undefined): Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: CustomerDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1678,6 +1766,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -1685,11 +1774,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd5(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd5(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -1698,7 +1787,7 @@ export class Client {
         }));
     }
 
-    protected processAdd5(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1724,7 +1813,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update5(body: CustomerDTO | undefined): Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: CustomerDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1734,6 +1823,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -1741,11 +1831,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate5(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate5(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -1754,7 +1844,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate5(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1779,7 +1869,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById5(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CustomerContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -1789,16 +1879,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById5(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById5(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -1807,7 +1898,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById5(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1830,7 +1921,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete5(body: CustomerDTO | undefined): Observable<void> {
+    delete(body: CustomerDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CustomerContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1840,17 +1931,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete5(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete5(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -1859,7 +1951,7 @@ export class Client {
         }));
     }
 
-    protected processDelete5(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1877,28 +1969,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class CustomerNotificationContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll6(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerNotificationContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll6(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll6(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -1907,7 +2014,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll6(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1932,7 +2039,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById6(id: number): Observable<ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerNotificationContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -1942,17 +2049,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById6(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById6(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -1961,7 +2069,7 @@ export class Client {
         }));
     }
 
-    protected processGetById6(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1987,7 +2095,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add6(body: CustomerNotificationDTO | undefined): Observable<ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: CustomerNotificationDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerNotificationContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1997,6 +2105,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -2004,11 +2113,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd6(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd6(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -2017,7 +2126,7 @@ export class Client {
         }));
     }
 
-    protected processAdd6(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2043,7 +2152,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update6(body: CustomerNotificationDTO | undefined): Observable<ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: CustomerNotificationDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerNotificationContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -2053,6 +2162,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -2060,11 +2170,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate6(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate6(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -2073,7 +2183,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate6(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2098,7 +2208,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById6(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CustomerNotificationContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -2108,16 +2218,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById6(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById6(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -2126,7 +2237,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById6(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2149,7 +2260,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete6(body: CustomerNotificationDTO | undefined): Observable<void> {
+    delete(body: CustomerNotificationDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CustomerNotificationContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -2159,17 +2270,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete6(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete6(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -2178,7 +2290,7 @@ export class Client {
         }));
     }
 
-    protected processDelete6(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2196,28 +2308,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class CustomerVehicleColorContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll7(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerVehicleColorContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll7(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll7(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -2226,7 +2353,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll7(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2251,7 +2378,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById7(id: number): Observable<ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerVehicleColorContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -2261,17 +2388,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById7(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById7(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -2280,7 +2408,7 @@ export class Client {
         }));
     }
 
-    protected processGetById7(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2306,7 +2434,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add7(body: CustomerVehicleColorDTO | undefined): Observable<ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: CustomerVehicleColorDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerVehicleColorContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -2316,6 +2444,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -2323,11 +2452,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd7(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd7(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -2336,7 +2465,7 @@ export class Client {
         }));
     }
 
-    protected processAdd7(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2362,7 +2491,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update7(body: CustomerVehicleColorDTO | undefined): Observable<ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: CustomerVehicleColorDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerVehicleColorContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -2372,6 +2501,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -2379,11 +2509,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate7(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate7(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -2392,7 +2522,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate7(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2417,7 +2547,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById7(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CustomerVehicleColorContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -2427,16 +2557,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById7(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById7(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -2445,7 +2576,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById7(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2468,7 +2599,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete7(body: CustomerVehicleColorDTO | undefined): Observable<void> {
+    delete(body: CustomerVehicleColorDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CustomerVehicleColorContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -2478,17 +2609,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete7(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete7(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -2497,7 +2629,7 @@ export class Client {
         }));
     }
 
-    protected processDelete7(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2515,12 +2647,26 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class CustomerVehicleContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @param customerID (optional) 
      * @return OK
      */
-    getAllCustomerVehicles(customerID: number | undefined): Observable<CustomerVehicleWithDetailsDTO[]> {
+    getAllCustomerVehicles(customerID: number | undefined, httpContext?: HttpContext): Observable<CustomerVehicleWithDetailsDTO[]> {
         let url_ = this.baseUrl + "/api/CustomerVehicleContro/GetAllCustomerVehicles?";
         if (customerID === null)
             throw new Error("The parameter 'customerID' cannot be null.");
@@ -2531,6 +2677,7 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
@@ -2582,24 +2729,25 @@ export class Client {
     /**
      * @return OK
      */
-    getAll8(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerVehicleContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll8(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll8(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -2608,7 +2756,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll8(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2633,7 +2781,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById8(id: number): Observable<ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerVehicleContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -2643,17 +2791,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById8(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById8(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -2662,7 +2811,7 @@ export class Client {
         }));
     }
 
-    protected processGetById8(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2688,7 +2837,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add8(body: CustomerVehicleDTO | undefined): Observable<ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: CustomerVehicleDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerVehicleContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -2698,6 +2847,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -2705,11 +2855,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd8(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd8(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -2718,7 +2868,7 @@ export class Client {
         }));
     }
 
-    protected processAdd8(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2744,7 +2894,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update8(body: CustomerVehicleDTO | undefined): Observable<ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: CustomerVehicleDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerVehicleContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -2754,6 +2904,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -2761,11 +2912,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate8(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate8(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -2774,7 +2925,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate8(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2799,7 +2950,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById8(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CustomerVehicleContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -2809,16 +2960,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById8(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById8(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -2827,7 +2979,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById8(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2850,7 +3002,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete8(body: CustomerVehicleDTO | undefined): Observable<void> {
+    delete(body: CustomerVehicleDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CustomerVehicleContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -2860,17 +3012,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete8(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete8(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -2879,7 +3032,7 @@ export class Client {
         }));
     }
 
-    protected processDelete8(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2897,28 +3050,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class CustomerVehicleImageContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll9(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerVehicleImageContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll9(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll9(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -2927,7 +3095,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll9(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2952,7 +3120,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById9(id: number): Observable<ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerVehicleImageContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -2962,17 +3130,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById9(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById9(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -2981,7 +3150,7 @@ export class Client {
         }));
     }
 
-    protected processGetById9(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3007,7 +3176,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add9(body: CustomerVehicleImageDTO | undefined): Observable<ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: CustomerVehicleImageDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerVehicleImageContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3017,6 +3186,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -3024,11 +3194,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd9(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd9(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -3037,7 +3207,7 @@ export class Client {
         }));
     }
 
-    protected processAdd9(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3063,7 +3233,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update9(body: CustomerVehicleImageDTO | undefined): Observable<ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: CustomerVehicleImageDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerVehicleImageContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3073,6 +3243,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -3080,11 +3251,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate9(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate9(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -3093,7 +3264,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate9(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3118,7 +3289,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById9(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CustomerVehicleImageContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -3128,16 +3299,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById9(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById9(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -3146,7 +3318,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById9(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3169,7 +3341,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete9(body: CustomerVehicleImageDTO | undefined): Observable<void> {
+    delete(body: CustomerVehicleImageDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CustomerVehicleImageContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3179,17 +3351,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete9(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete9(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -3198,7 +3371,7 @@ export class Client {
         }));
     }
 
-    protected processDelete9(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3216,28 +3389,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class CustomerVehicleImageTypeContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll10(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerVehicleImageTypeContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll10(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll10(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -3246,7 +3434,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll10(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3271,7 +3459,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById10(id: number): Observable<ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerVehicleImageTypeContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -3281,17 +3469,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById10(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById10(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -3300,7 +3489,7 @@ export class Client {
         }));
     }
 
-    protected processGetById10(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3326,7 +3515,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add10(body: CustomerVehicleImageTypeDTO | undefined): Observable<ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: CustomerVehicleImageTypeDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerVehicleImageTypeContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3336,6 +3525,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -3343,11 +3533,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd10(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd10(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -3356,7 +3546,7 @@ export class Client {
         }));
     }
 
-    protected processAdd10(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3382,7 +3572,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update10(body: CustomerVehicleImageTypeDTO | undefined): Observable<ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: CustomerVehicleImageTypeDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerVehicleImageTypeContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3392,6 +3582,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -3399,11 +3590,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate10(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate10(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -3412,7 +3603,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate10(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3437,7 +3628,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById10(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CustomerVehicleImageTypeContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -3447,16 +3638,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById10(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById10(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -3465,7 +3657,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById10(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3488,7 +3680,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete10(body: CustomerVehicleImageTypeDTO | undefined): Observable<void> {
+    delete(body: CustomerVehicleImageTypeDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CustomerVehicleImageTypeContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3498,17 +3690,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete10(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete10(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -3517,7 +3710,7 @@ export class Client {
         }));
     }
 
-    protected processDelete10(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3535,28 +3728,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class CustomerVehiclePlateContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll11(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerVehiclePlateContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll11(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll11(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -3565,7 +3773,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll11(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3590,7 +3798,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById11(id: number): Observable<ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerVehiclePlateContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -3600,17 +3808,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById11(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById11(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -3619,7 +3828,7 @@ export class Client {
         }));
     }
 
-    protected processGetById11(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3645,7 +3854,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add11(body: CustomerVehiclePlateDTO | undefined): Observable<ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: CustomerVehiclePlateDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerVehiclePlateContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3655,6 +3864,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -3662,11 +3872,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd11(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd11(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -3675,7 +3885,7 @@ export class Client {
         }));
     }
 
-    protected processAdd11(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3701,7 +3911,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update11(body: CustomerVehiclePlateDTO | undefined): Observable<ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: CustomerVehiclePlateDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerVehiclePlateContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3711,6 +3921,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -3718,11 +3929,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate11(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate11(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -3731,7 +3942,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate11(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3756,7 +3967,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById11(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CustomerVehiclePlateContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -3766,16 +3977,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById11(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById11(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -3784,7 +3996,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById11(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3807,7 +4019,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete11(body: CustomerVehiclePlateDTO | undefined): Observable<void> {
+    delete(body: CustomerVehiclePlateDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CustomerVehiclePlateContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3817,17 +4029,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete11(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete11(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -3836,7 +4049,7 @@ export class Client {
         }));
     }
 
-    protected processDelete11(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3854,28 +4067,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class CustomerVipStatusContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll12(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerVipStatusContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll12(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll12(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -3884,7 +4112,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll12(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3909,7 +4137,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById12(id: number): Observable<ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerVipStatusContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -3919,17 +4147,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById12(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById12(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -3938,7 +4167,7 @@ export class Client {
         }));
     }
 
-    protected processGetById12(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3964,7 +4193,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add12(body: CustomerVipStatusDTO | undefined): Observable<ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: CustomerVipStatusDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerVipStatusContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3974,6 +4203,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -3981,11 +4211,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd12(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd12(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -3994,7 +4224,7 @@ export class Client {
         }));
     }
 
-    protected processAdd12(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4020,7 +4250,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update12(body: CustomerVipStatusDTO | undefined): Observable<ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: CustomerVipStatusDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerVipStatusContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -4030,6 +4260,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -4037,11 +4268,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate12(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate12(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -4050,7 +4281,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate12(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4075,7 +4306,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById12(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CustomerVipStatusContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -4085,16 +4316,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById12(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById12(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -4103,7 +4335,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById12(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4126,7 +4358,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete12(body: CustomerVipStatusDTO | undefined): Observable<void> {
+    delete(body: CustomerVipStatusDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/CustomerVipStatusContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -4136,17 +4368,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete12(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete12(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -4155,7 +4388,7 @@ export class Client {
         }));
     }
 
-    protected processDelete12(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4173,28 +4406,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class DistrictContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll13(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/DistrictContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll13(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll13(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -4203,7 +4451,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll13(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4228,7 +4476,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById13(id: number): Observable<ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/DistrictContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -4238,17 +4486,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById13(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById13(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -4257,7 +4506,7 @@ export class Client {
         }));
     }
 
-    protected processGetById13(response: HttpResponseBase): Observable<ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4283,7 +4532,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add13(body: DistrictDTO | undefined): Observable<ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: DistrictDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/DistrictContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -4293,6 +4542,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -4300,11 +4550,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd13(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd13(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -4313,7 +4563,7 @@ export class Client {
         }));
     }
 
-    protected processAdd13(response: HttpResponseBase): Observable<ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4339,7 +4589,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update13(body: DistrictDTO | undefined): Observable<ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: DistrictDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/DistrictContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -4349,6 +4599,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -4356,11 +4607,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate13(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate13(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -4369,7 +4620,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate13(response: HttpResponseBase): Observable<ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4394,7 +4645,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById13(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/DistrictContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -4404,16 +4655,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById13(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById13(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -4422,7 +4674,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById13(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4445,7 +4697,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete13(body: DistrictDTO | undefined): Observable<void> {
+    delete(body: DistrictDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/DistrictContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -4455,17 +4707,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete13(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete13(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -4474,7 +4727,7 @@ export class Client {
         }));
     }
 
-    protected processDelete13(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4492,28 +4745,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class EmployeeContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll14(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/EmployeeContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll14(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll14(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -4522,7 +4790,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll14(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4547,7 +4815,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById14(id: number): Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/EmployeeContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -4557,17 +4825,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById14(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById14(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -4576,7 +4845,7 @@ export class Client {
         }));
     }
 
-    protected processGetById14(response: HttpResponseBase): Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4602,7 +4871,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add14(body: EmployeeDTO | undefined): Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: EmployeeDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/EmployeeContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -4612,6 +4881,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -4619,11 +4889,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd14(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd14(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -4632,7 +4902,7 @@ export class Client {
         }));
     }
 
-    protected processAdd14(response: HttpResponseBase): Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4658,7 +4928,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update14(body: EmployeeDTO | undefined): Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: EmployeeDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/EmployeeContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -4668,6 +4938,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -4675,11 +4946,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate14(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate14(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -4688,7 +4959,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate14(response: HttpResponseBase): Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4713,7 +4984,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById14(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/EmployeeContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -4723,16 +4994,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById14(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById14(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -4741,7 +5013,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById14(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4764,7 +5036,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete14(body: EmployeeDTO | undefined): Observable<void> {
+    delete(body: EmployeeDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/EmployeeContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -4774,17 +5046,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete14(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete14(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -4793,7 +5066,7 @@ export class Client {
         }));
     }
 
-    protected processDelete14(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4811,28 +5084,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class EmployeeMaintainedContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll15(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/EmployeeMaintainedContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll15(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll15(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -4841,7 +5129,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll15(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4866,7 +5154,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById15(id: number): Observable<ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/EmployeeMaintainedContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -4876,17 +5164,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById15(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById15(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -4895,7 +5184,7 @@ export class Client {
         }));
     }
 
-    protected processGetById15(response: HttpResponseBase): Observable<ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4921,7 +5210,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add15(body: EmployeeMaintainedDTO | undefined): Observable<ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: EmployeeMaintainedDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/EmployeeMaintainedContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -4931,6 +5220,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -4938,11 +5228,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd15(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd15(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -4951,7 +5241,7 @@ export class Client {
         }));
     }
 
-    protected processAdd15(response: HttpResponseBase): Observable<ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4977,7 +5267,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update15(body: EmployeeMaintainedDTO | undefined): Observable<ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: EmployeeMaintainedDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/EmployeeMaintainedContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -4987,6 +5277,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -4994,11 +5285,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate15(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate15(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -5007,7 +5298,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate15(response: HttpResponseBase): Observable<ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5032,7 +5323,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById15(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/EmployeeMaintainedContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -5042,16 +5333,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById15(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById15(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -5060,7 +5352,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById15(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5083,7 +5375,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete15(body: EmployeeMaintainedDTO | undefined): Observable<void> {
+    delete(body: EmployeeMaintainedDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/EmployeeMaintainedContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -5093,17 +5385,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete15(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete15(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -5112,7 +5405,7 @@ export class Client {
         }));
     }
 
-    protected processDelete15(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5130,28 +5423,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class EngineFuelContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll16(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/EngineFuelContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll16(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll16(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -5160,7 +5468,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll16(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5185,7 +5493,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById16(id: number): Observable<ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/EngineFuelContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -5195,17 +5503,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById16(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById16(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -5214,7 +5523,7 @@ export class Client {
         }));
     }
 
-    protected processGetById16(response: HttpResponseBase): Observable<ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5240,7 +5549,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add16(body: EngineFuelDTO | undefined): Observable<ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: EngineFuelDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/EngineFuelContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -5250,6 +5559,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -5257,11 +5567,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd16(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd16(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -5270,7 +5580,7 @@ export class Client {
         }));
     }
 
-    protected processAdd16(response: HttpResponseBase): Observable<ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5296,7 +5606,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update16(body: EngineFuelDTO | undefined): Observable<ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: EngineFuelDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/EngineFuelContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -5306,6 +5616,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -5313,11 +5624,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate16(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate16(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -5326,7 +5637,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate16(response: HttpResponseBase): Observable<ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5351,7 +5662,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById16(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/EngineFuelContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -5361,16 +5672,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById16(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById16(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -5379,7 +5691,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById16(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5402,7 +5714,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete16(body: EngineFuelDTO | undefined): Observable<void> {
+    delete(body: EngineFuelDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/EngineFuelContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -5412,17 +5724,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete16(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete16(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -5431,7 +5744,7 @@ export class Client {
         }));
     }
 
-    protected processDelete16(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5449,28 +5762,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class EngineStructureContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll17(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/EngineStructureContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll17(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll17(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -5479,7 +5807,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll17(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5504,7 +5832,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById17(id: number): Observable<ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/EngineStructureContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -5514,17 +5842,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById17(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById17(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -5533,7 +5862,7 @@ export class Client {
         }));
     }
 
-    protected processGetById17(response: HttpResponseBase): Observable<ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5559,7 +5888,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add17(body: EngineStructureDTO | undefined): Observable<ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: EngineStructureDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/EngineStructureContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -5569,6 +5898,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -5576,11 +5906,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd17(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd17(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -5589,7 +5919,7 @@ export class Client {
         }));
     }
 
-    protected processAdd17(response: HttpResponseBase): Observable<ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5615,7 +5945,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update17(body: EngineStructureDTO | undefined): Observable<ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: EngineStructureDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/EngineStructureContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -5625,6 +5955,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -5632,11 +5963,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate17(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate17(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -5645,7 +5976,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate17(response: HttpResponseBase): Observable<ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5670,7 +6001,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById17(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/EngineStructureContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -5680,16 +6011,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById17(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById17(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -5698,7 +6030,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById17(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5721,7 +6053,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete17(body: EngineStructureDTO | undefined): Observable<void> {
+    delete(body: EngineStructureDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/EngineStructureContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -5731,17 +6063,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete17(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete17(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -5750,7 +6083,7 @@ export class Client {
         }));
     }
 
-    protected processDelete17(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5768,28 +6101,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class GenderContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll18(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/GenderContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll18(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll18(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -5798,7 +6146,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll18(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5823,7 +6171,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById18(id: number): Observable<ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/GenderContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -5833,17 +6181,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById18(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById18(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -5852,7 +6201,7 @@ export class Client {
         }));
     }
 
-    protected processGetById18(response: HttpResponseBase): Observable<ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5878,7 +6227,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add18(body: GenderDTO | undefined): Observable<ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: GenderDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/GenderContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -5888,6 +6237,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -5895,11 +6245,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd18(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd18(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -5908,7 +6258,7 @@ export class Client {
         }));
     }
 
-    protected processAdd18(response: HttpResponseBase): Observable<ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5934,7 +6284,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update18(body: GenderDTO | undefined): Observable<ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: GenderDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/GenderContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -5944,6 +6294,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -5951,11 +6302,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate18(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate18(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -5964,7 +6315,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate18(response: HttpResponseBase): Observable<ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5989,7 +6340,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById18(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/GenderContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -5999,16 +6350,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById18(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById18(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -6017,7 +6369,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById18(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6040,7 +6392,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete18(body: GenderDTO | undefined): Observable<void> {
+    delete(body: GenderDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/GenderContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6050,17 +6402,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete18(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete18(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -6069,7 +6422,7 @@ export class Client {
         }));
     }
 
-    protected processDelete18(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6087,12 +6440,26 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ImageContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @param file (optional) 
      * @return OK
      */
-    upload(file: FileParameter | undefined): Observable<void> {
+    upload(file: FileParameter | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/ImageContro/Upload";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6106,6 +6473,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
@@ -6147,7 +6515,7 @@ export class Client {
      * @param fileName (optional) 
      * @return OK
      */
-    download(fileName: string | undefined): Observable<void> {
+    download(fileName: string | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/ImageContro/Download?";
         if (fileName === null)
             throw new Error("The parameter 'fileName' cannot be null.");
@@ -6158,6 +6526,7 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
@@ -6194,28 +6563,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class MaintainedImageContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll19(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/MaintainedImageContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll19(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll19(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -6224,7 +6608,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll19(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6249,7 +6633,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById19(id: number): Observable<ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/MaintainedImageContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -6259,17 +6643,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById19(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById19(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -6278,7 +6663,7 @@ export class Client {
         }));
     }
 
-    protected processGetById19(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6304,7 +6689,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add19(body: MaintainedImageDTO | undefined): Observable<ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: MaintainedImageDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/MaintainedImageContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6314,6 +6699,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -6321,11 +6707,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd19(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd19(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -6334,7 +6720,7 @@ export class Client {
         }));
     }
 
-    protected processAdd19(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6360,7 +6746,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update19(body: MaintainedImageDTO | undefined): Observable<ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: MaintainedImageDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/MaintainedImageContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6370,6 +6756,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -6377,11 +6764,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate19(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate19(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -6390,7 +6777,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate19(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6415,7 +6802,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById19(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/MaintainedImageContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -6425,16 +6812,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById19(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById19(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -6443,7 +6831,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById19(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6466,7 +6854,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete19(body: MaintainedImageDTO | undefined): Observable<void> {
+    delete(body: MaintainedImageDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/MaintainedImageContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6476,17 +6864,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete19(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete19(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -6495,7 +6884,7 @@ export class Client {
         }));
     }
 
-    protected processDelete19(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6513,28 +6902,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class MaintenaceCardContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll20(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/MaintenaceCardContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll20(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll20(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -6543,7 +6947,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll20(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6568,7 +6972,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById20(id: number): Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/MaintenaceCardContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -6578,17 +6982,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById20(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById20(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -6597,7 +7002,7 @@ export class Client {
         }));
     }
 
-    protected processGetById20(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6623,7 +7028,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add20(body: MaintenaceCardDTO | undefined): Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: MaintenaceCardDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/MaintenaceCardContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6633,6 +7038,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -6640,11 +7046,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd20(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd20(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -6653,7 +7059,7 @@ export class Client {
         }));
     }
 
-    protected processAdd20(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6679,7 +7085,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update20(body: MaintenaceCardDTO | undefined): Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: MaintenaceCardDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/MaintenaceCardContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6689,6 +7095,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -6696,11 +7103,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate20(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate20(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -6709,7 +7116,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate20(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6734,7 +7141,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById20(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/MaintenaceCardContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -6744,16 +7151,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById20(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById20(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -6762,7 +7170,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById20(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6785,7 +7193,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete20(body: MaintenaceCardDTO | undefined): Observable<void> {
+    delete(body: MaintenaceCardDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/MaintenaceCardContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6795,17 +7203,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete20(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete20(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -6814,7 +7223,7 @@ export class Client {
         }));
     }
 
-    protected processDelete20(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6832,28 +7241,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class MaintenaceServiceContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll21(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/MaintenaceServiceContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll21(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll21(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -6862,7 +7286,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll21(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6887,7 +7311,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById21(id: number): Observable<ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/MaintenaceServiceContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -6897,17 +7321,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById21(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById21(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -6916,7 +7341,7 @@ export class Client {
         }));
     }
 
-    protected processGetById21(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6942,7 +7367,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add21(body: MaintenaceServiceDTO | undefined): Observable<ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: MaintenaceServiceDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/MaintenaceServiceContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6952,6 +7377,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -6959,11 +7385,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd21(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd21(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -6972,7 +7398,7 @@ export class Client {
         }));
     }
 
-    protected processAdd21(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6998,7 +7424,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update21(body: MaintenaceServiceDTO | undefined): Observable<ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: MaintenaceServiceDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/MaintenaceServiceContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -7008,6 +7434,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -7015,11 +7442,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate21(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate21(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -7028,7 +7455,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate21(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7053,7 +7480,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById21(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/MaintenaceServiceContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -7063,16 +7490,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById21(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById21(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -7081,7 +7509,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById21(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7104,7 +7532,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete21(body: MaintenaceServiceDTO | undefined): Observable<void> {
+    delete(body: MaintenaceServiceDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/MaintenaceServiceContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -7114,17 +7542,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete21(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete21(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -7133,7 +7562,7 @@ export class Client {
         }));
     }
 
-    protected processDelete21(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7151,17 +7580,32 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class MenuContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getMenu(): Observable<MenuDTO[]> {
+    getMenu(httpContext?: HttpContext): Observable<MenuDTO[]> {
         let url_ = this.baseUrl + "/api/MenuContro/GetMenu";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
@@ -7213,24 +7657,25 @@ export class Client {
     /**
      * @return OK
      */
-    getAll22(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/MenuContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll22(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll22(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -7239,7 +7684,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll22(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7264,7 +7709,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById22(id: number): Observable<ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/MenuContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -7274,17 +7719,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById22(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById22(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -7293,7 +7739,7 @@ export class Client {
         }));
     }
 
-    protected processGetById22(response: HttpResponseBase): Observable<ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7319,7 +7765,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add22(body: MenuDTO | undefined): Observable<ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: MenuDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/MenuContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -7329,6 +7775,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -7336,11 +7783,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd22(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd22(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -7349,7 +7796,7 @@ export class Client {
         }));
     }
 
-    protected processAdd22(response: HttpResponseBase): Observable<ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7375,7 +7822,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update22(body: MenuDTO | undefined): Observable<ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: MenuDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/MenuContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -7385,6 +7832,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -7392,11 +7840,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate22(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate22(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -7405,7 +7853,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate22(response: HttpResponseBase): Observable<ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7430,7 +7878,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById22(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/MenuContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -7440,16 +7888,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById22(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById22(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -7458,7 +7907,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById22(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7481,7 +7930,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete22(body: MenuDTO | undefined): Observable<void> {
+    delete(body: MenuDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/MenuContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -7491,17 +7940,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete22(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete22(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -7510,7 +7960,7 @@ export class Client {
         }));
     }
 
-    protected processDelete22(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7528,28 +7978,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class MontlyCustomerVisitContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll23(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/MontlyCustomerVisitContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll23(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll23(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -7558,7 +8023,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll23(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7583,7 +8048,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById23(id: number): Observable<ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/MontlyCustomerVisitContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -7593,17 +8058,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById23(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById23(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -7612,7 +8078,7 @@ export class Client {
         }));
     }
 
-    protected processGetById23(response: HttpResponseBase): Observable<ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7638,7 +8104,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add23(body: MontlyCustomerVisitDTO | undefined): Observable<ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: MontlyCustomerVisitDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/MontlyCustomerVisitContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -7648,6 +8114,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -7655,11 +8122,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd23(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd23(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -7668,7 +8135,7 @@ export class Client {
         }));
     }
 
-    protected processAdd23(response: HttpResponseBase): Observable<ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7694,7 +8161,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update23(body: MontlyCustomerVisitDTO | undefined): Observable<ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: MontlyCustomerVisitDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/MontlyCustomerVisitContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -7704,6 +8171,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -7711,11 +8179,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate23(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate23(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -7724,7 +8192,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate23(response: HttpResponseBase): Observable<ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7749,7 +8217,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById23(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/MontlyCustomerVisitContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -7759,16 +8227,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById23(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById23(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -7777,7 +8246,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById23(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7800,7 +8269,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete23(body: MontlyCustomerVisitDTO | undefined): Observable<void> {
+    delete(body: MontlyCustomerVisitDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/MontlyCustomerVisitContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -7810,17 +8279,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete23(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete23(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -7829,7 +8299,7 @@ export class Client {
         }));
     }
 
-    protected processDelete23(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7847,28 +8317,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class NationalityContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll24(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/NationalityContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll24(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll24(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -7877,7 +8362,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll24(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7902,7 +8387,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById24(id: number): Observable<ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/NationalityContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -7912,17 +8397,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById24(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById24(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -7931,7 +8417,7 @@ export class Client {
         }));
     }
 
-    protected processGetById24(response: HttpResponseBase): Observable<ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7957,7 +8443,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add24(body: NationalityDTO | undefined): Observable<ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: NationalityDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/NationalityContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -7967,6 +8453,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -7974,11 +8461,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd24(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd24(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -7987,7 +8474,7 @@ export class Client {
         }));
     }
 
-    protected processAdd24(response: HttpResponseBase): Observable<ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8013,7 +8500,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update24(body: NationalityDTO | undefined): Observable<ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: NationalityDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/NationalityContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -8023,6 +8510,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -8030,11 +8518,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate24(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate24(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -8043,7 +8531,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate24(response: HttpResponseBase): Observable<ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8068,7 +8556,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById24(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/NationalityContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -8078,16 +8566,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById24(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById24(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -8096,7 +8585,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById24(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8119,7 +8608,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete24(body: NationalityDTO | undefined): Observable<void> {
+    delete(body: NationalityDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/NationalityContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -8129,17 +8618,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete24(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete24(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -8148,7 +8638,7 @@ export class Client {
         }));
     }
 
-    protected processDelete24(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8166,28 +8656,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class PartBrandContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll25(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/PartBrandContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll25(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll25(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -8196,7 +8701,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll25(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8221,7 +8726,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById25(id: number): Observable<ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/PartBrandContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -8231,17 +8736,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById25(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById25(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -8250,7 +8756,7 @@ export class Client {
         }));
     }
 
-    protected processGetById25(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8276,7 +8782,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add25(body: PartBrandDTO | undefined): Observable<ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: PartBrandDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/PartBrandContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -8286,6 +8792,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -8293,11 +8800,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd25(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd25(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -8306,7 +8813,7 @@ export class Client {
         }));
     }
 
-    protected processAdd25(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8332,7 +8839,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update25(body: PartBrandDTO | undefined): Observable<ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: PartBrandDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/PartBrandContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -8342,6 +8849,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -8349,11 +8857,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate25(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate25(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -8362,7 +8870,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate25(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8387,7 +8895,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById25(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/PartBrandContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -8397,16 +8905,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById25(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById25(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -8415,7 +8924,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById25(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8438,7 +8947,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete25(body: PartBrandDTO | undefined): Observable<void> {
+    delete(body: PartBrandDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/PartBrandContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -8448,17 +8957,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete25(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete25(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -8467,7 +8977,7 @@ export class Client {
         }));
     }
 
-    protected processDelete25(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8485,28 +8995,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class PartConditionContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll26(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/PartConditionContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll26(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll26(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -8515,7 +9040,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll26(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8540,7 +9065,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById26(id: number): Observable<ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/PartConditionContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -8550,17 +9075,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById26(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById26(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -8569,7 +9095,7 @@ export class Client {
         }));
     }
 
-    protected processGetById26(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8595,7 +9121,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add26(body: PartConditionDTO | undefined): Observable<ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: PartConditionDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/PartConditionContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -8605,6 +9131,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -8612,11 +9139,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd26(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd26(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -8625,7 +9152,7 @@ export class Client {
         }));
     }
 
-    protected processAdd26(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8651,7 +9178,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update26(body: PartConditionDTO | undefined): Observable<ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: PartConditionDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/PartConditionContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -8661,6 +9188,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -8668,11 +9196,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate26(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate26(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -8681,7 +9209,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate26(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8706,7 +9234,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById26(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/PartConditionContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -8716,16 +9244,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById26(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById26(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -8734,7 +9263,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById26(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8757,7 +9286,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete26(body: PartConditionDTO | undefined): Observable<void> {
+    delete(body: PartConditionDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/PartConditionContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -8767,17 +9296,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete26(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete26(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -8786,7 +9316,7 @@ export class Client {
         }));
     }
 
-    protected processDelete26(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8804,28 +9334,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class PartImageContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll27(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/PartImageContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll27(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll27(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -8834,7 +9379,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll27(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8859,7 +9404,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById27(id: number): Observable<ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/PartImageContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -8869,17 +9414,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById27(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById27(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -8888,7 +9434,7 @@ export class Client {
         }));
     }
 
-    protected processGetById27(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8914,7 +9460,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add27(body: PartImageDTO | undefined): Observable<ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: PartImageDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/PartImageContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -8924,6 +9470,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -8931,11 +9478,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd27(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd27(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -8944,7 +9491,7 @@ export class Client {
         }));
     }
 
-    protected processAdd27(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8970,7 +9517,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update27(body: PartImageDTO | undefined): Observable<ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: PartImageDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/PartImageContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -8980,6 +9527,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -8987,11 +9535,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate27(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate27(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -9000,7 +9548,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate27(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9025,7 +9573,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById27(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/PartImageContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -9035,16 +9583,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById27(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById27(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -9053,7 +9602,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById27(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9076,7 +9625,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete27(body: PartImageDTO | undefined): Observable<void> {
+    delete(body: PartImageDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/PartImageContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -9086,17 +9635,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete27(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete27(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -9105,7 +9655,7 @@ export class Client {
         }));
     }
 
-    protected processDelete27(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9123,28 +9673,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class PartImageTypeContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll28(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/PartImageTypeContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll28(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll28(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -9153,7 +9718,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll28(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9178,7 +9743,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById28(id: number): Observable<ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/PartImageTypeContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -9188,17 +9753,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById28(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById28(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -9207,7 +9773,7 @@ export class Client {
         }));
     }
 
-    protected processGetById28(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9233,7 +9799,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add28(body: PartImageTypeDTO | undefined): Observable<ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: PartImageTypeDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/PartImageTypeContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -9243,6 +9809,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -9250,11 +9817,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd28(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd28(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -9263,7 +9830,7 @@ export class Client {
         }));
     }
 
-    protected processAdd28(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9289,7 +9856,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update28(body: PartImageTypeDTO | undefined): Observable<ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: PartImageTypeDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/PartImageTypeContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -9299,6 +9866,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -9306,11 +9874,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate28(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate28(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -9319,7 +9887,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate28(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9344,7 +9912,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById28(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/PartImageTypeContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -9354,16 +9922,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById28(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById28(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -9372,7 +9941,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById28(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9395,7 +9964,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete28(body: PartImageTypeDTO | undefined): Observable<void> {
+    delete(body: PartImageTypeDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/PartImageTypeContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -9405,17 +9974,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete28(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete28(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -9424,7 +9994,7 @@ export class Client {
         }));
     }
 
-    protected processDelete28(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9442,28 +10012,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class PlateContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll29(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/PlateContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll29(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll29(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -9472,7 +10057,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll29(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9497,7 +10082,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById29(id: number): Observable<ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/PlateContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -9507,17 +10092,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById29(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById29(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -9526,7 +10112,7 @@ export class Client {
         }));
     }
 
-    protected processGetById29(response: HttpResponseBase): Observable<ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9552,7 +10138,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add29(body: PlateDTO | undefined): Observable<ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: PlateDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/PlateContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -9562,6 +10148,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -9569,11 +10156,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd29(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd29(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -9582,7 +10169,7 @@ export class Client {
         }));
     }
 
-    protected processAdd29(response: HttpResponseBase): Observable<ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9608,7 +10195,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update29(body: PlateDTO | undefined): Observable<ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: PlateDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/PlateContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -9618,6 +10205,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -9625,11 +10213,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate29(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate29(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -9638,7 +10226,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate29(response: HttpResponseBase): Observable<ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9663,7 +10251,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById29(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/PlateContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -9673,16 +10261,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById29(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById29(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -9691,7 +10280,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById29(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9714,7 +10303,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete29(body: PlateDTO | undefined): Observable<void> {
+    delete(body: PlateDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/PlateContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -9724,17 +10313,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete29(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete29(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -9743,7 +10333,7 @@ export class Client {
         }));
     }
 
-    protected processDelete29(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9761,28 +10351,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class PremissionContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll30(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/PremissionContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll30(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll30(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -9791,7 +10396,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll30(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9816,7 +10421,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById30(id: number): Observable<ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/PremissionContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -9826,17 +10431,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById30(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById30(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -9845,7 +10451,7 @@ export class Client {
         }));
     }
 
-    protected processGetById30(response: HttpResponseBase): Observable<ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9871,7 +10477,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add30(body: PremissionDTO | undefined): Observable<ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: PremissionDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/PremissionContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -9881,6 +10487,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -9888,11 +10495,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd30(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd30(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -9901,7 +10508,7 @@ export class Client {
         }));
     }
 
-    protected processAdd30(response: HttpResponseBase): Observable<ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9927,7 +10534,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update30(body: PremissionDTO | undefined): Observable<ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: PremissionDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/PremissionContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -9937,6 +10544,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -9944,11 +10552,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate30(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate30(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -9957,7 +10565,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate30(response: HttpResponseBase): Observable<ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9982,7 +10590,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById30(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/PremissionContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -9992,16 +10600,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById30(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById30(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -10010,7 +10619,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById30(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10033,7 +10642,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete30(body: PremissionDTO | undefined): Observable<void> {
+    delete(body: PremissionDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/PremissionContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -10043,17 +10652,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete30(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete30(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -10062,7 +10672,7 @@ export class Client {
         }));
     }
 
-    protected processDelete30(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10080,28 +10690,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class RoleContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll31(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/RoleContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll31(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll31(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -10110,7 +10735,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll31(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10135,7 +10760,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById31(id: number): Observable<ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/RoleContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -10145,17 +10770,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById31(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById31(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -10164,7 +10790,7 @@ export class Client {
         }));
     }
 
-    protected processGetById31(response: HttpResponseBase): Observable<ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10190,7 +10816,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add31(body: RoleDTO | undefined): Observable<ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: RoleDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/RoleContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -10200,6 +10826,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -10207,11 +10834,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd31(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd31(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -10220,7 +10847,7 @@ export class Client {
         }));
     }
 
-    protected processAdd31(response: HttpResponseBase): Observable<ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10246,7 +10873,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update31(body: RoleDTO | undefined): Observable<ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: RoleDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/RoleContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -10256,6 +10883,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -10263,11 +10891,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate31(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate31(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -10276,7 +10904,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate31(response: HttpResponseBase): Observable<ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10301,7 +10929,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById31(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/RoleContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -10311,16 +10939,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById31(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById31(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -10329,7 +10958,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById31(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10352,7 +10981,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete31(body: RoleDTO | undefined): Observable<void> {
+    delete(body: RoleDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/RoleContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -10362,17 +10991,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete31(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete31(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -10381,7 +11011,7 @@ export class Client {
         }));
     }
 
-    protected processDelete31(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10399,28 +11029,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class RolePermssionContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll32(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/RolePermssionContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll32(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll32(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -10429,7 +11074,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll32(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10454,7 +11099,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById32(id: number): Observable<ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/RolePermssionContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -10464,17 +11109,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById32(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById32(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -10483,7 +11129,7 @@ export class Client {
         }));
     }
 
-    protected processGetById32(response: HttpResponseBase): Observable<ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10509,7 +11155,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add32(body: RolePermssionDTO | undefined): Observable<ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: RolePermssionDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/RolePermssionContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -10519,6 +11165,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -10526,11 +11173,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd32(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd32(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -10539,7 +11186,7 @@ export class Client {
         }));
     }
 
-    protected processAdd32(response: HttpResponseBase): Observable<ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10565,7 +11212,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update32(body: RolePermssionDTO | undefined): Observable<ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: RolePermssionDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/RolePermssionContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -10575,6 +11222,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -10582,11 +11230,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate32(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate32(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -10595,7 +11243,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate32(response: HttpResponseBase): Observable<ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10620,7 +11268,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById32(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/RolePermssionContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -10630,16 +11278,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById32(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById32(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -10648,7 +11297,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById32(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10671,7 +11320,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete32(body: RolePermssionDTO | undefined): Observable<void> {
+    delete(body: RolePermssionDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/RolePermssionContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -10681,17 +11330,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete32(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete32(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -10700,7 +11350,7 @@ export class Client {
         }));
     }
 
-    protected processDelete32(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10718,28 +11368,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ServiceContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll33(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/ServiceContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll33(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll33(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -10748,7 +11413,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll33(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10773,7 +11438,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById33(id: number): Observable<ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/ServiceContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -10783,17 +11448,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById33(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById33(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -10802,7 +11468,7 @@ export class Client {
         }));
     }
 
-    protected processGetById33(response: HttpResponseBase): Observable<ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10828,7 +11494,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add33(body: ServiceTableDTO | undefined): Observable<ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: ServiceTableDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/ServiceContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -10838,6 +11504,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -10845,11 +11512,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd33(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd33(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -10858,7 +11525,7 @@ export class Client {
         }));
     }
 
-    protected processAdd33(response: HttpResponseBase): Observable<ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10884,7 +11551,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update33(body: ServiceTableDTO | undefined): Observable<ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: ServiceTableDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/ServiceContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -10894,6 +11561,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -10901,11 +11569,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate33(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate33(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -10914,7 +11582,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate33(response: HttpResponseBase): Observable<ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10939,7 +11607,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById33(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/ServiceContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -10949,16 +11617,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById33(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById33(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -10967,7 +11636,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById33(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10990,7 +11659,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete33(body: ServiceTableDTO | undefined): Observable<void> {
+    delete(body: ServiceTableDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/ServiceContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -11000,17 +11669,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete33(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete33(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -11019,7 +11689,7 @@ export class Client {
         }));
     }
 
-    protected processDelete33(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11037,28 +11707,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ServicePartContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll34(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/ServicePartContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll34(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll34(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -11067,7 +11752,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll34(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11092,7 +11777,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById34(id: number): Observable<ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/ServicePartContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -11102,17 +11787,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById34(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById34(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -11121,7 +11807,7 @@ export class Client {
         }));
     }
 
-    protected processGetById34(response: HttpResponseBase): Observable<ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11147,7 +11833,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add34(body: ServicePartDTO | undefined): Observable<ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: ServicePartDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/ServicePartContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -11157,6 +11843,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -11164,11 +11851,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd34(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd34(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -11177,7 +11864,7 @@ export class Client {
         }));
     }
 
-    protected processAdd34(response: HttpResponseBase): Observable<ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11203,7 +11890,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update34(body: ServicePartDTO | undefined): Observable<ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: ServicePartDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/ServicePartContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -11213,6 +11900,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -11220,11 +11908,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate34(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate34(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -11233,7 +11921,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate34(response: HttpResponseBase): Observable<ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11258,7 +11946,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById34(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/ServicePartContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -11268,16 +11956,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById34(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById34(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -11286,7 +11975,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById34(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11309,7 +11998,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete34(body: ServicePartDTO | undefined): Observable<void> {
+    delete(body: ServicePartDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/ServicePartContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -11319,17 +12008,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete34(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete34(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -11338,7 +12028,7 @@ export class Client {
         }));
     }
 
-    protected processDelete34(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11356,28 +12046,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class ServiceTypeContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll35(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/ServiceTypeContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll35(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll35(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -11386,7 +12091,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll35(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11411,7 +12116,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById35(id: number): Observable<ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/ServiceTypeContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -11421,17 +12126,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById35(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById35(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -11440,7 +12146,7 @@ export class Client {
         }));
     }
 
-    protected processGetById35(response: HttpResponseBase): Observable<ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11466,7 +12172,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add35(body: ServiceTypeDTO | undefined): Observable<ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: ServiceTypeDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/ServiceTypeContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -11476,6 +12182,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -11483,11 +12190,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd35(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd35(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -11496,7 +12203,7 @@ export class Client {
         }));
     }
 
-    protected processAdd35(response: HttpResponseBase): Observable<ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11522,7 +12229,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update35(body: ServiceTypeDTO | undefined): Observable<ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: ServiceTypeDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/ServiceTypeContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -11532,6 +12239,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -11539,11 +12247,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate35(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate35(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -11552,7 +12260,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate35(response: HttpResponseBase): Observable<ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11577,7 +12285,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById35(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/ServiceTypeContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -11587,16 +12295,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById35(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById35(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -11605,7 +12314,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById35(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11628,7 +12337,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete35(body: ServiceTypeDTO | undefined): Observable<void> {
+    delete(body: ServiceTypeDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/ServiceTypeContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -11638,17 +12347,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete35(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete35(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -11657,7 +12367,7 @@ export class Client {
         }));
     }
 
-    protected processDelete35(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11675,28 +12385,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class StatusBenefitContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll36(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/StatusBenefitContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll36(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll36(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -11705,7 +12430,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll36(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11730,7 +12455,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById36(id: number): Observable<ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/StatusBenefitContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -11740,17 +12465,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById36(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById36(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -11759,7 +12485,7 @@ export class Client {
         }));
     }
 
-    protected processGetById36(response: HttpResponseBase): Observable<ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11785,7 +12511,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add36(body: StatusBenefitDTO | undefined): Observable<ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: StatusBenefitDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/StatusBenefitContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -11795,6 +12521,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -11802,11 +12529,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd36(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd36(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -11815,7 +12542,7 @@ export class Client {
         }));
     }
 
-    protected processAdd36(response: HttpResponseBase): Observable<ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11841,7 +12568,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update36(body: StatusBenefitDTO | undefined): Observable<ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: StatusBenefitDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/StatusBenefitContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -11851,6 +12578,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -11858,11 +12586,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate36(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate36(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -11871,7 +12599,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate36(response: HttpResponseBase): Observable<ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11896,7 +12624,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById36(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/StatusBenefitContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -11906,16 +12634,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById36(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById36(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -11924,7 +12653,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById36(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11947,7 +12676,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete36(body: StatusBenefitDTO | undefined): Observable<void> {
+    delete(body: StatusBenefitDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/StatusBenefitContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -11957,17 +12686,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete36(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete36(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -11976,7 +12706,7 @@ export class Client {
         }));
     }
 
-    protected processDelete36(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11994,28 +12724,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class StreetContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll37(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/StreetContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll37(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll37(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -12024,7 +12769,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll37(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12049,7 +12794,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById37(id: number): Observable<ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/StreetContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -12059,17 +12804,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById37(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById37(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -12078,7 +12824,7 @@ export class Client {
         }));
     }
 
-    protected processGetById37(response: HttpResponseBase): Observable<ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12104,7 +12850,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add37(body: StreetDTO | undefined): Observable<ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: StreetDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/StreetContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -12114,6 +12860,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -12121,11 +12868,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd37(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd37(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -12134,7 +12881,7 @@ export class Client {
         }));
     }
 
-    protected processAdd37(response: HttpResponseBase): Observable<ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12160,7 +12907,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update37(body: StreetDTO | undefined): Observable<ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: StreetDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/StreetContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -12170,6 +12917,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -12177,11 +12925,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate37(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate37(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -12190,7 +12938,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate37(response: HttpResponseBase): Observable<ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12215,7 +12963,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById37(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/StreetContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -12225,16 +12973,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById37(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById37(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -12243,7 +12992,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById37(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12266,7 +13015,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete37(body: StreetDTO | undefined): Observable<void> {
+    delete(body: StreetDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/StreetContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -12276,17 +13025,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete37(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete37(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -12295,7 +13045,7 @@ export class Client {
         }));
     }
 
-    protected processDelete37(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12313,28 +13063,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class SupplierContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll38(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/SupplierContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll38(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll38(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -12343,7 +13108,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll38(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12368,7 +13133,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById38(id: number): Observable<ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/SupplierContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -12378,17 +13143,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById38(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById38(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -12397,7 +13163,7 @@ export class Client {
         }));
     }
 
-    protected processGetById38(response: HttpResponseBase): Observable<ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12423,7 +13189,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add38(body: SupplierDTO | undefined): Observable<ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: SupplierDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/SupplierContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -12433,6 +13199,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -12440,11 +13207,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd38(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd38(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -12453,7 +13220,7 @@ export class Client {
         }));
     }
 
-    protected processAdd38(response: HttpResponseBase): Observable<ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12479,7 +13246,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update38(body: SupplierDTO | undefined): Observable<ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: SupplierDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/SupplierContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -12489,6 +13256,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -12496,11 +13264,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate38(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate38(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -12509,7 +13277,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate38(response: HttpResponseBase): Observable<ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12534,7 +13302,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById38(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/SupplierContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -12544,16 +13312,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById38(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById38(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -12562,7 +13331,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById38(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12585,7 +13354,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete38(body: SupplierDTO | undefined): Observable<void> {
+    delete(body: SupplierDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/SupplierContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -12595,17 +13364,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete38(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete38(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -12614,7 +13384,7 @@ export class Client {
         }));
     }
 
-    protected processDelete38(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12632,17 +13402,32 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class TenantContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getCurrentTenant(): Observable<TenantDTO> {
+    getCurrentTenant(httpContext?: HttpContext): Observable<TenantDTO> {
         let url_ = this.baseUrl + "/api/TenantContro/GetCurrentTenant";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
@@ -12688,7 +13473,7 @@ export class Client {
      * @param tenantId (optional) 
      * @return OK
      */
-    ook(tenantId: number | undefined): Observable<void> {
+    ook(tenantId: number | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/TenantContro/ook?";
         if (tenantId === null)
             throw new Error("The parameter 'tenantId' cannot be null.");
@@ -12699,6 +13484,7 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
@@ -12739,24 +13525,25 @@ export class Client {
     /**
      * @return OK
      */
-    getAll39(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/TenantContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll39(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll39(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -12765,7 +13552,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll39(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12790,7 +13577,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById39(id: number): Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/TenantContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -12800,17 +13587,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById39(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById39(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -12819,7 +13607,7 @@ export class Client {
         }));
     }
 
-    protected processGetById39(response: HttpResponseBase): Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12845,7 +13633,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add39(body: TenantDTO | undefined): Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: TenantDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/TenantContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -12855,6 +13643,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -12862,11 +13651,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd39(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd39(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -12875,7 +13664,7 @@ export class Client {
         }));
     }
 
-    protected processAdd39(response: HttpResponseBase): Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12901,7 +13690,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update39(body: TenantDTO | undefined): Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: TenantDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/TenantContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -12911,6 +13700,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -12918,11 +13708,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate39(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate39(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -12931,7 +13721,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate39(response: HttpResponseBase): Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12956,7 +13746,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById39(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/TenantContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -12966,16 +13756,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById39(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById39(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -12984,7 +13775,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById39(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -13007,7 +13798,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete39(body: TenantDTO | undefined): Observable<void> {
+    delete(body: TenantDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/TenantContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -13017,17 +13808,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete39(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete39(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -13036,7 +13828,7 @@ export class Client {
         }));
     }
 
-    protected processDelete39(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -13054,12 +13846,26 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class UserContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @param body (optional) 
      * @return OK
      */
-    login(body: LoginDTO | undefined): Observable<ApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    login(body: LoginDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/UserContro/Login";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -13069,6 +13875,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -13114,24 +13921,25 @@ export class Client {
     /**
      * @return OK
      */
-    getAll40(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/UserContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll40(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll40(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -13140,7 +13948,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll40(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -13165,7 +13973,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById40(id: number): Observable<ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/UserContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -13175,17 +13983,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById40(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById40(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -13194,7 +14003,7 @@ export class Client {
         }));
     }
 
-    protected processGetById40(response: HttpResponseBase): Observable<ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -13220,7 +14029,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add40(body: UserDTO | undefined): Observable<ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: UserDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/UserContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -13230,6 +14039,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -13237,11 +14047,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd40(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd40(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -13250,7 +14060,7 @@ export class Client {
         }));
     }
 
-    protected processAdd40(response: HttpResponseBase): Observable<ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -13276,7 +14086,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update40(body: UserDTO | undefined): Observable<ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: UserDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/UserContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -13286,6 +14096,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -13293,11 +14104,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate40(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate40(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -13306,7 +14117,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate40(response: HttpResponseBase): Observable<ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -13331,7 +14142,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById40(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/UserContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -13341,16 +14152,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById40(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById40(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -13359,7 +14171,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById40(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -13382,7 +14194,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete40(body: UserDTO | undefined): Observable<void> {
+    delete(body: UserDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/UserContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -13392,17 +14204,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete40(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete40(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -13411,7 +14224,7 @@ export class Client {
         }));
     }
 
-    protected processDelete40(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -13429,28 +14242,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class VehicleBrandContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll41(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/VehicleBrandContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll41(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll41(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -13459,7 +14287,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll41(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -13484,7 +14312,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById41(id: number): Observable<ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/VehicleBrandContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -13494,17 +14322,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById41(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById41(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -13513,7 +14342,7 @@ export class Client {
         }));
     }
 
-    protected processGetById41(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -13539,7 +14368,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add41(body: VehicleBrandDTO | undefined): Observable<ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: VehicleBrandDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/VehicleBrandContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -13549,6 +14378,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -13556,11 +14386,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd41(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd41(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -13569,7 +14399,7 @@ export class Client {
         }));
     }
 
-    protected processAdd41(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -13595,7 +14425,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update41(body: VehicleBrandDTO | undefined): Observable<ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: VehicleBrandDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/VehicleBrandContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -13605,6 +14435,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -13612,11 +14443,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate41(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate41(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -13625,7 +14456,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate41(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -13650,7 +14481,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById41(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/VehicleBrandContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -13660,16 +14491,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById41(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById41(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -13678,7 +14510,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById41(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -13701,7 +14533,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete41(body: VehicleBrandDTO | undefined): Observable<void> {
+    delete(body: VehicleBrandDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/VehicleBrandContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -13711,17 +14543,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete41(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete41(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -13730,7 +14563,7 @@ export class Client {
         }));
     }
 
-    protected processDelete41(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -13748,331 +14581,26 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
 
-    /**
-     * @return OK
-     */
-    getAll42(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
-        let url_ = this.baseUrl + "/api/VehicleEngineContro/GetAll";
-        url_ = url_.replace(/[?&]$/, "");
+@Injectable({
+    providedIn: 'root'
+})
+export class VehicleModelContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-                "Accept": "text/plain"
-            })
-        };
-
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll42(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetAll42(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
-        }));
-    }
-
-    protected processGetAll42(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
-        const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = ApiResponse_1OfOfIEnumerable_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
-            return _observableOf(result200);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
-        }
-        return _observableOf(null as any);
-    }
-
-    /**
-     * @return OK
-     */
-    getById42(id: number): Observable<ApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/VehicleEngineContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
-        url_ = url_.replace(/[?&]$/, "");
-
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-                "Accept": "text/plain"
-            })
-        };
-
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById42(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processGetById42(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
-        }));
-    }
-
-    protected processGetById42(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = ApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
-            return _observableOf(result200);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
-        }
-        return _observableOf(null as any);
-    }
-
-    /**
-     * @param body (optional) 
-     * @return OK
-     */
-    add42(body: VehicleEngineDTO | undefined): Observable<ApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/VehicleEngineContro/Add";
-        url_ = url_.replace(/[?&]$/, "");
-
-        const content_ = JSON.stringify(body);
-
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-                "Content-Type": "application/json",
-                "Accept": "text/plain"
-            })
-        };
-
-        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd42(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processAdd42(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
-        }));
-    }
-
-    protected processAdd42(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = ApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
-            return _observableOf(result200);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
-        }
-        return _observableOf(null as any);
-    }
-
-    /**
-     * @param body (optional) 
-     * @return OK
-     */
-    update42(body: VehicleEngineDTO | undefined): Observable<ApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/VehicleEngineContro/Update";
-        url_ = url_.replace(/[?&]$/, "");
-
-        const content_ = JSON.stringify(body);
-
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-                "Content-Type": "application/json",
-                "Accept": "text/plain"
-            })
-        };
-
-        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate42(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processUpdate42(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
-        }));
-    }
-
-    protected processUpdate42(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = ApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
-            return _observableOf(result200);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
-        }
-        return _observableOf(null as any);
-    }
-
-    /**
-     * @return OK
-     */
-    deleteById42(id: number): Observable<void> {
-        let url_ = this.baseUrl + "/api/VehicleEngineContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
-        url_ = url_.replace(/[?&]$/, "");
-
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-            })
-        };
-
-        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById42(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processDeleteById42(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<void>;
-        }));
-    }
-
-    protected processDeleteById42(response: HttpResponseBase): Observable<void> {
-        const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
-        }
-        return _observableOf(null as any);
-    }
-
-    /**
-     * @param body (optional) 
-     * @return OK
-     */
-    delete42(body: VehicleEngineDTO | undefined): Observable<void> {
-        let url_ = this.baseUrl + "/api/VehicleEngineContro/Delete";
-        url_ = url_.replace(/[?&]$/, "");
-
-        const content_ = JSON.stringify(body);
-
-        let options_ : any = {
-            body: content_,
-            observe: "response",
-            responseType: "blob",
-            headers: new HttpHeaders({
-                "Content-Type": "application/json",
-            })
-        };
-
-        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete42(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processDelete42(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<void>;
-        }));
-    }
-
-    protected processDelete42(response: HttpResponseBase): Observable<void> {
-        const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
-        }
-        return _observableOf(null as any);
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
     }
 
     /**
      * @param brandID (optional) 
      * @return OK
      */
-    getAllModelsByBrandID(brandID: number | undefined): Observable<VehicleModelDTO[]> {
+    getAllModelsByBrandID(brandID: number | undefined, httpContext?: HttpContext): Observable<VehicleModelDTO[]> {
         let url_ = this.baseUrl + "/api/VehicleModelContro/GetAllModelsByBrandID?";
         if (brandID === null)
             throw new Error("The parameter 'brandID' cannot be null.");
@@ -14083,6 +14611,7 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
@@ -14134,24 +14663,25 @@ export class Client {
     /**
      * @return OK
      */
-    getAll43(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/VehicleModelContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll43(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll43(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -14160,7 +14690,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll43(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14185,7 +14715,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById43(id: number): Observable<ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/VehicleModelContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -14195,17 +14725,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById43(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById43(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -14214,7 +14745,7 @@ export class Client {
         }));
     }
 
-    protected processGetById43(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14240,7 +14771,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add43(body: VehicleModelDTO | undefined): Observable<ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: VehicleModelDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/VehicleModelContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -14250,6 +14781,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -14257,11 +14789,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd43(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd43(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -14270,7 +14802,7 @@ export class Client {
         }));
     }
 
-    protected processAdd43(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14296,7 +14828,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update43(body: VehicleModelDTO | undefined): Observable<ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: VehicleModelDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/VehicleModelContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -14306,6 +14838,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -14313,11 +14846,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate43(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate43(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -14326,7 +14859,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate43(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14351,7 +14884,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById43(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/VehicleModelContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -14361,16 +14894,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById43(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById43(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -14379,7 +14913,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById43(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14402,7 +14936,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete43(body: VehicleModelDTO | undefined): Observable<void> {
+    delete(body: VehicleModelDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/VehicleModelContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -14412,17 +14946,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete43(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete43(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -14431,7 +14966,7 @@ export class Client {
         }));
     }
 
-    protected processDelete43(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14449,28 +14984,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class VehiclePartContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll44(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/VehiclePartContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll44(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll44(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -14479,7 +15029,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll44(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14504,7 +15054,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById44(id: number): Observable<ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/VehiclePartContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -14514,17 +15064,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById44(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById44(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -14533,7 +15084,7 @@ export class Client {
         }));
     }
 
-    protected processGetById44(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14559,7 +15110,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add44(body: VehiclePartDTO | undefined): Observable<ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: VehiclePartDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/VehiclePartContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -14569,6 +15120,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -14576,11 +15128,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd44(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd44(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -14589,7 +15141,7 @@ export class Client {
         }));
     }
 
-    protected processAdd44(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14615,7 +15167,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update44(body: VehiclePartDTO | undefined): Observable<ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: VehiclePartDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/VehiclePartContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -14625,6 +15177,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -14632,11 +15185,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate44(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate44(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -14645,7 +15198,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate44(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14670,7 +15223,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById44(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/VehiclePartContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -14680,16 +15233,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById44(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById44(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -14698,7 +15252,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById44(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14721,7 +15275,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete44(body: VehiclePartDTO | undefined): Observable<void> {
+    delete(body: VehiclePartDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/VehiclePartContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -14731,17 +15285,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete44(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete44(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -14750,7 +15305,7 @@ export class Client {
         }));
     }
 
-    protected processDelete44(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14768,28 +15323,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class VipBenefitContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll45(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/VipBenefitContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll45(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll45(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -14798,7 +15368,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll45(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14823,7 +15393,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById45(id: number): Observable<ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/VipBenefitContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -14833,17 +15403,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById45(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById45(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -14852,7 +15423,7 @@ export class Client {
         }));
     }
 
-    protected processGetById45(response: HttpResponseBase): Observable<ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14878,7 +15449,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add45(body: VipBenefitDTO | undefined): Observable<ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: VipBenefitDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/VipBenefitContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -14888,6 +15459,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -14895,11 +15467,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd45(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd45(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -14908,7 +15480,7 @@ export class Client {
         }));
     }
 
-    protected processAdd45(response: HttpResponseBase): Observable<ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14934,7 +15506,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update45(body: VipBenefitDTO | undefined): Observable<ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: VipBenefitDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/VipBenefitContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -14944,6 +15516,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -14951,11 +15524,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate45(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate45(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -14964,7 +15537,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate45(response: HttpResponseBase): Observable<ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14989,7 +15562,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById45(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/VipBenefitContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -14999,16 +15572,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById45(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById45(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -15017,7 +15591,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById45(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -15040,7 +15614,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete45(body: VipBenefitDTO | undefined): Observable<void> {
+    delete(body: VipBenefitDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/VipBenefitContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -15050,17 +15624,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete45(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete45(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -15069,7 +15644,7 @@ export class Client {
         }));
     }
 
-    protected processDelete45(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -15087,28 +15662,43 @@ export class Client {
         }
         return _observableOf(null as any);
     }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class VipStatusContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
 
     /**
      * @return OK
      */
-    getAll46(): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/VipStatusContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetAll46(response_);
+            return this.processGetAll(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetAll46(response_ as any);
+                    return this.processGetAll(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
@@ -15117,7 +15707,7 @@ export class Client {
         }));
     }
 
-    protected processGetAll46(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -15142,7 +15732,7 @@ export class Client {
     /**
      * @return OK
      */
-    getById46(id: number): Observable<ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/VipStatusContro/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -15152,17 +15742,18 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Accept": "text/plain"
             })
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetById46(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetById46(response_ as any);
+                    return this.processGetById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -15171,7 +15762,7 @@ export class Client {
         }));
     }
 
-    protected processGetById46(response: HttpResponseBase): Observable<ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -15197,7 +15788,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    add46(body: VipStatusDTO | undefined): Observable<ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    add(body: VipStatusDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/VipStatusContro/Add";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -15207,6 +15798,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -15214,11 +15806,11 @@ export class Client {
         };
 
         return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processAdd46(response_);
+            return this.processAdd(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processAdd46(response_ as any);
+                    return this.processAdd(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -15227,7 +15819,7 @@ export class Client {
         }));
     }
 
-    protected processAdd46(response: HttpResponseBase): Observable<ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -15253,7 +15845,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    update46(body: VipStatusDTO | undefined): Observable<ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    update(body: VipStatusDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/VipStatusContro/Update";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -15263,6 +15855,7 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 "Accept": "text/plain"
@@ -15270,11 +15863,11 @@ export class Client {
         };
 
         return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processUpdate46(response_);
+            return this.processUpdate(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processUpdate46(response_ as any);
+                    return this.processUpdate(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
@@ -15283,7 +15876,7 @@ export class Client {
         }));
     }
 
-    protected processUpdate46(response: HttpResponseBase): Observable<ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -15308,7 +15901,7 @@ export class Client {
     /**
      * @return OK
      */
-    deleteById46(id: number): Observable<void> {
+    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/VipStatusContro/DeleteById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
@@ -15318,16 +15911,17 @@ export class Client {
         let options_ : any = {
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDeleteById46(response_);
+            return this.processDeleteById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDeleteById46(response_ as any);
+                    return this.processDeleteById(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -15336,7 +15930,7 @@ export class Client {
         }));
     }
 
-    protected processDeleteById46(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -15359,7 +15953,7 @@ export class Client {
      * @param body (optional) 
      * @return OK
      */
-    delete46(body: VipStatusDTO | undefined): Observable<void> {
+    delete(body: VipStatusDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/VipStatusContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -15369,17 +15963,18 @@ export class Client {
             body: content_,
             observe: "response",
             responseType: "blob",
+            context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
             })
         };
 
         return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processDelete46(response_);
+            return this.processDelete(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processDelete46(response_ as any);
+                    return this.processDelete(response_ as any);
                 } catch (e) {
                     return _observableThrow(e) as any as Observable<void>;
                 }
@@ -15388,7 +15983,7 @@ export class Client {
         }));
     }
 
-    protected processDelete46(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<void> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -15412,8 +16007,8 @@ export class CityDTO implements ICityDTO {
     id?: number;
     countryId?: number;
     tenantId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 
     constructor(data?: ICityDTO) {
         if (data) {
@@ -15426,11 +16021,11 @@ export class CityDTO implements ICityDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.countryId = _data["countryId"];
-            this.tenantId = _data["tenantId"];
-            this.name = _data["name"];
-            this.nameInArabic = _data["nameInArabic"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.countryId = _data["countryId"] !== undefined ? _data["countryId"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
+            this.nameInArabic = _data["nameInArabic"] !== undefined ? _data["nameInArabic"] : <any>null;
         }
     }
 
@@ -15443,11 +16038,11 @@ export class CityDTO implements ICityDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["countryId"] = this.countryId;
-        data["tenantId"] = this.tenantId;
-        data["name"] = this.name;
-        data["nameInArabic"] = this.nameInArabic;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["countryId"] = this.countryId !== undefined ? this.countryId : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
+        data["nameInArabic"] = this.nameInArabic !== undefined ? this.nameInArabic : <any>null;
         return data;
     }
 }
@@ -15456,15 +16051,15 @@ export interface ICityDTO {
     id?: number;
     countryId?: number;
     tenantId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 }
 
 export class ColorDTO implements IColorDTO {
     id?: number;
     tenantId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 
     constructor(data?: IColorDTO) {
         if (data) {
@@ -15477,10 +16072,10 @@ export class ColorDTO implements IColorDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.name = _data["name"];
-            this.nameInArabic = _data["nameInArabic"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
+            this.nameInArabic = _data["nameInArabic"] !== undefined ? _data["nameInArabic"] : <any>null;
         }
     }
 
@@ -15493,10 +16088,10 @@ export class ColorDTO implements IColorDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["name"] = this.name;
-        data["nameInArabic"] = this.nameInArabic;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
+        data["nameInArabic"] = this.nameInArabic !== undefined ? this.nameInArabic : <any>null;
         return data;
     }
 }
@@ -15504,15 +16099,15 @@ export class ColorDTO implements IColorDTO {
 export interface IColorDTO {
     id?: number;
     tenantId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 }
 
 export class CountryDTO implements ICountryDTO {
     id?: number;
     tenantId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 
     constructor(data?: ICountryDTO) {
         if (data) {
@@ -15525,10 +16120,10 @@ export class CountryDTO implements ICountryDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.name = _data["name"];
-            this.nameInArabic = _data["nameInArabic"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
+            this.nameInArabic = _data["nameInArabic"] !== undefined ? _data["nameInArabic"] : <any>null;
         }
     }
 
@@ -15541,10 +16136,10 @@ export class CountryDTO implements ICountryDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["name"] = this.name;
-        data["nameInArabic"] = this.nameInArabic;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
+        data["nameInArabic"] = this.nameInArabic !== undefined ? this.nameInArabic : <any>null;
         return data;
     }
 }
@@ -15552,15 +16147,15 @@ export class CountryDTO implements ICountryDTO {
 export interface ICountryDTO {
     id?: number;
     tenantId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 }
 
 export class CustomerContactNumberDTO implements ICustomerContactNumberDTO {
     id?: number;
     tenantId?: number;
     customerId?: number;
-    number?: string | undefined;
+    number?: string | null;
 
     constructor(data?: ICustomerContactNumberDTO) {
         if (data) {
@@ -15573,10 +16168,10 @@ export class CustomerContactNumberDTO implements ICustomerContactNumberDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.customerId = _data["customerId"];
-            this.number = _data["number"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.customerId = _data["customerId"] !== undefined ? _data["customerId"] : <any>null;
+            this.number = _data["number"] !== undefined ? _data["number"] : <any>null;
         }
     }
 
@@ -15589,10 +16184,10 @@ export class CustomerContactNumberDTO implements ICustomerContactNumberDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["customerId"] = this.customerId;
-        data["number"] = this.number;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["customerId"] = this.customerId !== undefined ? this.customerId : <any>null;
+        data["number"] = this.number !== undefined ? this.number : <any>null;
         return data;
     }
 }
@@ -15601,7 +16196,7 @@ export interface ICustomerContactNumberDTO {
     id?: number;
     tenantId?: number;
     customerId?: number;
-    number?: string | undefined;
+    number?: string | null;
 }
 
 export class CustomerDTO implements ICustomerDTO {
@@ -15610,8 +16205,8 @@ export class CustomerDTO implements ICustomerDTO {
     tenantId?: number;
     genderId?: number;
     streetId?: number;
-    firstName?: string | undefined;
-    lastName?: string | undefined;
+    firstName?: string | null;
+    lastName?: string | null;
 
     constructor(data?: ICustomerDTO) {
         if (data) {
@@ -15624,13 +16219,13 @@ export class CustomerDTO implements ICustomerDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.userId = _data["userId"];
-            this.tenantId = _data["tenantId"];
-            this.genderId = _data["genderId"];
-            this.streetId = _data["streetId"];
-            this.firstName = _data["firstName"];
-            this.lastName = _data["lastName"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.userId = _data["userId"] !== undefined ? _data["userId"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.genderId = _data["genderId"] !== undefined ? _data["genderId"] : <any>null;
+            this.streetId = _data["streetId"] !== undefined ? _data["streetId"] : <any>null;
+            this.firstName = _data["firstName"] !== undefined ? _data["firstName"] : <any>null;
+            this.lastName = _data["lastName"] !== undefined ? _data["lastName"] : <any>null;
         }
     }
 
@@ -15643,13 +16238,13 @@ export class CustomerDTO implements ICustomerDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["userId"] = this.userId;
-        data["tenantId"] = this.tenantId;
-        data["genderId"] = this.genderId;
-        data["streetId"] = this.streetId;
-        data["firstName"] = this.firstName;
-        data["lastName"] = this.lastName;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["userId"] = this.userId !== undefined ? this.userId : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["genderId"] = this.genderId !== undefined ? this.genderId : <any>null;
+        data["streetId"] = this.streetId !== undefined ? this.streetId : <any>null;
+        data["firstName"] = this.firstName !== undefined ? this.firstName : <any>null;
+        data["lastName"] = this.lastName !== undefined ? this.lastName : <any>null;
         return data;
     }
 }
@@ -15660,8 +16255,8 @@ export interface ICustomerDTO {
     tenantId?: number;
     genderId?: number;
     streetId?: number;
-    firstName?: string | undefined;
-    lastName?: string | undefined;
+    firstName?: string | null;
+    lastName?: string | null;
 }
 
 export class CustomerNotificationDTO implements ICustomerNotificationDTO {
@@ -15678,7 +16273,7 @@ export class CustomerNotificationDTO implements ICustomerNotificationDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
         }
     }
 
@@ -15691,7 +16286,7 @@ export class CustomerNotificationDTO implements ICustomerNotificationDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
         return data;
     }
 }
@@ -15719,12 +16314,12 @@ export class CustomerVehicleColorDTO implements ICustomerVehicleColorDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.colorId = _data["colorId"];
-            this.customerVehicleId = _data["customerVehicleId"];
-            this.isActive = _data["isActive"];
-            this.date = _data["date"] ? new Date(_data["date"].toString()) : <any>undefined;
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.colorId = _data["colorId"] !== undefined ? _data["colorId"] : <any>null;
+            this.customerVehicleId = _data["customerVehicleId"] !== undefined ? _data["customerVehicleId"] : <any>null;
+            this.isActive = _data["isActive"] !== undefined ? _data["isActive"] : <any>null;
+            this.date = _data["date"] ? new Date(_data["date"].toString()) : <any>null;
         }
     }
 
@@ -15737,12 +16332,12 @@ export class CustomerVehicleColorDTO implements ICustomerVehicleColorDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["colorId"] = this.colorId;
-        data["customerVehicleId"] = this.customerVehicleId;
-        data["isActive"] = this.isActive;
-        data["date"] = this.date ? this.date.toISOString() : <any>undefined;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["colorId"] = this.colorId !== undefined ? this.colorId : <any>null;
+        data["customerVehicleId"] = this.customerVehicleId !== undefined ? this.customerVehicleId : <any>null;
+        data["isActive"] = this.isActive !== undefined ? this.isActive : <any>null;
+        data["date"] = this.date ? this.date.toISOString() : <any>null;
         return data;
     }
 }
@@ -15774,11 +16369,11 @@ export class CustomerVehicleColorWithDetailsDTO implements ICustomerVehicleColor
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.isActive = _data["isActive"];
-            this.color = _data["color"] ? ColorDTO.fromJS(_data["color"]) : <any>undefined;
-            this.date = _data["date"] ? new Date(_data["date"].toString()) : <any>undefined;
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.isActive = _data["isActive"] !== undefined ? _data["isActive"] : <any>null;
+            this.color = _data["color"] ? ColorDTO.fromJS(_data["color"]) : <any>null;
+            this.date = _data["date"] ? new Date(_data["date"].toString()) : <any>null;
         }
     }
 
@@ -15791,11 +16386,11 @@ export class CustomerVehicleColorWithDetailsDTO implements ICustomerVehicleColor
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["isActive"] = this.isActive;
-        data["color"] = this.color ? this.color.toJSON() : <any>undefined;
-        data["date"] = this.date ? this.date.toISOString() : <any>undefined;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["isActive"] = this.isActive !== undefined ? this.isActive : <any>null;
+        data["color"] = this.color ? this.color.toJSON() : <any>null;
+        data["date"] = this.date ? this.date.toISOString() : <any>null;
         return data;
     }
 }
@@ -15814,7 +16409,7 @@ export class CustomerVehicleDTO implements ICustomerVehicleDTO {
     customerId?: number;
     vehicleModelId?: number;
     vehicleEngineId?: number;
-    vin?: string | undefined;
+    vin?: string | null;
     yearModel?: number;
 
     constructor(data?: ICustomerVehicleDTO) {
@@ -15828,13 +16423,13 @@ export class CustomerVehicleDTO implements ICustomerVehicleDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.customerId = _data["customerId"];
-            this.vehicleModelId = _data["vehicleModelId"];
-            this.vehicleEngineId = _data["vehicleEngineId"];
-            this.vin = _data["vin"];
-            this.yearModel = _data["yearModel"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.customerId = _data["customerId"] !== undefined ? _data["customerId"] : <any>null;
+            this.vehicleModelId = _data["vehicleModelId"] !== undefined ? _data["vehicleModelId"] : <any>null;
+            this.vehicleEngineId = _data["vehicleEngineId"] !== undefined ? _data["vehicleEngineId"] : <any>null;
+            this.vin = _data["vin"] !== undefined ? _data["vin"] : <any>null;
+            this.yearModel = _data["yearModel"] !== undefined ? _data["yearModel"] : <any>null;
         }
     }
 
@@ -15847,13 +16442,13 @@ export class CustomerVehicleDTO implements ICustomerVehicleDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["customerId"] = this.customerId;
-        data["vehicleModelId"] = this.vehicleModelId;
-        data["vehicleEngineId"] = this.vehicleEngineId;
-        data["vin"] = this.vin;
-        data["yearModel"] = this.yearModel;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["customerId"] = this.customerId !== undefined ? this.customerId : <any>null;
+        data["vehicleModelId"] = this.vehicleModelId !== undefined ? this.vehicleModelId : <any>null;
+        data["vehicleEngineId"] = this.vehicleEngineId !== undefined ? this.vehicleEngineId : <any>null;
+        data["vin"] = this.vin !== undefined ? this.vin : <any>null;
+        data["yearModel"] = this.yearModel !== undefined ? this.yearModel : <any>null;
         return data;
     }
 }
@@ -15864,7 +16459,7 @@ export interface ICustomerVehicleDTO {
     customerId?: number;
     vehicleModelId?: number;
     vehicleEngineId?: number;
-    vin?: string | undefined;
+    vin?: string | null;
     yearModel?: number;
 }
 
@@ -15873,7 +16468,7 @@ export class CustomerVehicleImageDTO implements ICustomerVehicleImageDTO {
     tenantId?: number;
     maintenanceCardId?: number;
     vehicleImageTypeId?: number;
-    imgUrl?: string | undefined;
+    imgUrl?: string | null;
 
     constructor(data?: ICustomerVehicleImageDTO) {
         if (data) {
@@ -15886,11 +16481,11 @@ export class CustomerVehicleImageDTO implements ICustomerVehicleImageDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.maintenanceCardId = _data["maintenanceCardId"];
-            this.vehicleImageTypeId = _data["vehicleImageTypeId"];
-            this.imgUrl = _data["imgUrl"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.maintenanceCardId = _data["maintenanceCardId"] !== undefined ? _data["maintenanceCardId"] : <any>null;
+            this.vehicleImageTypeId = _data["vehicleImageTypeId"] !== undefined ? _data["vehicleImageTypeId"] : <any>null;
+            this.imgUrl = _data["imgUrl"] !== undefined ? _data["imgUrl"] : <any>null;
         }
     }
 
@@ -15903,11 +16498,11 @@ export class CustomerVehicleImageDTO implements ICustomerVehicleImageDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["maintenanceCardId"] = this.maintenanceCardId;
-        data["vehicleImageTypeId"] = this.vehicleImageTypeId;
-        data["imgUrl"] = this.imgUrl;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["maintenanceCardId"] = this.maintenanceCardId !== undefined ? this.maintenanceCardId : <any>null;
+        data["vehicleImageTypeId"] = this.vehicleImageTypeId !== undefined ? this.vehicleImageTypeId : <any>null;
+        data["imgUrl"] = this.imgUrl !== undefined ? this.imgUrl : <any>null;
         return data;
     }
 }
@@ -15917,13 +16512,13 @@ export interface ICustomerVehicleImageDTO {
     tenantId?: number;
     maintenanceCardId?: number;
     vehicleImageTypeId?: number;
-    imgUrl?: string | undefined;
+    imgUrl?: string | null;
 }
 
 export class CustomerVehicleImageTypeDTO implements ICustomerVehicleImageTypeDTO {
     id?: number;
     tenantId?: number;
-    name?: string | undefined;
+    name?: string | null;
 
     constructor(data?: ICustomerVehicleImageTypeDTO) {
         if (data) {
@@ -15936,9 +16531,9 @@ export class CustomerVehicleImageTypeDTO implements ICustomerVehicleImageTypeDTO
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.name = _data["name"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
         }
     }
 
@@ -15951,9 +16546,9 @@ export class CustomerVehicleImageTypeDTO implements ICustomerVehicleImageTypeDTO
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["name"] = this.name;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
         return data;
     }
 }
@@ -15961,7 +16556,7 @@ export class CustomerVehicleImageTypeDTO implements ICustomerVehicleImageTypeDTO
 export interface ICustomerVehicleImageTypeDTO {
     id?: number;
     tenantId?: number;
-    name?: string | undefined;
+    name?: string | null;
 }
 
 export class CustomerVehiclePlateDTO implements ICustomerVehiclePlateDTO {
@@ -15983,12 +16578,12 @@ export class CustomerVehiclePlateDTO implements ICustomerVehiclePlateDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.plateId = _data["plateId"];
-            this.customerVehicleId = _data["customerVehicleId"];
-            this.date = _data["date"] ? new Date(_data["date"].toString()) : <any>undefined;
-            this.isActive = _data["isActive"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.plateId = _data["plateId"] !== undefined ? _data["plateId"] : <any>null;
+            this.customerVehicleId = _data["customerVehicleId"] !== undefined ? _data["customerVehicleId"] : <any>null;
+            this.date = _data["date"] ? new Date(_data["date"].toString()) : <any>null;
+            this.isActive = _data["isActive"] !== undefined ? _data["isActive"] : <any>null;
         }
     }
 
@@ -16001,12 +16596,12 @@ export class CustomerVehiclePlateDTO implements ICustomerVehiclePlateDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["plateId"] = this.plateId;
-        data["customerVehicleId"] = this.customerVehicleId;
-        data["date"] = this.date ? this.date.toISOString() : <any>undefined;
-        data["isActive"] = this.isActive;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["plateId"] = this.plateId !== undefined ? this.plateId : <any>null;
+        data["customerVehicleId"] = this.customerVehicleId !== undefined ? this.customerVehicleId : <any>null;
+        data["date"] = this.date ? this.date.toISOString() : <any>null;
+        data["isActive"] = this.isActive !== undefined ? this.isActive : <any>null;
         return data;
     }
 }
@@ -16039,12 +16634,12 @@ export class CustomerVehiclePlateWithDetailsDTO implements ICustomerVehiclePlate
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.plateId = _data["plateId"];
-            this.isActive = _data["isActive"];
-            this.plate = _data["plate"] ? PlateDTO.fromJS(_data["plate"]) : <any>undefined;
-            this.date = _data["date"] ? new Date(_data["date"].toString()) : <any>undefined;
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.plateId = _data["plateId"] !== undefined ? _data["plateId"] : <any>null;
+            this.isActive = _data["isActive"] !== undefined ? _data["isActive"] : <any>null;
+            this.plate = _data["plate"] ? PlateDTO.fromJS(_data["plate"]) : <any>null;
+            this.date = _data["date"] ? new Date(_data["date"].toString()) : <any>null;
         }
     }
 
@@ -16057,12 +16652,12 @@ export class CustomerVehiclePlateWithDetailsDTO implements ICustomerVehiclePlate
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["plateId"] = this.plateId;
-        data["isActive"] = this.isActive;
-        data["plate"] = this.plate ? this.plate.toJSON() : <any>undefined;
-        data["date"] = this.date ? this.date.toISOString() : <any>undefined;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["plateId"] = this.plateId !== undefined ? this.plateId : <any>null;
+        data["isActive"] = this.isActive !== undefined ? this.isActive : <any>null;
+        data["plate"] = this.plate ? this.plate.toJSON() : <any>null;
+        data["date"] = this.date ? this.date.toISOString() : <any>null;
         return data;
     }
 }
@@ -16081,11 +16676,13 @@ export class CustomerVehicleWithDetailsDTO implements ICustomerVehicleWithDetail
     tenantId?: number;
     customer?: CustomerDTO;
     vehicleModel?: VehicleModelWithDetailsDTO;
-    vehicleEngine?: VehicleEngineWithDetailsDTO;
-    customerVehiclePlates?: CustomerVehiclePlateWithDetailsDTO[] | undefined;
-    customerVehicleColors?: CustomerVehicleColorWithDetailsDTO[] | undefined;
-    vin?: string | undefined;
+    engineFuel?: EngineFuelDTO;
+    engineStructure?: EngineStructureDTO;
+    customerVehiclePlates?: CustomerVehiclePlateWithDetailsDTO[] | null;
+    customerVehicleColors?: CustomerVehicleColorWithDetailsDTO[] | null;
+    vin?: string | null;
     yearModel?: number;
+    numberOfCylinders?: number | null;
 
     constructor(data?: ICustomerVehicleWithDetailsDTO) {
         if (data) {
@@ -16098,23 +16695,31 @@ export class CustomerVehicleWithDetailsDTO implements ICustomerVehicleWithDetail
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.customer = _data["customer"] ? CustomerDTO.fromJS(_data["customer"]) : <any>undefined;
-            this.vehicleModel = _data["vehicleModel"] ? VehicleModelWithDetailsDTO.fromJS(_data["vehicleModel"]) : <any>undefined;
-            this.vehicleEngine = _data["vehicleEngine"] ? VehicleEngineWithDetailsDTO.fromJS(_data["vehicleEngine"]) : <any>undefined;
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.customer = _data["customer"] ? CustomerDTO.fromJS(_data["customer"]) : <any>null;
+            this.vehicleModel = _data["vehicleModel"] ? VehicleModelWithDetailsDTO.fromJS(_data["vehicleModel"]) : <any>null;
+            this.engineFuel = _data["engineFuel"] ? EngineFuelDTO.fromJS(_data["engineFuel"]) : <any>null;
+            this.engineStructure = _data["engineStructure"] ? EngineStructureDTO.fromJS(_data["engineStructure"]) : <any>null;
             if (Array.isArray(_data["customerVehiclePlates"])) {
                 this.customerVehiclePlates = [] as any;
                 for (let item of _data["customerVehiclePlates"])
                     this.customerVehiclePlates!.push(CustomerVehiclePlateWithDetailsDTO.fromJS(item));
+            }
+            else {
+                this.customerVehiclePlates = <any>null;
             }
             if (Array.isArray(_data["customerVehicleColors"])) {
                 this.customerVehicleColors = [] as any;
                 for (let item of _data["customerVehicleColors"])
                     this.customerVehicleColors!.push(CustomerVehicleColorWithDetailsDTO.fromJS(item));
             }
-            this.vin = _data["vin"];
-            this.yearModel = _data["yearModel"];
+            else {
+                this.customerVehicleColors = <any>null;
+            }
+            this.vin = _data["vin"] !== undefined ? _data["vin"] : <any>null;
+            this.yearModel = _data["yearModel"] !== undefined ? _data["yearModel"] : <any>null;
+            this.numberOfCylinders = _data["numberOfCylinders"] !== undefined ? _data["numberOfCylinders"] : <any>null;
         }
     }
 
@@ -16127,11 +16732,12 @@ export class CustomerVehicleWithDetailsDTO implements ICustomerVehicleWithDetail
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["customer"] = this.customer ? this.customer.toJSON() : <any>undefined;
-        data["vehicleModel"] = this.vehicleModel ? this.vehicleModel.toJSON() : <any>undefined;
-        data["vehicleEngine"] = this.vehicleEngine ? this.vehicleEngine.toJSON() : <any>undefined;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["customer"] = this.customer ? this.customer.toJSON() : <any>null;
+        data["vehicleModel"] = this.vehicleModel ? this.vehicleModel.toJSON() : <any>null;
+        data["engineFuel"] = this.engineFuel ? this.engineFuel.toJSON() : <any>null;
+        data["engineStructure"] = this.engineStructure ? this.engineStructure.toJSON() : <any>null;
         if (Array.isArray(this.customerVehiclePlates)) {
             data["customerVehiclePlates"] = [];
             for (let item of this.customerVehiclePlates)
@@ -16142,8 +16748,9 @@ export class CustomerVehicleWithDetailsDTO implements ICustomerVehicleWithDetail
             for (let item of this.customerVehicleColors)
                 data["customerVehicleColors"].push(item.toJSON());
         }
-        data["vin"] = this.vin;
-        data["yearModel"] = this.yearModel;
+        data["vin"] = this.vin !== undefined ? this.vin : <any>null;
+        data["yearModel"] = this.yearModel !== undefined ? this.yearModel : <any>null;
+        data["numberOfCylinders"] = this.numberOfCylinders !== undefined ? this.numberOfCylinders : <any>null;
         return data;
     }
 }
@@ -16153,11 +16760,13 @@ export interface ICustomerVehicleWithDetailsDTO {
     tenantId?: number;
     customer?: CustomerDTO;
     vehicleModel?: VehicleModelWithDetailsDTO;
-    vehicleEngine?: VehicleEngineWithDetailsDTO;
-    customerVehiclePlates?: CustomerVehiclePlateWithDetailsDTO[] | undefined;
-    customerVehicleColors?: CustomerVehicleColorWithDetailsDTO[] | undefined;
-    vin?: string | undefined;
+    engineFuel?: EngineFuelDTO;
+    engineStructure?: EngineStructureDTO;
+    customerVehiclePlates?: CustomerVehiclePlateWithDetailsDTO[] | null;
+    customerVehicleColors?: CustomerVehicleColorWithDetailsDTO[] | null;
+    vin?: string | null;
     yearModel?: number;
+    numberOfCylinders?: number | null;
 }
 
 export class CustomerVipStatusDTO implements ICustomerVipStatusDTO {
@@ -16179,12 +16788,12 @@ export class CustomerVipStatusDTO implements ICustomerVipStatusDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.vipStatusId = _data["vipStatusId"];
-            this.customerId = _data["customerId"];
-            this.joiningDate = _data["joiningDate"] ? new Date(_data["joiningDate"].toString()) : <any>undefined;
-            this.expiryDate = _data["expiryDate"] ? new Date(_data["expiryDate"].toString()) : <any>undefined;
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.vipStatusId = _data["vipStatusId"] !== undefined ? _data["vipStatusId"] : <any>null;
+            this.customerId = _data["customerId"] !== undefined ? _data["customerId"] : <any>null;
+            this.joiningDate = _data["joiningDate"] ? new Date(_data["joiningDate"].toString()) : <any>null;
+            this.expiryDate = _data["expiryDate"] ? new Date(_data["expiryDate"].toString()) : <any>null;
         }
     }
 
@@ -16197,12 +16806,12 @@ export class CustomerVipStatusDTO implements ICustomerVipStatusDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["vipStatusId"] = this.vipStatusId;
-        data["customerId"] = this.customerId;
-        data["joiningDate"] = this.joiningDate ? this.joiningDate.toISOString() : <any>undefined;
-        data["expiryDate"] = this.expiryDate ? this.expiryDate.toISOString() : <any>undefined;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["vipStatusId"] = this.vipStatusId !== undefined ? this.vipStatusId : <any>null;
+        data["customerId"] = this.customerId !== undefined ? this.customerId : <any>null;
+        data["joiningDate"] = this.joiningDate ? this.joiningDate.toISOString() : <any>null;
+        data["expiryDate"] = this.expiryDate ? this.expiryDate.toISOString() : <any>null;
         return data;
     }
 }
@@ -16220,8 +16829,8 @@ export class DistrictDTO implements IDistrictDTO {
     id?: number;
     tenantId?: number;
     cityId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 
     constructor(data?: IDistrictDTO) {
         if (data) {
@@ -16234,11 +16843,11 @@ export class DistrictDTO implements IDistrictDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.cityId = _data["cityId"];
-            this.name = _data["name"];
-            this.nameInArabic = _data["nameInArabic"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.cityId = _data["cityId"] !== undefined ? _data["cityId"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
+            this.nameInArabic = _data["nameInArabic"] !== undefined ? _data["nameInArabic"] : <any>null;
         }
     }
 
@@ -16251,11 +16860,11 @@ export class DistrictDTO implements IDistrictDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["cityId"] = this.cityId;
-        data["name"] = this.name;
-        data["nameInArabic"] = this.nameInArabic;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["cityId"] = this.cityId !== undefined ? this.cityId : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
+        data["nameInArabic"] = this.nameInArabic !== undefined ? this.nameInArabic : <any>null;
         return data;
     }
 }
@@ -16264,8 +16873,8 @@ export interface IDistrictDTO {
     id?: number;
     tenantId?: number;
     cityId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 }
 
 export class EmployeeDTO implements IEmployeeDTO {
@@ -16275,7 +16884,7 @@ export class EmployeeDTO implements IEmployeeDTO {
     nationalityId?: number;
     genderId?: number;
     streetId?: number;
-    phoneNumber?: string | undefined;
+    phoneNumber?: string | null;
     hireDate?: Date;
     terminationDate?: Date;
     birthDate?: Date;
@@ -16291,16 +16900,16 @@ export class EmployeeDTO implements IEmployeeDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.userId = _data["userId"];
-            this.tenantId = _data["tenantId"];
-            this.nationalityId = _data["nationalityId"];
-            this.genderId = _data["genderId"];
-            this.streetId = _data["streetId"];
-            this.phoneNumber = _data["phoneNumber"];
-            this.hireDate = _data["hireDate"] ? new Date(_data["hireDate"].toString()) : <any>undefined;
-            this.terminationDate = _data["terminationDate"] ? new Date(_data["terminationDate"].toString()) : <any>undefined;
-            this.birthDate = _data["birthDate"] ? new Date(_data["birthDate"].toString()) : <any>undefined;
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.userId = _data["userId"] !== undefined ? _data["userId"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.nationalityId = _data["nationalityId"] !== undefined ? _data["nationalityId"] : <any>null;
+            this.genderId = _data["genderId"] !== undefined ? _data["genderId"] : <any>null;
+            this.streetId = _data["streetId"] !== undefined ? _data["streetId"] : <any>null;
+            this.phoneNumber = _data["phoneNumber"] !== undefined ? _data["phoneNumber"] : <any>null;
+            this.hireDate = _data["hireDate"] ? new Date(_data["hireDate"].toString()) : <any>null;
+            this.terminationDate = _data["terminationDate"] ? new Date(_data["terminationDate"].toString()) : <any>null;
+            this.birthDate = _data["birthDate"] ? new Date(_data["birthDate"].toString()) : <any>null;
         }
     }
 
@@ -16313,16 +16922,16 @@ export class EmployeeDTO implements IEmployeeDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["userId"] = this.userId;
-        data["tenantId"] = this.tenantId;
-        data["nationalityId"] = this.nationalityId;
-        data["genderId"] = this.genderId;
-        data["streetId"] = this.streetId;
-        data["phoneNumber"] = this.phoneNumber;
-        data["hireDate"] = this.hireDate ? formatDate(this.hireDate) : <any>undefined;
-        data["terminationDate"] = this.terminationDate ? formatDate(this.terminationDate) : <any>undefined;
-        data["birthDate"] = this.birthDate ? formatDate(this.birthDate) : <any>undefined;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["userId"] = this.userId !== undefined ? this.userId : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["nationalityId"] = this.nationalityId !== undefined ? this.nationalityId : <any>null;
+        data["genderId"] = this.genderId !== undefined ? this.genderId : <any>null;
+        data["streetId"] = this.streetId !== undefined ? this.streetId : <any>null;
+        data["phoneNumber"] = this.phoneNumber !== undefined ? this.phoneNumber : <any>null;
+        data["hireDate"] = this.hireDate ? formatDate(this.hireDate) : <any>null;
+        data["terminationDate"] = this.terminationDate ? formatDate(this.terminationDate) : <any>null;
+        data["birthDate"] = this.birthDate ? formatDate(this.birthDate) : <any>null;
         return data;
     }
 }
@@ -16334,7 +16943,7 @@ export interface IEmployeeDTO {
     nationalityId?: number;
     genderId?: number;
     streetId?: number;
-    phoneNumber?: string | undefined;
+    phoneNumber?: string | null;
     hireDate?: Date;
     terminationDate?: Date;
     birthDate?: Date;
@@ -16358,11 +16967,11 @@ export class EmployeeMaintainedDTO implements IEmployeeMaintainedDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.maintenaceServiceId = _data["maintenaceServiceId"];
-            this.maintainedByEmployeeId = _data["maintainedByEmployeeId"];
-            this.startedDate = _data["startedDate"] ? new Date(_data["startedDate"].toString()) : <any>undefined;
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.maintenaceServiceId = _data["maintenaceServiceId"] !== undefined ? _data["maintenaceServiceId"] : <any>null;
+            this.maintainedByEmployeeId = _data["maintainedByEmployeeId"] !== undefined ? _data["maintainedByEmployeeId"] : <any>null;
+            this.startedDate = _data["startedDate"] ? new Date(_data["startedDate"].toString()) : <any>null;
         }
     }
 
@@ -16375,11 +16984,11 @@ export class EmployeeMaintainedDTO implements IEmployeeMaintainedDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["maintenaceServiceId"] = this.maintenaceServiceId;
-        data["maintainedByEmployeeId"] = this.maintainedByEmployeeId;
-        data["startedDate"] = this.startedDate ? this.startedDate.toISOString() : <any>undefined;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["maintenaceServiceId"] = this.maintenaceServiceId !== undefined ? this.maintenaceServiceId : <any>null;
+        data["maintainedByEmployeeId"] = this.maintainedByEmployeeId !== undefined ? this.maintainedByEmployeeId : <any>null;
+        data["startedDate"] = this.startedDate ? this.startedDate.toISOString() : <any>null;
         return data;
     }
 }
@@ -16395,7 +17004,7 @@ export interface IEmployeeMaintainedDTO {
 export class EngineFuelDTO implements IEngineFuelDTO {
     id?: number;
     tenantId?: number;
-    engineFuelType?: string | undefined;
+    engineFuelType?: string | null;
 
     constructor(data?: IEngineFuelDTO) {
         if (data) {
@@ -16408,9 +17017,9 @@ export class EngineFuelDTO implements IEngineFuelDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.engineFuelType = _data["engineFuelType"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.engineFuelType = _data["engineFuelType"] !== undefined ? _data["engineFuelType"] : <any>null;
         }
     }
 
@@ -16423,9 +17032,9 @@ export class EngineFuelDTO implements IEngineFuelDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["engineFuelType"] = this.engineFuelType;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["engineFuelType"] = this.engineFuelType !== undefined ? this.engineFuelType : <any>null;
         return data;
     }
 }
@@ -16433,13 +17042,13 @@ export class EngineFuelDTO implements IEngineFuelDTO {
 export interface IEngineFuelDTO {
     id?: number;
     tenantId?: number;
-    engineFuelType?: string | undefined;
+    engineFuelType?: string | null;
 }
 
 export class EngineStructureDTO implements IEngineStructureDTO {
     id?: number;
     tenantId?: number;
-    engineType?: string | undefined;
+    engineType?: string | null;
 
     constructor(data?: IEngineStructureDTO) {
         if (data) {
@@ -16452,9 +17061,9 @@ export class EngineStructureDTO implements IEngineStructureDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.engineType = _data["engineType"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.engineType = _data["engineType"] !== undefined ? _data["engineType"] : <any>null;
         }
     }
 
@@ -16467,9 +17076,9 @@ export class EngineStructureDTO implements IEngineStructureDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["engineType"] = this.engineType;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["engineType"] = this.engineType !== undefined ? this.engineType : <any>null;
         return data;
     }
 }
@@ -16477,12 +17086,12 @@ export class EngineStructureDTO implements IEngineStructureDTO {
 export interface IEngineStructureDTO {
     id?: number;
     tenantId?: number;
-    engineType?: string | undefined;
+    engineType?: string | null;
 }
 
 export class GenderDTO implements IGenderDTO {
     id?: number;
-    name?: string | undefined;
+    name?: string | null;
 
     constructor(data?: IGenderDTO) {
         if (data) {
@@ -16495,8 +17104,8 @@ export class GenderDTO implements IGenderDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.name = _data["name"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
         }
     }
 
@@ -16509,22 +17118,22 @@ export class GenderDTO implements IGenderDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["name"] = this.name;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
         return data;
     }
 }
 
 export interface IGenderDTO {
     id?: number;
-    name?: string | undefined;
+    name?: string | null;
 }
 
 export class MaintainedImageDTO implements IMaintainedImageDTO {
     id?: number;
     employeeMaintainedId?: number;
     tenantId?: number;
-    imgUrl?: string | undefined;
+    imgUrl?: string | null;
 
     constructor(data?: IMaintainedImageDTO) {
         if (data) {
@@ -16537,10 +17146,10 @@ export class MaintainedImageDTO implements IMaintainedImageDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.employeeMaintainedId = _data["employeeMaintainedId"];
-            this.tenantId = _data["tenantId"];
-            this.imgUrl = _data["imgUrl"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.employeeMaintainedId = _data["employeeMaintainedId"] !== undefined ? _data["employeeMaintainedId"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.imgUrl = _data["imgUrl"] !== undefined ? _data["imgUrl"] : <any>null;
         }
     }
 
@@ -16553,10 +17162,10 @@ export class MaintainedImageDTO implements IMaintainedImageDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["employeeMaintainedId"] = this.employeeMaintainedId;
-        data["tenantId"] = this.tenantId;
-        data["imgUrl"] = this.imgUrl;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["employeeMaintainedId"] = this.employeeMaintainedId !== undefined ? this.employeeMaintainedId : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["imgUrl"] = this.imgUrl !== undefined ? this.imgUrl : <any>null;
         return data;
     }
 }
@@ -16565,7 +17174,7 @@ export interface IMaintainedImageDTO {
     id?: number;
     employeeMaintainedId?: number;
     tenantId?: number;
-    imgUrl?: string | undefined;
+    imgUrl?: string | null;
 }
 
 export class MaintenaceCardDTO implements IMaintenaceCardDTO {
@@ -16574,14 +17183,14 @@ export class MaintenaceCardDTO implements IMaintenaceCardDTO {
     customerVehicleId?: number;
     dateIn?: Date;
     dateOut?: Date;
-    comments?: string | undefined;
+    comments?: string | null;
     kilometers?: number;
     isCompleted?: boolean;
     isPending?: boolean;
     isCanceled?: boolean;
     doesCheckedAfterFinishingMaintenace?: boolean;
     isReadyToBeDelivered?: boolean;
-    customerSignature?: string | undefined;
+    customerSignature?: string | null;
 
     constructor(data?: IMaintenaceCardDTO) {
         if (data) {
@@ -16594,19 +17203,19 @@ export class MaintenaceCardDTO implements IMaintenaceCardDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.customerVehicleId = _data["customerVehicleId"];
-            this.dateIn = _data["dateIn"] ? new Date(_data["dateIn"].toString()) : <any>undefined;
-            this.dateOut = _data["dateOut"] ? new Date(_data["dateOut"].toString()) : <any>undefined;
-            this.comments = _data["comments"];
-            this.kilometers = _data["kilometers"];
-            this.isCompleted = _data["isCompleted"];
-            this.isPending = _data["isPending"];
-            this.isCanceled = _data["isCanceled"];
-            this.doesCheckedAfterFinishingMaintenace = _data["doesCheckedAfterFinishingMaintenace"];
-            this.isReadyToBeDelivered = _data["isReadyToBeDelivered"];
-            this.customerSignature = _data["customerSignature"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.customerVehicleId = _data["customerVehicleId"] !== undefined ? _data["customerVehicleId"] : <any>null;
+            this.dateIn = _data["dateIn"] ? new Date(_data["dateIn"].toString()) : <any>null;
+            this.dateOut = _data["dateOut"] ? new Date(_data["dateOut"].toString()) : <any>null;
+            this.comments = _data["comments"] !== undefined ? _data["comments"] : <any>null;
+            this.kilometers = _data["kilometers"] !== undefined ? _data["kilometers"] : <any>null;
+            this.isCompleted = _data["isCompleted"] !== undefined ? _data["isCompleted"] : <any>null;
+            this.isPending = _data["isPending"] !== undefined ? _data["isPending"] : <any>null;
+            this.isCanceled = _data["isCanceled"] !== undefined ? _data["isCanceled"] : <any>null;
+            this.doesCheckedAfterFinishingMaintenace = _data["doesCheckedAfterFinishingMaintenace"] !== undefined ? _data["doesCheckedAfterFinishingMaintenace"] : <any>null;
+            this.isReadyToBeDelivered = _data["isReadyToBeDelivered"] !== undefined ? _data["isReadyToBeDelivered"] : <any>null;
+            this.customerSignature = _data["customerSignature"] !== undefined ? _data["customerSignature"] : <any>null;
         }
     }
 
@@ -16619,19 +17228,19 @@ export class MaintenaceCardDTO implements IMaintenaceCardDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["customerVehicleId"] = this.customerVehicleId;
-        data["dateIn"] = this.dateIn ? this.dateIn.toISOString() : <any>undefined;
-        data["dateOut"] = this.dateOut ? this.dateOut.toISOString() : <any>undefined;
-        data["comments"] = this.comments;
-        data["kilometers"] = this.kilometers;
-        data["isCompleted"] = this.isCompleted;
-        data["isPending"] = this.isPending;
-        data["isCanceled"] = this.isCanceled;
-        data["doesCheckedAfterFinishingMaintenace"] = this.doesCheckedAfterFinishingMaintenace;
-        data["isReadyToBeDelivered"] = this.isReadyToBeDelivered;
-        data["customerSignature"] = this.customerSignature;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["customerVehicleId"] = this.customerVehicleId !== undefined ? this.customerVehicleId : <any>null;
+        data["dateIn"] = this.dateIn ? this.dateIn.toISOString() : <any>null;
+        data["dateOut"] = this.dateOut ? this.dateOut.toISOString() : <any>null;
+        data["comments"] = this.comments !== undefined ? this.comments : <any>null;
+        data["kilometers"] = this.kilometers !== undefined ? this.kilometers : <any>null;
+        data["isCompleted"] = this.isCompleted !== undefined ? this.isCompleted : <any>null;
+        data["isPending"] = this.isPending !== undefined ? this.isPending : <any>null;
+        data["isCanceled"] = this.isCanceled !== undefined ? this.isCanceled : <any>null;
+        data["doesCheckedAfterFinishingMaintenace"] = this.doesCheckedAfterFinishingMaintenace !== undefined ? this.doesCheckedAfterFinishingMaintenace : <any>null;
+        data["isReadyToBeDelivered"] = this.isReadyToBeDelivered !== undefined ? this.isReadyToBeDelivered : <any>null;
+        data["customerSignature"] = this.customerSignature !== undefined ? this.customerSignature : <any>null;
         return data;
     }
 }
@@ -16642,14 +17251,14 @@ export interface IMaintenaceCardDTO {
     customerVehicleId?: number;
     dateIn?: Date;
     dateOut?: Date;
-    comments?: string | undefined;
+    comments?: string | null;
     kilometers?: number;
     isCompleted?: boolean;
     isPending?: boolean;
     isCanceled?: boolean;
     doesCheckedAfterFinishingMaintenace?: boolean;
     isReadyToBeDelivered?: boolean;
-    customerSignature?: string | undefined;
+    customerSignature?: string | null;
 }
 
 export class MaintenaceServiceDTO implements IMaintenaceServiceDTO {
@@ -16675,16 +17284,16 @@ export class MaintenaceServiceDTO implements IMaintenaceServiceDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.maintenaceCardId = _data["maintenaceCardId"];
-            this.serviceId = _data["serviceId"];
-            this.cost = _data["cost"];
-            this.warrantyPeriod = _data["warrantyPeriod"];
-            this.isCompleted = _data["isCompleted"];
-            this.isPending = _data["isPending"];
-            this.isCanceled = _data["isCanceled"];
-            this.isTested = _data["isTested"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.maintenaceCardId = _data["maintenaceCardId"] !== undefined ? _data["maintenaceCardId"] : <any>null;
+            this.serviceId = _data["serviceId"] !== undefined ? _data["serviceId"] : <any>null;
+            this.cost = _data["cost"] !== undefined ? _data["cost"] : <any>null;
+            this.warrantyPeriod = _data["warrantyPeriod"] !== undefined ? _data["warrantyPeriod"] : <any>null;
+            this.isCompleted = _data["isCompleted"] !== undefined ? _data["isCompleted"] : <any>null;
+            this.isPending = _data["isPending"] !== undefined ? _data["isPending"] : <any>null;
+            this.isCanceled = _data["isCanceled"] !== undefined ? _data["isCanceled"] : <any>null;
+            this.isTested = _data["isTested"] !== undefined ? _data["isTested"] : <any>null;
         }
     }
 
@@ -16697,16 +17306,16 @@ export class MaintenaceServiceDTO implements IMaintenaceServiceDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["maintenaceCardId"] = this.maintenaceCardId;
-        data["serviceId"] = this.serviceId;
-        data["cost"] = this.cost;
-        data["warrantyPeriod"] = this.warrantyPeriod;
-        data["isCompleted"] = this.isCompleted;
-        data["isPending"] = this.isPending;
-        data["isCanceled"] = this.isCanceled;
-        data["isTested"] = this.isTested;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["maintenaceCardId"] = this.maintenaceCardId !== undefined ? this.maintenaceCardId : <any>null;
+        data["serviceId"] = this.serviceId !== undefined ? this.serviceId : <any>null;
+        data["cost"] = this.cost !== undefined ? this.cost : <any>null;
+        data["warrantyPeriod"] = this.warrantyPeriod !== undefined ? this.warrantyPeriod : <any>null;
+        data["isCompleted"] = this.isCompleted !== undefined ? this.isCompleted : <any>null;
+        data["isPending"] = this.isPending !== undefined ? this.isPending : <any>null;
+        data["isCanceled"] = this.isCanceled !== undefined ? this.isCanceled : <any>null;
+        data["isTested"] = this.isTested !== undefined ? this.isTested : <any>null;
         return data;
     }
 }
@@ -16726,12 +17335,12 @@ export interface IMaintenaceServiceDTO {
 
 export class MenuDTO implements IMenuDTO {
     id?: number;
-    submenuId?: number | undefined;
+    submenuId?: number | null;
     roleId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
-    route?: string | undefined;
-    children?: MenuDTO[] | undefined;
+    name?: string ;
+    nameInArabic?: string | null;
+    route?: string | null;
+    children?: MenuDTO[] | null;
     expanded?: boolean;
 
     constructor(data?: IMenuDTO) {
@@ -16745,18 +17354,21 @@ export class MenuDTO implements IMenuDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.submenuId = _data["submenuId"];
-            this.roleId = _data["roleId"];
-            this.name = _data["name"];
-            this.nameInArabic = _data["nameInArabic"];
-            this.route = _data["route"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.submenuId = _data["submenuId"] !== undefined ? _data["submenuId"] : <any>null;
+            this.roleId = _data["roleId"] !== undefined ? _data["roleId"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
+            this.nameInArabic = _data["nameInArabic"] !== undefined ? _data["nameInArabic"] : <any>null;
+            this.route = _data["route"] !== undefined ? _data["route"] : <any>null;
             if (Array.isArray(_data["children"])) {
                 this.children = [] as any;
                 for (let item of _data["children"])
                     this.children!.push(MenuDTO.fromJS(item));
             }
-            this.expanded = _data["expanded"];
+            else {
+                this.children = <any>null;
+            }
+            this.expanded = _data["expanded"] !== undefined ? _data["expanded"] : <any>null;
         }
     }
 
@@ -16769,30 +17381,30 @@ export class MenuDTO implements IMenuDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["submenuId"] = this.submenuId;
-        data["roleId"] = this.roleId;
-        data["name"] = this.name;
-        data["nameInArabic"] = this.nameInArabic;
-        data["route"] = this.route;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["submenuId"] = this.submenuId !== undefined ? this.submenuId : <any>null;
+        data["roleId"] = this.roleId !== undefined ? this.roleId : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
+        data["nameInArabic"] = this.nameInArabic !== undefined ? this.nameInArabic : <any>null;
+        data["route"] = this.route !== undefined ? this.route : <any>null;
         if (Array.isArray(this.children)) {
             data["children"] = [];
             for (let item of this.children)
                 data["children"].push(item.toJSON());
         }
-        data["expanded"] = this.expanded;
+        data["expanded"] = this.expanded !== undefined ? this.expanded : <any>null;
         return data;
     }
 }
 
 export interface IMenuDTO {
     id?: number;
-    submenuId?: number | undefined;
+    submenuId?: number | null;
     roleId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
-    route?: string | undefined;
-    children?: MenuDTO[] | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
+    route?: string | null;
+    children?: MenuDTO[] | null;
     expanded?: boolean;
 }
 
@@ -16814,11 +17426,11 @@ export class MontlyCustomerVisitDTO implements IMontlyCustomerVisitDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.customerId = _data["customerId"];
-            this.tenantId = _data["tenantId"];
-            this.month = _data["month"] ? new Date(_data["month"].toString()) : <any>undefined;
-            this.visitCount = _data["visitCount"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.customerId = _data["customerId"] !== undefined ? _data["customerId"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.month = _data["month"] ? new Date(_data["month"].toString()) : <any>null;
+            this.visitCount = _data["visitCount"] !== undefined ? _data["visitCount"] : <any>null;
         }
     }
 
@@ -16831,11 +17443,11 @@ export class MontlyCustomerVisitDTO implements IMontlyCustomerVisitDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["customerId"] = this.customerId;
-        data["tenantId"] = this.tenantId;
-        data["month"] = this.month ? formatDate(this.month) : <any>undefined;
-        data["visitCount"] = this.visitCount;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["customerId"] = this.customerId !== undefined ? this.customerId : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["month"] = this.month ? formatDate(this.month) : <any>null;
+        data["visitCount"] = this.visitCount !== undefined ? this.visitCount : <any>null;
         return data;
     }
 }
@@ -16851,7 +17463,7 @@ export interface IMontlyCustomerVisitDTO {
 export class NationalityDTO implements INationalityDTO {
     id?: number;
     tenantId?: number;
-    name?: string | undefined;
+    name?: string | null;
 
     constructor(data?: INationalityDTO) {
         if (data) {
@@ -16864,9 +17476,9 @@ export class NationalityDTO implements INationalityDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.name = _data["name"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
         }
     }
 
@@ -16879,9 +17491,9 @@ export class NationalityDTO implements INationalityDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["name"] = this.name;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
         return data;
     }
 }
@@ -16889,13 +17501,13 @@ export class NationalityDTO implements INationalityDTO {
 export interface INationalityDTO {
     id?: number;
     tenantId?: number;
-    name?: string | undefined;
+    name?: string | null;
 }
 
 export class PartBrandDTO implements IPartBrandDTO {
     id?: number;
     tenantId?: number;
-    name?: string | undefined;
+    name?: string | null;
 
     constructor(data?: IPartBrandDTO) {
         if (data) {
@@ -16908,9 +17520,9 @@ export class PartBrandDTO implements IPartBrandDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.name = _data["name"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
         }
     }
 
@@ -16923,9 +17535,9 @@ export class PartBrandDTO implements IPartBrandDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["name"] = this.name;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
         return data;
     }
 }
@@ -16933,13 +17545,13 @@ export class PartBrandDTO implements IPartBrandDTO {
 export interface IPartBrandDTO {
     id?: number;
     tenantId?: number;
-    name?: string | undefined;
+    name?: string | null;
 }
 
 export class PartConditionDTO implements IPartConditionDTO {
     id?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 
     constructor(data?: IPartConditionDTO) {
         if (data) {
@@ -16952,9 +17564,9 @@ export class PartConditionDTO implements IPartConditionDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.name = _data["name"];
-            this.nameInArabic = _data["nameInArabic"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
+            this.nameInArabic = _data["nameInArabic"] !== undefined ? _data["nameInArabic"] : <any>null;
         }
     }
 
@@ -16967,17 +17579,17 @@ export class PartConditionDTO implements IPartConditionDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["name"] = this.name;
-        data["nameInArabic"] = this.nameInArabic;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
+        data["nameInArabic"] = this.nameInArabic !== undefined ? this.nameInArabic : <any>null;
         return data;
     }
 }
 
 export interface IPartConditionDTO {
     id?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 }
 
 export class PartImageDTO implements IPartImageDTO {
@@ -16985,7 +17597,7 @@ export class PartImageDTO implements IPartImageDTO {
     tenantId?: number;
     partImageTypeId?: number;
     servicePartId?: number;
-    imgUrl?: string | undefined;
+    imgUrl?: string | null;
 
     constructor(data?: IPartImageDTO) {
         if (data) {
@@ -16998,11 +17610,11 @@ export class PartImageDTO implements IPartImageDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.partImageTypeId = _data["partImageTypeId"];
-            this.servicePartId = _data["servicePartId"];
-            this.imgUrl = _data["imgUrl"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.partImageTypeId = _data["partImageTypeId"] !== undefined ? _data["partImageTypeId"] : <any>null;
+            this.servicePartId = _data["servicePartId"] !== undefined ? _data["servicePartId"] : <any>null;
+            this.imgUrl = _data["imgUrl"] !== undefined ? _data["imgUrl"] : <any>null;
         }
     }
 
@@ -17015,11 +17627,11 @@ export class PartImageDTO implements IPartImageDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["partImageTypeId"] = this.partImageTypeId;
-        data["servicePartId"] = this.servicePartId;
-        data["imgUrl"] = this.imgUrl;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["partImageTypeId"] = this.partImageTypeId !== undefined ? this.partImageTypeId : <any>null;
+        data["servicePartId"] = this.servicePartId !== undefined ? this.servicePartId : <any>null;
+        data["imgUrl"] = this.imgUrl !== undefined ? this.imgUrl : <any>null;
         return data;
     }
 }
@@ -17029,13 +17641,13 @@ export interface IPartImageDTO {
     tenantId?: number;
     partImageTypeId?: number;
     servicePartId?: number;
-    imgUrl?: string | undefined;
+    imgUrl?: string | null;
 }
 
 export class PartImageTypeDTO implements IPartImageTypeDTO {
     id?: number;
     tenantId?: number;
-    name?: string | undefined;
+    name?: string | null;
 
     constructor(data?: IPartImageTypeDTO) {
         if (data) {
@@ -17048,9 +17660,9 @@ export class PartImageTypeDTO implements IPartImageTypeDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.name = _data["name"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
         }
     }
 
@@ -17063,9 +17675,9 @@ export class PartImageTypeDTO implements IPartImageTypeDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["name"] = this.name;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
         return data;
     }
 }
@@ -17073,16 +17685,16 @@ export class PartImageTypeDTO implements IPartImageTypeDTO {
 export interface IPartImageTypeDTO {
     id?: number;
     tenantId?: number;
-    name?: string | undefined;
+    name?: string | null;
 }
 
 export class PlateDTO implements IPlateDTO {
     id?: number;
     tenantId?: number;
-    numbers?: string | undefined;
-    numbersInArabic?: string | undefined;
-    letters?: string | undefined;
-    lettersInArabic?: string | undefined;
+    numbers?: string | null;
+    numbersInArabic?: string | null;
+    letters?: string | null;
+    lettersInArabic?: string | null;
 
     constructor(data?: IPlateDTO) {
         if (data) {
@@ -17095,12 +17707,12 @@ export class PlateDTO implements IPlateDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.numbers = _data["numbers"];
-            this.numbersInArabic = _data["numbersInArabic"];
-            this.letters = _data["letters"];
-            this.lettersInArabic = _data["lettersInArabic"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.numbers = _data["numbers"] !== undefined ? _data["numbers"] : <any>null;
+            this.numbersInArabic = _data["numbersInArabic"] !== undefined ? _data["numbersInArabic"] : <any>null;
+            this.letters = _data["letters"] !== undefined ? _data["letters"] : <any>null;
+            this.lettersInArabic = _data["lettersInArabic"] !== undefined ? _data["lettersInArabic"] : <any>null;
         }
     }
 
@@ -17113,12 +17725,12 @@ export class PlateDTO implements IPlateDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["numbers"] = this.numbers;
-        data["numbersInArabic"] = this.numbersInArabic;
-        data["letters"] = this.letters;
-        data["lettersInArabic"] = this.lettersInArabic;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["numbers"] = this.numbers !== undefined ? this.numbers : <any>null;
+        data["numbersInArabic"] = this.numbersInArabic !== undefined ? this.numbersInArabic : <any>null;
+        data["letters"] = this.letters !== undefined ? this.letters : <any>null;
+        data["lettersInArabic"] = this.lettersInArabic !== undefined ? this.lettersInArabic : <any>null;
         return data;
     }
 }
@@ -17126,15 +17738,15 @@ export class PlateDTO implements IPlateDTO {
 export interface IPlateDTO {
     id?: number;
     tenantId?: number;
-    numbers?: string | undefined;
-    numbersInArabic?: string | undefined;
-    letters?: string | undefined;
-    lettersInArabic?: string | undefined;
+    numbers?: string | null;
+    numbersInArabic?: string | null;
+    letters?: string | null;
+    lettersInArabic?: string | null;
 }
 
 export class PremissionDTO implements IPremissionDTO {
     id?: number;
-    name?: string | undefined;
+    name?: string | null;
 
     constructor(data?: IPremissionDTO) {
         if (data) {
@@ -17147,8 +17759,8 @@ export class PremissionDTO implements IPremissionDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.name = _data["name"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
         }
     }
 
@@ -17161,20 +17773,20 @@ export class PremissionDTO implements IPremissionDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["name"] = this.name;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
         return data;
     }
 }
 
 export interface IPremissionDTO {
     id?: number;
-    name?: string | undefined;
+    name?: string | null;
 }
 
 export class RoleDTO implements IRoleDTO {
     id?: number;
-    name?: string | undefined;
+    name?: string | null;
 
     constructor(data?: IRoleDTO) {
         if (data) {
@@ -17187,8 +17799,8 @@ export class RoleDTO implements IRoleDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.name = _data["name"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
         }
     }
 
@@ -17201,22 +17813,22 @@ export class RoleDTO implements IRoleDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["name"] = this.name;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
         return data;
     }
 }
 
 export interface IRoleDTO {
     id?: number;
-    name?: string | undefined;
+    name?: string | null;
 }
 
 export class RolePermssionDTO implements IRolePermssionDTO {
     id?: number;
     roleId?: number;
     permissionId?: number;
-    tableName?: string | undefined;
+    tableName?: string | null;
 
     constructor(data?: IRolePermssionDTO) {
         if (data) {
@@ -17229,10 +17841,10 @@ export class RolePermssionDTO implements IRolePermssionDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.roleId = _data["roleId"];
-            this.permissionId = _data["permissionId"];
-            this.tableName = _data["tableName"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.roleId = _data["roleId"] !== undefined ? _data["roleId"] : <any>null;
+            this.permissionId = _data["permissionId"] !== undefined ? _data["permissionId"] : <any>null;
+            this.tableName = _data["tableName"] !== undefined ? _data["tableName"] : <any>null;
         }
     }
 
@@ -17245,10 +17857,10 @@ export class RolePermssionDTO implements IRolePermssionDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["roleId"] = this.roleId;
-        data["permissionId"] = this.permissionId;
-        data["tableName"] = this.tableName;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["roleId"] = this.roleId !== undefined ? this.roleId : <any>null;
+        data["permissionId"] = this.permissionId !== undefined ? this.permissionId : <any>null;
+        data["tableName"] = this.tableName !== undefined ? this.tableName : <any>null;
         return data;
     }
 }
@@ -17257,7 +17869,7 @@ export interface IRolePermssionDTO {
     id?: number;
     roleId?: number;
     permissionId?: number;
-    tableName?: string | undefined;
+    tableName?: string | null;
 }
 
 export class ServicePartDTO implements IServicePartDTO {
@@ -17272,7 +17884,7 @@ export class ServicePartDTO implements IServicePartDTO {
     sellingPricePerUnit?: number;
     quantity?: number;
     dateOfBuying?: Date;
-    comments?: string | undefined;
+    comments?: string | null;
 
     constructor(data?: IServicePartDTO) {
         if (data) {
@@ -17285,18 +17897,18 @@ export class ServicePartDTO implements IServicePartDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.vehicelPartId = _data["vehicelPartId"];
-            this.maintenaceServiceId = _data["maintenaceServiceId"];
-            this.partConditionId = _data["partConditionId"];
-            this.supplierId = _data["supplierId"];
-            this.cost = _data["cost"];
-            this.warrantyPeriod = _data["warrantyPeriod"];
-            this.sellingPricePerUnit = _data["sellingPricePerUnit"];
-            this.quantity = _data["quantity"];
-            this.dateOfBuying = _data["dateOfBuying"] ? new Date(_data["dateOfBuying"].toString()) : <any>undefined;
-            this.comments = _data["comments"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.vehicelPartId = _data["vehicelPartId"] !== undefined ? _data["vehicelPartId"] : <any>null;
+            this.maintenaceServiceId = _data["maintenaceServiceId"] !== undefined ? _data["maintenaceServiceId"] : <any>null;
+            this.partConditionId = _data["partConditionId"] !== undefined ? _data["partConditionId"] : <any>null;
+            this.supplierId = _data["supplierId"] !== undefined ? _data["supplierId"] : <any>null;
+            this.cost = _data["cost"] !== undefined ? _data["cost"] : <any>null;
+            this.warrantyPeriod = _data["warrantyPeriod"] !== undefined ? _data["warrantyPeriod"] : <any>null;
+            this.sellingPricePerUnit = _data["sellingPricePerUnit"] !== undefined ? _data["sellingPricePerUnit"] : <any>null;
+            this.quantity = _data["quantity"] !== undefined ? _data["quantity"] : <any>null;
+            this.dateOfBuying = _data["dateOfBuying"] ? new Date(_data["dateOfBuying"].toString()) : <any>null;
+            this.comments = _data["comments"] !== undefined ? _data["comments"] : <any>null;
         }
     }
 
@@ -17309,18 +17921,18 @@ export class ServicePartDTO implements IServicePartDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["vehicelPartId"] = this.vehicelPartId;
-        data["maintenaceServiceId"] = this.maintenaceServiceId;
-        data["partConditionId"] = this.partConditionId;
-        data["supplierId"] = this.supplierId;
-        data["cost"] = this.cost;
-        data["warrantyPeriod"] = this.warrantyPeriod;
-        data["sellingPricePerUnit"] = this.sellingPricePerUnit;
-        data["quantity"] = this.quantity;
-        data["dateOfBuying"] = this.dateOfBuying ? this.dateOfBuying.toISOString() : <any>undefined;
-        data["comments"] = this.comments;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["vehicelPartId"] = this.vehicelPartId !== undefined ? this.vehicelPartId : <any>null;
+        data["maintenaceServiceId"] = this.maintenaceServiceId !== undefined ? this.maintenaceServiceId : <any>null;
+        data["partConditionId"] = this.partConditionId !== undefined ? this.partConditionId : <any>null;
+        data["supplierId"] = this.supplierId !== undefined ? this.supplierId : <any>null;
+        data["cost"] = this.cost !== undefined ? this.cost : <any>null;
+        data["warrantyPeriod"] = this.warrantyPeriod !== undefined ? this.warrantyPeriod : <any>null;
+        data["sellingPricePerUnit"] = this.sellingPricePerUnit !== undefined ? this.sellingPricePerUnit : <any>null;
+        data["quantity"] = this.quantity !== undefined ? this.quantity : <any>null;
+        data["dateOfBuying"] = this.dateOfBuying ? this.dateOfBuying.toISOString() : <any>null;
+        data["comments"] = this.comments !== undefined ? this.comments : <any>null;
         return data;
     }
 }
@@ -17337,15 +17949,15 @@ export interface IServicePartDTO {
     sellingPricePerUnit?: number;
     quantity?: number;
     dateOfBuying?: Date;
-    comments?: string | undefined;
+    comments?: string | null;
 }
 
 export class ServiceTableDTO implements IServiceTableDTO {
     id?: number;
     tenantId?: number;
     serviceTypeId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 
     constructor(data?: IServiceTableDTO) {
         if (data) {
@@ -17358,11 +17970,11 @@ export class ServiceTableDTO implements IServiceTableDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.serviceTypeId = _data["serviceTypeId"];
-            this.name = _data["name"];
-            this.nameInArabic = _data["nameInArabic"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.serviceTypeId = _data["serviceTypeId"] !== undefined ? _data["serviceTypeId"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
+            this.nameInArabic = _data["nameInArabic"] !== undefined ? _data["nameInArabic"] : <any>null;
         }
     }
 
@@ -17375,11 +17987,11 @@ export class ServiceTableDTO implements IServiceTableDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["serviceTypeId"] = this.serviceTypeId;
-        data["name"] = this.name;
-        data["nameInArabic"] = this.nameInArabic;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["serviceTypeId"] = this.serviceTypeId !== undefined ? this.serviceTypeId : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
+        data["nameInArabic"] = this.nameInArabic !== undefined ? this.nameInArabic : <any>null;
         return data;
     }
 }
@@ -17388,15 +18000,15 @@ export interface IServiceTableDTO {
     id?: number;
     tenantId?: number;
     serviceTypeId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 }
 
 export class ServiceTypeDTO implements IServiceTypeDTO {
     id?: number;
     tenantId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 
     constructor(data?: IServiceTypeDTO) {
         if (data) {
@@ -17409,10 +18021,10 @@ export class ServiceTypeDTO implements IServiceTypeDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.name = _data["name"];
-            this.nameInArabic = _data["nameInArabic"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
+            this.nameInArabic = _data["nameInArabic"] !== undefined ? _data["nameInArabic"] : <any>null;
         }
     }
 
@@ -17425,10 +18037,10 @@ export class ServiceTypeDTO implements IServiceTypeDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["name"] = this.name;
-        data["nameInArabic"] = this.nameInArabic;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
+        data["nameInArabic"] = this.nameInArabic !== undefined ? this.nameInArabic : <any>null;
         return data;
     }
 }
@@ -17436,8 +18048,8 @@ export class ServiceTypeDTO implements IServiceTypeDTO {
 export interface IServiceTypeDTO {
     id?: number;
     tenantId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 }
 
 export class StatusBenefitDTO implements IStatusBenefitDTO {
@@ -17457,10 +18069,10 @@ export class StatusBenefitDTO implements IStatusBenefitDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.vipStatusId = _data["vipStatusId"];
-            this.vipBenefitId = _data["vipBenefitId"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.vipStatusId = _data["vipStatusId"] !== undefined ? _data["vipStatusId"] : <any>null;
+            this.vipBenefitId = _data["vipBenefitId"] !== undefined ? _data["vipBenefitId"] : <any>null;
         }
     }
 
@@ -17473,10 +18085,10 @@ export class StatusBenefitDTO implements IStatusBenefitDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["vipStatusId"] = this.vipStatusId;
-        data["vipBenefitId"] = this.vipBenefitId;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["vipStatusId"] = this.vipStatusId !== undefined ? this.vipStatusId : <any>null;
+        data["vipBenefitId"] = this.vipBenefitId !== undefined ? this.vipBenefitId : <any>null;
         return data;
     }
 }
@@ -17492,8 +18104,8 @@ export class StreetDTO implements IStreetDTO {
     id?: number;
     tenantId?: number;
     districtId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 
     constructor(data?: IStreetDTO) {
         if (data) {
@@ -17506,11 +18118,11 @@ export class StreetDTO implements IStreetDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.districtId = _data["districtId"];
-            this.name = _data["name"];
-            this.nameInArabic = _data["nameInArabic"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.districtId = _data["districtId"] !== undefined ? _data["districtId"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
+            this.nameInArabic = _data["nameInArabic"] !== undefined ? _data["nameInArabic"] : <any>null;
         }
     }
 
@@ -17523,11 +18135,11 @@ export class StreetDTO implements IStreetDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["districtId"] = this.districtId;
-        data["name"] = this.name;
-        data["nameInArabic"] = this.nameInArabic;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["districtId"] = this.districtId !== undefined ? this.districtId : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
+        data["nameInArabic"] = this.nameInArabic !== undefined ? this.nameInArabic : <any>null;
         return data;
     }
 }
@@ -17536,17 +18148,17 @@ export interface IStreetDTO {
     id?: number;
     tenantId?: number;
     districtId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 }
 
 export class SupplierDTO implements ISupplierDTO {
     id?: number;
     tenantId?: number;
-    contactInfo?: string | undefined;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
-    address?: string | undefined;
+    contactInfo?: string | null;
+    name?: string | null;
+    nameInArabic?: string | null;
+    address?: string | null;
 
     constructor(data?: ISupplierDTO) {
         if (data) {
@@ -17559,12 +18171,12 @@ export class SupplierDTO implements ISupplierDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.contactInfo = _data["contactInfo"];
-            this.name = _data["name"];
-            this.nameInArabic = _data["nameInArabic"];
-            this.address = _data["address"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.contactInfo = _data["contactInfo"] !== undefined ? _data["contactInfo"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
+            this.nameInArabic = _data["nameInArabic"] !== undefined ? _data["nameInArabic"] : <any>null;
+            this.address = _data["address"] !== undefined ? _data["address"] : <any>null;
         }
     }
 
@@ -17577,12 +18189,12 @@ export class SupplierDTO implements ISupplierDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["contactInfo"] = this.contactInfo;
-        data["name"] = this.name;
-        data["nameInArabic"] = this.nameInArabic;
-        data["address"] = this.address;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["contactInfo"] = this.contactInfo !== undefined ? this.contactInfo : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
+        data["nameInArabic"] = this.nameInArabic !== undefined ? this.nameInArabic : <any>null;
+        data["address"] = this.address !== undefined ? this.address : <any>null;
         return data;
     }
 }
@@ -17590,17 +18202,17 @@ export class SupplierDTO implements ISupplierDTO {
 export interface ISupplierDTO {
     id?: number;
     tenantId?: number;
-    contactInfo?: string | undefined;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
-    address?: string | undefined;
+    contactInfo?: string | null;
+    name?: string | null;
+    nameInArabic?: string | null;
+    address?: string | null;
 }
 
 export class TenantDTO implements ITenantDTO {
     id?: number;
-    name?: string | undefined;
-    logoUrl?: string | undefined;
-    brandName?: string | undefined;
+    name?: string | null;
+    logoUrl?: string | null;
+    brandName?: string | null;
 
     constructor(data?: ITenantDTO) {
         if (data) {
@@ -17613,10 +18225,10 @@ export class TenantDTO implements ITenantDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.name = _data["name"];
-            this.logoUrl = _data["logoUrl"];
-            this.brandName = _data["brandName"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
+            this.logoUrl = _data["logoUrl"] !== undefined ? _data["logoUrl"] : <any>null;
+            this.brandName = _data["brandName"] !== undefined ? _data["brandName"] : <any>null;
         }
     }
 
@@ -17629,19 +18241,19 @@ export class TenantDTO implements ITenantDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["name"] = this.name;
-        data["logoUrl"] = this.logoUrl;
-        data["brandName"] = this.brandName;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
+        data["logoUrl"] = this.logoUrl !== undefined ? this.logoUrl : <any>null;
+        data["brandName"] = this.brandName !== undefined ? this.brandName : <any>null;
         return data;
     }
 }
 
 export interface ITenantDTO {
     id?: number;
-    name?: string | undefined;
-    logoUrl?: string | undefined;
-    brandName?: string | undefined;
+    name?: string | null;
+    logoUrl?: string | null;
+    brandName?: string | null;
 }
 
 export class LoginDTO implements ILoginDTO {
@@ -17659,8 +18271,8 @@ export class LoginDTO implements ILoginDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.userName = _data["userName"];
-            this.password = _data["password"];
+            this.userName = _data["userName"] !== undefined ? _data["userName"] : <any>null;
+            this.password = _data["password"] !== undefined ? _data["password"] : <any>null;
         }
     }
 
@@ -17673,8 +18285,8 @@ export class LoginDTO implements ILoginDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["userName"] = this.userName;
-        data["password"] = this.password;
+        data["userName"] = this.userName !== undefined ? this.userName : <any>null;
+        data["password"] = this.password !== undefined ? this.password : <any>null;
         return data;
     }
 }
@@ -17688,8 +18300,8 @@ export class UserDTO implements IUserDTO {
     id?: number;
     roleId?: number;
     tenantId?: number;
-    userName?: string | undefined;
-    password?: string | undefined;
+    userName?: string | null;
+    password?: string | null;
     isActive?: boolean;
 
     constructor(data?: IUserDTO) {
@@ -17703,12 +18315,12 @@ export class UserDTO implements IUserDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.roleId = _data["roleId"];
-            this.tenantId = _data["tenantId"];
-            this.userName = _data["userName"];
-            this.password = _data["password"];
-            this.isActive = _data["isActive"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.roleId = _data["roleId"] !== undefined ? _data["roleId"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.userName = _data["userName"] !== undefined ? _data["userName"] : <any>null;
+            this.password = _data["password"] !== undefined ? _data["password"] : <any>null;
+            this.isActive = _data["isActive"] !== undefined ? _data["isActive"] : <any>null;
         }
     }
 
@@ -17721,12 +18333,12 @@ export class UserDTO implements IUserDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["roleId"] = this.roleId;
-        data["tenantId"] = this.tenantId;
-        data["userName"] = this.userName;
-        data["password"] = this.password;
-        data["isActive"] = this.isActive;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["roleId"] = this.roleId !== undefined ? this.roleId : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["userName"] = this.userName !== undefined ? this.userName : <any>null;
+        data["password"] = this.password !== undefined ? this.password : <any>null;
+        data["isActive"] = this.isActive !== undefined ? this.isActive : <any>null;
         return data;
     }
 }
@@ -17735,16 +18347,16 @@ export interface IUserDTO {
     id?: number;
     roleId?: number;
     tenantId?: number;
-    userName?: string | undefined;
-    password?: string | undefined;
+    userName?: string | null;
+    password?: string | null;
     isActive?: boolean;
 }
 
 export class VehicleBrandDTO implements IVehicleBrandDTO {
     id?: number;
     tenantId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 
     constructor(data?: IVehicleBrandDTO) {
         if (data) {
@@ -17757,10 +18369,10 @@ export class VehicleBrandDTO implements IVehicleBrandDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.name = _data["name"];
-            this.nameInArabic = _data["nameInArabic"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
+            this.nameInArabic = _data["nameInArabic"] !== undefined ? _data["nameInArabic"] : <any>null;
         }
     }
 
@@ -17773,10 +18385,10 @@ export class VehicleBrandDTO implements IVehicleBrandDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["name"] = this.name;
-        data["nameInArabic"] = this.nameInArabic;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
+        data["nameInArabic"] = this.nameInArabic !== undefined ? this.nameInArabic : <any>null;
         return data;
     }
 }
@@ -17784,120 +18396,16 @@ export class VehicleBrandDTO implements IVehicleBrandDTO {
 export interface IVehicleBrandDTO {
     id?: number;
     tenantId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
-}
-
-export class VehicleEngineDTO implements IVehicleEngineDTO {
-    id?: number;
-    tenantId?: number;
-    engineFuelId?: number;
-    engineStructureId?: number;
-    numberOfCylinders?: number;
-
-    constructor(data?: IVehicleEngineDTO) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.engineFuelId = _data["engineFuelId"];
-            this.engineStructureId = _data["engineStructureId"];
-            this.numberOfCylinders = _data["numberOfCylinders"];
-        }
-    }
-
-    static fromJS(data: any): VehicleEngineDTO {
-        data = typeof data === 'object' ? data : {};
-        let result = new VehicleEngineDTO();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["engineFuelId"] = this.engineFuelId;
-        data["engineStructureId"] = this.engineStructureId;
-        data["numberOfCylinders"] = this.numberOfCylinders;
-        return data;
-    }
-}
-
-export interface IVehicleEngineDTO {
-    id?: number;
-    tenantId?: number;
-    engineFuelId?: number;
-    engineStructureId?: number;
-    numberOfCylinders?: number;
-}
-
-export class VehicleEngineWithDetailsDTO implements IVehicleEngineWithDetailsDTO {
-    id?: number;
-    tenantId?: number;
-    engineFuel?: EngineFuelDTO;
-    engineStructure?: EngineStructureDTO;
-    numberOfCylinders?: number;
-
-    constructor(data?: IVehicleEngineWithDetailsDTO) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.engineFuel = _data["engineFuel"] ? EngineFuelDTO.fromJS(_data["engineFuel"]) : <any>undefined;
-            this.engineStructure = _data["engineStructure"] ? EngineStructureDTO.fromJS(_data["engineStructure"]) : <any>undefined;
-            this.numberOfCylinders = _data["numberOfCylinders"];
-        }
-    }
-
-    static fromJS(data: any): VehicleEngineWithDetailsDTO {
-        data = typeof data === 'object' ? data : {};
-        let result = new VehicleEngineWithDetailsDTO();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["engineFuel"] = this.engineFuel ? this.engineFuel.toJSON() : <any>undefined;
-        data["engineStructure"] = this.engineStructure ? this.engineStructure.toJSON() : <any>undefined;
-        data["numberOfCylinders"] = this.numberOfCylinders;
-        return data;
-    }
-}
-
-export interface IVehicleEngineWithDetailsDTO {
-    id?: number;
-    tenantId?: number;
-    engineFuel?: EngineFuelDTO;
-    engineStructure?: EngineStructureDTO;
-    numberOfCylinders?: number;
+    name?: string | null;
+    nameInArabic?: string | null;
 }
 
 export class VehicleModelDTO implements IVehicleModelDTO {
     id?: number;
     tenantId?: number;
     vehicleBrandId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 
     constructor(data?: IVehicleModelDTO) {
         if (data) {
@@ -17910,11 +18418,11 @@ export class VehicleModelDTO implements IVehicleModelDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.vehicleBrandId = _data["vehicleBrandId"];
-            this.name = _data["name"];
-            this.nameInArabic = _data["nameInArabic"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.vehicleBrandId = _data["vehicleBrandId"] !== undefined ? _data["vehicleBrandId"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
+            this.nameInArabic = _data["nameInArabic"] !== undefined ? _data["nameInArabic"] : <any>null;
         }
     }
 
@@ -17927,11 +18435,11 @@ export class VehicleModelDTO implements IVehicleModelDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["vehicleBrandId"] = this.vehicleBrandId;
-        data["name"] = this.name;
-        data["nameInArabic"] = this.nameInArabic;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["vehicleBrandId"] = this.vehicleBrandId !== undefined ? this.vehicleBrandId : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
+        data["nameInArabic"] = this.nameInArabic !== undefined ? this.nameInArabic : <any>null;
         return data;
     }
 }
@@ -17940,16 +18448,16 @@ export interface IVehicleModelDTO {
     id?: number;
     tenantId?: number;
     vehicleBrandId?: number;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 }
 
 export class VehicleModelWithDetailsDTO implements IVehicleModelWithDetailsDTO {
     id?: number;
     tenantId?: number;
     vehicleBrand?: VehicleBrandDTO;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 
     constructor(data?: IVehicleModelWithDetailsDTO) {
         if (data) {
@@ -17962,11 +18470,11 @@ export class VehicleModelWithDetailsDTO implements IVehicleModelWithDetailsDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.vehicleBrand = _data["vehicleBrand"] ? VehicleBrandDTO.fromJS(_data["vehicleBrand"]) : <any>undefined;
-            this.name = _data["name"];
-            this.nameInArabic = _data["nameInArabic"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.vehicleBrand = _data["vehicleBrand"] ? VehicleBrandDTO.fromJS(_data["vehicleBrand"]) : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
+            this.nameInArabic = _data["nameInArabic"] !== undefined ? _data["nameInArabic"] : <any>null;
         }
     }
 
@@ -17979,11 +18487,11 @@ export class VehicleModelWithDetailsDTO implements IVehicleModelWithDetailsDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["vehicleBrand"] = this.vehicleBrand ? this.vehicleBrand.toJSON() : <any>undefined;
-        data["name"] = this.name;
-        data["nameInArabic"] = this.nameInArabic;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["vehicleBrand"] = this.vehicleBrand ? this.vehicleBrand.toJSON() : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
+        data["nameInArabic"] = this.nameInArabic !== undefined ? this.nameInArabic : <any>null;
         return data;
     }
 }
@@ -17992,15 +18500,15 @@ export interface IVehicleModelWithDetailsDTO {
     id?: number;
     tenantId?: number;
     vehicleBrand?: VehicleBrandDTO;
-    name?: string | undefined;
-    nameInArabic?: string | undefined;
+    name?: string | null;
+    nameInArabic?: string | null;
 }
 
 export class VehiclePartDTO implements IVehiclePartDTO {
     id?: number;
     partBrandId?: number;
     tenantId?: number;
-    name?: string | undefined;
+    name?: string | null;
 
     constructor(data?: IVehiclePartDTO) {
         if (data) {
@@ -18013,10 +18521,10 @@ export class VehiclePartDTO implements IVehiclePartDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.partBrandId = _data["partBrandId"];
-            this.tenantId = _data["tenantId"];
-            this.name = _data["name"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.partBrandId = _data["partBrandId"] !== undefined ? _data["partBrandId"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
         }
     }
 
@@ -18029,10 +18537,10 @@ export class VehiclePartDTO implements IVehiclePartDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["partBrandId"] = this.partBrandId;
-        data["tenantId"] = this.tenantId;
-        data["name"] = this.name;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["partBrandId"] = this.partBrandId !== undefined ? this.partBrandId : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
         return data;
     }
 }
@@ -18041,14 +18549,14 @@ export interface IVehiclePartDTO {
     id?: number;
     partBrandId?: number;
     tenantId?: number;
-    name?: string | undefined;
+    name?: string | null;
 }
 
 export class VipBenefitDTO implements IVipBenefitDTO {
     id?: number;
     tenantId?: number;
-    benefitName?: string | undefined;
-    benefitNameInArabic?: string | undefined;
+    benefitName?: string | null;
+    benefitNameInArabic?: string | null;
 
     constructor(data?: IVipBenefitDTO) {
         if (data) {
@@ -18061,10 +18569,10 @@ export class VipBenefitDTO implements IVipBenefitDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.benefitName = _data["benefitName"];
-            this.benefitNameInArabic = _data["benefitNameInArabic"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.benefitName = _data["benefitName"] !== undefined ? _data["benefitName"] : <any>null;
+            this.benefitNameInArabic = _data["benefitNameInArabic"] !== undefined ? _data["benefitNameInArabic"] : <any>null;
         }
     }
 
@@ -18077,10 +18585,10 @@ export class VipBenefitDTO implements IVipBenefitDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["benefitName"] = this.benefitName;
-        data["benefitNameInArabic"] = this.benefitNameInArabic;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["benefitName"] = this.benefitName !== undefined ? this.benefitName : <any>null;
+        data["benefitNameInArabic"] = this.benefitNameInArabic !== undefined ? this.benefitNameInArabic : <any>null;
         return data;
     }
 }
@@ -18088,14 +18596,14 @@ export class VipBenefitDTO implements IVipBenefitDTO {
 export interface IVipBenefitDTO {
     id?: number;
     tenantId?: number;
-    benefitName?: string | undefined;
-    benefitNameInArabic?: string | undefined;
+    benefitName?: string | null;
+    benefitNameInArabic?: string | null;
 }
 
 export class VipStatusDTO implements IVipStatusDTO {
     id?: number;
     tenantId?: number;
-    statusName?: string | undefined;
+    statusName?: string | null;
     minVisitCount?: number;
 
     constructor(data?: IVipStatusDTO) {
@@ -18109,10 +18617,10 @@ export class VipStatusDTO implements IVipStatusDTO {
 
     init(_data?: any) {
         if (_data) {
-            this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
-            this.statusName = _data["statusName"];
-            this.minVisitCount = _data["minVisitCount"];
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.tenantId = _data["tenantId"] !== undefined ? _data["tenantId"] : <any>null;
+            this.statusName = _data["statusName"] !== undefined ? _data["statusName"] : <any>null;
+            this.minVisitCount = _data["minVisitCount"] !== undefined ? _data["minVisitCount"] : <any>null;
         }
     }
 
@@ -18125,10 +18633,10 @@ export class VipStatusDTO implements IVipStatusDTO {
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
-        data["statusName"] = this.statusName;
-        data["minVisitCount"] = this.minVisitCount;
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["tenantId"] = this.tenantId !== undefined ? this.tenantId : <any>null;
+        data["statusName"] = this.statusName !== undefined ? this.statusName : <any>null;
+        data["minVisitCount"] = this.minVisitCount !== undefined ? this.minVisitCount : <any>null;
         return data;
     }
 }
@@ -18136,14 +18644,14 @@ export class VipStatusDTO implements IVipStatusDTO {
 export interface IVipStatusDTO {
     id?: number;
     tenantId?: number;
-    statusName?: string | undefined;
+    statusName?: string | null;
     minVisitCount?: number;
 }
 
 export class ApiResponse_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CityDTO;
 
     constructor(data?: IApiResponse_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -18157,10 +18665,10 @@ export class ApiResponse_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyTo
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? CityDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? CityDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -18173,10 +18681,10 @@ export class ApiResponse_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyTo
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -18184,14 +18692,14 @@ export class ApiResponse_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyTo
 export interface IApiResponse_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CityDTO;
 }
 
 export class ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: ColorDTO;
 
     constructor(data?: IApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -18205,10 +18713,10 @@ export class ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyT
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? ColorDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? ColorDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -18221,10 +18729,10 @@ export class ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyT
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -18232,14 +18740,14 @@ export class ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyT
 export interface IApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: ColorDTO;
 }
 
 export class ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CountryDTO;
 
     constructor(data?: IApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -18253,10 +18761,10 @@ export class ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKe
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? CountryDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? CountryDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -18269,10 +18777,10 @@ export class ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKe
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -18280,14 +18788,14 @@ export class ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKe
 export interface IApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CountryDTO;
 }
 
 export class ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CustomerContactNumberDTO;
 
     constructor(data?: IApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -18301,10 +18809,10 @@ export class ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neut
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? CustomerContactNumberDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? CustomerContactNumberDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -18317,10 +18825,10 @@ export class ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neut
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -18328,14 +18836,14 @@ export class ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neut
 export interface IApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CustomerContactNumberDTO;
 }
 
 export class ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CustomerDTO;
 
     constructor(data?: IApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -18349,10 +18857,10 @@ export class ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicK
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? CustomerDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? CustomerDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -18365,10 +18873,10 @@ export class ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicK
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -18376,14 +18884,14 @@ export class ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicK
 export interface IApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CustomerDTO;
 }
 
 export class ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CustomerNotificationDTO;
 
     constructor(data?: IApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -18397,10 +18905,10 @@ export class ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutr
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? CustomerNotificationDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? CustomerNotificationDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -18413,10 +18921,10 @@ export class ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutr
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -18424,14 +18932,14 @@ export class ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutr
 export interface IApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CustomerNotificationDTO;
 }
 
 export class ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CustomerVehicleColorDTO;
 
     constructor(data?: IApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -18445,10 +18953,10 @@ export class ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutr
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? CustomerVehicleColorDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? CustomerVehicleColorDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -18461,10 +18969,10 @@ export class ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutr
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -18472,14 +18980,14 @@ export class ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutr
 export interface IApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CustomerVehicleColorDTO;
 }
 
 export class ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CustomerVehicleDTO;
 
     constructor(data?: IApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -18493,10 +19001,10 @@ export class ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAnd
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? CustomerVehicleDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? CustomerVehicleDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -18509,10 +19017,10 @@ export class ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAnd
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -18520,14 +19028,14 @@ export class ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAnd
 export interface IApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CustomerVehicleDTO;
 }
 
 export class ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CustomerVehicleImageDTO;
 
     constructor(data?: IApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -18541,10 +19049,10 @@ export class ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutr
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? CustomerVehicleImageDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? CustomerVehicleImageDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -18557,10 +19065,10 @@ export class ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutr
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -18568,14 +19076,14 @@ export class ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutr
 export interface IApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CustomerVehicleImageDTO;
 }
 
 export class ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CustomerVehicleImageTypeDTO;
 
     constructor(data?: IApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -18589,10 +19097,10 @@ export class ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_n
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? CustomerVehicleImageTypeDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? CustomerVehicleImageTypeDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -18605,10 +19113,10 @@ export class ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_n
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -18616,14 +19124,14 @@ export class ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_n
 export interface IApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CustomerVehicleImageTypeDTO;
 }
 
 export class ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CustomerVehiclePlateDTO;
 
     constructor(data?: IApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -18637,10 +19145,10 @@ export class ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutr
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? CustomerVehiclePlateDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? CustomerVehiclePlateDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -18653,10 +19161,10 @@ export class ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutr
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -18664,14 +19172,14 @@ export class ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutr
 export interface IApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CustomerVehiclePlateDTO;
 }
 
 export class ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CustomerVipStatusDTO;
 
     constructor(data?: IApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -18685,10 +19193,10 @@ export class ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralA
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? CustomerVipStatusDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? CustomerVipStatusDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -18701,10 +19209,10 @@ export class ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralA
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -18712,14 +19220,14 @@ export class ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralA
 export interface IApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: CustomerVipStatusDTO;
 }
 
 export class ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: DistrictDTO;
 
     constructor(data?: IApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -18733,10 +19241,10 @@ export class ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicK
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? DistrictDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? DistrictDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -18749,10 +19257,10 @@ export class ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicK
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -18760,14 +19268,14 @@ export class ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicK
 export interface IApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: DistrictDTO;
 }
 
 export class ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: EmployeeDTO;
 
     constructor(data?: IApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -18781,10 +19289,10 @@ export class ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicK
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? EmployeeDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? EmployeeDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -18797,10 +19305,10 @@ export class ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicK
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -18808,14 +19316,14 @@ export class ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicK
 export interface IApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: EmployeeDTO;
 }
 
 export class ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: EmployeeMaintainedDTO;
 
     constructor(data?: IApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -18829,10 +19337,10 @@ export class ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutral
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? EmployeeMaintainedDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? EmployeeMaintainedDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -18845,10 +19353,10 @@ export class ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutral
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -18856,14 +19364,14 @@ export class ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutral
 export interface IApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: EmployeeMaintainedDTO;
 }
 
 export class ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: EngineFuelDTO;
 
     constructor(data?: IApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -18877,10 +19385,10 @@ export class ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPubli
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? EngineFuelDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? EngineFuelDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -18893,10 +19401,10 @@ export class ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPubli
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -18904,14 +19412,14 @@ export class ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPubli
 export interface IApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: EngineFuelDTO;
 }
 
 export class ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: EngineStructureDTO;
 
     constructor(data?: IApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -18925,10 +19433,10 @@ export class ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAnd
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? EngineStructureDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? EngineStructureDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -18941,10 +19449,10 @@ export class ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAnd
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -18952,14 +19460,14 @@ export class ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAnd
 export interface IApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: EngineStructureDTO;
 }
 
 export class ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: GenderDTO;
 
     constructor(data?: IApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -18973,10 +19481,10 @@ export class ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKey
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? GenderDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? GenderDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -18989,10 +19497,10 @@ export class ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKey
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19000,14 +19508,14 @@ export class ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKey
 export interface IApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: GenderDTO;
 }
 
 export class ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: MaintainedImageDTO;
 
     constructor(data?: IApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19021,10 +19529,10 @@ export class ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAnd
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? MaintainedImageDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? MaintainedImageDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19037,10 +19545,10 @@ export class ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAnd
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19048,14 +19556,14 @@ export class ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAnd
 export interface IApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: MaintainedImageDTO;
 }
 
 export class ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: MaintenaceCardDTO;
 
     constructor(data?: IApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19069,10 +19577,10 @@ export class ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndP
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? MaintenaceCardDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? MaintenaceCardDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19085,10 +19593,10 @@ export class ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndP
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19096,14 +19604,14 @@ export class ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndP
 export interface IApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: MaintenaceCardDTO;
 }
 
 export class ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: MaintenaceServiceDTO;
 
     constructor(data?: IApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19117,10 +19625,10 @@ export class ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralA
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? MaintenaceServiceDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? MaintenaceServiceDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19133,10 +19641,10 @@ export class ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralA
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19144,14 +19652,14 @@ export class ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralA
 export interface IApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: MaintenaceServiceDTO;
 }
 
 export class ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: MenuDTO;
 
     constructor(data?: IApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19165,10 +19673,10 @@ export class ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyTo
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? MenuDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? MenuDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19181,10 +19689,10 @@ export class ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyTo
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19192,14 +19700,14 @@ export class ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyTo
 export interface IApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: MenuDTO;
 }
 
 export class ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: MontlyCustomerVisitDTO;
 
     constructor(data?: IApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19213,10 +19721,10 @@ export class ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutra
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? MontlyCustomerVisitDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? MontlyCustomerVisitDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19229,10 +19737,10 @@ export class ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutra
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19240,14 +19748,14 @@ export class ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutra
 export interface IApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: MontlyCustomerVisitDTO;
 }
 
 export class ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: NationalityDTO;
 
     constructor(data?: IApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19261,10 +19769,10 @@ export class ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPubl
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? NationalityDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? NationalityDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19277,10 +19785,10 @@ export class ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPubl
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19288,14 +19796,14 @@ export class ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPubl
 export interface IApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: NationalityDTO;
 }
 
 export class ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: PartBrandDTO;
 
     constructor(data?: IApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19309,10 +19817,10 @@ export class ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublic
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? PartBrandDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? PartBrandDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19325,10 +19833,10 @@ export class ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublic
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19336,14 +19844,14 @@ export class ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublic
 export interface IApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: PartBrandDTO;
 }
 
 export class ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: PartConditionDTO;
 
     constructor(data?: IApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19357,10 +19865,10 @@ export class ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPu
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? PartConditionDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? PartConditionDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19373,10 +19881,10 @@ export class ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPu
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19384,14 +19892,14 @@ export class ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPu
 export interface IApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: PartConditionDTO;
 }
 
 export class ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: PartImageDTO;
 
     constructor(data?: IApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19405,10 +19913,10 @@ export class ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublic
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? PartImageDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? PartImageDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19421,10 +19929,10 @@ export class ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublic
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19432,14 +19940,14 @@ export class ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublic
 export interface IApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: PartImageDTO;
 }
 
 export class ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: PartImageTypeDTO;
 
     constructor(data?: IApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19453,10 +19961,10 @@ export class ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPu
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? PartImageTypeDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? PartImageTypeDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19469,10 +19977,10 @@ export class ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPu
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19480,14 +19988,14 @@ export class ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPu
 export interface IApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: PartImageTypeDTO;
 }
 
 export class ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: PlateDTO;
 
     constructor(data?: IApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19501,10 +20009,10 @@ export class ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyT
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? PlateDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? PlateDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19517,10 +20025,10 @@ export class ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyT
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19528,14 +20036,14 @@ export class ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyT
 export interface IApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: PlateDTO;
 }
 
 export class ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: PremissionDTO;
 
     constructor(data?: IApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19549,10 +20057,10 @@ export class ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPubli
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? PremissionDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? PremissionDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19565,10 +20073,10 @@ export class ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPubli
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19576,14 +20084,14 @@ export class ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPubli
 export interface IApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: PremissionDTO;
 }
 
 export class ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: RoleDTO;
 
     constructor(data?: IApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19597,10 +20105,10 @@ export class ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyTo
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? RoleDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? RoleDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19613,10 +20121,10 @@ export class ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyTo
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19624,14 +20132,14 @@ export class ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyTo
 export interface IApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: RoleDTO;
 }
 
 export class ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: RolePermssionDTO;
 
     constructor(data?: IApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19645,10 +20153,10 @@ export class ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPu
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? RolePermssionDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? RolePermssionDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19661,10 +20169,10 @@ export class ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPu
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19672,14 +20180,14 @@ export class ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPu
 export interface IApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: RolePermssionDTO;
 }
 
 export class ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: ServicePartDTO;
 
     constructor(data?: IApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19693,10 +20201,10 @@ export class ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPubl
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? ServicePartDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? ServicePartDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19709,10 +20217,10 @@ export class ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPubl
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19720,14 +20228,14 @@ export class ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPubl
 export interface IApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: ServicePartDTO;
 }
 
 export class ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: ServiceTableDTO;
 
     constructor(data?: IApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19741,10 +20249,10 @@ export class ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPub
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? ServiceTableDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? ServiceTableDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19757,10 +20265,10 @@ export class ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPub
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19768,14 +20276,14 @@ export class ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPub
 export interface IApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: ServiceTableDTO;
 }
 
 export class ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: ServiceTypeDTO;
 
     constructor(data?: IApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19789,10 +20297,10 @@ export class ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPubl
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? ServiceTypeDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? ServiceTypeDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19805,10 +20313,10 @@ export class ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPubl
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19816,14 +20324,14 @@ export class ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPubl
 export interface IApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: ServiceTypeDTO;
 }
 
 export class ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: StatusBenefitDTO;
 
     constructor(data?: IApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19837,10 +20345,10 @@ export class ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPu
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? StatusBenefitDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? StatusBenefitDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19853,10 +20361,10 @@ export class ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPu
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19864,14 +20372,14 @@ export class ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPu
 export interface IApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: StatusBenefitDTO;
 }
 
 export class ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: StreetDTO;
 
     constructor(data?: IApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19885,10 +20393,10 @@ export class ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKey
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? StreetDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? StreetDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19901,10 +20409,10 @@ export class ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKey
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19912,14 +20420,14 @@ export class ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKey
 export interface IApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: StreetDTO;
 }
 
 export class ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: SupplierDTO;
 
     constructor(data?: IApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19933,10 +20441,10 @@ export class ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicK
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? SupplierDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? SupplierDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19949,10 +20457,10 @@ export class ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicK
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -19960,14 +20468,14 @@ export class ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicK
 export interface IApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: SupplierDTO;
 }
 
 export class ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: TenantDTO;
 
     constructor(data?: IApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -19981,10 +20489,10 @@ export class ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKey
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? TenantDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? TenantDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -19997,10 +20505,10 @@ export class ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKey
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -20008,14 +20516,14 @@ export class ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKey
 export interface IApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: TenantDTO;
 }
 
 export class ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: UserDTO;
 
     constructor(data?: IApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -20029,10 +20537,10 @@ export class ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyTo
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? UserDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? UserDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -20045,10 +20553,10 @@ export class ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyTo
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -20056,14 +20564,14 @@ export class ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyTo
 export interface IApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: UserDTO;
 }
 
 export class ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: VehicleBrandDTO;
 
     constructor(data?: IApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -20077,10 +20585,10 @@ export class ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPub
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? VehicleBrandDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? VehicleBrandDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -20093,10 +20601,10 @@ export class ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPub
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -20104,62 +20612,14 @@ export class ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPub
 export interface IApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: VehicleBrandDTO;
-}
-
-export class ApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
-    success?: boolean;
-    statusCode?: number;
-    message?: string | undefined;
-    result?: VehicleEngineDTO;
-
-    constructor(data?: IApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? VehicleEngineDTO.fromJS(_data["result"]) : <any>undefined;
-        }
-    }
-
-    static fromJS(data: any): ApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
-        data = typeof data === 'object' ? data : {};
-        let result = new ApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
-        return data;
-    }
-}
-
-export interface IApiResponse_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
-    success?: boolean;
-    statusCode?: number;
-    message?: string | undefined;
-    result?: VehicleEngineDTO;
 }
 
 export class ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: VehicleModelDTO;
 
     constructor(data?: IApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -20173,10 +20633,10 @@ export class ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPub
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? VehicleModelDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? VehicleModelDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -20189,10 +20649,10 @@ export class ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPub
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -20200,14 +20660,14 @@ export class ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPub
 export interface IApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: VehicleModelDTO;
 }
 
 export class ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: VehiclePartDTO;
 
     constructor(data?: IApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -20221,10 +20681,10 @@ export class ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPubl
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? VehiclePartDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? VehiclePartDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -20237,10 +20697,10 @@ export class ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPubl
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -20248,14 +20708,14 @@ export class ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPubl
 export interface IApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: VehiclePartDTO;
 }
 
 export class ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: VipBenefitDTO;
 
     constructor(data?: IApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -20269,10 +20729,10 @@ export class ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPubli
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? VipBenefitDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? VipBenefitDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -20285,10 +20745,10 @@ export class ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPubli
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -20296,14 +20756,14 @@ export class ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPubli
 export interface IApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: VipBenefitDTO;
 }
 
 export class ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: VipStatusDTO;
 
     constructor(data?: IApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
@@ -20317,10 +20777,10 @@ export class ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublic
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? VipStatusDTO.fromJS(_data["result"]) : <any>undefined;
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? VipStatusDTO.fromJS(_data["result"]) : <any>null;
         }
     }
 
@@ -20333,10 +20793,10 @@ export class ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublic
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
         return data;
     }
 }
@@ -20344,15 +20804,15 @@ export class ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublic
 export interface IApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
+    message?: string | null;
     result?: VipStatusDTO;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CityDTO[] | undefined;
+    message?: string | null;
+    result?: CityDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -20365,13 +20825,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCityDTOAndBLLAnd_0AndCulture_neut
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(CityDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -20385,9 +20848,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCityDTOAndBLLAnd_0AndCulture_neut
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -20400,15 +20863,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCityDTOAndBLLAnd_0AndCulture_neut
 export interface IApiResponse_1OfOfIEnumerable_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CityDTO[] | undefined;
+    message?: string | null;
+    result?: CityDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: ColorDTO[] | undefined;
+    message?: string | null;
+    result?: ColorDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -20421,13 +20884,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfColorDTOAndBLLAnd_0AndCulture_neu
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(ColorDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -20441,9 +20907,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfColorDTOAndBLLAnd_0AndCulture_neu
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -20456,15 +20922,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfColorDTOAndBLLAnd_0AndCulture_neu
 export interface IApiResponse_1OfOfIEnumerable_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: ColorDTO[] | undefined;
+    message?: string | null;
+    result?: ColorDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CountryDTO[] | undefined;
+    message?: string | null;
+    result?: CountryDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -20477,13 +20943,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCountryDTOAndBLLAnd_0AndCulture_n
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(CountryDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -20497,9 +20966,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCountryDTOAndBLLAnd_0AndCulture_n
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -20512,15 +20981,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCountryDTOAndBLLAnd_0AndCulture_n
 export interface IApiResponse_1OfOfIEnumerable_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CountryDTO[] | undefined;
+    message?: string | null;
+    result?: CountryDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CustomerContactNumberDTO[] | undefined;
+    message?: string | null;
+    result?: CustomerContactNumberDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -20533,13 +21002,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerContactNumberDTOAndBLLAnd
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(CustomerContactNumberDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -20553,9 +21025,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerContactNumberDTOAndBLLAnd
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -20568,15 +21040,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerContactNumberDTOAndBLLAnd
 export interface IApiResponse_1OfOfIEnumerable_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CustomerContactNumberDTO[] | undefined;
+    message?: string | null;
+    result?: CustomerContactNumberDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CustomerDTO[] | undefined;
+    message?: string | null;
+    result?: CustomerDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -20589,13 +21061,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(CustomerDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -20609,9 +21084,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -20624,15 +21099,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_
 export interface IApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CustomerDTO[] | undefined;
+    message?: string | null;
+    result?: CustomerDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CustomerNotificationDTO[] | undefined;
+    message?: string | null;
+    result?: CustomerNotificationDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -20645,13 +21120,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerNotificationDTOAndBLLAnd_
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(CustomerNotificationDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -20665,9 +21143,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerNotificationDTOAndBLLAnd_
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -20680,15 +21158,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerNotificationDTOAndBLLAnd_
 export interface IApiResponse_1OfOfIEnumerable_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CustomerNotificationDTO[] | undefined;
+    message?: string | null;
+    result?: CustomerNotificationDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CustomerVehicleColorDTO[] | undefined;
+    message?: string | null;
+    result?: CustomerVehicleColorDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -20701,13 +21179,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleColorDTOAndBLLAnd_
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(CustomerVehicleColorDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -20721,9 +21202,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleColorDTOAndBLLAnd_
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -20736,15 +21217,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleColorDTOAndBLLAnd_
 export interface IApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CustomerVehicleColorDTO[] | undefined;
+    message?: string | null;
+    result?: CustomerVehicleColorDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CustomerVehicleDTO[] | undefined;
+    message?: string | null;
+    result?: CustomerVehicleDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -20757,13 +21238,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleDTOAndBLLAnd_0AndC
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(CustomerVehicleDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -20777,9 +21261,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleDTOAndBLLAnd_0AndC
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -20792,15 +21276,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleDTOAndBLLAnd_0AndC
 export interface IApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CustomerVehicleDTO[] | undefined;
+    message?: string | null;
+    result?: CustomerVehicleDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CustomerVehicleImageDTO[] | undefined;
+    message?: string | null;
+    result?: CustomerVehicleImageDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -20813,13 +21297,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageDTOAndBLLAnd_
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(CustomerVehicleImageDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -20833,9 +21320,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageDTOAndBLLAnd_
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -20848,15 +21335,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageDTOAndBLLAnd_
 export interface IApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CustomerVehicleImageDTO[] | undefined;
+    message?: string | null;
+    result?: CustomerVehicleImageDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CustomerVehicleImageTypeDTO[] | undefined;
+    message?: string | null;
+    result?: CustomerVehicleImageTypeDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -20869,13 +21356,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageTypeDTOAndBLL
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(CustomerVehicleImageTypeDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -20889,9 +21379,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageTypeDTOAndBLL
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -20904,15 +21394,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageTypeDTOAndBLL
 export interface IApiResponse_1OfOfIEnumerable_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CustomerVehicleImageTypeDTO[] | undefined;
+    message?: string | null;
+    result?: CustomerVehicleImageTypeDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CustomerVehiclePlateDTO[] | undefined;
+    message?: string | null;
+    result?: CustomerVehiclePlateDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -20925,13 +21415,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehiclePlateDTOAndBLLAnd_
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(CustomerVehiclePlateDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -20945,9 +21438,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehiclePlateDTOAndBLLAnd_
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -20960,15 +21453,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVehiclePlateDTOAndBLLAnd_
 export interface IApiResponse_1OfOfIEnumerable_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CustomerVehiclePlateDTO[] | undefined;
+    message?: string | null;
+    result?: CustomerVehiclePlateDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CustomerVipStatusDTO[] | undefined;
+    message?: string | null;
+    result?: CustomerVipStatusDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -20981,13 +21474,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVipStatusDTOAndBLLAnd_0An
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(CustomerVipStatusDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -21001,9 +21497,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVipStatusDTOAndBLLAnd_0An
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -21016,15 +21512,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfCustomerVipStatusDTOAndBLLAnd_0An
 export interface IApiResponse_1OfOfIEnumerable_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: CustomerVipStatusDTO[] | undefined;
+    message?: string | null;
+    result?: CustomerVipStatusDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: DistrictDTO[] | undefined;
+    message?: string | null;
+    result?: DistrictDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -21037,13 +21533,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfDistrictDTOAndBLLAnd_0AndCulture_
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(DistrictDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -21057,9 +21556,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfDistrictDTOAndBLLAnd_0AndCulture_
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -21072,15 +21571,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfDistrictDTOAndBLLAnd_0AndCulture_
 export interface IApiResponse_1OfOfIEnumerable_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: DistrictDTO[] | undefined;
+    message?: string | null;
+    result?: DistrictDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: EmployeeDTO[] | undefined;
+    message?: string | null;
+    result?: EmployeeDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -21093,13 +21592,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(EmployeeDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -21113,9 +21615,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -21128,15 +21630,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_
 export interface IApiResponse_1OfOfIEnumerable_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: EmployeeDTO[] | undefined;
+    message?: string | null;
+    result?: EmployeeDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: EmployeeMaintainedDTO[] | undefined;
+    message?: string | null;
+    result?: EmployeeMaintainedDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -21149,13 +21651,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfEmployeeMaintainedDTOAndBLLAnd_0A
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(EmployeeMaintainedDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -21169,9 +21674,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfEmployeeMaintainedDTOAndBLLAnd_0A
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -21184,15 +21689,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfEmployeeMaintainedDTOAndBLLAnd_0A
 export interface IApiResponse_1OfOfIEnumerable_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: EmployeeMaintainedDTO[] | undefined;
+    message?: string | null;
+    result?: EmployeeMaintainedDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: EngineFuelDTO[] | undefined;
+    message?: string | null;
+    result?: EngineFuelDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -21205,13 +21710,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfEngineFuelDTOAndBLLAnd_0AndCultur
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(EngineFuelDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -21225,9 +21733,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfEngineFuelDTOAndBLLAnd_0AndCultur
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -21240,15 +21748,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfEngineFuelDTOAndBLLAnd_0AndCultur
 export interface IApiResponse_1OfOfIEnumerable_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: EngineFuelDTO[] | undefined;
+    message?: string | null;
+    result?: EngineFuelDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: EngineStructureDTO[] | undefined;
+    message?: string | null;
+    result?: EngineStructureDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -21261,13 +21769,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfEngineStructureDTOAndBLLAnd_0AndC
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(EngineStructureDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -21281,9 +21792,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfEngineStructureDTOAndBLLAnd_0AndC
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -21296,15 +21807,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfEngineStructureDTOAndBLLAnd_0AndC
 export interface IApiResponse_1OfOfIEnumerable_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: EngineStructureDTO[] | undefined;
+    message?: string | null;
+    result?: EngineStructureDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: GenderDTO[] | undefined;
+    message?: string | null;
+    result?: GenderDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -21317,13 +21828,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfGenderDTOAndBLLAnd_0AndCulture_ne
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(GenderDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -21337,9 +21851,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfGenderDTOAndBLLAnd_0AndCulture_ne
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -21352,15 +21866,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfGenderDTOAndBLLAnd_0AndCulture_ne
 export interface IApiResponse_1OfOfIEnumerable_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: GenderDTO[] | undefined;
+    message?: string | null;
+    result?: GenderDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: MaintainedImageDTO[] | undefined;
+    message?: string | null;
+    result?: MaintainedImageDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -21373,13 +21887,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfMaintainedImageDTOAndBLLAnd_0AndC
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(MaintainedImageDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -21393,9 +21910,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfMaintainedImageDTOAndBLLAnd_0AndC
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -21408,15 +21925,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfMaintainedImageDTOAndBLLAnd_0AndC
 export interface IApiResponse_1OfOfIEnumerable_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: MaintainedImageDTO[] | undefined;
+    message?: string | null;
+    result?: MaintainedImageDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: MaintenaceCardDTO[] | undefined;
+    message?: string | null;
+    result?: MaintenaceCardDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -21429,13 +21946,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCu
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(MaintenaceCardDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -21449,9 +21969,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCu
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -21464,15 +21984,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCu
 export interface IApiResponse_1OfOfIEnumerable_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: MaintenaceCardDTO[] | undefined;
+    message?: string | null;
+    result?: MaintenaceCardDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: MaintenaceServiceDTO[] | undefined;
+    message?: string | null;
+    result?: MaintenaceServiceDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -21485,13 +22005,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfMaintenaceServiceDTOAndBLLAnd_0An
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(MaintenaceServiceDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -21505,9 +22028,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfMaintenaceServiceDTOAndBLLAnd_0An
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -21520,15 +22043,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfMaintenaceServiceDTOAndBLLAnd_0An
 export interface IApiResponse_1OfOfIEnumerable_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: MaintenaceServiceDTO[] | undefined;
+    message?: string | null;
+    result?: MaintenaceServiceDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: MenuDTO[] | undefined;
+    message?: string | null;
+    result?: MenuDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -21541,13 +22064,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfMenuDTOAndBLLAnd_0AndCulture_neut
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(MenuDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -21561,9 +22087,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfMenuDTOAndBLLAnd_0AndCulture_neut
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -21576,15 +22102,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfMenuDTOAndBLLAnd_0AndCulture_neut
 export interface IApiResponse_1OfOfIEnumerable_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: MenuDTO[] | undefined;
+    message?: string | null;
+    result?: MenuDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: MontlyCustomerVisitDTO[] | undefined;
+    message?: string | null;
+    result?: MontlyCustomerVisitDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -21597,13 +22123,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(MontlyCustomerVisitDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -21617,9 +22146,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -21632,15 +22161,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0
 export interface IApiResponse_1OfOfIEnumerable_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: MontlyCustomerVisitDTO[] | undefined;
+    message?: string | null;
+    result?: MontlyCustomerVisitDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: NationalityDTO[] | undefined;
+    message?: string | null;
+    result?: NationalityDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -21653,13 +22182,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfNationalityDTOAndBLLAnd_0AndCultu
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(NationalityDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -21673,9 +22205,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfNationalityDTOAndBLLAnd_0AndCultu
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -21688,15 +22220,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfNationalityDTOAndBLLAnd_0AndCultu
 export interface IApiResponse_1OfOfIEnumerable_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: NationalityDTO[] | undefined;
+    message?: string | null;
+    result?: NationalityDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: PartBrandDTO[] | undefined;
+    message?: string | null;
+    result?: PartBrandDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -21709,13 +22241,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfPartBrandDTOAndBLLAnd_0AndCulture
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(PartBrandDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -21729,9 +22264,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfPartBrandDTOAndBLLAnd_0AndCulture
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -21744,15 +22279,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfPartBrandDTOAndBLLAnd_0AndCulture
 export interface IApiResponse_1OfOfIEnumerable_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: PartBrandDTO[] | undefined;
+    message?: string | null;
+    result?: PartBrandDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: PartConditionDTO[] | undefined;
+    message?: string | null;
+    result?: PartConditionDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -21765,13 +22300,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfPartConditionDTOAndBLLAnd_0AndCul
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(PartConditionDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -21785,9 +22323,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfPartConditionDTOAndBLLAnd_0AndCul
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -21800,15 +22338,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfPartConditionDTOAndBLLAnd_0AndCul
 export interface IApiResponse_1OfOfIEnumerable_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: PartConditionDTO[] | undefined;
+    message?: string | null;
+    result?: PartConditionDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: PartImageDTO[] | undefined;
+    message?: string | null;
+    result?: PartImageDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -21821,13 +22359,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfPartImageDTOAndBLLAnd_0AndCulture
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(PartImageDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -21841,9 +22382,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfPartImageDTOAndBLLAnd_0AndCulture
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -21856,15 +22397,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfPartImageDTOAndBLLAnd_0AndCulture
 export interface IApiResponse_1OfOfIEnumerable_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: PartImageDTO[] | undefined;
+    message?: string | null;
+    result?: PartImageDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: PartImageTypeDTO[] | undefined;
+    message?: string | null;
+    result?: PartImageTypeDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -21877,13 +22418,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfPartImageTypeDTOAndBLLAnd_0AndCul
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(PartImageTypeDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -21897,9 +22441,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfPartImageTypeDTOAndBLLAnd_0AndCul
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -21912,15 +22456,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfPartImageTypeDTOAndBLLAnd_0AndCul
 export interface IApiResponse_1OfOfIEnumerable_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: PartImageTypeDTO[] | undefined;
+    message?: string | null;
+    result?: PartImageTypeDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: PlateDTO[] | undefined;
+    message?: string | null;
+    result?: PlateDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -21933,13 +22477,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfPlateDTOAndBLLAnd_0AndCulture_neu
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(PlateDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -21953,9 +22500,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfPlateDTOAndBLLAnd_0AndCulture_neu
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -21968,15 +22515,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfPlateDTOAndBLLAnd_0AndCulture_neu
 export interface IApiResponse_1OfOfIEnumerable_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: PlateDTO[] | undefined;
+    message?: string | null;
+    result?: PlateDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: PremissionDTO[] | undefined;
+    message?: string | null;
+    result?: PremissionDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -21989,13 +22536,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfPremissionDTOAndBLLAnd_0AndCultur
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(PremissionDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -22009,9 +22559,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfPremissionDTOAndBLLAnd_0AndCultur
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -22024,15 +22574,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfPremissionDTOAndBLLAnd_0AndCultur
 export interface IApiResponse_1OfOfIEnumerable_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: PremissionDTO[] | undefined;
+    message?: string | null;
+    result?: PremissionDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: RoleDTO[] | undefined;
+    message?: string | null;
+    result?: RoleDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -22045,13 +22595,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfRoleDTOAndBLLAnd_0AndCulture_neut
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(RoleDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -22065,9 +22618,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfRoleDTOAndBLLAnd_0AndCulture_neut
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -22080,15 +22633,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfRoleDTOAndBLLAnd_0AndCulture_neut
 export interface IApiResponse_1OfOfIEnumerable_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: RoleDTO[] | undefined;
+    message?: string | null;
+    result?: RoleDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: RolePermssionDTO[] | undefined;
+    message?: string | null;
+    result?: RolePermssionDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -22101,13 +22654,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfRolePermssionDTOAndBLLAnd_0AndCul
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(RolePermssionDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -22121,9 +22677,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfRolePermssionDTOAndBLLAnd_0AndCul
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -22136,15 +22692,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfRolePermssionDTOAndBLLAnd_0AndCul
 export interface IApiResponse_1OfOfIEnumerable_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: RolePermssionDTO[] | undefined;
+    message?: string | null;
+    result?: RolePermssionDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: ServicePartDTO[] | undefined;
+    message?: string | null;
+    result?: ServicePartDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -22157,13 +22713,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfServicePartDTOAndBLLAnd_0AndCultu
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(ServicePartDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -22177,9 +22736,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfServicePartDTOAndBLLAnd_0AndCultu
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -22192,15 +22751,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfServicePartDTOAndBLLAnd_0AndCultu
 export interface IApiResponse_1OfOfIEnumerable_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: ServicePartDTO[] | undefined;
+    message?: string | null;
+    result?: ServicePartDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: ServiceTableDTO[] | undefined;
+    message?: string | null;
+    result?: ServiceTableDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -22213,13 +22772,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfServiceTableDTOAndBLLAnd_0AndCult
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(ServiceTableDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -22233,9 +22795,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfServiceTableDTOAndBLLAnd_0AndCult
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -22248,15 +22810,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfServiceTableDTOAndBLLAnd_0AndCult
 export interface IApiResponse_1OfOfIEnumerable_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: ServiceTableDTO[] | undefined;
+    message?: string | null;
+    result?: ServiceTableDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: ServiceTypeDTO[] | undefined;
+    message?: string | null;
+    result?: ServiceTypeDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -22269,13 +22831,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfServiceTypeDTOAndBLLAnd_0AndCultu
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(ServiceTypeDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -22289,9 +22854,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfServiceTypeDTOAndBLLAnd_0AndCultu
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -22304,15 +22869,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfServiceTypeDTOAndBLLAnd_0AndCultu
 export interface IApiResponse_1OfOfIEnumerable_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: ServiceTypeDTO[] | undefined;
+    message?: string | null;
+    result?: ServiceTypeDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: StatusBenefitDTO[] | undefined;
+    message?: string | null;
+    result?: StatusBenefitDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -22325,13 +22890,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfStatusBenefitDTOAndBLLAnd_0AndCul
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(StatusBenefitDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -22345,9 +22913,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfStatusBenefitDTOAndBLLAnd_0AndCul
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -22360,15 +22928,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfStatusBenefitDTOAndBLLAnd_0AndCul
 export interface IApiResponse_1OfOfIEnumerable_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: StatusBenefitDTO[] | undefined;
+    message?: string | null;
+    result?: StatusBenefitDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: StreetDTO[] | undefined;
+    message?: string | null;
+    result?: StreetDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -22381,13 +22949,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfStreetDTOAndBLLAnd_0AndCulture_ne
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(StreetDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -22401,9 +22972,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfStreetDTOAndBLLAnd_0AndCulture_ne
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -22416,15 +22987,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfStreetDTOAndBLLAnd_0AndCulture_ne
 export interface IApiResponse_1OfOfIEnumerable_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: StreetDTO[] | undefined;
+    message?: string | null;
+    result?: StreetDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: SupplierDTO[] | undefined;
+    message?: string | null;
+    result?: SupplierDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -22437,13 +23008,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfSupplierDTOAndBLLAnd_0AndCulture_
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(SupplierDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -22457,9 +23031,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfSupplierDTOAndBLLAnd_0AndCulture_
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -22472,15 +23046,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfSupplierDTOAndBLLAnd_0AndCulture_
 export interface IApiResponse_1OfOfIEnumerable_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: SupplierDTO[] | undefined;
+    message?: string | null;
+    result?: SupplierDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: TenantDTO[] | undefined;
+    message?: string | null;
+    result?: TenantDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -22493,13 +23067,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfTenantDTOAndBLLAnd_0AndCulture_ne
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(TenantDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -22513,9 +23090,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfTenantDTOAndBLLAnd_0AndCulture_ne
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -22528,15 +23105,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfTenantDTOAndBLLAnd_0AndCulture_ne
 export interface IApiResponse_1OfOfIEnumerable_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: TenantDTO[] | undefined;
+    message?: string | null;
+    result?: TenantDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: UserDTO[] | undefined;
+    message?: string | null;
+    result?: UserDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -22549,13 +23126,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfUserDTOAndBLLAnd_0AndCulture_neut
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(UserDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -22569,9 +23149,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfUserDTOAndBLLAnd_0AndCulture_neut
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -22584,15 +23164,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfUserDTOAndBLLAnd_0AndCulture_neut
 export interface IApiResponse_1OfOfIEnumerable_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: UserDTO[] | undefined;
+    message?: string | null;
+    result?: UserDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: VehicleBrandDTO[] | undefined;
+    message?: string | null;
+    result?: VehicleBrandDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -22605,13 +23185,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfVehicleBrandDTOAndBLLAnd_0AndCult
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(VehicleBrandDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -22625,9 +23208,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfVehicleBrandDTOAndBLLAnd_0AndCult
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -22640,71 +23223,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfVehicleBrandDTOAndBLLAnd_0AndCult
 export interface IApiResponse_1OfOfIEnumerable_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: VehicleBrandDTO[] | undefined;
-}
-
-export class ApiResponse_1OfOfIEnumerable_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
-    success?: boolean;
-    statusCode?: number;
-    message?: string | undefined;
-    result?: VehicleEngineDTO[] | undefined;
-
-    constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            if (Array.isArray(_data["result"])) {
-                this.result = [] as any;
-                for (let item of _data["result"])
-                    this.result!.push(VehicleEngineDTO.fromJS(item));
-            }
-        }
-    }
-
-    static fromJS(data: any): ApiResponse_1OfOfIEnumerable_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
-        data = typeof data === 'object' ? data : {};
-        let result = new ApiResponse_1OfOfIEnumerable_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        if (Array.isArray(this.result)) {
-            data["result"] = [];
-            for (let item of this.result)
-                data["result"].push(item.toJSON());
-        }
-        return data;
-    }
-}
-
-export interface IApiResponse_1OfOfIEnumerable_1OfOfVehicleEngineDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
-    success?: boolean;
-    statusCode?: number;
-    message?: string | undefined;
-    result?: VehicleEngineDTO[] | undefined;
+    message?: string | null;
+    result?: VehicleBrandDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: VehicleModelDTO[] | undefined;
+    message?: string | null;
+    result?: VehicleModelDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -22717,13 +23244,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfVehicleModelDTOAndBLLAnd_0AndCult
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(VehicleModelDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -22737,9 +23267,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfVehicleModelDTOAndBLLAnd_0AndCult
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -22752,15 +23282,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfVehicleModelDTOAndBLLAnd_0AndCult
 export interface IApiResponse_1OfOfIEnumerable_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: VehicleModelDTO[] | undefined;
+    message?: string | null;
+    result?: VehicleModelDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: VehiclePartDTO[] | undefined;
+    message?: string | null;
+    result?: VehiclePartDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -22773,13 +23303,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfVehiclePartDTOAndBLLAnd_0AndCultu
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(VehiclePartDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -22793,9 +23326,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfVehiclePartDTOAndBLLAnd_0AndCultu
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -22808,15 +23341,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfVehiclePartDTOAndBLLAnd_0AndCultu
 export interface IApiResponse_1OfOfIEnumerable_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: VehiclePartDTO[] | undefined;
+    message?: string | null;
+    result?: VehiclePartDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: VipBenefitDTO[] | undefined;
+    message?: string | null;
+    result?: VipBenefitDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -22829,13 +23362,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfVipBenefitDTOAndBLLAnd_0AndCultur
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(VipBenefitDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -22849,9 +23385,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfVipBenefitDTOAndBLLAnd_0AndCultur
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -22864,15 +23400,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfVipBenefitDTOAndBLLAnd_0AndCultur
 export interface IApiResponse_1OfOfIEnumerable_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: VipBenefitDTO[] | undefined;
+    message?: string | null;
+    result?: VipBenefitDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: VipStatusDTO[] | undefined;
+    message?: string | null;
+    result?: VipStatusDTO[] | null;
 
     constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -22885,13 +23421,16 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfVipStatusDTOAndBLLAnd_0AndCulture
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
             if (Array.isArray(_data["result"])) {
                 this.result = [] as any;
                 for (let item of _data["result"])
                     this.result!.push(VipStatusDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
             }
         }
     }
@@ -22905,9 +23444,9 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfVipStatusDTOAndBLLAnd_0AndCulture
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
         if (Array.isArray(this.result)) {
             data["result"] = [];
             for (let item of this.result)
@@ -22920,15 +23459,15 @@ export class ApiResponse_1OfOfIEnumerable_1OfOfVipStatusDTOAndBLLAnd_0AndCulture
 export interface IApiResponse_1OfOfIEnumerable_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: VipStatusDTO[] | undefined;
+    message?: string | null;
+    result?: VipStatusDTO[] | null;
 }
 
 export class ApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: string | undefined;
+    message?: string | null;
+    result?: string | null;
 
     constructor(data?: IApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
         if (data) {
@@ -22941,10 +23480,10 @@ export class ApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKe
 
     init(_data?: any) {
         if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"];
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] !== undefined ? _data["result"] : <any>null;
         }
     }
 
@@ -22957,10 +23496,10 @@ export class ApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKe
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result;
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result !== undefined ? this.result : <any>null;
         return data;
     }
 }
@@ -22968,8 +23507,8 @@ export class ApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKe
 export interface IApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
-    message?: string | undefined;
-    result?: string | undefined;
+    message?: string | null;
+    result?: string | null;
 }
 
 function formatDate(d: Date) {

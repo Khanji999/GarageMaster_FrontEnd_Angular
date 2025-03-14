@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Client,MenuDTO } from '../callAPI/api.service';
+import { MenuContro,MenuDTO } from '../callAPI/api.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
 
@@ -7,7 +7,7 @@ import { map } from 'rxjs/internal/operators/map';
   providedIn: 'root'
 })
 export class DynamicMenuService {
-  constructor(private client: Client) { }
+  constructor(private menuContro: MenuContro) { }
   // Function to transform flat list into hierarchical structure
  // menu.service.ts
 private buildMenuTree(menuItems: MenuDTO[]): MenuDTO[] {
@@ -39,7 +39,7 @@ private buildMenuTree(menuItems: MenuDTO[]): MenuDTO[] {
   return tree;
 }
 getMenu(): Observable<MenuDTO[]> {
-  return this.client.getMenu().pipe(
+  return this.menuContro.getMenu().pipe(
     map((menuItems: MenuDTO[]) => this.buildMenuTree(menuItems))
   );
 }

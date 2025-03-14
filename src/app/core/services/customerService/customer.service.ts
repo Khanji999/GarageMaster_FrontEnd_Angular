@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Client, CustomerDTO, CustomerVehicleDTO, CustomerVehicleWithDetailsDTO } from '../callAPI/api.service';
+import {  CustomerContro, CustomerDTO, CustomerVehicleContro, CustomerVehicleDTO, CustomerVehicleWithDetailsDTO } from '../callAPI/api.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
 
@@ -8,10 +8,12 @@ import { map } from 'rxjs';
 })
 export class CustomerService {
 
-  constructor(private client :  Client) { }
+  constructor(private customerContro :  CustomerContro,
+              private customerVehicleContro : CustomerVehicleContro
+  ) { }
 
     getCustomerBySeaching(name: string): Observable<CustomerDTO[]> {
-      return this.client.searchForCustomer(name).pipe(
+      return this.customerContro.searchForCustomer(name).pipe(
         map((response: any) => {
           return response; 
         })
@@ -19,7 +21,7 @@ export class CustomerService {
     }
 
     getCustomerVehicles(id : number): Observable<CustomerVehicleWithDetailsDTO[]> {
-      return this.client.getAllCustomerVehicles(id).pipe(
+      return this.customerVehicleContro.getAllCustomerVehicles(id).pipe(
         map((response: any) => {
           console.log(response); 
           return response; 
@@ -28,7 +30,7 @@ export class CustomerService {
     }
 
     getCustomerByFirstName(name: string): Observable<CustomerDTO[]> {
-      return this.client.searchForCustomerByFirstName(name).pipe(
+      return this.customerContro.searchForCustomerByFirstName(name).pipe(
         map((response: any) => {
           return response; 
         })
@@ -36,7 +38,7 @@ export class CustomerService {
     }
 
     getCustomerByLastName(name: string): Observable<CustomerDTO[]> {
-      return this.client.searchForCustomerByLastName(name).pipe(
+      return this.customerContro.searchForCustomerByLastName(name).pipe(
         map((response: any) => {
           return response; 
         })
@@ -44,7 +46,7 @@ export class CustomerService {
     }
         
     getCustomerByFirstAndLastName(name: string,nameL:string): Observable<CustomerDTO[]> {
-      return this.client.searchForCustomerByFirstAndLastName(name,nameL).pipe(
+      return this.customerContro.searchForCustomerByFirstAndLastName(name,nameL).pipe(
         map((response: any) => {
           return response; 
         })

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Client, MenuDTO, TenantDTO } from '../../../core/services/callAPI/api.service';
+import {  MenuDTO, TenantDTO } from '../../../core/services/callAPI/api.service';
 import { DynamicMenuService } from '../../../core/services/dynamicMenu/dynamic-menu.service';
 import { RouterModule } from '@angular/router';
 import {  UserService } from '../../../core/services/userService/user-service.service';
@@ -21,7 +21,6 @@ export class SidebarComponent implements OnInit {
     this.tenantService.getTenant().subscribe(
       (result : TenantDTO) => {
         this.tenant = result; 
-        console.log(result)
       },
       (error) => {
         console.error('Error fetching tenant:', error); // Handle errors

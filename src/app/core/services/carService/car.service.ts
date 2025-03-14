@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Client, EngineStructureDTO, VehicleBrandDTO, VehicleEngineDTO, VehicleModelDTO } from '../callAPI/api.service';
+import { EngineFuelContro, EngineFuelDTO, EngineStructureContro, EngineStructureDTO, VehicleBrandContro, VehicleBrandDTO, VehicleModelContro, VehicleModelDTO } from '../callAPI/api.service';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
@@ -7,31 +7,35 @@ import { map, Observable } from 'rxjs';
 })
 export class CarService {
 
-  constructor(private client : Client) { }
+  constructor(private brandContro : VehicleBrandContro ,
+              private modelContro : VehicleModelContro ,
+              private engineFuelContro : EngineFuelContro,
+              private engineStructureContro : EngineStructureContro
+  ) { }
 
     getBrands(): Observable<[VehicleBrandDTO]> {
-      return this.client.getAll41().pipe(
+      return this.brandContro.getAll().pipe(
         map((response: any) => {
           return response.result;
         })
       );
     }
     getModelsByBrandID(brandId :number): Observable<[VehicleModelDTO]>{
-      return this.client.getAllModelsByBrandID(brandId).pipe(
+      return this.modelContro.getAllModelsByBrandID(brandId).pipe(
         map((response: any) => {
           return response;
         })
       );
     }
-    getEngineFuels(): Observable<[VehicleEngineDTO]>{
-      return this.client.getAll().pipe(
+    getEngineFuels(): Observable<[EngineFuelDTO]>{
+      return this.engineFuelContro.getAll().pipe(
         map((response: any) => {
           return response.result;
         })
       );
     }
     getEngineStructures(): Observable<[EngineStructureDTO]>{
-      return this.client.getAll17().pipe(
+      return this.engineStructureContro.getAll().pipe(
         map((response: any) => {
           return response.result;
         })

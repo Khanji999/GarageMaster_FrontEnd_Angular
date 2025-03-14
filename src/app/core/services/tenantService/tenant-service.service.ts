@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Client, TenantDTO } from '../callAPI/api.service';
+import {  TenantContro, TenantDTO } from '../callAPI/api.service';
 import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TenantService {
-  constructor(private client: Client) {}
+  constructor(private tenantContro: TenantContro) {}
 
   getTenant(): Observable<TenantDTO> {
-    return this.client.getCurrentTenant().pipe(
+    return this.tenantContro.getCurrentTenant().pipe(
       map((response: any) => {
         return response; 
       })

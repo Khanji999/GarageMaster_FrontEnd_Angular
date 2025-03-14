@@ -1,0 +1,80 @@
+<div class="form-container w-[95%] mx-auto h-full">
+
+    <!-- Title -->
+    <div class="flex gap-3 ml-5 items-center  p-2 ">
+        <i class="bi bi-database-fill-add text-3xl lg:text-4xl]"></i>
+        <p class="pt-3 text-2xl md:text-3xl lg:text-4xl">Add Maintenance</p>
+    </div>
+
+    <form [formGroup]="form">
+        <div class="row-1 relative"> 
+        <!-- Input and clear button -->
+            <div class=" w-[100%] flex gap-3 ">
+            <input
+                type="text"
+                formControlName="firstName"
+                placeholder="First Name"
+                class="input-class w-[33%] p-2 rounded-[5px] border-2 border-gray-700 
+                focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+            />
+
+            <input
+                type="text"
+                formControlName="lastName"
+                placeholder="Last Name"
+                class="input-class w-[33%] p-2 rounded-[5px] border-2 border-gray-700 
+                focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+            />
+
+            <input
+                type="text"
+                formControlName="phoneNumber"
+                placeholder="Phone Number"
+                class="input-class w-[33%] p-2 rounded-[5px] border-2 border-gray-700 
+                focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+            />
+            <button class="bg-red-500 py-2 px-3 text-white text-xl rounded" (click)="removeSearch()"> clear </button>
+            </div>  
+        </div>
+    </form>
+
+
+    <div class="row-2 mt-3 flex flex-wrap justify-center items-center " *ngIf="customers$ | async as customers">
+        <!-- This is the container of the car  "here is my card" -->
+        <div  *ngFor="let customer of customers" 
+        (click)="handleCustomerClick(customer)"
+
+        class="relative m-2 overflow-hidden 
+        w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 
+        lg:w-60 lg:h-60 xl:w-62 xl:h-62
+        rounded-3xl cursor-pointer text-2xl font-bold bg-[#6B7C9D]">
+
+        <!-- Taking full width and height of parent (Container) becuase when I hover the card two balls will take full card display -->
+            <div class="z-10 absolute w-full h-full peer">
+            </div>
+            <!-- Upper Ball -->
+            <div
+            class="absolute
+            peer-hover:-top-20 peer-hover:-left-16 peer-hover:w-[140%] peer-hover:h-[140%] 
+            -top-32 -left-16 w-32 h-44 rounded-full bg-[#212227]
+            transition-all duration-500">
+            </div>
+            <!-- Lower Ball -->
+            <div
+            class="absolute flex text-xl text-center items-end justify-end 
+            peer-hover:right-0 peer-hover:rounded-b-none peer-hover:bottom-0 peer-hover:items-center peer-hover:justify-center peer-hover:w-full peer-hover:h-full 
+            -bottom-32 -right-16 w-36 h-44 rounded-full  bg-[#212227] transition-all duration-500
+            text-white"
+            >
+            <p >
+                View {{ customer.firstName }} Cars
+            </p>
+            </div>
+            <!-- Text Display over the container (parent) -->
+            <div class="w-full h-full items-center justify-center flex uppercase text-white">
+            {{ customer.firstName }} <br> {{ customer.lastName }}
+            </div>
+        </div>
+    </div>
+
+</div>
