@@ -9,12 +9,12 @@
     <form [formGroup]="form">
         <div class="row-1 relative"> 
         <!-- Input and clear button -->
-            <div class=" w-[100%] flex gap-3 ">
+            <div class=" w-[100%] flex gap-3  ">
             <input
                 type="text"
                 formControlName="firstName"
                 placeholder="First Name"
-                class="input-class w-[33%] p-2 rounded-[5px] border-2 border-gray-700 
+                class="input-class w-[31%] p-2 pl-8 rounded-[5px] border-2 border-gray-700 
                 focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
             />
 
@@ -22,17 +22,16 @@
                 type="text"
                 formControlName="lastName"
                 placeholder="Last Name"
-                class="input-class w-[33%] p-2 rounded-[5px] border-2 border-gray-700 
+                class="input-class w-[31%] p-2 rounded-[5px] border-2 border-gray-700 
                 focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
             />
-
             <input
-                type="text"
-                formControlName="phoneNumber"
-                placeholder="Phone Number"
-                class="input-class w-[33%] p-2 rounded-[5px] border-2 border-gray-700 
-                focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
-            />
+            type="text"
+            formControlName="phoneNumber"
+            placeholder="Phone Number"
+            class="input-class w-[31%] p-2 rounded-[5px] border-2 border-gray-700 
+            focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+        />
             <button class="bg-red-500 py-2 px-3 text-white text-xl rounded" (click)="removeSearch()"> clear </button>
             </div>  
         </div>

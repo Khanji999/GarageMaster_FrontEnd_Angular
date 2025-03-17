@@ -52,4 +52,11 @@ export class CustomerService {
         })
       );
     }
+    addNewVehicleToSpecificCusomer(vehicleDTO : CustomerVehicleDTO) :Observable<CustomerVehicleDTO>{
+      return this.customerVehicleContro.add(vehicleDTO).pipe(
+        map((response: any) => {
+          return response; 
+        })
+      );
+    }
 }

@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Observable, of, debounceTime, switchMap, distinctUntilChanged } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { CustomerDTO, CustomerVehicleWithDetailsDTO } from '../../../../core/services/callAPI/api.service';
+import { CustomerDTO } from '../../../../core/services/callAPI/api.service';
 import { CustomerService } from '../../../../core/services/customerService/customer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SendformCustomerSearchToCustomerCarsService } from '../../../../core/services/sendformCustomerSearchToCustomerCars/sendform-customer-search-to-customer-cars.service';
+import { CountryISO, NgxIntlTelInputModule, SearchCountryField } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-adding-maintenance',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, NgxIntlTelInputModule ],
   templateUrl: './adding-maintenance.component.html',
   styleUrl: './adding-maintenance.component.scss'
 })
@@ -19,7 +20,7 @@ export class AddingMaintenanceComponent implements OnInit {
   customers$: Observable<CustomerDTO[]> = of([]);
   selectedCustomer: CustomerDTO | null = null;
   clue = ""
-  
+  isDisabled: boolean = false; 
   constructor(
     private formBuilder: FormBuilder,
     public customerService: CustomerService,
@@ -27,6 +28,7 @@ export class AddingMaintenanceComponent implements OnInit {
     private route: ActivatedRoute,
     private sender: SendformCustomerSearchToCustomerCarsService
   ) {}
+
 
   ngOnInit(): void {
     this.route?.data.subscribe(data => {
@@ -66,8 +68,7 @@ export class AddingMaintenanceComponent implements OnInit {
 
   handleCustomerClick(customer: CustomerDTO){
     this.selectedCustomer = customer; 
-    // this.router.navigate(['/customerVehicles', this.selectedCustomer.id , this.selectedCustomer.firstName ,this.selectedCustomer.lastName]);
-    this.sender.changeData(customer);
+    this.sender.setData(customer);
     this.router.navigate(['/customerVehicles']);
   }        
 }

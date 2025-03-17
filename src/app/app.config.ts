@@ -6,7 +6,6 @@ import {  API_BASE_URL } from './core/services/callAPI/api.service';
 import { InjectTokenService } from './core/interceptors/injectToken/inject-token.service';
 import { PorgressBarService } from './core/interceptors/progressBar/porgress-bar.service';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { WebcamModule } from 'ngx-webcam';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -27,12 +26,12 @@ export const appConfig: ApplicationConfig = {
     useClass: PorgressBarService,
     multi: true
   },
-    // { provide: API_BASE_URL,
-    //   useValue: 'http://localhost:7777', 
-    // },       
     { provide: API_BASE_URL,
-      useValue: 'http://192.168.1.2:5000', 
-    },   
+      useValue: 'http://localhost:7777', 
+    },       
+    // { provide: API_BASE_URL,
+    //   useValue: 'http://192.168.1.2:5000', 
+    // },   
   ],
 
 };

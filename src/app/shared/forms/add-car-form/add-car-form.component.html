@@ -28,14 +28,27 @@
                     <option class="text-black" *ngFor="let engineFuel of engineFuels" [value]="engineFuel.id">
                     {{ engineFuel.engineFuelType }}
                     </option>
-                    <option class="text-black"> + Add New Fuel </option>
-                </select>
+                </select>                
                 <select class="p-2 border rounded w-full" formControlName="engineFuel">
                     <option value="" disabled selected>Select an Engine Structure</option>
                     <option class="text-black" *ngFor="let engineStructure of engineStructures" [value]="engineStructure.id">
                     {{ engineStructure.engineType }}
                     </option>
-                    <option class="text-black"> + Add New Engine </option>
+                </select>
+            </div>
+
+            <div class="row-2 flex justify-between gap-3 my-2">
+                <select class="p-2 border rounded w-full" formControlName="engineCharger">
+                    <option value="" disabled selected>Select a Charger</option>
+                    <option class="text-black" *ngFor="let engineCharger of engineChargers" [value]="engineCharger.id">
+                    {{ engineCharger.engineChargerName }}
+                    </option>
+                </select>
+                <select class="p-2 border rounded w-full" formControlName="wheelDriver">
+                    <option value="" disabled selected>Select A Wheel Drive</option>
+                    <option class="text-black" *ngFor="let wheelDriver of wheelDrivers" [value]="wheelDriver.id">
+                    {{ wheelDriver.abbreviation }}
+                    </option>
                 </select>
             </div>
 
@@ -48,12 +61,11 @@
                 placeholder="Enter a Model Year"
                 class="p-2 border rounded w-full" formControlName="modelYear">
             </div>
-
         </form>
 
     
         <div class="flex justify-end mt-3 gap-2 ">
-            <button (click)="submitForm()" class="p-2 bg-green-500 text-white rounded ">Submit</button>
+            <button (click)="submit()" class="p-2 bg-green-500 text-white rounded ">Submit</button>
             <button (click)="closeFormAndDestroy()" class="p-2 bg-red-500 text-white rounded">Cancel</button>
         </div>
     </div>

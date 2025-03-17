@@ -8,7 +8,7 @@ import { TenantService } from '../../../core/services/tenantService/tenant-servi
 
 @Component({
   selector: 'app-sidebar',
-  imports: [CommonModule, RouterModule , ],
+  imports: [CommonModule, RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })

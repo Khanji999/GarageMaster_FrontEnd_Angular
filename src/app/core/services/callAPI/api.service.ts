@@ -81,13 +81,15 @@ export class CityContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/CityContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/CityContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -250,13 +252,15 @@ export class CityContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/CityContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/CityContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -420,13 +424,15 @@ export class ColorContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/ColorContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/ColorContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -589,13 +595,15 @@ export class ColorContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/ColorContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/ColorContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -759,13 +767,15 @@ export class CountryContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/CountryContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCountryDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/CountryContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -928,13 +938,15 @@ export class CountryContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/CountryContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/CountryContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -1098,13 +1110,15 @@ export class CustomerContactNumberContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/CustomerContactNumberContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/CustomerContactNumberContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -1267,13 +1281,15 @@ export class CustomerContactNumberContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/CustomerContactNumberContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/CustomerContactNumberContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -1698,13 +1714,15 @@ export class CustomerContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/CustomerContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/CustomerContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -1867,13 +1885,15 @@ export class CustomerContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/CustomerContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/CustomerContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -2037,13 +2057,15 @@ export class CustomerNotificationContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/CustomerNotificationContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerNotificationDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/CustomerNotificationContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -2206,13 +2228,15 @@ export class CustomerNotificationContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/CustomerNotificationContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/CustomerNotificationContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -2376,13 +2400,15 @@ export class CustomerVehicleColorContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/CustomerVehicleColorContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleColorDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/CustomerVehicleColorContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -2545,13 +2571,15 @@ export class CustomerVehicleColorContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/CustomerVehicleColorContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/CustomerVehicleColorContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -2779,13 +2807,15 @@ export class CustomerVehicleContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/CustomerVehicleContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/CustomerVehicleContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -2948,13 +2978,15 @@ export class CustomerVehicleContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/CustomerVehicleContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/CustomerVehicleContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -3118,13 +3150,15 @@ export class CustomerVehicleImageContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/CustomerVehicleImageContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/CustomerVehicleImageContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -3287,13 +3321,15 @@ export class CustomerVehicleImageContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/CustomerVehicleImageContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/CustomerVehicleImageContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -3457,13 +3493,15 @@ export class CustomerVehicleImageTypeContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/CustomerVehicleImageTypeContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/CustomerVehicleImageTypeContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -3626,13 +3664,15 @@ export class CustomerVehicleImageTypeContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/CustomerVehicleImageTypeContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/CustomerVehicleImageTypeContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -3796,13 +3836,15 @@ export class CustomerVehiclePlateContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/CustomerVehiclePlateContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/CustomerVehiclePlateContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -3965,13 +4007,15 @@ export class CustomerVehiclePlateContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/CustomerVehiclePlateContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/CustomerVehiclePlateContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -4135,13 +4179,15 @@ export class CustomerVipStatusContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/CustomerVipStatusContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/CustomerVipStatusContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -4304,13 +4350,15 @@ export class CustomerVipStatusContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/CustomerVipStatusContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/CustomerVipStatusContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -4474,13 +4522,15 @@ export class DistrictContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/DistrictContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/DistrictContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -4643,13 +4693,15 @@ export class DistrictContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/DistrictContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/DistrictContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -4813,13 +4865,15 @@ export class EmployeeContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/EmployeeContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/EmployeeContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -4982,13 +5036,15 @@ export class EmployeeContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/EmployeeContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/EmployeeContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -5152,13 +5208,15 @@ export class EmployeeMaintainedContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/EmployeeMaintainedContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/EmployeeMaintainedContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -5321,13 +5379,15 @@ export class EmployeeMaintainedContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/EmployeeMaintainedContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/EmployeeMaintainedContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -5377,6 +5437,349 @@ export class EmployeeMaintainedContro {
      */
     delete(body: EmployeeMaintainedDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/EmployeeMaintainedContro/Delete";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDelete(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDelete(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processDelete(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class EngineChargerContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
+
+    /**
+     * @return OK
+     */
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        let url_ = this.baseUrl + "/api/EngineChargerContro/GetAll";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAll(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAll(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+        }));
+    }
+
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfIEnumerable_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @return OK
+     */
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/EngineChargerContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetById(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetById(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+        }));
+    }
+
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return OK
+     */
+    add(body: EngineChargerDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/EngineChargerContro/Add";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processAdd(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processAdd(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+        }));
+    }
+
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return OK
+     */
+    update(body: EngineChargerDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/EngineChargerContro/Update";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdate(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdate(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+        }));
+    }
+
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @return OK
+     */
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/EngineChargerContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDeleteById(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDeleteById(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return OK
+     */
+    delete(body: EngineChargerDTO | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/EngineChargerContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(body);
@@ -5491,13 +5894,15 @@ export class EngineFuelContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/EngineFuelContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/EngineFuelContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -5660,13 +6065,15 @@ export class EngineFuelContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/EngineFuelContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/EngineFuelContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -5830,13 +6237,15 @@ export class EngineStructureContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/EngineStructureContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEngineStructureDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/EngineStructureContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -5999,13 +6408,15 @@ export class EngineStructureContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/EngineStructureContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/EngineStructureContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -6169,13 +6580,15 @@ export class GenderContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/GenderContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfGenderDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/GenderContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -6338,13 +6751,15 @@ export class GenderContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/GenderContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/GenderContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -6631,13 +7046,15 @@ export class MaintainedImageContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/MaintainedImageContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/MaintainedImageContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -6800,13 +7217,15 @@ export class MaintainedImageContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/MaintainedImageContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/MaintainedImageContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -6970,13 +7389,15 @@ export class MaintenaceCardContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/MaintenaceCardContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/MaintenaceCardContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -7139,13 +7560,15 @@ export class MaintenaceCardContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/MaintenaceCardContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/MaintenaceCardContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -7309,13 +7732,15 @@ export class MaintenaceServiceContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/MaintenaceServiceContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/MaintenaceServiceContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -7478,13 +7903,15 @@ export class MaintenaceServiceContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/MaintenaceServiceContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/MaintenaceServiceContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -7707,13 +8134,15 @@ export class MenuContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/MenuContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/MenuContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -7876,13 +8305,15 @@ export class MenuContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/MenuContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/MenuContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -8046,13 +8477,15 @@ export class MontlyCustomerVisitContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/MontlyCustomerVisitContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMontlyCustomerVisitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/MontlyCustomerVisitContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -8215,13 +8648,15 @@ export class MontlyCustomerVisitContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/MontlyCustomerVisitContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/MontlyCustomerVisitContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -8385,13 +8820,15 @@ export class NationalityContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/NationalityContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfNationalityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/NationalityContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -8554,13 +8991,15 @@ export class NationalityContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/NationalityContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/NationalityContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -8724,13 +9163,15 @@ export class PartBrandContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/PartBrandContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPartBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/PartBrandContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -8893,13 +9334,15 @@ export class PartBrandContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/PartBrandContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/PartBrandContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -9063,13 +9506,15 @@ export class PartConditionContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/PartConditionContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPartConditionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/PartConditionContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -9232,13 +9677,15 @@ export class PartConditionContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/PartConditionContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/PartConditionContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -9402,13 +9849,15 @@ export class PartImageContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/PartImageContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPartImageDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/PartImageContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -9571,13 +10020,15 @@ export class PartImageContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/PartImageContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/PartImageContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -9741,13 +10192,15 @@ export class PartImageTypeContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/PartImageTypeContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPartImageTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/PartImageTypeContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -9910,13 +10363,15 @@ export class PartImageTypeContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/PartImageTypeContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/PartImageTypeContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -10080,13 +10535,15 @@ export class PlateContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/PlateContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPlateDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/PlateContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -10249,13 +10706,15 @@ export class PlateContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/PlateContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/PlateContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -10419,13 +10878,15 @@ export class PremissionContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/PremissionContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfPremissionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/PremissionContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -10588,13 +11049,15 @@ export class PremissionContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/PremissionContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/PremissionContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -10758,13 +11221,15 @@ export class RoleContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/RoleContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/RoleContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -10927,13 +11392,15 @@ export class RoleContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/RoleContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/RoleContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -11097,13 +11564,15 @@ export class RolePermssionContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/RolePermssionContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/RolePermssionContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -11266,13 +11735,15 @@ export class RolePermssionContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/RolePermssionContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/RolePermssionContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -11436,13 +11907,15 @@ export class ServiceContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/ServiceContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/ServiceContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -11605,13 +12078,15 @@ export class ServiceContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/ServiceContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/ServiceContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -11775,13 +12250,15 @@ export class ServicePartContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/ServicePartContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/ServicePartContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -11944,13 +12421,15 @@ export class ServicePartContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/ServicePartContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/ServicePartContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -12114,13 +12593,15 @@ export class ServiceTypeContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/ServiceTypeContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/ServiceTypeContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -12283,13 +12764,15 @@ export class ServiceTypeContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/ServiceTypeContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/ServiceTypeContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -12453,13 +12936,15 @@ export class StatusBenefitContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/StatusBenefitContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfStatusBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/StatusBenefitContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -12622,13 +13107,15 @@ export class StatusBenefitContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/StatusBenefitContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/StatusBenefitContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -12792,13 +13279,15 @@ export class StreetContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/StreetContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/StreetContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -12961,13 +13450,15 @@ export class StreetContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/StreetContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/StreetContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -13131,13 +13622,15 @@ export class SupplierContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/SupplierContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfSupplierDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/SupplierContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -13300,13 +13793,15 @@ export class SupplierContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/SupplierContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/SupplierContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -13575,13 +14070,15 @@ export class TenantContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/TenantContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/TenantContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -13744,13 +14241,15 @@ export class TenantContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/TenantContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/TenantContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -13971,13 +14470,15 @@ export class UserContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/UserContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/UserContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -14140,13 +14641,15 @@ export class UserContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/UserContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/UserContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -14310,13 +14813,15 @@ export class VehicleBrandContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/VehicleBrandContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVehicleBrandDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/VehicleBrandContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -14479,13 +14984,15 @@ export class VehicleBrandContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/VehicleBrandContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/VehicleBrandContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -14713,13 +15220,15 @@ export class VehicleModelContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/VehicleModelContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/VehicleModelContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -14882,13 +15391,15 @@ export class VehicleModelContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/VehicleModelContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/VehicleModelContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -15052,13 +15563,15 @@ export class VehiclePartContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/VehiclePartContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVehiclePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/VehiclePartContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -15221,13 +15734,15 @@ export class VehiclePartContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/VehiclePartContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/VehiclePartContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -15391,13 +15906,15 @@ export class VipBenefitContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/VipBenefitContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVipBenefitDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/VipBenefitContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -15560,13 +16077,15 @@ export class VipBenefitContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/VipBenefitContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/VipBenefitContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -15730,13 +16249,15 @@ export class VipStatusContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    getById(id: number, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
-        let url_ = this.baseUrl + "/api/VipStatusContro/GetById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/VipStatusContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -15899,13 +16420,15 @@ export class VipStatusContro {
     }
 
     /**
+     * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/VipStatusContro/DeleteById/{id}";
-        if (id === undefined || id === null)
-            throw new Error("The parameter 'id' must be defined.");
-        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/VipStatusContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -15955,6 +16478,349 @@ export class VipStatusContro {
      */
     delete(body: VipStatusDTO | undefined, httpContext?: HttpContext): Observable<void> {
         let url_ = this.baseUrl + "/api/VipStatusContro/Delete";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDelete(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDelete(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processDelete(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+}
+
+@Injectable({
+    providedIn: 'root'
+})
+export class WheelDriveContro {
+    private http: HttpClient;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ?? "";
+    }
+
+    /**
+     * @return OK
+     */
+    getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        let url_ = this.baseUrl + "/api/WheelDriveContro/GetAll";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAll(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAll(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+        }));
+    }
+
+    protected processGetAll(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfIEnumerable_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @return OK
+     */
+    getById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/WheelDriveContro/GetById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetById(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetById(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+        }));
+    }
+
+    protected processGetById(response: HttpResponseBase): Observable<ApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return OK
+     */
+    add(body: WheelDriveDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/WheelDriveContro/Add";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processAdd(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processAdd(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+        }));
+    }
+
+    protected processAdd(response: HttpResponseBase): Observable<ApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return OK
+     */
+    update(body: WheelDriveDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/WheelDriveContro/Update";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdate(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdate(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+        }));
+    }
+
+    protected processUpdate(response: HttpResponseBase): Observable<ApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @return OK
+     */
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/WheelDriveContro/DeleteById?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDeleteById(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDeleteById(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<void>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<void>;
+        }));
+    }
+
+    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return _observableOf(null as any);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return OK
+     */
+    delete(body: WheelDriveDTO | undefined, httpContext?: HttpContext): Observable<void> {
+        let url_ = this.baseUrl + "/api/WheelDriveContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(body);
@@ -16677,6 +17543,8 @@ export class CustomerVehicleWithDetailsDTO implements ICustomerVehicleWithDetail
     customer?: CustomerDTO;
     vehicleModel?: VehicleModelWithDetailsDTO;
     engineFuel?: EngineFuelDTO;
+    engineCharger?: EngineChargerDTO;
+    wheelDrive?: WheelDriveDTO;
     engineStructure?: EngineStructureDTO;
     customerVehiclePlates?: CustomerVehiclePlateWithDetailsDTO[] | null;
     customerVehicleColors?: CustomerVehicleColorWithDetailsDTO[] | null;
@@ -16700,6 +17568,8 @@ export class CustomerVehicleWithDetailsDTO implements ICustomerVehicleWithDetail
             this.customer = _data["customer"] ? CustomerDTO.fromJS(_data["customer"]) : <any>null;
             this.vehicleModel = _data["vehicleModel"] ? VehicleModelWithDetailsDTO.fromJS(_data["vehicleModel"]) : <any>null;
             this.engineFuel = _data["engineFuel"] ? EngineFuelDTO.fromJS(_data["engineFuel"]) : <any>null;
+            this.engineCharger = _data["engineCharger"] ? EngineChargerDTO.fromJS(_data["engineCharger"]) : <any>null;
+            this.wheelDrive = _data["wheelDrive"] ? WheelDriveDTO.fromJS(_data["wheelDrive"]) : <any>null;
             this.engineStructure = _data["engineStructure"] ? EngineStructureDTO.fromJS(_data["engineStructure"]) : <any>null;
             if (Array.isArray(_data["customerVehiclePlates"])) {
                 this.customerVehiclePlates = [] as any;
@@ -16737,6 +17607,8 @@ export class CustomerVehicleWithDetailsDTO implements ICustomerVehicleWithDetail
         data["customer"] = this.customer ? this.customer.toJSON() : <any>null;
         data["vehicleModel"] = this.vehicleModel ? this.vehicleModel.toJSON() : <any>null;
         data["engineFuel"] = this.engineFuel ? this.engineFuel.toJSON() : <any>null;
+        data["engineCharger"] = this.engineCharger ? this.engineCharger.toJSON() : <any>null;
+        data["wheelDrive"] = this.wheelDrive ? this.wheelDrive.toJSON() : <any>null;
         data["engineStructure"] = this.engineStructure ? this.engineStructure.toJSON() : <any>null;
         if (Array.isArray(this.customerVehiclePlates)) {
             data["customerVehiclePlates"] = [];
@@ -16761,6 +17633,8 @@ export interface ICustomerVehicleWithDetailsDTO {
     customer?: CustomerDTO;
     vehicleModel?: VehicleModelWithDetailsDTO;
     engineFuel?: EngineFuelDTO;
+    engineCharger?: EngineChargerDTO;
+    wheelDrive?: WheelDriveDTO;
     engineStructure?: EngineStructureDTO;
     customerVehiclePlates?: CustomerVehiclePlateWithDetailsDTO[] | null;
     customerVehicleColors?: CustomerVehicleColorWithDetailsDTO[] | null;
@@ -16999,6 +17873,46 @@ export interface IEmployeeMaintainedDTO {
     maintenaceServiceId?: number;
     maintainedByEmployeeId?: number;
     startedDate?: Date;
+}
+
+export class EngineChargerDTO implements IEngineChargerDTO {
+    id?: number;
+    engineChargerName?: string | null;
+
+    constructor(data?: IEngineChargerDTO) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.engineChargerName = _data["engineChargerName"] !== undefined ? _data["engineChargerName"] : <any>null;
+        }
+    }
+
+    static fromJS(data: any): EngineChargerDTO {
+        data = typeof data === 'object' ? data : {};
+        let result = new EngineChargerDTO();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["engineChargerName"] = this.engineChargerName !== undefined ? this.engineChargerName : <any>null;
+        return data;
+    }
+}
+
+export interface IEngineChargerDTO {
+    id?: number;
+    engineChargerName?: string | null;
 }
 
 export class EngineFuelDTO implements IEngineFuelDTO {
@@ -17337,7 +18251,7 @@ export class MenuDTO implements IMenuDTO {
     id?: number;
     submenuId?: number | null;
     roleId?: number;
-    name?: string ;
+    name?: string | undefined;
     nameInArabic?: string | null;
     route?: string | null;
     children?: MenuDTO[] | null;
@@ -18648,6 +19562,50 @@ export interface IVipStatusDTO {
     minVisitCount?: number;
 }
 
+export class WheelDriveDTO implements IWheelDriveDTO {
+    id?: number;
+    name?: string | null;
+    abbreviation?: string | null;
+
+    constructor(data?: IWheelDriveDTO) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"] !== undefined ? _data["id"] : <any>null;
+            this.name = _data["name"] !== undefined ? _data["name"] : <any>null;
+            this.abbreviation = _data["abbreviation"] !== undefined ? _data["abbreviation"] : <any>null;
+        }
+    }
+
+    static fromJS(data: any): WheelDriveDTO {
+        data = typeof data === 'object' ? data : {};
+        let result = new WheelDriveDTO();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id !== undefined ? this.id : <any>null;
+        data["name"] = this.name !== undefined ? this.name : <any>null;
+        data["abbreviation"] = this.abbreviation !== undefined ? this.abbreviation : <any>null;
+        return data;
+    }
+}
+
+export interface IWheelDriveDTO {
+    id?: number;
+    name?: string | null;
+    abbreviation?: string | null;
+}
+
 export class ApiResponse_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
@@ -19366,6 +20324,54 @@ export interface IApiResponse_1OfOfEmployeeMaintainedDTOAndBLLAnd_0AndCulture_ne
     statusCode?: number;
     message?: string | null;
     result?: EmployeeMaintainedDTO;
+}
+
+export class ApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | null;
+    result?: EngineChargerDTO;
+
+    constructor(data?: IApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? EngineChargerDTO.fromJS(_data["result"]) : <any>null;
+        }
+    }
+
+    static fromJS(data: any): ApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
+        return data;
+    }
+}
+
+export interface IApiResponse_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | null;
+    result?: EngineChargerDTO;
 }
 
 export class ApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
@@ -20808,6 +21814,54 @@ export interface IApiResponse_1OfOfVipStatusDTOAndBLLAnd_0AndCulture_neutralAndP
     result?: VipStatusDTO;
 }
 
+export class ApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | null;
+    result?: WheelDriveDTO;
+
+    constructor(data?: IApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            this.result = _data["result"] ? WheelDriveDTO.fromJS(_data["result"]) : <any>null;
+        }
+    }
+
+    static fromJS(data: any): ApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        data["result"] = this.result ? this.result.toJSON() : <any>null;
+        return data;
+    }
+}
+
+export interface IApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | null;
+    result?: WheelDriveDTO;
+}
+
 export class ApiResponse_1OfOfIEnumerable_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
@@ -21691,6 +22745,65 @@ export interface IApiResponse_1OfOfIEnumerable_1OfOfEmployeeMaintainedDTOAndBLLA
     statusCode?: number;
     message?: string | null;
     result?: EmployeeMaintainedDTO[] | null;
+}
+
+export class ApiResponse_1OfOfIEnumerable_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | null;
+    result?: EngineChargerDTO[] | null;
+
+    constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            if (Array.isArray(_data["result"])) {
+                this.result = [] as any;
+                for (let item of _data["result"])
+                    this.result!.push(EngineChargerDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
+            }
+        }
+    }
+
+    static fromJS(data: any): ApiResponse_1OfOfIEnumerable_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApiResponse_1OfOfIEnumerable_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        if (Array.isArray(this.result)) {
+            data["result"] = [];
+            for (let item of this.result)
+                data["result"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IApiResponse_1OfOfIEnumerable_1OfOfEngineChargerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | null;
+    result?: EngineChargerDTO[] | null;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfEngineFuelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
@@ -23461,6 +24574,65 @@ export interface IApiResponse_1OfOfIEnumerable_1OfOfVipStatusDTOAndBLLAnd_0AndCu
     statusCode?: number;
     message?: string | null;
     result?: VipStatusDTO[] | null;
+}
+
+export class ApiResponse_1OfOfIEnumerable_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | null;
+    result?: WheelDriveDTO[] | null;
+
+    constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"] !== undefined ? _data["success"] : <any>null;
+            this.statusCode = _data["statusCode"] !== undefined ? _data["statusCode"] : <any>null;
+            this.message = _data["message"] !== undefined ? _data["message"] : <any>null;
+            if (Array.isArray(_data["result"])) {
+                this.result = [] as any;
+                for (let item of _data["result"])
+                    this.result!.push(WheelDriveDTO.fromJS(item));
+            }
+            else {
+                this.result = <any>null;
+            }
+        }
+    }
+
+    static fromJS(data: any): ApiResponse_1OfOfIEnumerable_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApiResponse_1OfOfIEnumerable_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success !== undefined ? this.success : <any>null;
+        data["statusCode"] = this.statusCode !== undefined ? this.statusCode : <any>null;
+        data["message"] = this.message !== undefined ? this.message : <any>null;
+        if (Array.isArray(this.result)) {
+            data["result"] = [];
+            for (let item of this.result)
+                data["result"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IApiResponse_1OfOfIEnumerable_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | null;
+    result?: WheelDriveDTO[] | null;
 }
 
 export class ApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {

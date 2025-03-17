@@ -38,7 +38,6 @@ export const routes: Routes = [
         title:'Customer Vehicles',
         data: { myTitle: 'List of Customer\'s Vehicles' },
         canActivate:[noAccessBeforeLoginGuard],
-
     },
     {  
         path: 'user-management',

@@ -1,7 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, output, Output } from '@angular/core';
 import { CarService } from '../../../core/services/carService/car.service';
-import { EngineFuelDTO, EngineStructureDTO, VehicleBrandDTO, VehicleModelDTO } from '../../../core/services/callAPI/api.service';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { CustomerVehicleDTO, EngineChargerDTO, EngineFuelDTO, EngineStructureDTO, VehicleBrandDTO, VehicleModelDTO, WheelDriveDTO } from '../../../core/services/callAPI/api.service';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,26 +12,33 @@ import { CommonModule } from '@angular/common';
 })
 export class AddCarFormComponent  implements OnInit {
   @Output() closeForm = new EventEmitter<void>(); 
+  @Output() submitForm = new EventEmitter<CustomerVehicleDTO>(); 
   form!: FormGroup;
   brands: VehicleBrandDTO[] = [];
   models: VehicleModelDTO[] = [];
   engineFuels: EngineFuelDTO[] = [];
   engineStructures: EngineStructureDTO[] = [];
+  engineChargers : EngineChargerDTO[] = [];
+  wheelDrivers : WheelDriveDTO [] = [];
 
   constructor(private fb: FormBuilder , public carService : CarService){}
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      brand: [''],
-      model: [''],
-      engineFuel: [''],
-      numberOfCylinders: [''],
-      modelYear: [''],
+      this.form = this.fb.group({
+      brand: ['', Validators.required],
+      model: ['', Validators.required],
+      engineFuel: ['', Validators.required],
+      engineCharger: ['', Validators.required],
+      wheelDriver: ['', Validators.required],
+      numberOfCylinders: ['', [Validators.required, Validators.pattern("^[0-9]+$")]],
+      modelYear: ['', [Validators.required, Validators.pattern("^[0-9]{4}$")]]
     });
 
     this.getAllBrands();
     this.getAllengineFuels();
     this.getAllengineStructures();
+    this.getAllengineCharger();
+    this.getAllWheelDrive();
     this.form.get('brand')?.valueChanges.subscribe((brandId: number) => {
       if (brandId) {
         this.getAllModelsByBrandID(brandId);
@@ -81,11 +88,35 @@ export class AddCarFormComponent  implements OnInit {
       }
     );
   }
-
-  submitForm() {
-    //here my logic to add the car 
-    this.closeFormAndDestroy();
+  getAllengineCharger(): void {
+    this.carService.getAllEngineCharger().subscribe(
+      (response) => {
+        this.engineChargers = response;
+      },
+      (error) => {
+        console.error('Error fetching models:', error);
+      }
+    );
   }
+  getAllWheelDrive(): void {
+    this.carService.getAllWheelDrive().subscribe(
+      (response) => {
+        this.wheelDrivers = response;
+      },
+      (error) => {
+        console.error('Error fetching models:', error);
+      }
+    );
+  }
+
+  submit() {
+    if (this.form.valid) {
+      console.log("Form Component" + this.form.value)
+      this.submitForm.emit(this.form.value); 
+      this.closeForm.emit();  
+    }
+  }
+
   closeFormAndDestroy(): void {
     this.closeForm.emit(); 
   }

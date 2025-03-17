@@ -2,14 +2,16 @@
     <div> 
         <p (click)="backToSearchCustomer()"> back to </p>
     </div>
-    <h3>{{customerFirstName}} {{customerLastName}}'s Vehicles</h3>
+    @if(vehicles){  
+        <h3 class="text-[#ff0000]">{{customerFirstName}} {{customerLastName}}'s Vehicles</h3>
+    }
     @if(vehicles && !selectedVehicle){
         <app-generic-table class="w-[full]" [data]="vehicles" [columns]="columns" 
         (rowSelected)="handleRowSelection($event)">
         ></app-generic-table>
         <button class="m-2 p-2 bg-blue-500 text-white rounded hover:dark:bg-blue-800 duration-200" (click)="openFormToAddCar()">+ Add New Car</button>
         @if(isFormOpen){
-            <app-add-car-form  (closeForm)="isFormOpen = false"></app-add-car-form>
+            <app-add-car-form  (closeForm)="isFormOpen = false" (submitForm)="handleCarAdded($event)"></app-add-car-form>
         }
     }
     @if(selectedVehicle){
