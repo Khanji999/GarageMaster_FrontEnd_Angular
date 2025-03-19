@@ -1,0 +1,37 @@
+<app-image-background
+    [largeImage] = "imagePaths.mechanicWorking14"
+    [smallImage] = "imagePaths.mechanicWorking12">
+</app-image-background>
+
+<form [formGroup]="form" class="content" (ngSubmit)="onSubmit()">
+    <div class="container p-3">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="form-group group mb-3">
+                    <div *ngIf="submitted && form.invalid" class="alert alert-danger mb-3">
+                        Please fill in all required fields correctly.
+                    </div>
+                    <label for="username" class="form-label">Username</label>
+                    <input id="username" type="text" class="form-control bg-body-secondary" 
+                        placeholder="Enter your Username" formControlName="userName">
+                        <div class="text-danger" *ngIf="form.get('userName')?.hasError('required') && form.get('userName')?.touched ">
+                            Username is required.
+                        </div>
+                </div>
+                <div class="group form-group mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input id="password" type="password" class="form-control bg-body-secondary" 
+                        placeholder="Enter your Password" formControlName="password">
+                        <div class="text-danger" *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
+                            Password is required.
+                        </div>
+                </div>
+                <div class="form-group mb-3">
+                    <button type="submit" class="btn btn-success w-100 round-3">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

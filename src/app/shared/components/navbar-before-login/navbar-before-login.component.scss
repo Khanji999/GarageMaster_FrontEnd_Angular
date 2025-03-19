@@ -1,0 +1,56 @@
+nav {
+    margin: 1vw;
+    width: 85%;
+    position: absolute;
+    left: calc(7.5% - 1vw);
+    color: white;
+    font-family: "Jomhuria", serif;
+    z-index: 9999;
+}
+nav .contain-logo img {
+    width: 125px;
+    height: 125px;
+}
+nav  .contain-login img,
+nav .contain-menu img {
+    width: 23px;
+    height: 23px;
+}
+.contain-login,
+.contain-menu {
+    position: relative;
+    width: fit-content;
+}
+.contain-login {
+    cursor:pointer;
+}
+.contain-login::after {
+    content: "Login";
+    padding-left:0.9vw;
+    position: absolute;
+}
+.contain-menu::after {
+    content: "Menu";
+    padding-left:0.9vw;
+    position: absolute;
+}
+nav::after {
+    content: "";
+    position: absolute;
+    display: block;
+    border: 0.2px solid white;
+    width: 100%;
+    left: 0px;
+    top: 100%;
+}
+
+
+@media (max-width: 600px) {
+    .contain-login {
+        left: -20px;
+    }
+    nav .contain-logo img{
+        width: 20vw;
+        height: 20vw;
+    }
+}

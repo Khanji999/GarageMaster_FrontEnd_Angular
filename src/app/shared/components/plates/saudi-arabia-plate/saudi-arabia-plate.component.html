@@ -1,0 +1,23 @@
+<div class="sa-plate-container flex items-center">
+  
+    <!-- Numbers Section -->
+    <div class="sa-plate-numbers h-full p-2 flex flex-col justify-center items-center">
+      <div class="sa-number-ar mb-2" dir="ltr" style="unicode-bidi: bidi-override;">{{ formatWithSpaces(numberAr) }}</div>
+      <div class="sa-number-en" >{{ formatWithSpaces(numberEn) }}</div>
+    </div>
+  
+    <!-- Logo Section -->
+    <div class="sa-logo h-full p-2 text-center flex justify-center items-center">
+      <img src="sa-logo-2.png" alt="Logo">
+    </div>
+  
+    <!-- Letters Section -->
+    <div class="sa-plate-letters h-full p-2 flex flex-col justify-center items-center">
+      <div class="sa-letters-ar mb-2 " dir="rtl" style="unicode-bidi: bidi-override;">{{ formatWithSpaces(lettersAr) }}</div>
+      <div class="sa-letters-en" dir="rtl" style="unicode-bidi: bidi-override;">
+        {{ formatWithSpaces(lettersEn) }}
+      </div>
+    </div>
+  
+  </div>
+  

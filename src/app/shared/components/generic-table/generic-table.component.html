@@ -1,0 +1,22 @@
+<div class="overflow-y-auto  max-h-96">
+    <table class="w-full bg-white border border-gray-300">
+      <!-- Table Header -->
+      <thead>
+        <tr class="bg-gray-100">
+          <th *ngFor="let column of columns" class="px-4 py-2 border">
+            {{ column.header }}
+          </th>
+        </tr> 
+      </thead>
+      <tbody>
+        <tr    
+        *ngFor="let row of data" class="hover:bg-blue-300"
+        (click)="selectRow(row)" 
+        [class.selected]="selectedRow === row">
+          <td *ngFor="let column of columns" class="px-4 py-2 border">
+            {{ getNestedValue(row, column.key) }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

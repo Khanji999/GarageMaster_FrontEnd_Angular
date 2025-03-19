@@ -1,0 +1,131 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import "tailwindcss";
+
+
+/*****************************************************
+	Custom styling example bellow.
+*****************************************************/
+ngx-intl-tel-input{
+    width: 33.33%;
+}
+ngx-intl-tel-input input {
+    width: 100%;
+    height: 44px;
+    padding: 12px;
+    border: 2px solid #374151; 
+    border-radius: 5px;
+    font-size: 18px;
+    outline: none;
+    /* transition: border-color 0.2s ease, box-shadow 0.2s ease; */
+}
+
+ngx-intl-tel-input input:focus {
+  border-color: #6B7C9D;
+  box-shadow: 0 0 0 3px #6B7C9D;
+}
+
+
+
+ngx-intl-tel-input.ng-invalid.ng-touched input {
+    border: 1px solid #c0392b;
+}
+
+ngx-intl-tel-input input:hover {
+}
+
+
+ngx-intl-tel-input input::-webkit-input-placeholder {
+    color: #bac2c7;
+}
+
+ngx-intl-tel-input input:-ms-input-placeholder {
+    color: #bac2c7;
+}
+
+ngx-intl-tel-input input::-ms-input-placeholder {
+    color: #bac2c7;
+}
+
+ngx-intl-tel-input input::placeholder {
+    color: #bac2c7;
+}
+
+ngx-intl-tel-input input[disabled] {
+    background-color: #e5eaf1;  
+}
+
+.iti {
+    display: block !important;
+    width: 100% !important;
+}
+
+.iti--allow-dropdown{
+    width: 100% !important;
+}
+.dropdown-menu {
+    width: 25.5vw !important;
+}
+
+@media (max-width: 1280px) {
+    .dropdown-menu {
+        width: 23.5vw !important;
+    }
+}
+@media (max-width: 1180px) {
+    .dropdown-menu {
+        width: 23.5vw !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .dropdown-menu {
+        width: 30vw !important;
+    }
+}
+
+.iti .dropdown-menu.iti__dropdown-content {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-color: #0c6eee;
+    margin-top: -1px;
+}
+
+.dropdown-menu.iti__dropdown-content.show{
+    /* width: 100% !important;
+    position: absolute; */
+}
+
+.iti .iti__country-list {
+    box-shadow: none;
+    font-size: 14px;
+    margin-left: 0;
+    max-height: 370px;
+    width: 100%;
+  }
+  
+  /* .iti__flag-container.open + input {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  } */
+  
+  /* .iti .search-container input {
+    width: 100%;
+    font-size: 14px;
+    border-color: #c7cace;
+    border-radius: 0;
+    padding: 5px 10px;
+  }
+  
+  .iti .search-container input:focus {
+    outline: none;
+  } */
+  
+  /* @media screen and (max-width: 479px) {
+    .iti .iti__country-list {
+      width: 88.3vw;
+    }
+  } */
+  
+  
+  

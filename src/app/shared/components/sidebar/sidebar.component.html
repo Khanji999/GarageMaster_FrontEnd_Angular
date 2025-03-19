@@ -1,0 +1,65 @@
+<!-- sidebar.component.html -->
+<div class="
+  h-full
+  bg-[#2C3E50]
+  w-full overflow-y-auto 
+  ">
+  <div class="w-[93%]  m-auto mt-3 ">
+    <!-- Header -->
+    <div class="py-2 text-center">
+      @if (tenant) {
+        <h1 class="dynamic-font ml-1 px-2 py-1 text-[#ffffff]">
+          {{ tenant.name }}
+        </h1>
+      }
+    </div>
+
+    <div class="mx-2 my-4 bg-[#E2DAD6] h-[2px]"></div> 
+    
+    <!-- Search Bar -->
+    <div class="m-2 p-2 flex items-center rounded-md duration-300 cursor-pointer bg-[#F5EDED]">
+      <i class="bi bi-search text-sm mx-3"></i>
+      <input
+        type="text"
+        placeholder="Search"
+        class="text-[15px] focus:outline-none bg-transparent w-full"
+      />
+    </div>
+
+    <!-- Dynamic Menu -->
+    <ng-container *ngFor="let menu of menuTree">
+      <!-- Parent Menu Item -->
+      <div
+        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:dark:bg-[#EBEBD3]"
+        [routerLink]="menu.children ? null : generateRouteFromName(menu.name)"
+        routerLinkActive="active-link"
+        (click)="menu.children ? toggleSubMenu(menu) : null"
+      >
+        <!-- Menu Icon -->
+        <i class="bi" [ngClass]="{'bi-folder': menu.children, 'bi-file-earmark': !menu.children}"></i>
+        <!-- Menu Name -->
+        <span class="text-[15px] ml-4 font-bold">{{ menu.name }}</span>
+        <!-- Dropdown Icon (if menu has children) -->
+        <i *ngIf="menu.children" class="bi bi-chevron-down ml-auto"></i>
+      </div>
+
+      <!-- Submenu Items (if expanded) -->
+      <ng-container *ngIf="menu && menu.expanded">
+        <div *ngFor="let submenu of menu.children" class="pl-8">
+          <!-- Submenu Item -->
+          <div
+            class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-[#EBEBD3]"
+            [routerLink]="generateRouteFromName(submenu.name)"
+            routerLinkActive="active-link"
+          >
+            <!-- Submenu Icon -->
+            <i class="bi bi-file-earmark"></i>
+            <!-- Submenu Name -->
+            <span class="text-[15px] ml-4 ">{{ submenu.name }}</span>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+  </div>
+</div>

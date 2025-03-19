@@ -1,0 +1,11 @@
+@media (max-width:768px) {
+    .for-mobile {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 50%;
+        z-index: 999;
+        height: 100%;
+    }
+}
+
