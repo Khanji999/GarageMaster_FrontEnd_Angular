@@ -1,94 +1,114 @@
-<div class="w-[95%] mx-auto h-full">
-    <!-- Title -->
-    <div class="flex gap-3 ml-5 items-center  p-2 ">
-        <i class="bi bi-database-fill-add text-3xl lg:text-4xl"></i>
-        <p class="pt-3 text-2xl md:text-3xl lg:text-4xl">Add Maintenance</p>
-    </div>
-
-    <div>
+<div class="mt-3 w-[98%] mx-auto ">
+    <div class="my-3">
         <form [formGroup]="form">
-            <!-- Input and clear button -->
-                <div class=" w-[100%] flex gap-2 mb-2 ">
-                    <ngx-intl-tel-input
-                        [enableAutoCountrySelect]="false"
-                        [preferredCountries]="preferredCountries"
-                        [enablePlaceholder]="true"
-                        [enableAutoCountrySelect]="true"
-                        [searchCountryFlag]="true"
-                        [maxLength]="15"
-                        [phoneValidation]="true"
-                        [separateDialCode]="separateDialCode"
-                        [selectedCountryISO]="CountryISO.Lebanon"
-                        formControlName="phoneNumber"
-                    >
-                    </ngx-intl-tel-input>
-
-                <input
-                    type="text"
-                    formControlName="firstName"
-                    placeholder="First Name"
-                    class="input-class w-[33.33%] p-2  rounded-[5px] border-2 border-gray-700 
-                    focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
-                />
-
-                <input
-                    type="text"
-                    formControlName="lastName"
-                    placeholder="Last Name"
-                    class="input-class w-[33.33%] p-2 rounded-[5px] border-2 border-gray-700 
-                    focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
-                />
-
-                </div>  
+            <div class="w-[100%] flex flex-col md:flex-row gap-2 mb-2 p-2">
+                <!-- Phone Number - Full width on mobile, 1/3 on larger screens -->
+                @if (viewGetCustomerByPhoneNumber) {
+                    <div class="w-full md:w-[33.33%]">
+                        <ngx-intl-tel-input
+                            [enableAutoCountrySelect]="false"
+                            [preferredCountries]="preferredCountries"
+                            [enablePlaceholder]="true"
+                            [enableAutoCountrySelect]="true"
+                            [searchCountryFlag]="true"
+                            [maxLength]="15"
+                            [phoneValidation]="true"
+                            [separateDialCode]="separateDialCode"
+                            [selectedCountryISO]="CountryISO.Lebanon"
+                            formControlName="phoneNumber"
+                        >
+                        </ngx-intl-tel-input>
+                    </div>
+                }
+        
+                <!-- Name fields - Stacked below phone on mobile, inline on larger screens -->
+                <div class="w-full md:w-[66.66%] flex flex-col sm:flex-row gap-2">
+                    @if (viewGetCustomerByFirstName || viewGetCustomerByFirstAndLastName) {
+                        <input
+                            type="text"
+                            formControlName="firstName"
+                            placeholder="First Name"
+                            class="input-class w-full sm:w-1/2 p-2 rounded-[5px] border-2 border-gray-700 
+                            focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                        />
+                    }
+                
+                    @if(viewGetCustomerByLastName || viewGetCustomerByFirstAndLastName){
+                        <input
+                            type="text"
+                            formControlName="lastName"
+                            placeholder="Last Name"
+                            class="input-class w-full sm:w-1/2 p-2 rounded-[5px] border-2 border-gray-700 
+                            focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                        />
+                    }
+                </div>
+            </div>  
         </form>
 
         <div class="flex gap-2">
-            <button class=" bg-blue-500 py-2 px-3 text-white  rounded cursor-pointer" (click)="removeSearch()"> Add New Customer </button>
-            <button class="bg-red-500 py-2 px-3 text-white rounded cursor-pointer" (click)="removeSearch()"> clear </button>
+            @if (viewAddNewCustomer) {<button class=" bg-blue-500 py-2 px-3 text-white  rounded cursor-pointer" (click)="openFormToAddCustomer()"> Add New Customer </button>}
+            @if (viewRelatedToTheSearch) {<button class="bg-red-500 py-2 px-3 text-white rounded cursor-pointer" (click)="removeSearch()"> clear </button>}
         </div>
-
+        @if(openCustomerAddingForm){
+            <app-add-customer-form (closeForm)="openCustomerAddingForm  = false" (submitForm)="handleAddCustomer($event)">
+            </app-add-customer-form>
+        }
     </div>
+    @if (viewRelatedToTheSearch) {
+    <div class="my-3 bg-gray-300 w-full min-h-[450px] h-[80%] flex flex-col items-center justify-center rounded-xl shadow-lg">
+    @if (searchText) {
+        <i class="bi  bi-search search-icon"></i>
+        <span class="text-gray-800 text-lg ">
+            Start searching for a customer...
+        </span>
+    }
 
-    <div class="my-3 bg-gray-200 w-full min-h-[400px] flex flex-col items-center justify-center rounded-xl shadow-xl"
-    [@heightAnimation]>
-   @if (searchText) {
-       <h1 class="text-center text-xl">Search For a Customer</h1>
-   }
-   @if (noResult) {
-       <h1 class="text-center text-xl">No Customer was found </h1>
-   }
-   <div class="row-2 mt-3 flex flex-wrap justify-center items-center" *ngIf="customers$ | async as customers">
-       <!-- This is the container of the card "here is my card" -->
-       <div *ngFor="let customer of customers" 
-            (click)="handleCustomerClick(customer)"
-            class="relative m-2 overflow-hidden 
-                   w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 
-                   lg:w-60 lg:h-60 xl:w-62 xl:h-62
-                   rounded-3xl cursor-pointer text-2xl font-bold bg-[#6B7C9D]"
-            [@cardAnimation]>
-     
-           <!-- Taking full width and height of parent (Container) because when I hover the card two balls will take full card display -->
-           <div class="z-10 absolute w-full h-full peer">
-           </div>
-           <!-- Upper Ball -->
-           <div class="absolute
-                      peer-hover:-top-20 peer-hover:-left-16 peer-hover:w-[140%] peer-hover:h-[140%] 
-                      -top-32 -left-16 w-32 h-44 rounded-full bg-[#212227]
-                      transition-all duration-500">
-           </div>
-           <!-- Lower Ball -->
-           <div class="absolute flex text-xl text-center items-end justify-end 
-                       peer-hover:right-0 peer-hover:rounded-b-none peer-hover:bottom-0 peer-hover:items-center peer-hover:justify-center peer-hover:w-full peer-hover:h-full 
-                       -bottom-32 -right-16 w-36 h-44 rounded-full  bg-[#212227] transition-all duration-500
-                       text-white">
-               <p>View {{ customer.firstName }} Cars</p>
-           </div>
-           <!-- Text Display over the container (parent) -->
-           <div class="w-full h-full items-center justify-center flex uppercase text-white">
-               {{ customer.firstName }} <br> {{ customer.lastName }}
-           </div>
-       </div>
-   </div>
-</div>
+    @if (noResult) {
+        <div class="flex flex-col items-center justify-center gap-4 p-8 animate-fade-in">
+            <i class="bi bi-emoji-frown text-5xl text-blue-500 "></i>
+            <h1 class="text-center text-2xl font-medium text-gray-700">No customers found</h1>
+            <button 
+                class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                (click)="removeSearch()"
+            >
+                Reset Search
+            </button>
+        </div>
+    }
+        <div
+        class="row-2 mt-3 flex flex-wrap justify-center items-center" *ngIf="customers$ | async as customers">
+            <div *ngFor="let customer of customers" 
+                (click)="handleCustomerClick(customer)"
+                class="relative m-2 overflow-hidden 
+                        w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 
+                        lg:w-60 lg:h-60 xl:w-62 xl:h-62
+                        rounded-3xl cursor-pointer text-2xl font-bold bg-[#6B7C9D]"
+                [@cardAnimation]>
+            
+                <!-- Taking full width and height of parent (Container) because when I hover the card two balls will take full card display -->
 
+                <!-- Text Display over the container (parent) -->
+        <div class=" w-full  h-full flex flex-col items-center justify-center p-4 text-center
+                font-medium 
+                rounded-2xl 
+                transition-all duration-300 hover:bg-gray-800 hover:text-white
+                ">   
+                <span class="text-2xl md:text-3xl font-bold mb-1 ">
+                    {{ customer.firstName }}
+                </span>
+                <span class="text-xl md:text-2xl opacity-90 ">
+                    {{ customer.fatherName }}
+                </span>
+                <span class="text-xl md:text-2xl opacity-90 ">
+                    {{ customer.lastName }}
+                </span>
+        <!-- Subtle decorative element -->
+        <div class="absolute bottom-3 w-16 h-0.5 bg-white/40 rounded-full 
+                    transition-all duration-500 group-hover:w-24 group-hover:bg-white/60"></div>
+    </div>
+            </div>
+        </div>
+    </div>
+    }   
 </div>

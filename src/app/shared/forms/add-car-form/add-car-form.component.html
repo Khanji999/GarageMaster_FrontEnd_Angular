@@ -1,72 +1,252 @@
-<div class="fixed z-22 inset-0 flex items-center justify-center bg-black/65 ">
-    <div class="bg-white p-6 rounded shadow-lg w-[80%] sm:w-[60%]">
-        <h2 class="text-lg font-semibold mb-3 ">Add New Car</h2>
+<div class="fixed z-50 inset-0 flex items-center justify-center bg-black/65">
+<div class="bg-white p-6 rounded-xl shadow-2xl w-[90%] sm:w-[70%] lg:w-[55%] h-[90%] overflow-y-auto">
+    <!-- Title -->
+    <h2 class="text-2xl font-semibold text-gray-700 mb-4 border-b pb-2">🚗 Add New Car</h2>
 
-        <form [formGroup]="form">
-            
-            <div class="row-1 flex flex-wrap gap-3 my-2">
-                <select class="p-2 border rounded w-full min-w-[250px] flex-1" formControlName="brand">
+    <form [formGroup]="form">
+        <!-- VIN Details -->
+        <div class="my-6">
+            <h3 class="text-lg font-semibold text-gray-600 mb-3">Vehicle VIN</h3>
+            <div class="">
+                <input type="text" placeholder="Enter a VIN" autofocus
+                        class="p-3 border rounded w-full 
+                        focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"    
+                        formControlName="vin">
+                <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['vin'].invalid && form.controls['vin'].touched">
+                Please Enter a VIN
+                </p>
+            </div>        
+        </div>
+
+        <!-- Brand & Model Details -->
+        <div class="mb-6">
+            <h3 class="text-lg font-semibold text-gray-600 mb-3">Car Details</h3>
+            <div class="flex flex-wrap gap-4">
+                <!-- Brand -->
+                <div class="flex-1 min-w-[250px]">
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Brand</label>
+                    <select class="p-3 border rounded w-full focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                            formControlName="brand">
                     <option value="" disabled selected>Select a Brand</option>
-                    <option class="text-black" *ngFor="let brand of brands" [value]="brand.id">
+                    <option *ngFor="let brand of brands" [value]="brand.id">
                         {{ brand.name }}
                     </option>
-                    <option class="text-black"> + Add New Brand </option>
-                </select>
-            
-                <select class="p-2 border rounded w-full min-w-[250px] flex-1" formControlName="model">
+                    <option>+ Add New Brand</option>
+                    </select>
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['brand'].invalid && form.controls['brand'].touched">
+                    Please select a brand.
+                    </p>
+                </div>
+
+                <!-- Model -->
+                <div class="flex-1 min-w-[250px]">
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Model</label>
+                    <select class="p-3 border rounded w-full focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                            formControlName="model">
                     <option value="" disabled selected>Select a Model</option>
-                    <option class="text-black" *ngFor="let model of models" [value]="model.id">
+                    <option *ngFor="let model of models" [value]="model.id">
                         {{ model.name }}
                     </option>
-                    <option class="text-black"> + Add New Model </option>
-                </select>
-            </div>            
-
-            <div class="row-2 flex justify-between gap-3 my-2  flex-wrap">
-                <select class="p-2 border rounded w-full min-w-[250px] flex-1" formControlName="engineFuel">
-                    <option value="" disabled selected>Select a Fuel</option>
-                    <option class="text-black" *ngFor="let engineFuel of engineFuels" [value]="engineFuel.id">
-                    {{ engineFuel.engineFuelType }}
-                    </option>
-                </select>                
-                <select class="p-2 border rounded w-full min-w-[250px] flex-1" formControlName="engineFuel">
-                    <option value="" disabled selected>Select an Engine Structure</option>
-                    <option class="text-black" *ngFor="let engineStructure of engineStructures" [value]="engineStructure.id">
-                    {{ engineStructure.engineType }}
-                    </option>
-                </select>
+                    <option>+ Add New Model</option>
+                    </select>
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['model'].invalid && form.controls['model'].touched">
+                    Please select a model.
+                    </p>
+                </div>
             </div>
-
-            <div class="row-2 flex justify-between gap-3 my-2 flex-wrap">
-                <select class="p-2 border rounded w-full min-w-[250px] flex-1" formControlName="engineCharger">
-                    <option value="" disabled selected>Select a Charger</option>
-                    <option class="text-black" *ngFor="let engineCharger of engineChargers" [value]="engineCharger.id">
-                    {{ engineCharger.engineChargerName }}
-                    </option>
-                </select>
-                <select class="p-2 border rounded w-full min-w-[250px] flex-1" formControlName="wheelDriver">
-                    <option value="" disabled selected>Select A Wheel Drive</option>
-                    <option class="text-black" *ngFor="let wheelDriver of wheelDrivers" [value]="wheelDriver.id">
-                    {{ wheelDriver.abbreviation }}
-                    </option>
-                </select>
-            </div>
-
-            <div class="row-3 flex justify-between gap-3 my-2 flex-wrap">
-                <input  type="number" min="0" max="16"
-                placeholder="Enter a Number of Cylinders"
-                class="p-2 border rounded w-full min-w-[250px] flex-1" formControlName="numberOfCylinders">
-
-                <input  type="number" 
-                placeholder="Enter a Model Year"
-                class="p-2 border rounded w-full min-w-[250px] flex-1" formControlName="modelYear">
-            </div>
-        </form>
-
-    
-        <div class="flex justify-end mt-3 gap-2 flex-wrap">
-            <button (click)="submit()" class="p-2 bg-green-500 text-white rounded ">Submit</button>
-            <button (click)="closeFormAndDestroy()" class="p-2 bg-red-500 text-white rounded">Cancel</button>
         </div>
+
+        <!-- Plate Details -->
+        <div class="mb-6">
+            <h3 class="text-lg font-semibold text-gray-600 mb-3">Plate Information</h3>
+            <div class="flex flex-wrap gap-4">
+            <!-- PlateNumber -->
+            <div class="flex-1 min-w-[250px]">
+                <label class="block text-sm font-medium text-gray-600 mb-2">Plate Number</label>
+                <input  placeholder="Enter Plate Numbers"
+                        class="p-3 border rounded w-full focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                        formControlName="plateNumber">
+                <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['plateNumber'].invalid && form.controls['plateNumber'].touched">
+                Please Enter a Plate Number
+                </p>
+            </div>
+
+            <!-- Model Year -->
+            <div class="flex-1 min-w-[250px]">
+                <label class="block text-sm font-medium text-gray-600 mb-2">Plate Letter</label>
+                <input type="text" placeholder="Enter Plate letters"
+                        class="p-3 border rounded w-full focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                        formControlName="plateLetter">
+                <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['plateLetter'].invalid && form.controls['plateLetter'].touched">
+                Please Enter a Plate Letter
+                </p>
+            </div>
+            </div>
+        </div>
+
+        <!-- Color  -->
+        <div class="mb-6">
+            <h3 class="text-lg font-semibold text-gray-600 mb-3">Color Details</h3>
+            <div class="flex flex-wrap gap-4">
+                <!-- Color -->
+                <div class="flex-1 min-w-[250px]">
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Color</label>
+                    <select class="p-3 border rounded w-full focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                            formControlName="color">
+                    <option value="" disabled selected>Select a Color</option>
+                    <option *ngFor="let color of colors" [value]="color.id">
+                        {{ color.name }} 
+                    </option>
+                    <option>+ Add New color</option>
+                    </select>
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['color'].invalid && form.controls['color'].touched">
+                    Please select a Color.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Engine Details -->
+        <div class="mb-6">
+            <h3 class="text-lg font-semibold text-gray-600 mb-3">Engine Details</h3>
+            <div class="flex flex-wrap gap-4">
+            <!-- Fuel -->
+                <div class="flex-1 min-w-[250px]">
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Fuel Type</label>
+                    <select class="p-3 border rounded w-full focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                            formControlName="engineFuel">
+                    <option value="" disabled selected>Select a Fuel</option>
+                    <option *ngFor="let fuel of engineFuels" [value]="fuel.id">
+                        {{ fuel.engineFuelType }}
+                    </option>
+                    </select>
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['engineFuel'].invalid && form.controls['engineFuel'].touched">
+                    Please select a Fuel.
+                    </p>
+                </div>
+
+                <!-- Engine Structure -->
+                <div class="flex-1 min-w-[250px]">
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Engine Structure</label>
+                    <select class="p-3 border rounded w-full focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                            formControlName="engineStructure">
+                    <option value="" disabled selected>Select an Engine Structure</option>
+                    <option *ngFor="let structure of engineStructures" [value]="structure.id">
+                        {{ structure.engineType }}
+                    </option>
+                    </select>
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['engineStructure'].invalid && form.controls['engineStructure'].touched">
+                    Please select a Structure.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transmission Details-->
+        <div class="mb-6">
+            <h3 class="text-lg font-semibold text-gray-600 mb-3">Charger & Wheel</h3>
+            <div class="flex flex-wrap gap-4">
+                <!-- Charger -->
+                <div class="flex-1 min-w-[250px]">
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Charger</label>
+                    <select class="p-3 border rounded w-full focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                            formControlName="engineCharger">
+                    <option value="" disabled selected>Select a Charger</option>
+                    <option *ngFor="let charger of engineChargers" [value]="charger.id">
+                        {{ charger.engineChargerName }}
+                    </option>
+                    </select>
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['engineCharger'].invalid && form.controls['engineCharger'].touched">
+                    Please select a Charger.
+                    </p>
+                </div>
+
+                <!-- Wheel Drive -->
+                <div class="flex-1 min-w-[250px]">
+                    <label class="block text-sm font-medium text-gray-600 mb-2">Wheel Drive</label>
+                    <select class="p-3 border rounded w-full focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                            formControlName="wheelDriver">
+                    <option value="" disabled selected>Select a Wheel Drive</option>
+                    <option *ngFor="let driver of wheelDrivers" [value]="driver.id">
+                        {{ driver.abbreviation }}
+                    </option>
+                    </select>
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['wheelDriver'].invalid && form.controls['wheelDriver'].touched">
+                    Please select a Wheel Drive.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Gear Detail -->
+        <div class="mb-6">
+        <h3 class="text-lg font-semibold text-gray-600 mb-3">Transmission</h3>
+            <!-- Gear -->
+            <div class="my-2 flex-1 min-w-[250px]">
+                <label class="block text-sm font-medium text-gray-600 mb-2">GearBox</label>
+                <select class="p-3 border rounded w-full focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                        formControlName="gearBox">
+                    <option value="" disabled selected>Select a GearBox</option>
+                    <option *ngFor="let gear of gearbox" [value]="gear.id">
+                    {{ gear.name }}
+                    </option>
+                </select>
+                <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['gearBox'].invalid && form.controls['gearBox'].touched">
+                    Please select a GearBox.
+                </p>
+            </div>
+            <!-- Number of Gear  -->
+            <div class="flex-1 min-w-[250px]">
+                <label class="block text-sm font-medium text-gray-600 mb-2">Number of Gear</label>
+                <input type="number" min="0" max="16" placeholder="Enter number of cylinders"
+                        class="p-3 border rounded w-full focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                        formControlName="numberOfGear">
+                <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['numberOfGear'].invalid && form.controls['numberOfGear'].touched">
+                Please Enter a Number of Cylinder
+                </p>
+            </div>
+        </div>
+
+        <!-- Additional Details -->
+        <div class="mb-6">
+            <h3 class="text-lg font-semibold text-gray-600 mb-3">Additional Information</h3>
+            <div class="flex flex-wrap gap-4">
+            <!-- Cylinders -->
+            <div class="flex-1 min-w-[250px]">
+                <label class="block text-sm font-medium text-gray-600 mb-2">Number of Cylinders</label>
+                <input type="number" min="0" max="16" placeholder="Enter number of cylinders"
+                        class="p-3 border rounded w-full focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                        formControlName="numberOfCylinders">
+                <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['numberOfCylinders'].invalid && form.controls['numberOfCylinders'].touched">
+                Please Enter a Number of Cylinder
+                </p>
+            </div>
+
+            <!-- Model Year -->
+            <div class="flex-1 min-w-[250px]">
+                <label class="block text-sm font-medium text-gray-600 mb-2">Model Year</label>
+                <input type="number" placeholder="Enter model year"
+                        class="p-3 border rounded w-full focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                        formControlName="modelYear">
+                <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['modelYear'].invalid && form.controls['modelYear'].touched">
+                Please Enter a Year
+                </p>
+            </div>
+            </div>
+        </div>
+
+    </form>
+
+    <!-- Buttons -->
+    <div class="flex justify-end mt-6 gap-4">
+    <button (click)="submit()"
+            class="p-3 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-600 transition">
+        Submit
+    </button>
+    <button (click)="closeFormAndDestroy()"
+            class="p-3 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 transition">
+        Cancel
+    </button>
     </div>
+</div>
 </div>

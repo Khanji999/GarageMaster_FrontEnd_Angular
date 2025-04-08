@@ -1,3 +1,10 @@
 .dynamic-font {
   font-size: 24px
 }
+
+@media (max-width: 768px) {
+  .mobile {
+      display: inline-block;
+      z-index: 1999;
+  }
+}

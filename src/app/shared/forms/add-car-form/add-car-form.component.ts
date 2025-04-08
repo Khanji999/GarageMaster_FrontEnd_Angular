@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, output, Output } from '@angular/core';
 import { CarService } from '../../../core/services/carService/car.service';
-import { CustomerVehicleDTO, EngineChargerDTO, EngineFuelDTO, EngineStructureDTO, VehicleBrandDTO, VehicleModelDTO, WheelDriveDTO } from '../../../core/services/callAPI/api.service';
+import { AddNewVehicleToCustomerDTO, ColorDTO, CustomerVehicleDTO, CustomerVehicleWithDetailsDTO, EngineChargerDTO, EngineFuelDTO, EngineStructureDTO, PlateDTO, TransmissionDTO, VehicleBrandDTO, VehicleModelDTO, WheelDriveDTO } from '../../../core/services/callAPI/api.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -12,26 +12,36 @@ import { CommonModule } from '@angular/common';
 })
 export class AddCarFormComponent  implements OnInit {
   @Output() closeForm = new EventEmitter<void>(); 
-  @Output() submitForm = new EventEmitter<CustomerVehicleDTO>(); 
+  @Output() submitForm = new EventEmitter<AddNewVehicleToCustomerDTO>(); 
   form!: FormGroup;
   brands: VehicleBrandDTO[] = [];
   models: VehicleModelDTO[] = [];
+  colors : ColorDTO[] = [];
   engineFuels: EngineFuelDTO[] = [];
   engineStructures: EngineStructureDTO[] = [];
   engineChargers : EngineChargerDTO[] = [];
   wheelDrivers : WheelDriveDTO [] = [];
+  gearbox : TransmissionDTO [] = [];
+
 
   constructor(private fb: FormBuilder , public carService : CarService){}
 
   ngOnInit(): void {
-      this.form = this.fb.group({
+    this.form = this.fb.group({
+      vin: ['', Validators.required],
       brand: ['', Validators.required],
       model: ['', Validators.required],
       engineFuel: ['', Validators.required],
-      engineCharger: ['', Validators.required],
+      gearBox: ['', Validators.required],
+      engineStructure: ['', Validators.required],
+      engineCharger: ['',Validators.required],
       wheelDriver: ['', Validators.required],
-      numberOfCylinders: ['', [Validators.required, Validators.pattern("^[0-9]+$")]],
-      modelYear: ['', [Validators.required, Validators.pattern("^[0-9]{4}$")]]
+      color:['', Validators.required],
+      plateNumber:['', Validators.required],
+      plateLetter:['', Validators.required],
+      numberOfCylinders: ['', [Validators.required, Validators.min(1), Validators.max(16)]],
+      modelYear: ['',[Validators.required, Validators.min(1886), Validators.max(new Date().getFullYear())]],
+      numberOfGear : ['', [Validators.required, Validators.min(1), Validators.max(16)]],
     });
 
     this.getAllBrands();
@@ -39,6 +49,9 @@ export class AddCarFormComponent  implements OnInit {
     this.getAllengineStructures();
     this.getAllengineCharger();
     this.getAllWheelDrive();
+    this.getAllgearBox();
+    this.getColors();
+
     this.form.get('brand')?.valueChanges.subscribe((brandId: number) => {
       if (brandId) {
         this.getAllModelsByBrandID(brandId);
@@ -47,7 +60,7 @@ export class AddCarFormComponent  implements OnInit {
       }
     });
   }
-  // Make calls
+
   getAllBrands(): void {
     this.carService.getBrands().subscribe(
       (response) => {
@@ -58,6 +71,7 @@ export class AddCarFormComponent  implements OnInit {
       }
     );
   }
+
   getAllModelsByBrandID(id :number): void {
     this.carService.getModelsByBrandID(id).subscribe(
       (response) => {
@@ -68,6 +82,7 @@ export class AddCarFormComponent  implements OnInit {
       }
     );
   }
+
   getAllengineFuels(): void {
     this.carService.getEngineFuels().subscribe(
       (response) => {
@@ -78,6 +93,7 @@ export class AddCarFormComponent  implements OnInit {
       }
     );
   }
+
   getAllengineStructures(): void {
     this.carService.getEngineStructures().subscribe(
       (response) => {
@@ -88,6 +104,7 @@ export class AddCarFormComponent  implements OnInit {
       }
     );
   }
+
   getAllengineCharger(): void {
     this.carService.getAllEngineCharger().subscribe(
       (response) => {
@@ -98,6 +115,29 @@ export class AddCarFormComponent  implements OnInit {
       }
     );
   }
+
+  getAllgearBox(): void {
+    this.carService.getAllGearBox().subscribe(
+      (response) => {
+        this.gearbox = response;
+      },
+      (error) => {
+        console.error('Error fetching models:', error);
+      }
+    );
+  }
+
+  getColors(): void {
+    this.carService.getAllColors().subscribe(
+      (response) => {
+        this.colors = response;
+      },
+      (error) => {
+        console.error('Error fetching Colors:', error);
+      }
+    );
+  }
+
   getAllWheelDrive(): void {
     this.carService.getAllWheelDrive().subscribe(
       (response) => {
@@ -110,10 +150,33 @@ export class AddCarFormComponent  implements OnInit {
   }
 
   submit() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+    }
     if (this.form.valid) {
-      console.log("Form Component" + this.form.value)
-      this.submitForm.emit(this.form.value); 
-      this.closeForm.emit();  
+      const dtoRequest = new AddNewVehicleToCustomerDTO();
+
+      dtoRequest.customerVehicle = new CustomerVehicleDTO();
+      dtoRequest.plate = new PlateDTO();
+
+      dtoRequest.colorID =  this.form.value.color;
+
+      dtoRequest.customerVehicle.vehicleModelId = this.form.value.model ;
+      dtoRequest.customerVehicle.engineStructureId = this.form.value.engineStructure ;
+      dtoRequest.customerVehicle.engineFuelId = this.form.value.engineFuel ;
+      dtoRequest.customerVehicle.engineChargerId = this.form.value.engineCharger ;
+      dtoRequest.customerVehicle.wheelDriveId = this.form.value.wheelDriver ;
+      dtoRequest.customerVehicle.vin = this.form.value.vin ;
+      dtoRequest.customerVehicle.transmissionId = this.form.value.gearBox;
+      dtoRequest.customerVehicle.yearModel = this.form.value.modelYear ;
+      dtoRequest.customerVehicle.transmissionGears = this.form.value.numberOfGear ;
+      dtoRequest.customerVehicle.numberOfCylinders = this.form.value.numberOfCylinders ;
+
+      dtoRequest.plate.numbers = this.form.value.plateNumber;
+      dtoRequest.plate.letters = this.form.value.plateLetter;
+  
+      this.submitForm.emit(dtoRequest); 
+      this.closeFormAndDestroy();  
     }
   }
 

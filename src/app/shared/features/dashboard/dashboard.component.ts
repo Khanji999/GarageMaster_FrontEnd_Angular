@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { CameraComponent } from "../../components/camera/camera.component";
-import { AddingMaintenanceComponent } from "../maintenance/adding-maintenance/adding-maintenance.component";
+import { Component } from '@angular/core';
+import { AddingMainteanceP2Component } from '../maintenance/adding-mainteance-p2/adding-mainteance-p2.component';
+
 
 @Component({
   selector: 'app-dashboard',

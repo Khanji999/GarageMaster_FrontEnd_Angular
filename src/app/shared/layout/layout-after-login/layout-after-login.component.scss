@@ -3,9 +3,22 @@
         position: fixed;
         top: 0;
         left: 0;
-        width: 50%;
+        width: 40%;
         z-index: 999;
         height: 100%;
     }
 }
+@media (max-width:49px) {
+    .for-mobile {
+        width: 34%;
+        z-index: 999;
+    }
+}
 
+@media (max-width: 768px) {
+    .mobile {
+        display: inline-block;
+        z-index: 999;
+        font-size: 30px
+    }
+}

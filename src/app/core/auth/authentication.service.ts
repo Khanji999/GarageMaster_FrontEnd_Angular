@@ -1,34 +1,51 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs'; 
+import { forkJoin, Observable } from 'rxjs'; 
 import {  LoginDTO, UserContro } from '../services/callAPI/api.service';
+import { Store } from '@ngrx/store';
+import { PermissionService } from '../services/permissionService/permission.service';
+import { RouteService } from '../services/routeService/route.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  constructor(private userContro: UserContro, private router: Router) { }
-
+  constructor(private userContro: UserContro, private router: Router , private store: Store,
+    private permissionService : PermissionService ,  private routeService : RouteService
+  ) { }
+  
   login(userName: string, password: string): Observable<boolean> {
     const loginData: LoginDTO = new LoginDTO({ userName, password });
+  
     return new Observable<boolean>((observer) => {
       this.userContro.login(loginData).subscribe(
         (response: any) => {
-          console.log(response);
-          
-          var token = response.result;
+          const token = response.result;
           if (token) {
             localStorage.setItem("token", token);
-            console.log("Login successful, token stored:", token);
-            observer.next(true); 
-            observer.complete();
-            this.router.navigate(['/dashboard']);
+  
+            // Fetch routes and permissions before completing the login
+            forkJoin({
+              routes: this.routeService.getRoutes(),
+              permissions: this.permissionService.getUserPermissions(),
+            }).subscribe(
+              ({ routes, permissions }) => {
+                observer.next(true);
+                observer.complete();
+                this.router.navigate(['/dashboard']);
+              },
+              (error) => {
+                console.error("Error fetching routes or permissions", error);
+                observer.next(false);
+                observer.complete();
+              }
+            );
           } else {
-            console.error("Login failed: No token received");
-            observer.next(false); 
+            observer.next(false);
             observer.complete();
           }
         },
+        
         (error) => {
           console.error("Login failed", error);
           observer.next(false);
@@ -58,5 +75,10 @@ export class AuthenticationService {
       localStorage.removeItem('token'); // Delete invalid token
       return false;
   }
+  }
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+
   }
 }

@@ -33,6 +33,7 @@
             ],
             "styles": [
               "src/styles.css",  
+              "node_modules/intl-tel-input/build/css/intlTelInput.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css"
             ],
             "scripts": [  
@@ -43,8 +44,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "2kB",
+                  "maximumError": "5MB"
                 },
                 {
                   "type": "anyComponentStyle",

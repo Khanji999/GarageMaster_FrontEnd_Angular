@@ -38,6 +38,7 @@ private buildMenuTree(menuItems: MenuDTO[]): MenuDTO[] {
 
   return tree;
 }
+
 getMenu(): Observable<MenuDTO[]> {
   return this.menuContro.getMenu().pipe(
     map((menuItems: MenuDTO[]) => this.buildMenuTree(menuItems))

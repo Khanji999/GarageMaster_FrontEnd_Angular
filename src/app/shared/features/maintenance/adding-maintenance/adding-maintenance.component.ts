@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Observable, of, debounceTime, switchMap, distinctUntilChanged, map } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { CustomerDTO } from '../../../../core/services/callAPI/api.service';
+import { AddNewCustomerDTO, CustomerDTO, UserDTO } from '../../../../core/services/callAPI/api.service';
 import { CustomerService } from '../../../../core/services/customerService/customer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SendformCustomerSearchToCustomerCarsService } from '../../../../core/services/sendformCustomerSearchToCustomerCars/sendform-customer-search-to-customer-cars.service';
 import { CountryISO, NgxIntlTelInputModule, SearchCountryField } from 'ngx-intl-tel-input';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { PermissionService } from '../../../../core/services/permissionService/permission.service';
+import { AddCustomerFormComponent } from "../../../forms/add-customer-form/add-customer-form.component";
 
 @Component({
-  selector: 'app-adding-maintenance',
-  imports: [CommonModule, ReactiveFormsModule, NgxIntlTelInputModule],
+  selector: 'app-adding-maintenance', 
+  imports: [CommonModule, ReactiveFormsModule, NgxIntlTelInputModule, AddCustomerFormComponent],
   templateUrl: './adding-maintenance.component.html',
   styleUrl: './adding-maintenance.component.scss',
   animations: [
@@ -21,16 +23,19 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
         animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
       ])
     ]),
-    trigger('heightAnimation', [
-      state('void', style({ height: '0' })),
-      transition(':enter', [
-        animate('350ms ease-out', style({ height: '*' }))
-      ])
-    ])
   ]
 })
 
 export class AddingMaintenanceComponent implements OnInit {
+  // Relate to Permissions
+  viewGetCustomerByFirstName = false;  
+  viewGetCustomerByLastName = false;  
+  viewGetCustomerByFirstAndLastName = false;
+  viewGetCustomerByPhoneNumber = false;
+  viewRelatedToTheSearch = false;
+  viewAddNewCustomer = false;
+  //
+
 
   separateDialCode = true;
   SearchCountryField = SearchCountryField;
@@ -40,15 +45,16 @@ export class AddingMaintenanceComponent implements OnInit {
   form!: FormGroup;
   customers$: Observable<CustomerDTO[]> = of([]);
   selectedCustomer: CustomerDTO | null = null;
-  searchText = true
-  noResult = false; 
+  searchText = true // title for searching new customer
+  noResult = false; // title : no result no customer was found
+  openCustomerAddingForm = false;
 
   constructor(
     private formBuilder: FormBuilder,
     public customerService: CustomerService,
     private router: Router,
-    private route: ActivatedRoute,
-    private sender: SendformCustomerSearchToCustomerCarsService
+    private sender: SendformCustomerSearchToCustomerCarsService,
+    private helloPermission : PermissionService
   ) {}
 
 
@@ -56,16 +62,25 @@ export class AddingMaintenanceComponent implements OnInit {
       this.form = this.formBuilder.group({
       firstName: [''],
       lastName: [''],
-      phoneNumber: [''],
+      phoneNumber: ['',Validators.required],
     });
+    
+    this.viewGetCustomerByPhoneNumber = this.helloPermission.hasPermission('CustomerContro','searchForCustomerByPhoneNumber')
+    this.viewGetCustomerByFirstName = this.helloPermission.hasPermission('CustomerContro','searchForCustomerByFirstName') 
+    this.viewGetCustomerByLastName = this.helloPermission.hasPermission('CustomerContro','searchForCustomerByLastName') 
+    this.viewGetCustomerByFirstAndLastName = this.helloPermission.hasPermission('CustomerContro','searchForCustomerByFirstAndLastName');
+    this.viewRelatedToTheSearch = this.viewGetCustomerByPhoneNumber || this.viewGetCustomerByFirstName || this.viewGetCustomerByLastName
+                          this.viewGetCustomerByFirstAndLastName
+    this.viewAddNewCustomer = this.helloPermission.hasPermission('CustomerContro','Add');
 
-     this.customers$ = this.form.valueChanges.pipe(
+
+    this.customers$ = this.form.valueChanges.pipe(
       debounceTime(340),
       distinctUntilChanged((prev, curr) => JSON.stringify(prev) === JSON.stringify(curr)),
-      switchMap(({ firstName, lastName }) => {
+      switchMap(({ firstName, lastName , phoneNumber }) => {
         this.noResult = false; 
         
-        if (firstName?.length > 2 && lastName?.length > 2) {
+        if (firstName?.length > 2 && lastName?.length > 0) {
           this.searchText = false;
           return this.customerService.getCustomerByFirstAndLastName(firstName, lastName).pipe(
             map(result => {
@@ -78,7 +93,7 @@ export class AddingMaintenanceComponent implements OnInit {
           );
         }
 
-        if (!firstName && lastName?.length > 2) {
+        else if (!firstName && lastName?.length > 2) {
           this.searchText = false;
           return this.customerService.getCustomerByLastName(lastName).pipe(
             map(result => {
@@ -91,7 +106,7 @@ export class AddingMaintenanceComponent implements OnInit {
           );
         }
 
-        if (firstName?.length > 2 && !lastName) {
+        else if (firstName?.length > 2 && !lastName) {
           this.searchText = false;
           return this.customerService.getCustomerByFirstName(firstName).pipe(
             map(result => {
@@ -102,12 +117,29 @@ export class AddingMaintenanceComponent implements OnInit {
               return result;
             })
           );
-        } else {
+        }
+
+        else if (this.form.get('phoneNumber')?.valid) {          
+          this.searchText = false;
+          console.log(phoneNumber.nationalNumber)
+          return this.customerService.ByPhoneNumberGetCustomer(phoneNumber.nationalNumber).pipe(
+            map(result => {
+              if (!result || result.length === 0) {
+                this.noResult = true; 
+                return [];  
+              }
+              return result;
+            })
+          );
+        }
+        else {
           this.searchText = true;
           return of([]); 
         }
       })
+      
     );
+
   }
 
   removeSearch(){
@@ -119,5 +151,26 @@ export class AddingMaintenanceComponent implements OnInit {
     this.selectedCustomer = customer; 
     this.sender.setData(customer);
     this.router.navigate(['/customerVehicles']);
-  }        
+  }       
+
+  openFormToAddCustomer(){
+    if(this.viewAddNewCustomer){
+        this.openCustomerAddingForm = true;
+    }
+  }
+  
+  handleAddCustomer(newCustomer : AddNewCustomerDTO){
+    if(this.openCustomerAddingForm){
+     var requestTheNewCustomer = new AddNewCustomerDTO();
+     requestTheNewCustomer = newCustomer;
+      this.customerService.addNewCustomer(requestTheNewCustomer).subscribe(
+        (response: UserDTO) => {
+          console.log(response);
+        },
+      (error) => {
+        console.error('Error ', error);
+      }
+      );
+    }
+  }
 }

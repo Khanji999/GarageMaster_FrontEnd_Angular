@@ -18,18 +18,27 @@
   <div class="flex flex-1 flex-col overflow-y-auto"> 
     <!-- Header -->
     <div class="sticky top-0 z-20 w-full">
-      <app-sidebar-hamburger></app-sidebar-hamburger>
+      <div>
+        <span
+        class="
+        mobile 
+        text-white
+        hidden absolute text-4xl top-2 left-2"
+        appHoverScale 
+        (click)="toggleSidebar()"
+        >
+        <i class="bi-filter-left px-2 rounded-md"></i>
+        </span>
+      </div>
       <app-navbar-after-login></app-navbar-after-login>
     </div>
 
     <!-- Content -->
-    <div class="flex-1"> 
+    <div class="bg-[#ECF0F1] flex-1"> 
       <router-outlet></router-outlet>
+
     </div>
 
-    <!-- Footer -->
-    <div>
       <app-footer></app-footer>
-    </div>
   </div>
 </div>

@@ -5,6 +5,7 @@ import { DynamicMenuService } from '../../../core/services/dynamicMenu/dynamic-m
 import { RouterModule } from '@angular/router';
 import {  UserService } from '../../../core/services/userService/user-service.service';
 import { TenantService } from '../../../core/services/tenantService/tenant-service.service';
+import { SidebarStateService } from '../../../core/services/sidebarState/sidebar-state.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,7 +16,15 @@ import { TenantService } from '../../../core/services/tenantService/tenant-servi
 export class SidebarComponent implements OnInit {
   menuTree?: MenuDTO[] ;
   tenant?: TenantDTO; 
-  constructor(private menuService: DynamicMenuService ,public userService : UserService , private tenantService : TenantService ) {}
+  selectedRoute?: string; 
+  isSidebarOpen?: boolean;
+
+  constructor(private sidebarState: SidebarStateService, private menuService: DynamicMenuService ,public userService : UserService , private tenantService : TenantService ) {
+    this.sidebarState.isSidebarOpen$.subscribe((isOpen) => {
+      this.isSidebarOpen = isOpen;
+    });
+  }
+
 
   ngOnInit() {
     this.tenantService.getTenant().subscribe(
@@ -26,7 +35,7 @@ export class SidebarComponent implements OnInit {
         console.error('Error fetching tenant:', error); // Handle errors
       }
     );
-    
+
     this.menuService.getMenu().subscribe(
       (menuTree: MenuDTO[]) => {
       // Initialize the `expanded` property for menu items with children
@@ -36,20 +45,21 @@ export class SidebarComponent implements OnInit {
         }
         return menu;
       });
-    });
-
+    });  
+  }
+  
+  toggleSidebar() {
+    this.sidebarState.toggleSidebar();
   }
 
-  // Toggle submenu expansion
-  toggleSubMenu(menu: MenuDTO) {
+  selectMenu(menu: MenuDTO) {
     if (menu.children) {
-      menu.expanded = !menu.expanded; 
+      menu.expanded = !menu.expanded; // Toggle submenu visibility
+    } else {
+      this.selectedRoute = menu.route || undefined; // Set selected route
     }
   }
+  // Toggle submenu expansion
 
-  // Generate route from name
-  public generateRouteFromName(name: string | undefined): string {
-    if (!name) return '';
-    return name.toLowerCase().replace(/\s+/g, '-');
-  }
+
 }
