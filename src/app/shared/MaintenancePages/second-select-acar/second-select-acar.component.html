@@ -1,0 +1,60 @@
+<!-- Vehicle List Modal -->
+<app-generic-form [title]="selectedCustomer?.firstName" (closeModal)="closeMenu()">
+    <!-- Scrollable Content -->
+    <div class="flex-1 overflow-y-auto py-5 px-4 space-y-6 text-gray-800 dark:text-gray-100">
+        <div *ngIf="vehicles">
+            <app-generic-table
+            class="w-full"
+            [data]="vehicles"
+            [columns]="columns"
+            (rowSelected)="handleRowSelection($event)"
+            [showActions]="viewDeleteButton || viewUpdateButton"
+            [canUpdate]="viewUpdateButton"
+            [canDelete]="viewDeleteButton"
+            [canSelect]="true"
+            (updateClicked)="updateVehicle($event)"
+            (deleteClicked)="deleteVehicle($event)">
+            </app-generic-table>
+
+            <!-- Add New Car Button -->
+            <div *ngIf="viewAddCar" class="mt-4">
+                <button
+                (click)="openFormToAddCar()"
+                class="w-full sm:w-auto px-4 py-2 
+                    bg-blue-600 dark:bg-blue-500 
+                    hover:bg-blue-700 dark:hover:bg-blue-400 
+                    text-white cursor-pointer
+                    rounded transition-colors duration-300 ease-in-out">
+                <i class="bi bi-plus-lg mr-2"></i> Add New Car
+            </button>
+            
+            </div>
+
+            <!-- Add Car Form Section -->
+            <div *ngIf="isAddCarFormOpen">
+            <app-add-car-form
+                (closeForm)="isAddCarFormOpen = false"
+                (submitForm)="handleCarAdded($event)">
+            </app-add-car-form>
+            </div>
+
+            
+            <!-- Update Car Form Section -->
+            <div *ngIf="isUpdateFormOpen">
+                <app-add-car-form
+                    [carData]="this.selectedRowForUpdate"
+                    (closeForm)="isUpdateFormOpen = false"
+                    (submitForm)="handleCarAdded($event)">
+                </app-add-car-form>
+                </div>
+        </div>
+    </div>
+</app-generic-form>
+
+
+@if (showDeleteDialog) {
+    <app-delete-dialog
+    (submit)="onConfirm()"
+    (close)="onCancel()">
+</app-delete-dialog>
+}

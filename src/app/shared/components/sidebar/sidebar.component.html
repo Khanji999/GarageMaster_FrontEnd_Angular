@@ -1,8 +1,10 @@
 <!-- Sidebar Container -->
 <div class=" relative
 h-full
- bg-[#6B7C9D] w-full overflow-y-auto">
+bg-gradient-to-b from-[#6B7C9D] to-[#4A5A7A] dark:from-[#131212] dark:to-[#2A2A2A]
+dark:text-white w-full overflow-y-auto">
   <div> 
+      <!-- Toggle Button to close -->
       <span
       class="
       hidden
@@ -17,59 +19,48 @@ h-full
       <i class="bi bi-x-circle-fill text-[#212227]"></i>
       </span>
   </div>
+  <!-- Container -->
   <div class="w-[93%] m-auto mt-3">
     <!-- Header -->
-    <div class="py-2 text-center">
+    <div class="flex items-center gap-3 py-3">
       @if (tenant) {
-        <h1 class="dynamic-font ml-1 px-2 py-1">{{ tenant.name }}</h1>
+        <img [src]="imageUrl" alt="Tenant Logo" class="w-14 h-10 object-cover rounded shadow" />
+        <h1 class="text-2xl font-semibold">{{ tenant }}</h1>
       }
     </div>
-
-    
-
+    <!-- Line -->
     <div class="mx-2 my-4 bg-[#E2DAD6] h-[2px]"></div>
-
     <!-- Search Bar -->
-    <div class="m-2 p-2 flex items-center rounded-md duration-300 cursor-pointer bg-[#F5EDED]">
+    <div class="m-2 p-2 flex items-center rounded-md duration-300 cursor-pointer bg-[#F5EDED] ">
       <i class="bi bi-search text-sm mx-3"></i>
       <input type="text" placeholder="Search" class="text-[15px] focus:outline-none bg-transparent w-full" />
     </div>
-
     <!-- Dynamic Menu -->
     <ng-container *ngFor="let menu of menuTree">
       <!-- Parent Menu Item -->
       <div
-        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer"
-        [routerLink]="menu.children ? null : menu.route"
+        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-[#EBEBD3] dark:hover:bg-blue-500 dark:hover:text-black"
+        [routerLink]="menu.route"
         routerLinkActive="active-link"
         (click)="selectMenu(menu)"
-        [ngClass]="{ ' bg-[#212227] text-white': selectedRoute === menu.route,          
-                      'hover:bg-[#EBEBD3]': selectedRoute !== menu.route
-
-         }"
       >
         <!-- Menu Icon -->
-        <i class="bi" [ngClass]="menu.icon"></i>
-
+        <i class=" bi" [ngClass]="menu.icon" ></i>
         <!-- Menu Name -->
-        <span class="text-[15px] ml-4 font-bold">{{ menu.name }}</span>
+        <span class="text-[15px] ml-4 font-semibold">{{ menu.name }}</span>
 
         <!-- Dropdown Icon -->
-        <i *ngIf="menu.children" class="bi bi-chevron-down ml-auto"></i>
+      <i *ngIf="menu.children && menu.children.length > 0" class="bi bi-chevron-down ml-auto"></i>
       </div>
 
       <!-- Submenu Items (if expanded) -->
-      <ng-container *ngIf="menu.children && menu.expanded">
+      <ng-container *ngIf="menu.children && menu.expanded" class="">
         <div *ngFor="let submenu of menu.children" class="pl-8">
           <div
-            class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-[#EBEBD3]
+            class="p-2.5 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-[#EBEBD3] dark:hover:bg-blue-500 dark:hover:text-black
             "
             [routerLink]="submenu.route"
             routerLinkActive="active-link"
-            (click)="selectMenu(submenu)"
-            [ngClass]="{ ' bg-[#212227] text-white': selectedRoute === submenu.route ,
-                  'hover:bg-[#EBEBD3]': selectedRoute !== submenu.route
-              }"
           >
             <!-- Submenu Icon -->
             <i class="bi" [ngClass]="submenu.icon"></i>

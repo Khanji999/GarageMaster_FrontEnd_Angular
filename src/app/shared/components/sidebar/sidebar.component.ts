@@ -1,11 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import {  MenuDTO, TenantDTO } from '../../../core/services/callAPI/api.service';
-import { DynamicMenuService } from '../../../core/services/dynamicMenu/dynamic-menu.service';
+import {  ImageContro, MenuContro, MenuDTO, TenantContro, TenantDTO } from '../../../core/services/callAPI/api.service';
 import { RouterModule } from '@angular/router';
-import {  UserService } from '../../../core/services/userService/user-service.service';
-import { TenantService } from '../../../core/services/tenantService/tenant-service.service';
 import { SidebarStateService } from '../../../core/services/sidebarState/sidebar-state.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,51 +13,51 @@ import { SidebarStateService } from '../../../core/services/sidebarState/sidebar
 })
 export class SidebarComponent implements OnInit {
   menuTree?: MenuDTO[] ;
-  tenant?: TenantDTO; 
+  tenant: string | undefined ;
   selectedRoute?: string; 
   isSidebarOpen?: boolean;
+  imageUrl :any
 
-  constructor(private sidebarState: SidebarStateService, private menuService: DynamicMenuService ,public userService : UserService , private tenantService : TenantService ) {
+  constructor(private sidebarState: SidebarStateService,
+  private imageContr : ImageContro,
+  private menuContro: MenuContro , private tenantContro : TenantContro ) {
     this.sidebarState.isSidebarOpen$.subscribe((isOpen) => {
       this.isSidebarOpen = isOpen;
     });
   }
 
 
-  ngOnInit() {
-    this.tenantService.getTenant().subscribe(
-      (result : TenantDTO) => {
-        this.tenant = result; 
-      },
-      (error) => {
-        console.error('Error fetching tenant:', error); // Handle errors
+  ngOnInit() : void {
+  this.tenantContro.getCurrentTenant().subscribe(
+    (response) => {
+      this.tenant = response.result?.name;
+      if(this.tenant) {
+      this.downloadImage(this.tenant);
       }
-    );
+    } 
+  );
 
-    this.menuService.getMenu().subscribe(
-      (menuTree: MenuDTO[]) => {
-      // Initialize the `expanded` property for menu items with children
-      this.menuTree = menuTree.map(menu => {
-        if (menu.children) {
-          menu.expanded = false; 
-        }
-        return menu;
-      });
-    });  
-  }
+
+  this.menuContro.getMenu().subscribe((menuTree) => {
+    this.menuTree = menuTree.result
+  });
+}
   
   toggleSidebar() {
     this.sidebarState.toggleSidebar();
   }
 
   selectMenu(menu: MenuDTO) {
-    if (menu.children) {
       menu.expanded = !menu.expanded; // Toggle submenu visibility
-    } else {
-      this.selectedRoute = menu.route || undefined; // Set selected route
-    }
   }
-  // Toggle submenu expansion
 
-
+  downloadImage(name: string): void {
+    this.imageContr.download(name + ".jpg").subscribe(
+      (response) => {
+        const objectURL = URL.createObjectURL(response.data);
+        this.imageUrl = objectURL;
+      }
+    );
+  }
+  
 }

@@ -1,0 +1,112 @@
+<app-generic-form [title]="title" [showBackButton]="true"
+(closeModal)="closeMenu()" (clickBackButton)="back()">
+   <!-- Maintenance Card -->
+    <div class="relative p-4 space-y-4">
+        <!-- Row-1 -->
+        <form [formGroup]="form">
+            <h3 class="text-lg font-bold text-black dark:text-[#eee] mb-3">Service</h3>
+            <div class="flex flex-wrap gap-4">
+                    <!-- Service Type -->
+                    <div class="flex-1 min-w-[250px]">
+                        <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Service Type</label>
+                        <select class="px-3 py-2 
+                        w-full
+                        text-md text-gray-800 dark:text-gray-100
+                        bg-white dark:bg-[#2a2b2f] 
+                        rounded border border-gray-300 dark:border-gray-700 
+                        focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none
+                        transition-all duration-200"
+                                formControlName="serviceType">
+                        <option value="" disabled selected>Select a serviceType</option>
+                        <option *ngFor="let serT of servicetypes" [value]="serT.id">
+                            {{ serT.name }}
+                        </option>
+                        </select>
+                    </div>
+                    <!-- Service -->
+                    <div  class="flex-1 min-w-[250px]">
+                        <label  class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Service</label>
+                        <select class="px-3 py-2 
+                            w-full
+                            text-md text-gray-800 dark:text-gray-100
+                            bg-white dark:bg-[#2a2b2f] 
+                            rounded border border-gray-300 dark:border-gray-700 
+                            focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none 
+                            transition-all duration-200"
+                            formControlName="service"           
+                            (change)="onServiceSelect($event)">
+                            <option value="" disabled selected>Select a Service</option>
+                            <option *ngFor="let serv of services" [ngValue]="serv">
+                            {{ serv.name }}
+                            </option>
+                        </select>
+                    </div>
+            </div>
+        </form>
+
+        <h3 class="text-lg font-bold text-black dark:text-[#eee] mb-3">Selected Services</h3>
+        <div class="overflow-x-auto">
+
+        <table class="min-w-full table-auto border-collapse border border-gray-300">
+            <thead>
+            <tr class="border border-blue-800 dark:border-gray-800
+            bg-[#6B7C9D] text-black dark:bg-[#131212] dark:text-white ">
+                <th class="p-2 text-center font-medium tracking-wider">Service Name</th>
+                <th class="p-2 text-center font-medium tracking-wider">Cost</th>
+                <th class="p-2 text-center font-medium tracking-wider">Employee</th>
+                <th class="p-2 text-center font-medium tracking-wider">Selected Employees</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr 
+            class="border border-blue-800 dark:border-gray-800 
+              bg-white dark:bg-[#F9F6EE] 
+              text-center text-sm font-medium text-gray-700 tracking-wider
+              "
+       *ngFor="let service of selectedServices; let i = index">
+              <td class="border border-gray-300 px-4 py-2">{{ service.name  }}</td>
+              <td class="border border-gray-300 px-4 py-2">
+                  <input type="number" [(ngModel)]="costs[i]" min="0" 
+                  class="w-full p-2
+                  py-3 text-gray-800 dark:text-gray-100 bg-white dark:bg-[#2a2b2f] rounded-lg border border-gray-300 dark:border-gray-600 focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none shadow-sm transition-all duration-200"
+                  />
+              </td>
+              <td class="border border-gray-300 px-4 py-2">
+                <select 
+                  (change)="onEmployeeSelect($event, i)" 
+                  class="         
+                  w-full              
+                  p-2
+                  py-3
+                  text-md text-gray-800 dark:text-gray-100
+                  bg-white dark:bg-[#2a2b2f] 
+                  rounded-md border border-gray-300 dark:border-gray-700 
+                  focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none
+                  transition-all duration-200"
+                >
+                  <option value="">Select an Employee</option>
+                  <option *ngFor="let emp of Employees" [value]="emp.id">
+                    {{ emp.firstName }} {{ emp.fatherName }} {{ emp.lastName }}
+                  </option>
+                </select>
+              </td>
+              <td class="border border-gray-300 px-4 py-2">
+                  <div *ngFor="let emp of selectedEmployees[i]" class="text-sm">
+                    ✅ {{ emp.firstName }} {{ emp.fatherName }} {{ emp.lastName }}
+                  </div>
+                <div *ngIf="!selectedEmployees[i]?.length">
+                  <span class="text-gray-400">No employees selected</span>
+                </div>
+              </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+          <button
+          class="cursor-pointer
+          w-full p-2 bg-blue-600 dark:bg-blue-800 dark:hover:bg-blue-600 hover:bg-blue-800  text-white rounded transition-colors duration-200"
+          (click)="sendData()">
+              send
+          </button>
+    </div>
+</app-generic-form>

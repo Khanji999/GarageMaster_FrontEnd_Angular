@@ -1,0 +1,11 @@
+/* Default row styles */
+tr {
+transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect: Smooth background fade and soft highlight */
+tr:hover {
+box-shadow: 0 0 8px rgba(107, 173, 231, 0.4); /* Soft highlight with a glow effect */
+}
+
+

@@ -1,0 +1,340 @@
+<app-generic-form [title]="'Add New Employee'" (closeModal)="closeFormAndDestroy()">
+    <form class="p-2" [formGroup]="form">
+        <!-- First Row -->
+        <div class="mb-6">
+            <h3 class="text-lg font-bold text-black dark:text-[#eee] mb-3">Employee Information</h3>
+            <div class="flex flex-wrap gap-2">
+                <div class="flex-1 min-w-[200px]">
+                    <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">First Name</label>
+                    <input  placeholder="Enter Employee's First Name"
+                    class="px-3 py-2 
+                    text-md text-gray-800 dark:text-gray-100
+                    input-class w-full 
+                    bg-white dark:bg-[#2a2b2f] 
+                    rounded border border-gray-300 dark:border-gray-700 
+                    focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"                     
+                    formControlName="firstName">
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['firstName'].invalid && form.controls['firstName'].touched">
+                    Please Enter Employee's First Name
+                    </p>
+                </div>
+
+                <div class="flex-1 min-w-[200px]">
+                    <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Father Name</label>
+                    <input  placeholder="Enter Employee's Father Name"
+                    class="px-3 py-2 
+                    text-md text-gray-800 dark:text-gray-100
+                    input-class w-full 
+                    bg-white dark:bg-[#2a2b2f] 
+                    rounded border border-gray-300 dark:border-gray-700 
+                    focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"        
+                    formControlName="fatherName">
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['fatherName'].invalid && form.controls['fatherName'].touched">
+                        Please Enter Employee's Father Name
+                    </p>
+                </div>
+
+                <div class="flex-1 min-w-[200px]">
+                    <label  class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Last Name</label>
+                    <input  placeholder="Enter Employee's Last Name"
+                    class="px-3 py-2 
+                    text-md text-gray-800 dark:text-gray-100
+                    input-class w-full 
+                    bg-white dark:bg-[#2a2b2f] 
+                    rounded border border-gray-300 dark:border-gray-700 
+                    focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"                              formControlName="lastName">
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['lastName'].invalid && form.controls['lastName'].touched">
+                    Please Enter Employee's Last Name
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <h3 class="text-lg font-bold text-black dark:text-[#eee] mb-3">Employee Information</h3>
+            <div class="flex flex-wrap gap-2">
+                <div class="flex-1 min-w-[200px]">
+                    <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Username</label>
+                    <div class="flex gap-4">
+                    <input  placeholder="Enter Employee Username"
+                    class="px-3 py-2 
+                    text-md text-gray-800 dark:text-gray-100
+                    input-class w-[50%]
+                    bg-white dark:bg-[#2a2b2f] 
+                    rounded border border-gray-300 dark:border-gray-700 
+                    focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"                     
+                    formControlName="userName">
+                    <p class="text-blue-500 text-sm mt-2" *ngIf="currentUserName">
+                        The Username will be : {{ currentUserName }}&#64;ExpertVehicle
+                    </p>
+                    </div>
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['userName'].errors?.['required'] && form.controls['userName'].touched">
+                        Please Enter Employee Username
+                    </p>
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['userName'].errors?.['pattern'] && form.controls['userName'].touched">
+                        Special characters are not allowed.
+                    </p>
+                </div>
+                
+            </div>
+        </div>
+        <div class="mb-2">
+            <div class="flex flex-wrap gap-2">
+                <div class="flex-1 min-w-[200px]">
+                    <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Password</label>
+                    <div class="relative">
+                        <input  placeholder="Enter Password"
+                        [type]="showPassword ? 'text' : 'password'" 
+                        class="px-3 py-2 
+                        text-md text-gray-800 dark:text-gray-100
+                        input-class w-full 
+                        bg-white dark:bg-[#2a2b2f] 
+                        rounded border border-gray-300 dark:border-gray-700 
+                        focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"                     
+                        formControlName="password">
+                        <button type="button" (click)="togglePassword()" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-600">
+                            <span *ngIf="!showPassword"><i class="bi bi-eye-fill"></i></span>
+                            <span *ngIf="showPassword"><i class="bi bi-eye-slash-fill"></i></span>
+                        </button>
+                    </div>
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['password'].errors?.['required'] && form.controls['password'].touched">
+                    Please Enter Password
+                    </p>
+                </div>
+                <div class="flex-1 min-w-[200px]">
+                    <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Confirm Password</label>
+                    <div class="relative">
+                        <input  placeholder="Enter Confirm Password"
+                        [type]="showPassword ? 'text' : 'password'" 
+                        class="px-3 py-2 
+                        text-md text-gray-800 dark:text-gray-100
+                        input-class w-full 
+                        bg-white dark:bg-[#2a2b2f] 
+                        rounded border border-gray-300 dark:border-gray-700 
+                        focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"                     
+                        formControlName="confirmPassword">
+                        <button type="button" (click)="togglePassword()" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-600">
+                            <span *ngIf="!showPassword"><i class="bi bi-eye-fill"></i></span>
+                            <span *ngIf="showPassword"><i class="bi bi-eye-slash-fill"></i></span>
+                        </button>
+                    </div>
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['confirmPassword'].errors?.['required']  && form.controls['confirmPassword'].touched">
+                    Please Enter Confirm Password
+                    </p>
+                </div>
+            </div>
+        </div>
+        <p class="text-red-500 text-sm my-3"
+        *ngIf="form.controls['confirmPassword'].errors?.['passwordMismatch'] && form.controls['confirmPassword'].touched">
+        Passwords do not match.
+        </p>
+        <div class="mb-6">
+            <div class="flex flex-wrap gap-4">
+                <!-- Role -->
+                <div class="flex-1 min-w-[250px]">
+                    <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Role</label>
+                    <select class="px-3 py-2 
+                    w-[50%]
+                    text-md text-gray-800 dark:text-gray-100
+                    bg-white dark:bg-[#2a2b2f] 
+                    rounded border border-gray-300 dark:border-gray-700 
+                    focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                            formControlName="role">
+                    <option value="" disabled selected>Select a Role</option>
+                    <option *ngFor="let role of roles" [value]="role.id">
+                        {{ role.name }}
+                    </option>
+                    </select>
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['role'].invalid && form.controls['role'].touched">
+                    Please select a Role.
+                    </p>
+                </div>
+            </div>
+
+            
+        </div>
+        <div class="mb-6">
+            <div class="flex flex-wrap gap-4">
+                <div class="flex-1 min-w-[250px]">
+                    <label  class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Phone Number</label>
+                    <ngx-intl-tel-input
+                    [cssClass]="classC" 
+                    [enableAutoCountrySelect]="false"
+                    [preferredCountries]="preferredCountries"
+                    [enablePlaceholder]="true"
+                    [searchCountryFlag]="true"
+                    [maxLength]="15"
+                    [phoneValidation]="true"
+                    [separateDialCode]="separateDialCode"
+                    [selectedCountryISO]="CountryISO.Lebanon"
+                    formControlName="phoneNumber"
+                >
+                    </ngx-intl-tel-input>
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['phoneNumber'].invalid && form.controls['phoneNumber'].touched">
+                    Please Enter Employee's Phone Number or a Valid Number
+                    </p>
+                </div>
+            </div>
+            @if(form.controls['phoneNumber'].value){
+                <p class="text-blue-500 text-sm mt-2">               
+                    Employee Phone Number: {{ form.controls['phoneNumber'].value?.nationalNumber }}
+                </p>
+            }
+        </div>
+        <div class="mb-6 flex gap-4">
+        <!-- Male Radio Button -->
+        <label class="flex items-center gap-2 cursor-pointer dark:text-white">
+            <input type="radio" formControlName="theGender" value="Male" class="hidden" />
+            <span class="w-5 h-5 border-2 border-gray-700 rounded-full flex items-center justify-center">
+            <span
+                *ngIf="form.get('theGender')?.value === 'Male'"
+                class="w-3 h-3 bg-gray-700 dark:bg-gray-300 rounded-full"
+            ></span>
+        </span>
+        Male
+        </label>
+
+        <!-- Female Radio Button -->
+        <label class="flex items-center gap-2 cursor-pointer dark:text-white">
+            <input type="radio" formControlName="theGender" value="Female" class="hidden"  />
+            <span class="w-5 h-5 border-2 border-gray-700 rounded-full flex items-center justify-center">
+            <span
+                *ngIf="form.get('theGender')?.value === 'Female'"
+                class="w-3 h-3 bg-gray-700 dark:bg-gray-300 rounded-full"
+            ></span>
+        </span>
+        Female
+        </label>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-lg font-bold text-black dark:text-[#eee] mb-3">Employee Nationality</h3>
+                <div class="flex-1 min-w-[250px]">
+                    <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Country</label>
+                    <select class="px-3 py-2 
+                    w-full
+                    text-md text-gray-800 dark:text-gray-100
+                    bg-white dark:bg-[#2a2b2f] 
+                    rounded border border-gray-300 dark:border-gray-700 
+                    focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                            formControlName="nationality">
+                    <option value="" disabled selected>Select a country</option>
+                    <option *ngFor="let nat of nationalities" [value]="nat.id">
+                        {{ nat.name }}
+                    </option>
+                    <option>+ Add New Nationality</option>
+                    </select>
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['nationality'].invalid && form.controls['nationality'].touched">
+                    Please select a nationality.
+                    </p>
+                </div>
+        </div>
+        <div class="mb-6">
+            <h3 class="text-lg font-bold text-black dark:text-[#eee] mb-3">Employee Address</h3>
+
+            <div class="flex flex-wrap gap-4">
+                <!-- Country -->
+                <div class="flex-1 min-w-[250px]">
+                    <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Country</label>
+                    <select class="px-3 py-2 
+                    w-full
+                    text-md text-gray-800 dark:text-gray-100
+                    bg-white dark:bg-[#2a2b2f] 
+                    rounded border border-gray-300 dark:border-gray-700 
+                    focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                            formControlName="country">
+                    <option value="" disabled selected>Select a country</option>
+                    <option *ngFor="let country of countries" [value]="country.id">
+                        {{ country.name }}
+                    </option>
+                    <option>+ Add New Country</option>
+                    </select>
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['country'].invalid && form.controls['country'].touched">
+                    Please select a country.
+                    </p>
+                </div>
+                <!-- City -->
+                <div class="flex-1 min-w-[250px]">
+                    <label  class="block text-sm font-medium text-black dark:text-gray-400 mb-2">City</label>
+                    <select class="px-3 py-2 
+                    w-full
+                    text-md text-gray-800 dark:text-gray-100
+                    bg-white dark:bg-[#2a2b2f] 
+                    rounded border border-gray-300 dark:border-gray-700 
+                    focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                            formControlName="city">
+                    <option value="" disabled selected>Select a City</option>
+                    <option *ngFor="let city of cities" [value]="city.id">
+                        {{ city.name }}
+                    </option>
+                    <option>+ Add New City</option>
+                    </select>
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['city'].invalid && form.controls['city'].touched">
+                    Please select a city.
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-4 my-4">
+                <!-- District -->
+                <div class="flex-1 min-w-[250px]">
+                    <label  class="block text-sm font-medium text-black dark:text-gray-400 mb-2">District</label>
+                    <select class="px-3 py-2 
+                    w-full
+                    text-md text-gray-800 dark:text-gray-100
+                    bg-white dark:bg-[#2a2b2f] 
+                    rounded border border-gray-300 dark:border-gray-700 
+                    focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                            formControlName="District">
+                    <option value="" disabled selected>Select a District</option>
+                    <option *ngFor="let District of districts" [value]="District.id">
+                        {{ District.name }}
+                    </option>
+                    <option>+ Add New District</option>
+                    </select>
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['District'].invalid && form.controls['District'].touched">
+                    Please select a District.
+                    </p>
+                </div>
+                <!-- Street -->
+                <div class="flex-1 min-w-[250px]">
+                    <label  class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Street</label>
+                    <select class="px-3 py-2 
+                    w-full
+                    text-md text-gray-800 dark:text-gray-100
+                    bg-white dark:bg-[#2a2b2f] 
+                    rounded border border-gray-300 dark:border-gray-700 
+                    focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                            formControlName="street">
+                    <option value="" disabled selected>Select a Street</option>
+                    <option *ngFor="let street of streets" [value]="street.id">
+                        {{ street.name }}
+                    </option>
+                    <option>+ Add New Street</option>
+                    </select>
+                    <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['street'].invalid && form.controls['street'].touched">
+                    Please select a Street.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- Submit % Close buttons -->
+    <div class="flex justify-end mt-6 gap-4">
+        <button (click)="submit()"
+                class="p-3 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-600 transition">
+            Submit
+        </button>
+        <button (click)="closeFormAndDestroy()"
+                class="p-3 bg-red-500 text-white rounded-lg font-semibold hover:bg-red-600 transition">
+            Cancel
+        </button>
+    </div>
+</app-generic-form> 
+
+@if (showConfirm) {
+    <app-open-confirmation-dialog-generic 
+    *ngIf="showConfirm"
+    [title]="'Are you sure you want to submit this Employee?'"
+    (submit)="onConfirm()"
+    (close)="onCancel()">
+</app-open-confirmation-dialog-generic>
+}

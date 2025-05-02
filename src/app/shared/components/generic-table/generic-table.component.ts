@@ -14,7 +14,8 @@ export class GenericTableComponent {
   @Input() showActions: boolean = false; 
   @Input() canUpdate: boolean = false;
   @Input() canDelete: boolean = false;
-
+  @Input() canSelect: boolean = false;
+  
   @Output() updateClicked = new EventEmitter<any>();
   @Output() deleteClicked = new EventEmitter<any>();
   @Output() rowSelected = new EventEmitter<any>(); 

@@ -1,0 +1,21 @@
+<div class="fixed inset-0 z-99 flex items-center justify-center bg-black/50 p-4">
+    <div class="bg-white dark:bg-[#212227] rounded-lg shadow-lg w-full max-w-sm sm:max-w-md p-6 animate-fadeIn">
+        
+        <h2 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Are you sure you want to delete it?</h2>
+    
+        <div class="flex justify-end space-x-3">
+            <button 
+                class="px-4 py-2 rounded bg-gray-300 dark:bg-gray-700 dark:text-white hover:bg-gray-400 dark:hover:bg-gray-600 transition"
+                (click)="onClose()">
+                Cancel
+            </button>
+        
+            <button 
+                class="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 transition"
+                (click)="onSubmit()">
+                Confirm
+            </button>
+            </div>
+
+    </div>  
+</div>  

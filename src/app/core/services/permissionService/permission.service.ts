@@ -11,10 +11,11 @@ export class PermissionService {
 constructor(private rolePermssionContro : RolePermssionContro ) {}
 
   // make a request from backend and save them in local storage using this form : controller-function
-  getUserPermissions(): Observable<RolePermissionWithDetailsDTO[]> {
-  return this.rolePermssionContro.getPermissionsUsingRoleID().pipe(
-      tap((permissions) => {
-          const formattedPermissions = permissions.map(p => 
+  getUserPermissions(): Observable<any> {
+    return this.rolePermssionContro.getPermissionsUsingRoleID().pipe(
+      tap((response : any) => {
+          const permissions = response.result;
+          const formattedPermissions = permissions.map((p: any) => 
             `${p.controller?.controllerName}-${p.permission?.name}`
           );
           localStorage.setItem('permissions', JSON.stringify(formattedPermissions));

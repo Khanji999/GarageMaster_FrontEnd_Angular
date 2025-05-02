@@ -1,0 +1,95 @@
+<!-- Vehicle Details Modal -->
+@if(selectedVehicle){
+<app-generic-form [title]="'Selected Vehicle'" [showBackButton]="true"
+(closeModal)="closeMenu()" (clickBackButton)="back()">
+    <!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-6 space-y-6">
+    <!-- Grid Layout -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 ">
+        <!-- Column 1 -->
+        <div class="space-y-4">
+        <div class="bg-gray-200 dark:bg-[#131212] p-3 rounded-lg">
+            <p class="text-md font-bold text-black dark:text-gray-500">VIN</p>
+            <p class="text-lg text-black dark:text-white">{{ selectedVehicle.vin ?? 'Not Found' }}</p>
+        </div>
+        <div class="bg-gray-200 dark:bg-[#131212] p-3 rounded-lg">
+            <p class="text-md font-bold text-black dark:text-gray-500">Brand</p>
+            <p class="text-lg text-black dark:text-white">{{ selectedVehicle.vehicleModel?.vehicleBrand?.name ?? 'Not Found' }}</p>
+        </div>
+        <div class="bg-gray-200 dark:bg-[#131212] p-3 rounded-lg">
+            <p class="text-md font-bold text-black dark:text-gray-500">Model</p>
+            <p class="text-lg  text-black dark:text-white">{{ selectedVehicle.vehicleModel?.name ?? 'Not Found' }}</p>
+        </div>
+        <div class="bg-gray-200 dark:bg-[#131212] p-3 rounded-lg">
+            <p class="text-md font-bold text-black dark:text-gray-500">Year</p>
+            <p class="text-lg  text-black dark:text-white">{{ selectedVehicle.yearModel ?? 'Not Found' }}</p>
+        </div>
+        <div class="bg-gray-200 dark:bg-[#131212] p-3 rounded-lg">
+            <p class="text-md font-bold text-black dark:text-gray-500">Transmission</p>
+            <p class="text-lg dark:text-white">{{ selectedVehicle.transmission?.name }} - {{ selectedVehicle.transmission?.letters }}</p>
+        </div>
+        <div class="bg-gray-200 dark:bg-[#131212] p-3 rounded-lg">
+            <p class="text-md font-bold text-black dark:text-gray-500">Charger</p>
+            <p class="text-lg  text-black dark:text-white">{{ selectedVehicle.engineCharger?.engineChargerName ?? 'Not Found' }}</p>
+        </div>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="space-y-4">
+        <div class="bg-gray-200 dark:bg-[#131212] p-3 rounded-lg">
+            <p class="text-md font-bold text-black dark:text-gray-500">Engine</p>
+            <p class="text-lg  text-black dark:text-white">
+            {{ selectedVehicle.engineStructure?.engineType ?? 'Not Found -' }} 
+            {{ selectedVehicle.numberOfCylinders ?? 'Not Found' }} Cylinders
+            </p>
+        </div>
+        <div class="bg-gray-200 dark:bg-[#131212] p-3 rounded-lg">
+            <p class="text-md font-bold text-black dark:text-gray-500">Fuel</p>
+            <p class="text-lg  text-black dark:text-white">{{ selectedVehicle.engineFuel?.engineFuelType ?? 'Not Found' }}</p>
+        </div>
+        <div class="bg-gray-200 dark:bg-[#131212] p-3 rounded-lg">
+            <p class="text-md font-bold text-black dark:text-gray-500">Plate Letter & Number</p>
+            <p class="text-lg  text-black dark:text-white">
+            {{ selectedVehicle.customerVehiclePlates?.[0]?.plate?.letters ?? 'Not Found' }} - 
+            {{ selectedVehicle.customerVehiclePlates?.[0]?.plate?.numbers ?? 'Not Found'}}
+            </p>
+        </div>
+        <div class="bg-gray-200 dark:bg-[#131212] p-3 rounded-lg">
+            <p class="text-md font-bold text-black dark:text-gray-500">Color</p>
+            <p class="text-lg  text-black dark:text-white">{{ selectedVehicle.customerVehicleColors?.[0]?.color?.name ?? 'Not Found' }}</p>
+        </div>
+        <div class="bg-gray-200 dark:bg-[#131212] p-3 rounded-lg">
+            <p class="text-md font-bold text-black dark:text-gray-500">Transmission Number Of Gears</p>
+            <p class="text-lg  text-black dark:text-white">{{ selectedVehicle.transmissionGears ?? 'Not Found' }}</p>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="w-full flex flex-col justify-center gap-3 py-2 px-4 rounded-lg shadow ">
+    <form [formGroup]="form">
+        <div class="mb-4">
+        <label for="km" class="block text-md font-bold text-black dark:text-[#eee]">Kilometers</label>
+        <input
+            id="km"
+            formControlName="km"
+            placeholder="Enter KM"
+            type="number"
+            min
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm bg-white dark:bg-[#2a2b2f] text-black dark:text-white focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+        />
+        <div *ngIf="form.get('km')?.invalid && form.get('km')?.touched" class="text-red-500 text-md mt-1">
+            KM is required.
+        </div>
+        </div>
+        <button
+        class="  cursor-pointer
+        w-full p-2 bg-blue-600 dark:bg-blue-800 dark:hover:bg-blue-600 hover:bg-blue-800  text-white rounded transition-colors duration-200"
+        (click)="addNewMaint()">
+        Open A New Maintenance Card
+        </button>
+    </form> 
+    </div>
+</app-generic-form>
+}

@@ -1,37 +1,91 @@
-<app-image-background
-    [largeImage] = "imagePaths.mechanicWorking14"
-    [smallImage] = "imagePaths.mechanicWorking12">
-</app-image-background>
-
-<form [formGroup]="form" class="content" (ngSubmit)="onSubmit()">
-    <div class="container p-3">
-        <div class="row justify-content-center">
-            <div class="col-12">
-                <div class="form-group group mb-3">
-                    <div *ngIf="submitted && form.invalid" class="alert alert-danger mb-3">
-                        Please fill in all required fields correctly.
-                    </div>
-                    <label for="username" class="form-label">Username</label>
-                    <input id="username" type="text" class="form-control bg-body-secondary" 
-                        placeholder="Enter your Username" formControlName="userName">
-                        <div class="text-danger" *ngIf="form.get('userName')?.hasError('required') && form.get('userName')?.touched ">
-                            Username is required.
-                        </div>
-                </div>
-                <div class="group form-group mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input id="password" type="password" class="form-control bg-body-secondary" 
-                        placeholder="Enter your Password" formControlName="password">
-                        <div class="text-danger" *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
-                            Password is required.
-                        </div>
-                </div>
-                <div class="form-group mb-3">
-                    <button type="submit" class="btn btn-success w-100 round-3">
-                        Submit
-                    </button>
-                </div>
+<div class="min-h-screen bg-gradient-to-br from-[#FAFAFA] to-[#E2E8F0] dark:from-[#121212] dark:to-[#2D3748] flex items-center justify-center p-4 perspective-1000 overflow-hidden">
+<!-- Main 3D Card -->
+<div class="relative w-full max-w-md transform transition-all duration-700 hover:rotate-y-6 group">
+    <!-- 3D Card Container -->
+    <div class="bg-white dark:bg-[#212121] rounded-2xl shadow-3d overflow-hidden transition-all duration-500 group-hover:shadow-2xl">
+    
+    <!-- Floating 3D Elements -->
+    <div class="absolute -top-8 -left-8 w-20 h-20 bg-[#6B7C9D] dark:bg-[#4A5568] rounded-full opacity-20 transform rotate-45"></div>
+    <div class="absolute -bottom-6 -right-6 w-16 h-16 bg-[#6B7C9D] dark:bg-[#4A5568] rounded-lg opacity-20 transform -rotate-12"></div>
+    
+    <!-- Login Content -->
+    <div class="p-8 relative z-10">
+        <!-- Logo/Header with 3D effect -->
+        <div class="flex justify-center mb-8">
+        <div class="relative">
+            <div class="w-16 h-16 bg-[#6B7C9D] dark:bg-[#4A5568] rounded-lg flex items-center justify-center text-white text-2xl font-bold transform rotate-3 shadow-lg">
+            GM
+            </div>
+            <div class="absolute inset-0 border-2 border-white dark:border-[#4A5568] rounded-lg transform -rotate-3 translate-x-1 translate-y-1 opacity-70"></div>
+        </div>
+        </div>
+        
+        <h2 class="text-3xl font-bold text-center text-gray-800 dark:text-white mb-1">Welcome Back</h2>
+        <p class="text-center text-gray-600 dark:text-gray-300 mb-8">Sign in to your account</p>
+        
+        <!-- Login Form -->
+        <form class="space-y-6" [formGroup]="form" >
+        <!-- Email Input with 3D effect -->
+        <div class="relative">
+            <div class="absolute inset-0 bg-[#6B7C9D] dark:bg-[#4A5568] rounded-lg transform translate-x-1 translate-y-1 opacity-20"></div>
+            <div class="relative bg-white dark:bg-[#2D3748] rounded-lg border border-gray-200 dark:border-gray-700 px-4 py-3 focus-within:ring-2 focus-within:ring-[#6B7C9D] focus-within:border-transparent">
+            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 ">Email</label>
+            <input 
+                type="email" 
+                id="email" 
+                autocomplete="off"
+                class="w-full outline-none bg-transparent border-0 p-0 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-0 sm:text-sm "
+                placeholder="you@example.com"
+                formControlName="userName"
+            >
             </div>
         </div>
+        
+        <!-- Password Input with 3D effect -->
+        <div class="relative">
+            <div class="absolute inset-0 bg-[#6B7C9D] dark:bg-[#4A5568] rounded-lg transform translate-x-1 translate-y-1 opacity-20"></div>
+            <div class="relative bg-white dark:bg-[#2D3748] rounded-lg border border-gray-200 dark:border-gray-700 px-4 py-3 focus-within:ring-2 focus-within:ring-[#6B7C9D] focus-within:border-transparent">
+            <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
+            <input 
+                type="password" 
+                id="password" 
+                autocomplete="off"
+                class="w-full bg-transparent border-0 p-0 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-0 sm:text-sm outline-none"
+                placeholder="••••••••"
+                formControlName="password"
+            >
+            </div>
+        </div>
+        
+        <!-- Remember Me & Forgot Password -->
+        <div class="flex items-center justify-between">
+            <div class="flex items-center">
+            <input 
+                id="remember-me" 
+                name="remember-me" 
+                type="checkbox" 
+                class="h-4 w-4 text-[#6B7C9D] focus:ring-[#6B7C9D] border-gray-300 dark:border-gray-600 rounded"
+            >
+            <label for="remember-me" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">Remember me</label>
+            </div>
+            <div class="text-sm">
+            <a href="#" class="font-medium text-[#6B7C9D] hover:text-[#4A5A7A] dark:text-[#A0AEC0] dark:hover:text-white">Forgot password?</a>
+            </div>
+        </div>
+        
+        <!-- Submit Button with 3D Press Effect -->
+        <div class="relative">
+            <div class="absolute inset-0 bg-[#4A5A7A] dark:bg-[#2D3748] rounded-lg transform translate-y-1 group-hover:translate-y-1.5 transition-transform"></div>
+            <button 
+            type="submit" 
+            class="relative w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-[#6B7C9D] hover:bg-[#4A5A7A] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6B7C9D] transform transition-all active:translate-y-1"
+            (click)="onSubmit()"
+            >
+            Sign in
+            </button>
+        </div>
+        </form>
     </div>
-</form>
+    </div>
+</div>
+</div>

@@ -15,5 +15,5 @@ export class ImageService {
     };
     return this.imageContro.upload(fileParam); 
   }
-
+  
 }

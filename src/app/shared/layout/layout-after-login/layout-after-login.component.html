@@ -3,7 +3,7 @@
   <!-- Sidebar Container -->
   <div
     class="
-      md:flex-[0.3] lg:flex-[0.28] xl:flex-[0.22]
+      md:flex-[0.4] lg:flex-[0.28] xl:flex-[0.22]
       hidden md:block
       for-mobile
       overflow-y-auto 
@@ -15,30 +15,29 @@
   </div>
 
   <!-- Main Content Area -->
-  <div class="flex flex-1 flex-col overflow-y-auto"> 
+ <!-- Main Content Area -->
+  <div class="flex flex-1 flex-col h-screen overflow-y-auto"> 
     <!-- Header -->
-    <div class="sticky top-0 z-20 w-full">
+    <div class="top-0 z-20 w-full">
       <div>
         <span
-        class="
-        mobile 
-        text-white
-        hidden absolute text-4xl top-2 left-2"
-        appHoverScale 
-        (click)="toggleSidebar()"
+          class="mobile text-white hidden absolute text-4xl top-2 left-2"
+          appHoverScale 
+          (click)="toggleSidebar()"
         >
-        <i class="bi-filter-left px-2 rounded-md"></i>
+          <i class="bi-filter-left px-2 rounded-md"></i>
         </span>
       </div>
       <app-navbar-after-login></app-navbar-after-login>
     </div>
 
-    <!-- Content -->
-    <div class="bg-[#ECF0F1] flex-1"> 
-      <router-outlet></router-outlet>
-
+    <!-- Centered Content Area -->
+    <div class="bg-[#ECF0F1] flex-1 p-4 ">
+        <router-outlet></router-outlet>
     </div>
 
-      <app-footer></app-footer>
+    <app-footer></app-footer>
   </div>
+
+  
 </div>

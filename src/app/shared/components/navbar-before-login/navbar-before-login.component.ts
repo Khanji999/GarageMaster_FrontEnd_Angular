@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { IMAGE_PATHS } from '../../../core/services/imagesPath/images-path.service';
 import { RouterLink, RouterModule } from '@angular/router';
 import { HoverScaleDirective } from '../../directives/hoverScale/hover-scale.directive';
 
@@ -10,6 +9,5 @@ import { HoverScaleDirective } from '../../directives/hoverScale/hover-scale.dir
   styleUrl: './navbar-before-login.component.scss'
 })
 export class NavbarBeforeLoginComponent {
-  imagePaths = IMAGE_PATHS;
 
 }

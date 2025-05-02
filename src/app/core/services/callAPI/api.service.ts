@@ -32,7 +32,7 @@ export class CityContro {
      * @param countryid (optional) 
      * @return OK
      */
-    getAllCitiesByCountryID(countryid: number | undefined, httpContext?: HttpContext): Observable<CityDTO[]> {
+    getAllCitiesByCountryID(countryid: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CityContro/GetAllCitiesByCountryID?";
         if (countryid === null)
             throw new Error("The parameter 'countryid' cannot be null.");
@@ -56,14 +56,14 @@ export class CityContro {
                 try {
                     return this.processGetAllCitiesByCountryID(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<CityDTO[]>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<CityDTO[]>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processGetAllCitiesByCountryID(response: HttpResponseBase): Observable<CityDTO[]> {
+    protected processGetAllCitiesByCountryID(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -74,14 +74,7 @@ export class CityContro {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (Array.isArray(resultData200)) {
-                result200 = [] as any;
-                for (let item of resultData200)
-                    result200!.push(CityDTO.fromJS(item));
-            }
-            else {
-                result200 = <any>null;
-            }
+            result200 = ApiResponse_1OfOfIEnumerable_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -319,7 +312,7 @@ export class CityContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CityContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -332,6 +325,7 @@ export class CityContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -342,14 +336,14 @@ export class CityContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -358,7 +352,10 @@ export class CityContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -372,7 +369,7 @@ export class CityContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: CityDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: CityDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CityContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -385,6 +382,7 @@ export class CityContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -395,14 +393,14 @@ export class CityContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -411,7 +409,10 @@ export class CityContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -662,7 +663,7 @@ export class ColorContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/ColorContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -675,6 +676,7 @@ export class ColorContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -685,14 +687,14 @@ export class ColorContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -701,7 +703,10 @@ export class ColorContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -715,7 +720,7 @@ export class ColorContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: ColorDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: ColorDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/ColorContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -728,6 +733,7 @@ export class ColorContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -738,14 +744,14 @@ export class ColorContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -754,7 +760,10 @@ export class ColorContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -1005,7 +1014,7 @@ export class CountryContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CountryContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -1018,6 +1027,7 @@ export class CountryContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -1028,14 +1038,14 @@ export class CountryContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1044,7 +1054,10 @@ export class CountryContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -1058,7 +1071,7 @@ export class CountryContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: CountryDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: CountryDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CountryContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1071,6 +1084,7 @@ export class CountryContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -1081,14 +1095,14 @@ export class CountryContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1097,7 +1111,10 @@ export class CountryContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -1125,7 +1142,7 @@ export class CustomerContactNumberContro {
      * @param customerID (optional) 
      * @return OK
      */
-    getCustomerPhoneNumber(customerID: number | undefined, httpContext?: HttpContext): Observable<CustomerContactNumberDTO> {
+    getCustomerPhoneNumber(customerID: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerContactNumberContro/GetCustomerPhoneNumber?";
         if (customerID === null)
             throw new Error("The parameter 'customerID' cannot be null.");
@@ -1149,14 +1166,14 @@ export class CustomerContactNumberContro {
                 try {
                     return this.processGetCustomerPhoneNumber(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<CustomerContactNumberDTO>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<CustomerContactNumberDTO>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
         }));
     }
 
-    protected processGetCustomerPhoneNumber(response: HttpResponseBase): Observable<CustomerContactNumberDTO> {
+    protected processGetCustomerPhoneNumber(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1167,7 +1184,7 @@ export class CustomerContactNumberContro {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = CustomerContactNumberDTO.fromJS(resultData200);
+            result200 = ApiResponse_1OfOfCustomerContactNumberDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -1405,7 +1422,7 @@ export class CustomerContactNumberContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerContactNumberContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -1418,6 +1435,7 @@ export class CustomerContactNumberContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -1428,14 +1446,14 @@ export class CustomerContactNumberContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1444,7 +1462,10 @@ export class CustomerContactNumberContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -1458,7 +1479,7 @@ export class CustomerContactNumberContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: CustomerContactNumberDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: CustomerContactNumberDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerContactNumberContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1471,6 +1492,7 @@ export class CustomerContactNumberContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -1481,14 +1503,14 @@ export class CustomerContactNumberContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1497,7 +1519,10 @@ export class CustomerContactNumberContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -1525,7 +1550,7 @@ export class CustomerContro {
      * @param query (optional) 
      * @return OK
      */
-    searchForCustomer(query: string | undefined, httpContext?: HttpContext): Observable<CustomerDTO[]> {
+    searchForCustomer(query: string | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerContro/searchForCustomer?";
         if (query === null)
             throw new Error("The parameter 'query' cannot be null.");
@@ -1549,14 +1574,14 @@ export class CustomerContro {
                 try {
                     return this.processSearchForCustomer(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<CustomerDTO[]>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<CustomerDTO[]>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processSearchForCustomer(response: HttpResponseBase): Observable<CustomerDTO[]> {
+    protected processSearchForCustomer(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1567,14 +1592,7 @@ export class CustomerContro {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (Array.isArray(resultData200)) {
-                result200 = [] as any;
-                for (let item of resultData200)
-                    result200!.push(CustomerDTO.fromJS(item));
-            }
-            else {
-                result200 = <any>null;
-            }
+            result200 = ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -1589,7 +1607,7 @@ export class CustomerContro {
      * @param c (optional) 
      * @return OK
      */
-    searchForCustomerByFirstName(c: string | undefined, httpContext?: HttpContext): Observable<CustomerDTO[]> {
+    searchForCustomerByFirstName(c: string | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerContro/searchForCustomerByFirstName?";
         if (c === null)
             throw new Error("The parameter 'c' cannot be null.");
@@ -1613,14 +1631,14 @@ export class CustomerContro {
                 try {
                     return this.processSearchForCustomerByFirstName(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<CustomerDTO[]>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<CustomerDTO[]>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processSearchForCustomerByFirstName(response: HttpResponseBase): Observable<CustomerDTO[]> {
+    protected processSearchForCustomerByFirstName(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1631,14 +1649,7 @@ export class CustomerContro {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (Array.isArray(resultData200)) {
-                result200 = [] as any;
-                for (let item of resultData200)
-                    result200!.push(CustomerDTO.fromJS(item));
-            }
-            else {
-                result200 = <any>null;
-            }
+            result200 = ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -1653,7 +1664,7 @@ export class CustomerContro {
      * @param c (optional) 
      * @return OK
      */
-    searchForCustomerByLastName(c: string | undefined, httpContext?: HttpContext): Observable<CustomerDTO[]> {
+    searchForCustomerByLastName(c: string | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerContro/searchForCustomerByLastName?";
         if (c === null)
             throw new Error("The parameter 'c' cannot be null.");
@@ -1677,14 +1688,14 @@ export class CustomerContro {
                 try {
                     return this.processSearchForCustomerByLastName(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<CustomerDTO[]>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<CustomerDTO[]>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processSearchForCustomerByLastName(response: HttpResponseBase): Observable<CustomerDTO[]> {
+    protected processSearchForCustomerByLastName(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1695,14 +1706,7 @@ export class CustomerContro {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (Array.isArray(resultData200)) {
-                result200 = [] as any;
-                for (let item of resultData200)
-                    result200!.push(CustomerDTO.fromJS(item));
-            }
-            else {
-                result200 = <any>null;
-            }
+            result200 = ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -1718,7 +1722,7 @@ export class CustomerContro {
      * @param l (optional) 
      * @return OK
      */
-    searchForCustomerByFirstAndLastName(f: string | undefined, l: string | undefined, httpContext?: HttpContext): Observable<CustomerDTO[]> {
+    searchForCustomerByFirstAndLastName(f: string | undefined, l: string | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerContro/searchForCustomerByFirstAndLastName?";
         if (f === null)
             throw new Error("The parameter 'f' cannot be null.");
@@ -1746,14 +1750,14 @@ export class CustomerContro {
                 try {
                     return this.processSearchForCustomerByFirstAndLastName(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<CustomerDTO[]>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<CustomerDTO[]>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processSearchForCustomerByFirstAndLastName(response: HttpResponseBase): Observable<CustomerDTO[]> {
+    protected processSearchForCustomerByFirstAndLastName(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1764,14 +1768,7 @@ export class CustomerContro {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (Array.isArray(resultData200)) {
-                result200 = [] as any;
-                for (let item of resultData200)
-                    result200!.push(CustomerDTO.fromJS(item));
-            }
-            else {
-                result200 = <any>null;
-            }
+            result200 = ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -1786,7 +1783,7 @@ export class CustomerContro {
      * @param phone (optional) 
      * @return OK
      */
-    searchForCustomerByPhoneNumber(phone: string | undefined, httpContext?: HttpContext): Observable<CustomerDTO> {
+    searchForCustomerByPhoneNumber(phone: string | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerContro/searchForCustomerByPhoneNumber?";
         if (phone === null)
             throw new Error("The parameter 'phone' cannot be null.");
@@ -1810,14 +1807,14 @@ export class CustomerContro {
                 try {
                     return this.processSearchForCustomerByPhoneNumber(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<CustomerDTO>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<CustomerDTO>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
         }));
     }
 
-    protected processSearchForCustomerByPhoneNumber(response: HttpResponseBase): Observable<CustomerDTO> {
+    protected processSearchForCustomerByPhoneNumber(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -1828,7 +1825,7 @@ export class CustomerContro {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = CustomerDTO.fromJS(resultData200);
+            result200 = ApiResponse_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -2066,7 +2063,7 @@ export class CustomerContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -2079,6 +2076,7 @@ export class CustomerContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -2089,14 +2087,14 @@ export class CustomerContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2105,7 +2103,10 @@ export class CustomerContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -2119,7 +2120,7 @@ export class CustomerContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: CustomerDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: CustomerDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -2132,6 +2133,7 @@ export class CustomerContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -2142,14 +2144,14 @@ export class CustomerContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2158,7 +2160,10 @@ export class CustomerContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -2409,7 +2414,7 @@ export class CustomerNotificationContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerNotificationContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -2422,6 +2427,7 @@ export class CustomerNotificationContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -2432,14 +2438,14 @@ export class CustomerNotificationContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2448,7 +2454,10 @@ export class CustomerNotificationContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -2462,7 +2471,7 @@ export class CustomerNotificationContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: CustomerNotificationDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: CustomerNotificationDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerNotificationContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -2475,6 +2484,7 @@ export class CustomerNotificationContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -2485,14 +2495,14 @@ export class CustomerNotificationContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2501,7 +2511,10 @@ export class CustomerNotificationContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -2823,7 +2836,7 @@ export class CustomerVehicleColorContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerVehicleColorContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -2836,6 +2849,7 @@ export class CustomerVehicleColorContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -2846,14 +2860,14 @@ export class CustomerVehicleColorContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2862,7 +2876,10 @@ export class CustomerVehicleColorContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -2876,7 +2893,7 @@ export class CustomerVehicleColorContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: CustomerVehicleColorDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: CustomerVehicleColorDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerVehicleColorContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -2889,6 +2906,7 @@ export class CustomerVehicleColorContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -2899,14 +2917,14 @@ export class CustomerVehicleColorContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2915,7 +2933,10 @@ export class CustomerVehicleColorContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -2943,7 +2964,7 @@ export class CustomerVehicleContro {
      * @param customerID (optional) 
      * @return OK
      */
-    getAllCustomerVehicles(customerID: number | undefined, httpContext?: HttpContext): Observable<CustomerVehicleWithDetailsDTO[]> {
+    getAllCustomerVehicles(customerID: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerVehicleContro/GetAllCustomerVehicles?";
         if (customerID === null)
             throw new Error("The parameter 'customerID' cannot be null.");
@@ -2967,14 +2988,14 @@ export class CustomerVehicleContro {
                 try {
                     return this.processGetAllCustomerVehicles(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<CustomerVehicleWithDetailsDTO[]>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<CustomerVehicleWithDetailsDTO[]>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processGetAllCustomerVehicles(response: HttpResponseBase): Observable<CustomerVehicleWithDetailsDTO[]> {
+    protected processGetAllCustomerVehicles(response: HttpResponseBase): Observable<ApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -2985,14 +3006,7 @@ export class CustomerVehicleContro {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (Array.isArray(resultData200)) {
-                result200 = [] as any;
-                for (let item of resultData200)
-                    result200!.push(CustomerVehicleWithDetailsDTO.fromJS(item));
-            }
-            else {
-                result200 = <any>null;
-            }
+            result200 = ApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -3007,7 +3021,7 @@ export class CustomerVehicleContro {
      * @param body (optional) 
      * @return OK
      */
-    addNewVehicleToCustomer(body: AddNewVehicleToCustomerDTO | undefined, httpContext?: HttpContext): Observable<AddNewVehicleToCustomerDTO> {
+    addNewVehicleToCustomer(body: AddNewVehicleToCustomerDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfAddNewVehicleToCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/CustomerVehicleContro/AddNewVehicleToCustomer";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3031,14 +3045,14 @@ export class CustomerVehicleContro {
                 try {
                     return this.processAddNewVehicleToCustomer(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<AddNewVehicleToCustomerDTO>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfAddNewVehicleToCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<AddNewVehicleToCustomerDTO>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfAddNewVehicleToCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
         }));
     }
 
-    protected processAddNewVehicleToCustomer(response: HttpResponseBase): Observable<AddNewVehicleToCustomerDTO> {
+    protected processAddNewVehicleToCustomer(response: HttpResponseBase): Observable<ApiResponse_1OfOfAddNewVehicleToCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3049,7 +3063,7 @@ export class CustomerVehicleContro {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = AddNewVehicleToCustomerDTO.fromJS(resultData200);
+            result200 = ApiResponse_1OfOfAddNewVehicleToCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -3287,7 +3301,7 @@ export class CustomerVehicleContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerVehicleContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -3300,6 +3314,7 @@ export class CustomerVehicleContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -3310,14 +3325,14 @@ export class CustomerVehicleContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3326,7 +3341,10 @@ export class CustomerVehicleContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -3340,7 +3358,7 @@ export class CustomerVehicleContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: CustomerVehicleDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: CustomerVehicleDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerVehicleContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3353,6 +3371,7 @@ export class CustomerVehicleContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -3363,14 +3382,14 @@ export class CustomerVehicleContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3379,7 +3398,10 @@ export class CustomerVehicleContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -3630,7 +3652,7 @@ export class CustomerVehicleImageContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerVehicleImageContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -3643,6 +3665,7 @@ export class CustomerVehicleImageContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -3653,14 +3676,14 @@ export class CustomerVehicleImageContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3669,7 +3692,10 @@ export class CustomerVehicleImageContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -3683,7 +3709,7 @@ export class CustomerVehicleImageContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: CustomerVehicleImageDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: CustomerVehicleImageDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerVehicleImageContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3696,6 +3722,7 @@ export class CustomerVehicleImageContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -3706,14 +3733,14 @@ export class CustomerVehicleImageContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -3722,7 +3749,10 @@ export class CustomerVehicleImageContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -3973,7 +4003,7 @@ export class CustomerVehicleImageTypeContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerVehicleImageTypeContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -3986,6 +4016,7 @@ export class CustomerVehicleImageTypeContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -3996,14 +4027,14 @@ export class CustomerVehicleImageTypeContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4012,7 +4043,10 @@ export class CustomerVehicleImageTypeContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -4026,7 +4060,7 @@ export class CustomerVehicleImageTypeContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: CustomerVehicleImageTypeDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: CustomerVehicleImageTypeDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerVehicleImageTypeContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -4039,6 +4073,7 @@ export class CustomerVehicleImageTypeContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -4049,14 +4084,14 @@ export class CustomerVehicleImageTypeContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4065,7 +4100,10 @@ export class CustomerVehicleImageTypeContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -4316,7 +4354,7 @@ export class CustomerVehiclePlateContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerVehiclePlateContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -4329,6 +4367,7 @@ export class CustomerVehiclePlateContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -4339,14 +4378,14 @@ export class CustomerVehiclePlateContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4355,7 +4394,10 @@ export class CustomerVehiclePlateContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -4369,7 +4411,7 @@ export class CustomerVehiclePlateContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: CustomerVehiclePlateDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: CustomerVehiclePlateDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerVehiclePlateContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -4382,6 +4424,7 @@ export class CustomerVehiclePlateContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -4392,14 +4435,14 @@ export class CustomerVehiclePlateContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4408,7 +4451,10 @@ export class CustomerVehiclePlateContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -4659,7 +4705,7 @@ export class CustomerVipStatusContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerVipStatusContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -4672,6 +4718,7 @@ export class CustomerVipStatusContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -4682,14 +4729,14 @@ export class CustomerVipStatusContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4698,7 +4745,10 @@ export class CustomerVipStatusContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -4712,7 +4762,7 @@ export class CustomerVipStatusContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: CustomerVipStatusDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: CustomerVipStatusDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerVipStatusContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -4725,6 +4775,7 @@ export class CustomerVipStatusContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -4735,14 +4786,14 @@ export class CustomerVipStatusContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4751,7 +4802,10 @@ export class CustomerVipStatusContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -4779,7 +4833,7 @@ export class DistrictContro {
      * @param cityID (optional) 
      * @return OK
      */
-    getAllDistictsByCityID(cityID: number | undefined, httpContext?: HttpContext): Observable<DistrictDTO[]> {
+    getAllDistictsByCityID(cityID: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/DistrictContro/GetAllDistictsByCityID?";
         if (cityID === null)
             throw new Error("The parameter 'cityID' cannot be null.");
@@ -4803,14 +4857,14 @@ export class DistrictContro {
                 try {
                     return this.processGetAllDistictsByCityID(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<DistrictDTO[]>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<DistrictDTO[]>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processGetAllDistictsByCityID(response: HttpResponseBase): Observable<DistrictDTO[]> {
+    protected processGetAllDistictsByCityID(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -4821,14 +4875,7 @@ export class DistrictContro {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (Array.isArray(resultData200)) {
-                result200 = [] as any;
-                for (let item of resultData200)
-                    result200!.push(DistrictDTO.fromJS(item));
-            }
-            else {
-                result200 = <any>null;
-            }
+            result200 = ApiResponse_1OfOfIEnumerable_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -5066,7 +5113,7 @@ export class DistrictContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/DistrictContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -5079,6 +5126,7 @@ export class DistrictContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -5089,14 +5137,14 @@ export class DistrictContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5105,7 +5153,10 @@ export class DistrictContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -5119,7 +5170,7 @@ export class DistrictContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: DistrictDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: DistrictDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/DistrictContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -5132,6 +5183,7 @@ export class DistrictContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -5142,14 +5194,14 @@ export class DistrictContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5158,7 +5210,10 @@ export class DistrictContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -5180,6 +5235,115 @@ export class EmployeeContro {
     constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
         this.baseUrl = baseUrl ?? "";
+    }
+
+    /**
+     * @return OK
+     */
+    getAllEmployeesWithDetails(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEmployeeWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        let url_ = this.baseUrl + "/api/EmployeeContro/GetAllEmployeesWithDetails";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllEmployeesWithDetails(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllEmployeesWithDetails(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfEmployeeWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfEmployeeWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+        }));
+    }
+
+    protected processGetAllEmployeesWithDetails(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEmployeeWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfIEnumerable_1OfOfEmployeeWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return OK
+     */
+    addNewEmployee(body: EmployeeWithDetails2DTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEmployeeWithDetails2DTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/EmployeeContro/AddNewEmployee";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processAddNewEmployee(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processAddNewEmployee(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfEmployeeWithDetails2DTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfEmployeeWithDetails2DTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+        }));
+    }
+
+    protected processAddNewEmployee(response: HttpResponseBase): Observable<ApiResponse_1OfOfEmployeeWithDetails2DTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfEmployeeWithDetails2DTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
     }
 
     /**
@@ -5409,7 +5573,7 @@ export class EmployeeContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/EmployeeContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -5422,6 +5586,7 @@ export class EmployeeContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -5432,14 +5597,14 @@ export class EmployeeContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5448,7 +5613,10 @@ export class EmployeeContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -5462,7 +5630,7 @@ export class EmployeeContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: EmployeeDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: EmployeeDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/EmployeeContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -5475,6 +5643,7 @@ export class EmployeeContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -5485,14 +5654,14 @@ export class EmployeeContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5501,7 +5670,10 @@ export class EmployeeContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -5752,7 +5924,7 @@ export class EmployeeMaintainedContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/EmployeeMaintainedContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -5765,6 +5937,7 @@ export class EmployeeMaintainedContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -5775,14 +5948,14 @@ export class EmployeeMaintainedContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5791,7 +5964,10 @@ export class EmployeeMaintainedContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -5805,7 +5981,7 @@ export class EmployeeMaintainedContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: EmployeeMaintainedDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: EmployeeMaintainedDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/EmployeeMaintainedContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -5818,6 +5994,7 @@ export class EmployeeMaintainedContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -5828,14 +6005,14 @@ export class EmployeeMaintainedContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -5844,7 +6021,10 @@ export class EmployeeMaintainedContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -6095,7 +6275,7 @@ export class EngineChargerContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/EngineChargerContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -6108,6 +6288,7 @@ export class EngineChargerContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -6118,14 +6299,14 @@ export class EngineChargerContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6134,7 +6315,10 @@ export class EngineChargerContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -6148,7 +6332,7 @@ export class EngineChargerContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: EngineChargerDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: EngineChargerDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/EngineChargerContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6161,6 +6345,7 @@ export class EngineChargerContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -6171,14 +6356,14 @@ export class EngineChargerContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6187,7 +6372,10 @@ export class EngineChargerContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -6438,7 +6626,7 @@ export class EngineFuelContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/EngineFuelContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -6451,6 +6639,7 @@ export class EngineFuelContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -6461,14 +6650,14 @@ export class EngineFuelContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6477,7 +6666,10 @@ export class EngineFuelContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -6491,7 +6683,7 @@ export class EngineFuelContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: EngineFuelDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: EngineFuelDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/EngineFuelContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6504,6 +6696,7 @@ export class EngineFuelContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -6514,14 +6707,14 @@ export class EngineFuelContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6530,7 +6723,10 @@ export class EngineFuelContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -6781,7 +6977,7 @@ export class EngineStructureContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/EngineStructureContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -6794,6 +6990,7 @@ export class EngineStructureContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -6804,14 +7001,14 @@ export class EngineStructureContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6820,7 +7017,10 @@ export class EngineStructureContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -6834,7 +7034,7 @@ export class EngineStructureContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: EngineStructureDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: EngineStructureDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/EngineStructureContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6847,6 +7047,7 @@ export class EngineStructureContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -6857,14 +7058,14 @@ export class EngineStructureContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -6873,7 +7074,10 @@ export class EngineStructureContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -7124,7 +7328,7 @@ export class GenderContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/GenderContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -7137,6 +7341,7 @@ export class GenderContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -7147,14 +7352,14 @@ export class GenderContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7163,7 +7368,10 @@ export class GenderContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -7177,7 +7385,7 @@ export class GenderContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: GenderDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: GenderDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/GenderContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -7190,6 +7398,7 @@ export class GenderContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -7200,14 +7409,14 @@ export class GenderContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7216,7 +7425,10 @@ export class GenderContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -7300,7 +7512,7 @@ export class ImageContro {
      * @param fileName (optional) 
      * @return OK
      */
-    download(fileName: string | undefined, httpContext?: HttpContext): Observable<void> {
+    download(fileName: string | undefined, httpContext?: HttpContext): Observable<FileResponse> {
         let url_ = this.baseUrl + "/api/ImageContro/Download?";
         if (fileName === null)
             throw new Error("The parameter 'fileName' cannot be null.");
@@ -7313,6 +7525,7 @@ export class ImageContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -7323,24 +7536,31 @@ export class ImageContro {
                 try {
                     return this.processDownload(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<FileResponse>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<FileResponse>;
         }));
     }
 
-    protected processDownload(response: HttpResponseBase): Observable<void> {
+    protected processDownload(response: HttpResponseBase): Observable<FileResponse> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
             (response as any).error instanceof Blob ? (response as any).error : undefined;
 
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
-            }));
+        if (status === 200 || status === 206) {
+            const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
+            let fileNameMatch = contentDisposition ? /filename\*=(?:(\\?['"])(.*?)\1|(?:[^\s]+'.*?')?([^;\n]*))/g.exec(contentDisposition) : undefined;
+            let fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[3] || fileNameMatch[2] : undefined;
+            if (fileName) {
+                fileName = decodeURIComponent(fileName);
+            } else {
+                fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
+                fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
+            }
+            return _observableOf({ fileName: fileName, data: responseBlob as any, status: status, headers: _headers });
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
@@ -7590,7 +7810,7 @@ export class MaintainedImageContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/MaintainedImageContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -7603,6 +7823,7 @@ export class MaintainedImageContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -7613,14 +7834,14 @@ export class MaintainedImageContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7629,7 +7850,10 @@ export class MaintainedImageContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -7643,7 +7867,7 @@ export class MaintainedImageContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: MaintainedImageDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: MaintainedImageDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/MaintainedImageContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -7656,6 +7880,7 @@ export class MaintainedImageContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -7666,14 +7891,14 @@ export class MaintainedImageContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7682,7 +7907,10 @@ export class MaintainedImageContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -7704,6 +7932,172 @@ export class MaintenaceCardContro {
     constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
         this.baseUrl = baseUrl ?? "";
+    }
+
+    /**
+     * @return OK
+     */
+    getLastMaintenanceCard(httpContext?: HttpContext): Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/MaintenaceCardContro/GetLastMaintenanceCard";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetLastMaintenanceCard(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetLastMaintenanceCard(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+        }));
+    }
+
+    protected processGetLastMaintenanceCard(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return OK
+     */
+    addingNewMaintenance(body: NewMaintenanceCardDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/MaintenaceCardContro/AddingNewMaintenance";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processAddingNewMaintenance(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processAddingNewMaintenance(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+        }));
+    }
+
+    protected processAddingNewMaintenance(response: HttpResponseBase): Observable<ApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return OK
+     */
+    getAllMaintenanceWithDetails(body: MaintenanceFilter | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        let url_ = this.baseUrl + "/api/MaintenaceCardContro/getAllMaintenanceWithDetails";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllMaintenanceWithDetails(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllMaintenanceWithDetails(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+        }));
+    }
+
+    protected processGetAllMaintenanceWithDetails(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
     }
 
     /**
@@ -7933,7 +8327,7 @@ export class MaintenaceCardContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/MaintenaceCardContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -7946,6 +8340,7 @@ export class MaintenaceCardContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -7956,14 +8351,14 @@ export class MaintenaceCardContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -7972,7 +8367,10 @@ export class MaintenaceCardContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -7986,7 +8384,7 @@ export class MaintenaceCardContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: MaintenaceCardDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: MaintenaceCardDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/MaintenaceCardContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -7999,6 +8397,7 @@ export class MaintenaceCardContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -8009,14 +8408,14 @@ export class MaintenaceCardContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8025,7 +8424,10 @@ export class MaintenaceCardContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -8276,7 +8678,7 @@ export class MaintenaceServiceContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/MaintenaceServiceContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -8289,6 +8691,7 @@ export class MaintenaceServiceContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -8299,14 +8702,14 @@ export class MaintenaceServiceContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8315,7 +8718,10 @@ export class MaintenaceServiceContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -8329,7 +8735,7 @@ export class MaintenaceServiceContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: MaintenaceServiceDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: MaintenaceServiceDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/MaintenaceServiceContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -8342,6 +8748,7 @@ export class MaintenaceServiceContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -8352,14 +8759,14 @@ export class MaintenaceServiceContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8368,7 +8775,10 @@ export class MaintenaceServiceContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -8395,7 +8805,7 @@ export class MenuContro {
     /**
      * @return OK
      */
-    getMenu(httpContext?: HttpContext): Observable<MenuDTO[]> {
+    getMenu(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/MenuContro/GetMenu";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -8415,14 +8825,14 @@ export class MenuContro {
                 try {
                     return this.processGetMenu(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<MenuDTO[]>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<MenuDTO[]>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processGetMenu(response: HttpResponseBase): Observable<MenuDTO[]> {
+    protected processGetMenu(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8433,14 +8843,7 @@ export class MenuContro {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (Array.isArray(resultData200)) {
-                result200 = [] as any;
-                for (let item of resultData200)
-                    result200!.push(MenuDTO.fromJS(item));
-            }
-            else {
-                result200 = <any>null;
-            }
+            result200 = ApiResponse_1OfOfIEnumerable_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -8678,7 +9081,7 @@ export class MenuContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/MenuContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -8691,6 +9094,7 @@ export class MenuContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -8701,14 +9105,14 @@ export class MenuContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8717,7 +9121,10 @@ export class MenuContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -8731,7 +9138,7 @@ export class MenuContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: MenuDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: MenuDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/MenuContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -8744,6 +9151,7 @@ export class MenuContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -8754,14 +9162,14 @@ export class MenuContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8770,7 +9178,10 @@ export class MenuContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -9021,7 +9432,7 @@ export class MontlyCustomerVisitContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/MontlyCustomerVisitContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -9034,6 +9445,7 @@ export class MontlyCustomerVisitContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -9044,14 +9456,14 @@ export class MontlyCustomerVisitContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9060,7 +9472,10 @@ export class MontlyCustomerVisitContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -9074,7 +9489,7 @@ export class MontlyCustomerVisitContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: MontlyCustomerVisitDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: MontlyCustomerVisitDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/MontlyCustomerVisitContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -9087,6 +9502,7 @@ export class MontlyCustomerVisitContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -9097,14 +9513,14 @@ export class MontlyCustomerVisitContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9113,7 +9529,10 @@ export class MontlyCustomerVisitContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -9364,7 +9783,7 @@ export class NationalityContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/NationalityContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -9377,6 +9796,7 @@ export class NationalityContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -9387,14 +9807,14 @@ export class NationalityContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9403,7 +9823,10 @@ export class NationalityContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -9417,7 +9840,7 @@ export class NationalityContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: NationalityDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: NationalityDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/NationalityContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -9430,6 +9853,7 @@ export class NationalityContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -9440,14 +9864,14 @@ export class NationalityContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9456,7 +9880,10 @@ export class NationalityContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -9707,7 +10134,7 @@ export class PartBrandContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/PartBrandContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -9720,6 +10147,7 @@ export class PartBrandContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -9730,14 +10158,14 @@ export class PartBrandContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9746,7 +10174,10 @@ export class PartBrandContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -9760,7 +10191,7 @@ export class PartBrandContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: PartBrandDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: PartBrandDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/PartBrandContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -9773,6 +10204,7 @@ export class PartBrandContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -9783,14 +10215,14 @@ export class PartBrandContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -9799,7 +10231,10 @@ export class PartBrandContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -10050,7 +10485,7 @@ export class PartConditionContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/PartConditionContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -10063,6 +10498,7 @@ export class PartConditionContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -10073,14 +10509,14 @@ export class PartConditionContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10089,7 +10525,10 @@ export class PartConditionContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -10103,7 +10542,7 @@ export class PartConditionContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: PartConditionDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: PartConditionDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/PartConditionContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -10116,6 +10555,7 @@ export class PartConditionContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -10126,14 +10566,14 @@ export class PartConditionContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10142,7 +10582,10 @@ export class PartConditionContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -10393,7 +10836,7 @@ export class PartImageContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/PartImageContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -10406,6 +10849,7 @@ export class PartImageContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -10416,14 +10860,14 @@ export class PartImageContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10432,7 +10876,10 @@ export class PartImageContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -10446,7 +10893,7 @@ export class PartImageContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: PartImageDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: PartImageDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/PartImageContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -10459,6 +10906,7 @@ export class PartImageContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -10469,14 +10917,14 @@ export class PartImageContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10485,7 +10933,10 @@ export class PartImageContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -10736,7 +11187,7 @@ export class PartImageTypeContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/PartImageTypeContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -10749,6 +11200,7 @@ export class PartImageTypeContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -10759,14 +11211,14 @@ export class PartImageTypeContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10775,7 +11227,10 @@ export class PartImageTypeContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -10789,7 +11244,7 @@ export class PartImageTypeContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: PartImageTypeDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: PartImageTypeDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/PartImageTypeContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -10802,6 +11257,7 @@ export class PartImageTypeContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -10812,14 +11268,14 @@ export class PartImageTypeContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -10828,7 +11284,10 @@ export class PartImageTypeContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -11079,7 +11538,7 @@ export class PlateContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/PlateContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -11092,6 +11551,7 @@ export class PlateContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -11102,14 +11562,14 @@ export class PlateContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11118,7 +11578,10 @@ export class PlateContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -11132,7 +11595,7 @@ export class PlateContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: PlateDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: PlateDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/PlateContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -11145,6 +11608,7 @@ export class PlateContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -11155,14 +11619,14 @@ export class PlateContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11171,7 +11635,10 @@ export class PlateContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -11422,7 +11889,7 @@ export class PremissionContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/PremissionContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -11435,6 +11902,7 @@ export class PremissionContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -11445,14 +11913,14 @@ export class PremissionContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11461,7 +11929,10 @@ export class PremissionContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -11475,7 +11946,7 @@ export class PremissionContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: PermissionDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: PermissionDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/PremissionContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -11488,6 +11959,7 @@ export class PremissionContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -11498,14 +11970,14 @@ export class PremissionContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11514,7 +11986,10 @@ export class PremissionContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -11765,7 +12240,7 @@ export class RoleContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/RoleContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -11778,6 +12253,7 @@ export class RoleContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -11788,14 +12264,14 @@ export class RoleContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11804,7 +12280,10 @@ export class RoleContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -11818,7 +12297,7 @@ export class RoleContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: RoleDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: RoleDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/RoleContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -11831,6 +12310,7 @@ export class RoleContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -11841,14 +12321,14 @@ export class RoleContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11857,7 +12337,10 @@ export class RoleContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -11884,7 +12367,7 @@ export class RolePermssionContro {
     /**
      * @return OK
      */
-    getPermissionsUsingRoleID(httpContext?: HttpContext): Observable<RolePermissionWithDetailsDTO[]> {
+    getPermissionsUsingRoleID(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfRolePermissionWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/RolePermssionContro/GetPermissionsUsingRoleID";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -11904,14 +12387,14 @@ export class RolePermssionContro {
                 try {
                     return this.processGetPermissionsUsingRoleID(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<RolePermissionWithDetailsDTO[]>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfRolePermissionWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<RolePermissionWithDetailsDTO[]>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfRolePermissionWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processGetPermissionsUsingRoleID(response: HttpResponseBase): Observable<RolePermissionWithDetailsDTO[]> {
+    protected processGetPermissionsUsingRoleID(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfRolePermissionWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -11922,14 +12405,7 @@ export class RolePermssionContro {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (Array.isArray(resultData200)) {
-                result200 = [] as any;
-                for (let item of resultData200)
-                    result200!.push(RolePermissionWithDetailsDTO.fromJS(item));
-            }
-            else {
-                result200 = <any>null;
-            }
+            result200 = ApiResponse_1OfOfIEnumerable_1OfOfRolePermissionWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -12167,7 +12643,7 @@ export class RolePermssionContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/RolePermssionContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -12180,6 +12656,7 @@ export class RolePermssionContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -12190,14 +12667,14 @@ export class RolePermssionContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12206,7 +12683,10 @@ export class RolePermssionContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -12220,7 +12700,7 @@ export class RolePermssionContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: RolePermssionDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: RolePermssionDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/RolePermssionContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -12233,6 +12713,7 @@ export class RolePermssionContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -12243,14 +12724,14 @@ export class RolePermssionContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12259,7 +12740,10 @@ export class RolePermssionContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -12286,7 +12770,7 @@ export class RoleRouteContro {
     /**
      * @return OK
      */
-    getAllRoutes(httpContext?: HttpContext): Observable<RoleRouteWithDetailsDTO[]> {
+    getAllRoutes(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfRoleRouteWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/RoleRouteContro/GetAllRoutes";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -12306,14 +12790,14 @@ export class RoleRouteContro {
                 try {
                     return this.processGetAllRoutes(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<RoleRouteWithDetailsDTO[]>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfRoleRouteWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<RoleRouteWithDetailsDTO[]>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfRoleRouteWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processGetAllRoutes(response: HttpResponseBase): Observable<RoleRouteWithDetailsDTO[]> {
+    protected processGetAllRoutes(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfRoleRouteWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12324,14 +12808,7 @@ export class RoleRouteContro {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (Array.isArray(resultData200)) {
-                result200 = [] as any;
-                for (let item of resultData200)
-                    result200!.push(RoleRouteWithDetailsDTO.fromJS(item));
-            }
-            else {
-                result200 = <any>null;
-            }
+            result200 = ApiResponse_1OfOfIEnumerable_1OfOfRoleRouteWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -12569,7 +13046,7 @@ export class RoleRouteContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/RoleRouteContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -12582,6 +13059,7 @@ export class RoleRouteContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -12592,14 +13070,14 @@ export class RoleRouteContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12608,7 +13086,10 @@ export class RoleRouteContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -12622,7 +13103,7 @@ export class RoleRouteContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: RoleRouteDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: RoleRouteDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/RoleRouteContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -12635,6 +13116,7 @@ export class RoleRouteContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -12645,14 +13127,14 @@ export class RoleRouteContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12661,7 +13143,10 @@ export class RoleRouteContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -12683,6 +13168,63 @@ export class ServiceContro {
     constructor(@Inject(HttpClient) http: HttpClient, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
         this.baseUrl = baseUrl ?? "";
+    }
+
+    /**
+     * @param id (optional) 
+     * @return OK
+     */
+    getServicesByServieTypeId(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfServiceTableWithServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        let url_ = this.baseUrl + "/api/ServiceContro/getServicesByServieTypeId?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetServicesByServieTypeId(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetServicesByServieTypeId(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfServiceTableWithServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfServiceTableWithServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+        }));
+    }
+
+    protected processGetServicesByServieTypeId(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfServiceTableWithServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfIEnumerable_1OfOfServiceTableWithServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
     }
 
     /**
@@ -12912,7 +13454,7 @@ export class ServiceContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/ServiceContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -12925,6 +13467,7 @@ export class ServiceContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -12935,14 +13478,14 @@ export class ServiceContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -12951,7 +13494,10 @@ export class ServiceContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -12965,7 +13511,7 @@ export class ServiceContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: ServiceTableDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: ServiceTableDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/ServiceContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -12978,6 +13524,7 @@ export class ServiceContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -12988,14 +13535,14 @@ export class ServiceContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -13004,7 +13551,10 @@ export class ServiceContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -13255,7 +13805,7 @@ export class ServicePartContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/ServicePartContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -13268,6 +13818,7 @@ export class ServicePartContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -13278,14 +13829,14 @@ export class ServicePartContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -13294,7 +13845,10 @@ export class ServicePartContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -13308,7 +13862,7 @@ export class ServicePartContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: ServicePartDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: ServicePartDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/ServicePartContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -13321,6 +13875,7 @@ export class ServicePartContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -13331,14 +13886,14 @@ export class ServicePartContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -13347,7 +13902,10 @@ export class ServicePartContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -13598,7 +14156,7 @@ export class ServiceTypeContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/ServiceTypeContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -13611,6 +14169,7 @@ export class ServiceTypeContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -13621,14 +14180,14 @@ export class ServiceTypeContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -13637,7 +14196,10 @@ export class ServiceTypeContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -13651,7 +14213,7 @@ export class ServiceTypeContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: ServiceTypeDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: ServiceTypeDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/ServiceTypeContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -13664,6 +14226,7 @@ export class ServiceTypeContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -13674,14 +14237,14 @@ export class ServiceTypeContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -13690,7 +14253,10 @@ export class ServiceTypeContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -13941,7 +14507,7 @@ export class StatusBenefitContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/StatusBenefitContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -13954,6 +14520,7 @@ export class StatusBenefitContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -13964,14 +14531,14 @@ export class StatusBenefitContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -13980,7 +14547,10 @@ export class StatusBenefitContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -13994,7 +14564,7 @@ export class StatusBenefitContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: StatusBenefitDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: StatusBenefitDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/StatusBenefitContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -14007,6 +14577,7 @@ export class StatusBenefitContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -14017,14 +14588,14 @@ export class StatusBenefitContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14033,7 +14604,10 @@ export class StatusBenefitContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -14061,7 +14635,7 @@ export class StreetContro {
      * @param did (optional) 
      * @return OK
      */
-    getStreetsByDistrictID(did: number | undefined, httpContext?: HttpContext): Observable<StreetDTO[]> {
+    getStreetsByDistrictID(did: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/StreetContro/getStreetsByDistrictID?";
         if (did === null)
             throw new Error("The parameter 'did' cannot be null.");
@@ -14085,14 +14659,14 @@ export class StreetContro {
                 try {
                     return this.processGetStreetsByDistrictID(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<StreetDTO[]>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<StreetDTO[]>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processGetStreetsByDistrictID(response: HttpResponseBase): Observable<StreetDTO[]> {
+    protected processGetStreetsByDistrictID(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14103,14 +14677,7 @@ export class StreetContro {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (Array.isArray(resultData200)) {
-                result200 = [] as any;
-                for (let item of resultData200)
-                    result200!.push(StreetDTO.fromJS(item));
-            }
-            else {
-                result200 = <any>null;
-            }
+            result200 = ApiResponse_1OfOfIEnumerable_1OfOfStreetDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -14348,7 +14915,7 @@ export class StreetContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/StreetContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -14361,6 +14928,7 @@ export class StreetContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -14371,14 +14939,14 @@ export class StreetContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14387,7 +14955,10 @@ export class StreetContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -14401,7 +14972,7 @@ export class StreetContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: StreetDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: StreetDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/StreetContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -14414,6 +14985,7 @@ export class StreetContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -14424,14 +14996,14 @@ export class StreetContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14440,7 +15012,10 @@ export class StreetContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -14691,7 +15266,7 @@ export class SupplierContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/SupplierContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -14704,6 +15279,7 @@ export class SupplierContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -14714,14 +15290,14 @@ export class SupplierContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14730,7 +15306,10 @@ export class SupplierContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -14744,7 +15323,7 @@ export class SupplierContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: SupplierDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: SupplierDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/SupplierContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -14757,6 +15336,7 @@ export class SupplierContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -14767,14 +15347,14 @@ export class SupplierContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14783,7 +15363,10 @@ export class SupplierContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -14810,7 +15393,7 @@ export class TenantContro {
     /**
      * @return OK
      */
-    getCurrentTenant(httpContext?: HttpContext): Observable<TenantDTO> {
+    getCurrentTenant(httpContext?: HttpContext): Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/TenantContro/GetCurrentTenant";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -14830,14 +15413,14 @@ export class TenantContro {
                 try {
                     return this.processGetCurrentTenant(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<TenantDTO>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<TenantDTO>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
         }));
     }
 
-    protected processGetCurrentTenant(response: HttpResponseBase): Observable<TenantDTO> {
+    protected processGetCurrentTenant(response: HttpResponseBase): Observable<ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -14848,61 +15431,8 @@ export class TenantContro {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = TenantDTO.fromJS(resultData200);
+            result200 = ApiResponse_1OfOfTenantDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
             return _observableOf(result200);
-            }));
-        } else if (status !== 200 && status !== 204) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            }));
-        }
-        return _observableOf(null as any);
-    }
-
-    /**
-     * @param tenantId (optional) 
-     * @return OK
-     */
-    ook(tenantId: number | undefined, httpContext?: HttpContext): Observable<void> {
-        let url_ = this.baseUrl + "/api/TenantContro/ook?";
-        if (tenantId === null)
-            throw new Error("The parameter 'tenantId' cannot be null.");
-        else if (tenantId !== undefined)
-            url_ += "tenantId=" + encodeURIComponent("" + tenantId) + "&";
-        url_ = url_.replace(/[?&]$/, "");
-
-        let options_ : any = {
-            observe: "response",
-            responseType: "blob",
-            context: httpContext,
-            headers: new HttpHeaders({
-            })
-        };
-
-        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processOok(response_);
-        })).pipe(_observableCatch((response_: any) => {
-            if (response_ instanceof HttpResponseBase) {
-                try {
-                    return this.processOok(response_ as any);
-                } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
-                }
-            } else
-                return _observableThrow(response_) as any as Observable<void>;
-        }));
-    }
-
-    protected processOok(response: HttpResponseBase): Observable<void> {
-        const status = response.status;
-        const responseBlob =
-            response instanceof HttpResponse ? response.body :
-            (response as any).error instanceof Blob ? (response as any).error : undefined;
-
-        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
-        if (status === 200) {
-            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -15139,7 +15669,7 @@ export class TenantContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/TenantContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -15152,6 +15682,7 @@ export class TenantContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -15162,14 +15693,14 @@ export class TenantContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -15178,7 +15709,10 @@ export class TenantContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -15192,7 +15726,7 @@ export class TenantContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: TenantDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: TenantDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/TenantContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -15205,6 +15739,7 @@ export class TenantContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -15215,14 +15750,14 @@ export class TenantContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -15231,7 +15766,10 @@ export class TenantContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -15482,7 +16020,7 @@ export class TransmissionContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/TransmissionContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -15495,6 +16033,7 @@ export class TransmissionContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -15505,14 +16044,14 @@ export class TransmissionContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -15521,7 +16060,10 @@ export class TransmissionContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -15535,7 +16077,7 @@ export class TransmissionContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: TransmissionDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: TransmissionDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/TransmissionContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -15548,6 +16090,7 @@ export class TransmissionContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -15558,14 +16101,14 @@ export class TransmissionContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -15574,7 +16117,10 @@ export class TransmissionContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -15645,6 +16191,58 @@ export class UserContro {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = ApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @return OK
+     */
+    getUsersWithRole(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfUserWithRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        let url_ = this.baseUrl + "/api/UserContro/getUsersWithRole";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetUsersWithRole(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetUsersWithRole(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfUserWithRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfUserWithRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+        }));
+    }
+
+    protected processGetUsersWithRole(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfUserWithRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfIEnumerable_1OfOfUserWithRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -15882,7 +16480,7 @@ export class UserContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/UserContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -15895,6 +16493,7 @@ export class UserContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -15905,14 +16504,14 @@ export class UserContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -15921,7 +16520,10 @@ export class UserContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -15935,7 +16537,7 @@ export class UserContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: UserDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: UserDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/UserContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -15948,6 +16550,7 @@ export class UserContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -15958,14 +16561,14 @@ export class UserContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -15974,7 +16577,10 @@ export class UserContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -16225,7 +16831,7 @@ export class VehicleBrandContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/VehicleBrandContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -16238,6 +16844,7 @@ export class VehicleBrandContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -16248,14 +16855,14 @@ export class VehicleBrandContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -16264,7 +16871,10 @@ export class VehicleBrandContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -16278,7 +16888,7 @@ export class VehicleBrandContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: VehicleBrandDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: VehicleBrandDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/VehicleBrandContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -16291,6 +16901,7 @@ export class VehicleBrandContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -16301,14 +16912,14 @@ export class VehicleBrandContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -16317,7 +16928,10 @@ export class VehicleBrandContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -16345,7 +16959,7 @@ export class VehicleModelContro {
      * @param brandID (optional) 
      * @return OK
      */
-    getAllModelsByBrandID(brandID: number | undefined, httpContext?: HttpContext): Observable<VehicleModelDTO[]> {
+    getAllModelsByBrandID(brandID: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/VehicleModelContro/GetAllModelsByBrandID?";
         if (brandID === null)
             throw new Error("The parameter 'brandID' cannot be null.");
@@ -16369,14 +16983,14 @@ export class VehicleModelContro {
                 try {
                     return this.processGetAllModelsByBrandID(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<VehicleModelDTO[]>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<VehicleModelDTO[]>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processGetAllModelsByBrandID(response: HttpResponseBase): Observable<VehicleModelDTO[]> {
+    protected processGetAllModelsByBrandID(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -16387,14 +17001,7 @@ export class VehicleModelContro {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (Array.isArray(resultData200)) {
-                result200 = [] as any;
-                for (let item of resultData200)
-                    result200!.push(VehicleModelDTO.fromJS(item));
-            }
-            else {
-                result200 = <any>null;
-            }
+            result200 = ApiResponse_1OfOfIEnumerable_1OfOfVehicleModelDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -16632,7 +17239,7 @@ export class VehicleModelContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/VehicleModelContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -16645,6 +17252,7 @@ export class VehicleModelContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -16655,14 +17263,14 @@ export class VehicleModelContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -16671,7 +17279,10 @@ export class VehicleModelContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -16685,7 +17296,7 @@ export class VehicleModelContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: VehicleModelDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: VehicleModelDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/VehicleModelContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -16698,6 +17309,7 @@ export class VehicleModelContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -16708,14 +17320,14 @@ export class VehicleModelContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -16724,7 +17336,10 @@ export class VehicleModelContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -16975,7 +17590,7 @@ export class VehiclePartContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/VehiclePartContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -16988,6 +17603,7 @@ export class VehiclePartContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -16998,14 +17614,14 @@ export class VehiclePartContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -17014,7 +17630,10 @@ export class VehiclePartContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -17028,7 +17647,7 @@ export class VehiclePartContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: VehiclePartDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: VehiclePartDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/VehiclePartContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -17041,6 +17660,7 @@ export class VehiclePartContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -17051,14 +17671,14 @@ export class VehiclePartContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -17067,7 +17687,10 @@ export class VehiclePartContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -17318,7 +17941,7 @@ export class VipBenefitContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/VipBenefitContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -17331,6 +17954,7 @@ export class VipBenefitContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -17341,14 +17965,14 @@ export class VipBenefitContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -17357,7 +17981,10 @@ export class VipBenefitContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -17371,7 +17998,7 @@ export class VipBenefitContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: VipBenefitDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: VipBenefitDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/VipBenefitContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -17384,6 +18011,7 @@ export class VipBenefitContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -17394,14 +18022,14 @@ export class VipBenefitContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -17410,7 +18038,10 @@ export class VipBenefitContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -17661,7 +18292,7 @@ export class VipStatusContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/VipStatusContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -17674,6 +18305,7 @@ export class VipStatusContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -17684,14 +18316,14 @@ export class VipStatusContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -17700,7 +18332,10 @@ export class VipStatusContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -17714,7 +18349,7 @@ export class VipStatusContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: VipStatusDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: VipStatusDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/VipStatusContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -17727,6 +18362,7 @@ export class VipStatusContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -17737,14 +18373,14 @@ export class VipStatusContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -17753,7 +18389,10 @@ export class VipStatusContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -18004,7 +18643,7 @@ export class WheelDriveContro {
      * @param id (optional) 
      * @return OK
      */
-    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<void> {
+    deleteById(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/WheelDriveContro/DeleteById?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -18017,6 +18656,7 @@ export class WheelDriveContro {
             responseType: "blob",
             context: httpContext,
             headers: new HttpHeaders({
+                "Accept": "text/plain"
             })
         };
 
@@ -18027,14 +18667,14 @@ export class WheelDriveContro {
                 try {
                     return this.processDeleteById(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDeleteById(response: HttpResponseBase): Observable<void> {
+    protected processDeleteById(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -18043,7 +18683,10 @@ export class WheelDriveContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -18057,7 +18700,7 @@ export class WheelDriveContro {
      * @param body (optional) 
      * @return OK
      */
-    delete(body: WheelDriveDTO | undefined, httpContext?: HttpContext): Observable<void> {
+    delete(body: WheelDriveDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/WheelDriveContro/Delete";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -18070,6 +18713,7 @@ export class WheelDriveContro {
             context: httpContext,
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
+                "Accept": "text/plain"
             })
         };
 
@@ -18080,14 +18724,14 @@ export class WheelDriveContro {
                 try {
                     return this.processDelete(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<void>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<void>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
         }));
     }
 
-    protected processDelete(response: HttpResponseBase): Observable<void> {
+    protected processDelete(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -18096,7 +18740,10 @@ export class WheelDriveContro {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
-            return _observableOf(null as any);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
@@ -18108,9 +18755,10 @@ export class WheelDriveContro {
 }
 
 export class CityDTO implements ICityDTO {
-    id?: number;
-    countryId?: number;
-    tenantId?: number;
+    id?: number | undefined;
+    countryId?: number | undefined;
+    country?: CountryDTO;
+    tenantId?: number | undefined;
     name?: string | undefined;
     nameInArabic?: string | undefined;
 
@@ -18127,6 +18775,7 @@ export class CityDTO implements ICityDTO {
         if (_data) {
             this.id = _data["id"];
             this.countryId = _data["countryId"];
+            this.country = _data["country"] ? CountryDTO.fromJS(_data["country"]) : <any>undefined;
             this.tenantId = _data["tenantId"];
             this.name = _data["name"];
             this.nameInArabic = _data["nameInArabic"];
@@ -18144,6 +18793,7 @@ export class CityDTO implements ICityDTO {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["countryId"] = this.countryId;
+        data["country"] = this.country ? this.country.toJSON() : <any>undefined;
         data["tenantId"] = this.tenantId;
         data["name"] = this.name;
         data["nameInArabic"] = this.nameInArabic;
@@ -18152,9 +18802,10 @@ export class CityDTO implements ICityDTO {
 }
 
 export interface ICityDTO {
-    id?: number;
-    countryId?: number;
-    tenantId?: number;
+    id?: number | undefined;
+    countryId?: number | undefined;
+    country?: CountryDTO;
+    tenantId?: number | undefined;
     name?: string | undefined;
     nameInArabic?: string | undefined;
 }
@@ -18244,8 +18895,7 @@ export interface IControllerDTO {
 }
 
 export class CountryDTO implements ICountryDTO {
-    id?: number;
-    tenantId?: number;
+    id?: number | undefined;
     name?: string | undefined;
     nameInArabic?: string | undefined;
 
@@ -18261,7 +18911,6 @@ export class CountryDTO implements ICountryDTO {
     init(_data?: any) {
         if (_data) {
             this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
             this.name = _data["name"];
             this.nameInArabic = _data["nameInArabic"];
         }
@@ -18277,7 +18926,6 @@ export class CountryDTO implements ICountryDTO {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
         data["name"] = this.name;
         data["nameInArabic"] = this.nameInArabic;
         return data;
@@ -18285,8 +18933,7 @@ export class CountryDTO implements ICountryDTO {
 }
 
 export interface ICountryDTO {
-    id?: number;
-    tenantId?: number;
+    id?: number | undefined;
     name?: string | undefined;
     nameInArabic?: string | undefined;
 }
@@ -19004,9 +19651,9 @@ export interface ICustomerVipStatusDTO {
 }
 
 export class DistrictDTO implements IDistrictDTO {
-    id?: number;
-    tenantId?: number;
-    cityId?: number;
+    id?: number | undefined;
+    cityId?: number | undefined;
+    city?: CityDTO;
     name?: string | undefined;
     nameInArabic?: string | undefined;
 
@@ -19022,8 +19669,8 @@ export class DistrictDTO implements IDistrictDTO {
     init(_data?: any) {
         if (_data) {
             this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
             this.cityId = _data["cityId"];
+            this.city = _data["city"] ? CityDTO.fromJS(_data["city"]) : <any>undefined;
             this.name = _data["name"];
             this.nameInArabic = _data["nameInArabic"];
         }
@@ -19039,8 +19686,8 @@ export class DistrictDTO implements IDistrictDTO {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
         data["cityId"] = this.cityId;
+        data["city"] = this.city ? this.city.toJSON() : <any>undefined;
         data["name"] = this.name;
         data["nameInArabic"] = this.nameInArabic;
         return data;
@@ -19048,24 +19695,239 @@ export class DistrictDTO implements IDistrictDTO {
 }
 
 export interface IDistrictDTO {
-    id?: number;
-    tenantId?: number;
-    cityId?: number;
+    id?: number | undefined;
+    cityId?: number | undefined;
+    city?: CityDTO;
     name?: string | undefined;
     nameInArabic?: string | undefined;
+}
+
+export class EmployeeWithDetails2DTO implements IEmployeeWithDetails2DTO {
+    id?: number | undefined;
+    userId?: number | undefined;
+    user?: UserDTO;
+    nationalityId?: number | undefined;
+    nationality?: NationalityDTO;
+    genderId?: number | undefined;
+    gender?: GenderDTO;
+    streetId?: number | undefined;
+    street?: StreetDTO;
+    phoneNumber?: string | undefined;
+    countryCode?: string | undefined;
+    hireDate?: Date | undefined;
+    terminationDate?: Date | undefined;
+    birthDate?: Date | undefined;
+    promotionDate?: Date | undefined;
+    firstName?: string | undefined;
+    lastName?: string | undefined;
+    fatherName?: string | undefined;
+
+    constructor(data?: IEmployeeWithDetails2DTO) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.userId = _data["userId"];
+            this.user = _data["user"] ? UserDTO.fromJS(_data["user"]) : <any>undefined;
+            this.nationalityId = _data["nationalityId"];
+            this.nationality = _data["nationality"] ? NationalityDTO.fromJS(_data["nationality"]) : <any>undefined;
+            this.genderId = _data["genderId"];
+            this.gender = _data["gender"] ? GenderDTO.fromJS(_data["gender"]) : <any>undefined;
+            this.streetId = _data["streetId"];
+            this.street = _data["street"] ? StreetDTO.fromJS(_data["street"]) : <any>undefined;
+            this.phoneNumber = _data["phoneNumber"];
+            this.countryCode = _data["countryCode"];
+            this.hireDate = _data["hireDate"] ? new Date(_data["hireDate"].toString()) : <any>undefined;
+            this.terminationDate = _data["terminationDate"] ? new Date(_data["terminationDate"].toString()) : <any>undefined;
+            this.birthDate = _data["birthDate"] ? new Date(_data["birthDate"].toString()) : <any>undefined;
+            this.promotionDate = _data["promotionDate"] ? new Date(_data["promotionDate"].toString()) : <any>undefined;
+            this.firstName = _data["firstName"];
+            this.lastName = _data["lastName"];
+            this.fatherName = _data["fatherName"];
+        }
+    }
+
+    static fromJS(data: any): EmployeeWithDetails2DTO {
+        data = typeof data === 'object' ? data : {};
+        let result = new EmployeeWithDetails2DTO();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["userId"] = this.userId;
+        data["user"] = this.user ? this.user.toJSON() : <any>undefined;
+        data["nationalityId"] = this.nationalityId;
+        data["nationality"] = this.nationality ? this.nationality.toJSON() : <any>undefined;
+        data["genderId"] = this.genderId;
+        data["gender"] = this.gender ? this.gender.toJSON() : <any>undefined;
+        data["streetId"] = this.streetId;
+        data["street"] = this.street ? this.street.toJSON() : <any>undefined;
+        data["phoneNumber"] = this.phoneNumber;
+        data["countryCode"] = this.countryCode;
+        data["hireDate"] = this.hireDate ? formatDate(this.hireDate) : <any>undefined;
+        data["terminationDate"] = this.terminationDate ? formatDate(this.terminationDate) : <any>undefined;
+        data["birthDate"] = this.birthDate ? formatDate(this.birthDate) : <any>undefined;
+        data["promotionDate"] = this.promotionDate ? formatDate(this.promotionDate) : <any>undefined;
+        data["firstName"] = this.firstName;
+        data["lastName"] = this.lastName;
+        data["fatherName"] = this.fatherName;
+        return data;
+    }
+}
+
+export interface IEmployeeWithDetails2DTO {
+    id?: number | undefined;
+    userId?: number | undefined;
+    user?: UserDTO;
+    nationalityId?: number | undefined;
+    nationality?: NationalityDTO;
+    genderId?: number | undefined;
+    gender?: GenderDTO;
+    streetId?: number | undefined;
+    street?: StreetDTO;
+    phoneNumber?: string | undefined;
+    countryCode?: string | undefined;
+    hireDate?: Date | undefined;
+    terminationDate?: Date | undefined;
+    birthDate?: Date | undefined;
+    promotionDate?: Date | undefined;
+    firstName?: string | undefined;
+    lastName?: string | undefined;
+    fatherName?: string | undefined;
+}
+
+export class EmployeeWithDetailsDTO implements IEmployeeWithDetailsDTO {
+    id?: number;
+    userId?: number;
+    user?: UserWithRoleDTO;
+    tenantId?: number;
+    nationalityId?: number;
+    nationality?: NationalityDTO;
+    genderId?: number;
+    gender?: GenderDTO;
+    streetId?: number;
+    street?: StreetDTO;
+    phoneNumber?: string | undefined;
+    countryCode?: string | undefined;
+    hireDate?: Date | undefined;
+    terminationDate?: Date | undefined;
+    birthDate?: Date | undefined;
+    promotionDate?: Date | undefined;
+    firstName?: string | undefined;
+    lastName?: string | undefined;
+    fatherName?: string | undefined;
+
+    constructor(data?: IEmployeeWithDetailsDTO) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.userId = _data["userId"];
+            this.user = _data["user"] ? UserWithRoleDTO.fromJS(_data["user"]) : <any>undefined;
+            this.tenantId = _data["tenantId"];
+            this.nationalityId = _data["nationalityId"];
+            this.nationality = _data["nationality"] ? NationalityDTO.fromJS(_data["nationality"]) : <any>undefined;
+            this.genderId = _data["genderId"];
+            this.gender = _data["gender"] ? GenderDTO.fromJS(_data["gender"]) : <any>undefined;
+            this.streetId = _data["streetId"];
+            this.street = _data["street"] ? StreetDTO.fromJS(_data["street"]) : <any>undefined;
+            this.phoneNumber = _data["phoneNumber"];
+            this.countryCode = _data["countryCode"];
+            this.hireDate = _data["hireDate"] ? new Date(_data["hireDate"].toString()) : <any>undefined;
+            this.terminationDate = _data["terminationDate"] ? new Date(_data["terminationDate"].toString()) : <any>undefined;
+            this.birthDate = _data["birthDate"] ? new Date(_data["birthDate"].toString()) : <any>undefined;
+            this.promotionDate = _data["promotionDate"] ? new Date(_data["promotionDate"].toString()) : <any>undefined;
+            this.firstName = _data["firstName"];
+            this.lastName = _data["lastName"];
+            this.fatherName = _data["fatherName"];
+        }
+    }
+
+    static fromJS(data: any): EmployeeWithDetailsDTO {
+        data = typeof data === 'object' ? data : {};
+        let result = new EmployeeWithDetailsDTO();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["userId"] = this.userId;
+        data["user"] = this.user ? this.user.toJSON() : <any>undefined;
+        data["tenantId"] = this.tenantId;
+        data["nationalityId"] = this.nationalityId;
+        data["nationality"] = this.nationality ? this.nationality.toJSON() : <any>undefined;
+        data["genderId"] = this.genderId;
+        data["gender"] = this.gender ? this.gender.toJSON() : <any>undefined;
+        data["streetId"] = this.streetId;
+        data["street"] = this.street ? this.street.toJSON() : <any>undefined;
+        data["phoneNumber"] = this.phoneNumber;
+        data["countryCode"] = this.countryCode;
+        data["hireDate"] = this.hireDate ? formatDate(this.hireDate) : <any>undefined;
+        data["terminationDate"] = this.terminationDate ? formatDate(this.terminationDate) : <any>undefined;
+        data["birthDate"] = this.birthDate ? formatDate(this.birthDate) : <any>undefined;
+        data["promotionDate"] = this.promotionDate ? formatDate(this.promotionDate) : <any>undefined;
+        data["firstName"] = this.firstName;
+        data["lastName"] = this.lastName;
+        data["fatherName"] = this.fatherName;
+        return data;
+    }
+}
+
+export interface IEmployeeWithDetailsDTO {
+    id?: number;
+    userId?: number;
+    user?: UserWithRoleDTO;
+    tenantId?: number;
+    nationalityId?: number;
+    nationality?: NationalityDTO;
+    genderId?: number;
+    gender?: GenderDTO;
+    streetId?: number;
+    street?: StreetDTO;
+    phoneNumber?: string | undefined;
+    countryCode?: string | undefined;
+    hireDate?: Date | undefined;
+    terminationDate?: Date | undefined;
+    birthDate?: Date | undefined;
+    promotionDate?: Date | undefined;
+    firstName?: string | undefined;
+    lastName?: string | undefined;
+    fatherName?: string | undefined;
 }
 
 export class EmployeeDTO implements IEmployeeDTO {
     id?: number;
     userId?: number;
-    tenantId?: number;
     nationalityId?: number;
     genderId?: number;
     streetId?: number;
     phoneNumber?: string | undefined;
+    countryCode?: string | undefined;
     hireDate?: Date;
     terminationDate?: Date;
     birthDate?: Date;
+    firstName?: string | undefined;
+    lastName?: string | undefined;
+    fatherName?: string | undefined;
 
     constructor(data?: IEmployeeDTO) {
         if (data) {
@@ -19080,14 +19942,17 @@ export class EmployeeDTO implements IEmployeeDTO {
         if (_data) {
             this.id = _data["id"];
             this.userId = _data["userId"];
-            this.tenantId = _data["tenantId"];
             this.nationalityId = _data["nationalityId"];
             this.genderId = _data["genderId"];
             this.streetId = _data["streetId"];
             this.phoneNumber = _data["phoneNumber"];
+            this.countryCode = _data["countryCode"];
             this.hireDate = _data["hireDate"] ? new Date(_data["hireDate"].toString()) : <any>undefined;
             this.terminationDate = _data["terminationDate"] ? new Date(_data["terminationDate"].toString()) : <any>undefined;
             this.birthDate = _data["birthDate"] ? new Date(_data["birthDate"].toString()) : <any>undefined;
+            this.firstName = _data["firstName"];
+            this.lastName = _data["lastName"];
+            this.fatherName = _data["fatherName"];
         }
     }
 
@@ -19102,14 +19967,17 @@ export class EmployeeDTO implements IEmployeeDTO {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["userId"] = this.userId;
-        data["tenantId"] = this.tenantId;
         data["nationalityId"] = this.nationalityId;
         data["genderId"] = this.genderId;
         data["streetId"] = this.streetId;
         data["phoneNumber"] = this.phoneNumber;
+        data["countryCode"] = this.countryCode;
         data["hireDate"] = this.hireDate ? formatDate(this.hireDate) : <any>undefined;
         data["terminationDate"] = this.terminationDate ? formatDate(this.terminationDate) : <any>undefined;
         data["birthDate"] = this.birthDate ? formatDate(this.birthDate) : <any>undefined;
+        data["firstName"] = this.firstName;
+        data["lastName"] = this.lastName;
+        data["fatherName"] = this.fatherName;
         return data;
     }
 }
@@ -19117,22 +19985,26 @@ export class EmployeeDTO implements IEmployeeDTO {
 export interface IEmployeeDTO {
     id?: number;
     userId?: number;
-    tenantId?: number;
     nationalityId?: number;
     genderId?: number;
     streetId?: number;
     phoneNumber?: string | undefined;
+    countryCode?: string | undefined;
     hireDate?: Date;
     terminationDate?: Date;
     birthDate?: Date;
+    firstName?: string | undefined;
+    lastName?: string | undefined;
+    fatherName?: string | undefined;
 }
 
 export class EmployeeMaintainedDTO implements IEmployeeMaintainedDTO {
     id?: number;
     tenantId?: number;
     maintenaceServiceId?: number;
-    maintainedByEmployeeId?: number;
-    startedDate?: Date;
+    employeeId?: number;
+    startedDate?: Date | undefined;
+    employee?: EmployeeDTO;
 
     constructor(data?: IEmployeeMaintainedDTO) {
         if (data) {
@@ -19148,8 +20020,9 @@ export class EmployeeMaintainedDTO implements IEmployeeMaintainedDTO {
             this.id = _data["id"];
             this.tenantId = _data["tenantId"];
             this.maintenaceServiceId = _data["maintenaceServiceId"];
-            this.maintainedByEmployeeId = _data["maintainedByEmployeeId"];
+            this.employeeId = _data["employeeId"];
             this.startedDate = _data["startedDate"] ? new Date(_data["startedDate"].toString()) : <any>undefined;
+            this.employee = _data["employee"] ? EmployeeDTO.fromJS(_data["employee"]) : <any>undefined;
         }
     }
 
@@ -19165,8 +20038,9 @@ export class EmployeeMaintainedDTO implements IEmployeeMaintainedDTO {
         data["id"] = this.id;
         data["tenantId"] = this.tenantId;
         data["maintenaceServiceId"] = this.maintenaceServiceId;
-        data["maintainedByEmployeeId"] = this.maintainedByEmployeeId;
+        data["employeeId"] = this.employeeId;
         data["startedDate"] = this.startedDate ? this.startedDate.toISOString() : <any>undefined;
+        data["employee"] = this.employee ? this.employee.toJSON() : <any>undefined;
         return data;
     }
 }
@@ -19175,8 +20049,9 @@ export interface IEmployeeMaintainedDTO {
     id?: number;
     tenantId?: number;
     maintenaceServiceId?: number;
-    maintainedByEmployeeId?: number;
-    startedDate?: Date;
+    employeeId?: number;
+    startedDate?: Date | undefined;
+    employee?: EmployeeDTO;
 }
 
 export class EngineChargerDTO implements IEngineChargerDTO {
@@ -19308,7 +20183,7 @@ export interface IEngineStructureDTO {
 }
 
 export class GenderDTO implements IGenderDTO {
-    id?: number;
+    id?: number | undefined;
     name?: string | undefined;
 
     constructor(data?: IGenderDTO) {
@@ -19343,7 +20218,7 @@ export class GenderDTO implements IGenderDTO {
 }
 
 export interface IGenderDTO {
-    id?: number;
+    id?: number | undefined;
     name?: string | undefined;
 }
 
@@ -19393,6 +20268,102 @@ export interface IMaintainedImageDTO {
     employeeMaintainedId?: number;
     tenantId?: number;
     imgUrl?: string | undefined;
+}
+
+export class NewMaintenanceCardDTO implements INewMaintenanceCardDTO {
+    id?: number;
+    maintenanceNumberForEachTenant?: number;
+    tenantId?: number;
+    customerVehicleId?: number;
+    dateIn?: Date | undefined;
+    dateOut?: Date | undefined;
+    comments?: string | undefined;
+    kilometers?: number;
+    isCompleted?: boolean;
+    isPending?: boolean;
+    isCanceled?: boolean;
+    doesCheckedAfterFinishingMaintenace?: boolean;
+    isReadyToBeDelivered?: boolean;
+    maintenaceServices?: MaintenaceServiceDTO[] | undefined;
+
+    constructor(data?: INewMaintenanceCardDTO) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.maintenanceNumberForEachTenant = _data["maintenanceNumberForEachTenant"];
+            this.tenantId = _data["tenantId"];
+            this.customerVehicleId = _data["customerVehicleId"];
+            this.dateIn = _data["dateIn"] ? new Date(_data["dateIn"].toString()) : <any>undefined;
+            this.dateOut = _data["dateOut"] ? new Date(_data["dateOut"].toString()) : <any>undefined;
+            this.comments = _data["comments"];
+            this.kilometers = _data["kilometers"];
+            this.isCompleted = _data["isCompleted"];
+            this.isPending = _data["isPending"];
+            this.isCanceled = _data["isCanceled"];
+            this.doesCheckedAfterFinishingMaintenace = _data["doesCheckedAfterFinishingMaintenace"];
+            this.isReadyToBeDelivered = _data["isReadyToBeDelivered"];
+            if (Array.isArray(_data["maintenaceServices"])) {
+                this.maintenaceServices = [] as any;
+                for (let item of _data["maintenaceServices"])
+                    this.maintenaceServices!.push(MaintenaceServiceDTO.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): NewMaintenanceCardDTO {
+        data = typeof data === 'object' ? data : {};
+        let result = new NewMaintenanceCardDTO();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["maintenanceNumberForEachTenant"] = this.maintenanceNumberForEachTenant;
+        data["tenantId"] = this.tenantId;
+        data["customerVehicleId"] = this.customerVehicleId;
+        data["dateIn"] = this.dateIn ? this.dateIn.toISOString() : <any>undefined;
+        data["dateOut"] = this.dateOut ? this.dateOut.toISOString() : <any>undefined;
+        data["comments"] = this.comments;
+        data["kilometers"] = this.kilometers;
+        data["isCompleted"] = this.isCompleted;
+        data["isPending"] = this.isPending;
+        data["isCanceled"] = this.isCanceled;
+        data["doesCheckedAfterFinishingMaintenace"] = this.doesCheckedAfterFinishingMaintenace;
+        data["isReadyToBeDelivered"] = this.isReadyToBeDelivered;
+        if (Array.isArray(this.maintenaceServices)) {
+            data["maintenaceServices"] = [];
+            for (let item of this.maintenaceServices)
+                data["maintenaceServices"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface INewMaintenanceCardDTO {
+    id?: number;
+    maintenanceNumberForEachTenant?: number;
+    tenantId?: number;
+    customerVehicleId?: number;
+    dateIn?: Date | undefined;
+    dateOut?: Date | undefined;
+    comments?: string | undefined;
+    kilometers?: number;
+    isCompleted?: boolean;
+    isPending?: boolean;
+    isCanceled?: boolean;
+    doesCheckedAfterFinishingMaintenace?: boolean;
+    isReadyToBeDelivered?: boolean;
+    maintenaceServices?: MaintenaceServiceDTO[] | undefined;
 }
 
 export class MaintenaceCardDTO implements IMaintenaceCardDTO {
@@ -19477,15 +20448,15 @@ export interface IMaintenaceCardDTO {
 
 export class MaintenaceServiceDTO implements IMaintenaceServiceDTO {
     id?: number;
-    tenantId?: number;
     maintenaceCardId?: number;
-    serviceId?: number;
-    cost?: number;
-    warrantyPeriod?: number;
-    isCompleted?: boolean;
-    isPending?: boolean;
-    isCanceled?: boolean;
-    isTested?: boolean;
+    serviceId?: number | undefined;
+    cost?: number | undefined;
+    warrantyPeriod?: number | undefined;
+    isCompleted?: boolean | undefined;
+    isPending?: boolean | undefined;
+    isCanceled?: boolean | undefined;
+    isTested?: boolean | undefined;
+    employeeMaintaineds?: EmployeeMaintainedDTO[] | undefined;
 
     constructor(data?: IMaintenaceServiceDTO) {
         if (data) {
@@ -19499,7 +20470,6 @@ export class MaintenaceServiceDTO implements IMaintenaceServiceDTO {
     init(_data?: any) {
         if (_data) {
             this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
             this.maintenaceCardId = _data["maintenaceCardId"];
             this.serviceId = _data["serviceId"];
             this.cost = _data["cost"];
@@ -19508,6 +20478,11 @@ export class MaintenaceServiceDTO implements IMaintenaceServiceDTO {
             this.isPending = _data["isPending"];
             this.isCanceled = _data["isCanceled"];
             this.isTested = _data["isTested"];
+            if (Array.isArray(_data["employeeMaintaineds"])) {
+                this.employeeMaintaineds = [] as any;
+                for (let item of _data["employeeMaintaineds"])
+                    this.employeeMaintaineds!.push(EmployeeMaintainedDTO.fromJS(item));
+            }
         }
     }
 
@@ -19521,7 +20496,6 @@ export class MaintenaceServiceDTO implements IMaintenaceServiceDTO {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
         data["maintenaceCardId"] = this.maintenaceCardId;
         data["serviceId"] = this.serviceId;
         data["cost"] = this.cost;
@@ -19530,21 +20504,126 @@ export class MaintenaceServiceDTO implements IMaintenaceServiceDTO {
         data["isPending"] = this.isPending;
         data["isCanceled"] = this.isCanceled;
         data["isTested"] = this.isTested;
+        if (Array.isArray(this.employeeMaintaineds)) {
+            data["employeeMaintaineds"] = [];
+            for (let item of this.employeeMaintaineds)
+                data["employeeMaintaineds"].push(item.toJSON());
+        }
         return data;
     }
 }
 
 export interface IMaintenaceServiceDTO {
     id?: number;
-    tenantId?: number;
     maintenaceCardId?: number;
-    serviceId?: number;
-    cost?: number;
-    warrantyPeriod?: number;
+    serviceId?: number | undefined;
+    cost?: number | undefined;
+    warrantyPeriod?: number | undefined;
+    isCompleted?: boolean | undefined;
+    isPending?: boolean | undefined;
+    isCanceled?: boolean | undefined;
+    isTested?: boolean | undefined;
+    employeeMaintaineds?: EmployeeMaintainedDTO[] | undefined;
+}
+
+export class MaintenanceCardWithFullDetailsDTO implements IMaintenanceCardWithFullDetailsDTO {
+    id?: number;
+    maintenanceNumberForEachTenant?: number;
+    tenantId?: number;
+    customerVehicleId?: number;
+    dateIn?: Date | undefined;
+    dateOut?: Date | undefined;
+    comments?: string | undefined;
+    kilometers?: number;
     isCompleted?: boolean;
     isPending?: boolean;
     isCanceled?: boolean;
-    isTested?: boolean;
+    doesCheckedAfterFinishingMaintenace?: boolean;
+    isReadyToBeDelivered?: boolean;
+    customerVehicle?: CustomerVehicleWithDetailsDTO;
+    maintenaceServices?: MaintenaceServiceDTO[] | undefined;
+
+    constructor(data?: IMaintenanceCardWithFullDetailsDTO) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.maintenanceNumberForEachTenant = _data["maintenanceNumberForEachTenant"];
+            this.tenantId = _data["tenantId"];
+            this.customerVehicleId = _data["customerVehicleId"];
+            this.dateIn = _data["dateIn"] ? new Date(_data["dateIn"].toString()) : <any>undefined;
+            this.dateOut = _data["dateOut"] ? new Date(_data["dateOut"].toString()) : <any>undefined;
+            this.comments = _data["comments"];
+            this.kilometers = _data["kilometers"];
+            this.isCompleted = _data["isCompleted"];
+            this.isPending = _data["isPending"];
+            this.isCanceled = _data["isCanceled"];
+            this.doesCheckedAfterFinishingMaintenace = _data["doesCheckedAfterFinishingMaintenace"];
+            this.isReadyToBeDelivered = _data["isReadyToBeDelivered"];
+            this.customerVehicle = _data["customerVehicle"] ? CustomerVehicleWithDetailsDTO.fromJS(_data["customerVehicle"]) : <any>undefined;
+            if (Array.isArray(_data["maintenaceServices"])) {
+                this.maintenaceServices = [] as any;
+                for (let item of _data["maintenaceServices"])
+                    this.maintenaceServices!.push(MaintenaceServiceDTO.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): MaintenanceCardWithFullDetailsDTO {
+        data = typeof data === 'object' ? data : {};
+        let result = new MaintenanceCardWithFullDetailsDTO();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["maintenanceNumberForEachTenant"] = this.maintenanceNumberForEachTenant;
+        data["tenantId"] = this.tenantId;
+        data["customerVehicleId"] = this.customerVehicleId;
+        data["dateIn"] = this.dateIn ? this.dateIn.toISOString() : <any>undefined;
+        data["dateOut"] = this.dateOut ? this.dateOut.toISOString() : <any>undefined;
+        data["comments"] = this.comments;
+        data["kilometers"] = this.kilometers;
+        data["isCompleted"] = this.isCompleted;
+        data["isPending"] = this.isPending;
+        data["isCanceled"] = this.isCanceled;
+        data["doesCheckedAfterFinishingMaintenace"] = this.doesCheckedAfterFinishingMaintenace;
+        data["isReadyToBeDelivered"] = this.isReadyToBeDelivered;
+        data["customerVehicle"] = this.customerVehicle ? this.customerVehicle.toJSON() : <any>undefined;
+        if (Array.isArray(this.maintenaceServices)) {
+            data["maintenaceServices"] = [];
+            for (let item of this.maintenaceServices)
+                data["maintenaceServices"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IMaintenanceCardWithFullDetailsDTO {
+    id?: number;
+    maintenanceNumberForEachTenant?: number;
+    tenantId?: number;
+    customerVehicleId?: number;
+    dateIn?: Date | undefined;
+    dateOut?: Date | undefined;
+    comments?: string | undefined;
+    kilometers?: number;
+    isCompleted?: boolean;
+    isPending?: boolean;
+    isCanceled?: boolean;
+    doesCheckedAfterFinishingMaintenace?: boolean;
+    isReadyToBeDelivered?: boolean;
+    customerVehicle?: CustomerVehicleWithDetailsDTO;
+    maintenaceServices?: MaintenaceServiceDTO[] | undefined;
 }
 
 export class MenuDTO implements IMenuDTO {
@@ -19555,6 +20634,7 @@ export class MenuDTO implements IMenuDTO {
     nameInArabic?: string | undefined;
     route?: string | undefined;
     icon?: string | undefined;
+    menuOrder?: number | undefined;
     children?: MenuDTO[] | undefined;
     expanded?: boolean;
 
@@ -19576,6 +20656,7 @@ export class MenuDTO implements IMenuDTO {
             this.nameInArabic = _data["nameInArabic"];
             this.route = _data["route"];
             this.icon = _data["icon"];
+            this.menuOrder = _data["menuOrder"];
             if (Array.isArray(_data["children"])) {
                 this.children = [] as any;
                 for (let item of _data["children"])
@@ -19601,6 +20682,7 @@ export class MenuDTO implements IMenuDTO {
         data["nameInArabic"] = this.nameInArabic;
         data["route"] = this.route;
         data["icon"] = this.icon;
+        data["menuOrder"] = this.menuOrder;
         if (Array.isArray(this.children)) {
             data["children"] = [];
             for (let item of this.children)
@@ -19619,6 +20701,7 @@ export interface IMenuDTO {
     nameInArabic?: string | undefined;
     route?: string | undefined;
     icon?: string | undefined;
+    menuOrder?: number | undefined;
     children?: MenuDTO[] | undefined;
     expanded?: boolean;
 }
@@ -19676,8 +20759,8 @@ export interface IMontlyCustomerVisitDTO {
 }
 
 export class NationalityDTO implements INationalityDTO {
-    id?: number;
-    tenantId?: number;
+    id?: number | undefined;
+    tenantId?: number | undefined;
     name?: string | undefined;
 
     constructor(data?: INationalityDTO) {
@@ -19714,8 +20797,8 @@ export class NationalityDTO implements INationalityDTO {
 }
 
 export interface INationalityDTO {
-    id?: number;
-    tenantId?: number;
+    id?: number | undefined;
+    tenantId?: number | undefined;
     name?: string | undefined;
 }
 
@@ -20327,9 +21410,56 @@ export interface IServicePartDTO {
     comments?: string | undefined;
 }
 
+export class ServiceTableWithServiceTypeDTO implements IServiceTableWithServiceTypeDTO {
+    id?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    serviceType?: ServiceTypeDTO;
+
+    constructor(data?: IServiceTableWithServiceTypeDTO) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            this.nameInArabic = _data["nameInArabic"];
+            this.serviceType = _data["serviceType"] ? ServiceTypeDTO.fromJS(_data["serviceType"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): ServiceTableWithServiceTypeDTO {
+        data = typeof data === 'object' ? data : {};
+        let result = new ServiceTableWithServiceTypeDTO();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["nameInArabic"] = this.nameInArabic;
+        data["serviceType"] = this.serviceType ? this.serviceType.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IServiceTableWithServiceTypeDTO {
+    id?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    serviceType?: ServiceTypeDTO;
+}
+
 export class ServiceTableDTO implements IServiceTableDTO {
     id?: number;
-    tenantId?: number;
     serviceTypeId?: number;
     name?: string | undefined;
     nameInArabic?: string | undefined;
@@ -20346,7 +21476,6 @@ export class ServiceTableDTO implements IServiceTableDTO {
     init(_data?: any) {
         if (_data) {
             this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
             this.serviceTypeId = _data["serviceTypeId"];
             this.name = _data["name"];
             this.nameInArabic = _data["nameInArabic"];
@@ -20363,7 +21492,6 @@ export class ServiceTableDTO implements IServiceTableDTO {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
         data["serviceTypeId"] = this.serviceTypeId;
         data["name"] = this.name;
         data["nameInArabic"] = this.nameInArabic;
@@ -20373,7 +21501,6 @@ export class ServiceTableDTO implements IServiceTableDTO {
 
 export interface IServiceTableDTO {
     id?: number;
-    tenantId?: number;
     serviceTypeId?: number;
     name?: string | undefined;
     nameInArabic?: string | undefined;
@@ -20381,7 +21508,6 @@ export interface IServiceTableDTO {
 
 export class ServiceTypeDTO implements IServiceTypeDTO {
     id?: number;
-    tenantId?: number;
     name?: string | undefined;
     nameInArabic?: string | undefined;
 
@@ -20397,7 +21523,6 @@ export class ServiceTypeDTO implements IServiceTypeDTO {
     init(_data?: any) {
         if (_data) {
             this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
             this.name = _data["name"];
             this.nameInArabic = _data["nameInArabic"];
         }
@@ -20413,7 +21538,6 @@ export class ServiceTypeDTO implements IServiceTypeDTO {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
         data["name"] = this.name;
         data["nameInArabic"] = this.nameInArabic;
         return data;
@@ -20422,7 +21546,6 @@ export class ServiceTypeDTO implements IServiceTypeDTO {
 
 export interface IServiceTypeDTO {
     id?: number;
-    tenantId?: number;
     name?: string | undefined;
     nameInArabic?: string | undefined;
 }
@@ -20476,9 +21599,10 @@ export interface IStatusBenefitDTO {
 }
 
 export class StreetDTO implements IStreetDTO {
-    id?: number;
-    tenantId?: number;
-    districtId?: number;
+    id?: number | undefined;
+    tenantId?: number | undefined;
+    districtId?: number | undefined;
+    district?: DistrictDTO;
     name?: string | undefined;
     nameInArabic?: string | undefined;
 
@@ -20496,6 +21620,7 @@ export class StreetDTO implements IStreetDTO {
             this.id = _data["id"];
             this.tenantId = _data["tenantId"];
             this.districtId = _data["districtId"];
+            this.district = _data["district"] ? DistrictDTO.fromJS(_data["district"]) : <any>undefined;
             this.name = _data["name"];
             this.nameInArabic = _data["nameInArabic"];
         }
@@ -20513,6 +21638,7 @@ export class StreetDTO implements IStreetDTO {
         data["id"] = this.id;
         data["tenantId"] = this.tenantId;
         data["districtId"] = this.districtId;
+        data["district"] = this.district ? this.district.toJSON() : <any>undefined;
         data["name"] = this.name;
         data["nameInArabic"] = this.nameInArabic;
         return data;
@@ -20520,9 +21646,10 @@ export class StreetDTO implements IStreetDTO {
 }
 
 export interface IStreetDTO {
-    id?: number;
-    tenantId?: number;
-    districtId?: number;
+    id?: number | undefined;
+    tenantId?: number | undefined;
+    districtId?: number | undefined;
+    district?: DistrictDTO;
     name?: string | undefined;
     nameInArabic?: string | undefined;
 }
@@ -20715,6 +21842,46 @@ export interface ILoginDTO {
     password: string;
 }
 
+export class UserWithRoleDTO implements IUserWithRoleDTO {
+    user?: UserDTOY;
+    role?: RoleDTO;
+
+    constructor(data?: IUserWithRoleDTO) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.user = _data["user"] ? UserDTOY.fromJS(_data["user"]) : <any>undefined;
+            this.role = _data["role"] ? RoleDTO.fromJS(_data["role"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): UserWithRoleDTO {
+        data = typeof data === 'object' ? data : {};
+        let result = new UserWithRoleDTO();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["user"] = this.user ? this.user.toJSON() : <any>undefined;
+        data["role"] = this.role ? this.role.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IUserWithRoleDTO {
+    user?: UserDTOY;
+    role?: RoleDTO;
+}
+
 export class UserDTO implements IUserDTO {
     id?: number;
     roleId?: number;
@@ -20772,6 +21939,62 @@ export interface IUserDTO {
     userName?: string | undefined;
     subDomain?: string | undefined;
     password?: string | undefined;
+    isActive?: boolean;
+}
+
+export class UserDTOY implements IUserDTOY {
+    id?: number;
+    roleId?: number;
+    tenantId?: number;
+    userName?: string | undefined;
+    subDomain?: string | undefined;
+    isActive?: boolean;
+
+    constructor(data?: IUserDTOY) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.roleId = _data["roleId"];
+            this.tenantId = _data["tenantId"];
+            this.userName = _data["userName"];
+            this.subDomain = _data["subDomain"];
+            this.isActive = _data["isActive"];
+        }
+    }
+
+    static fromJS(data: any): UserDTOY {
+        data = typeof data === 'object' ? data : {};
+        let result = new UserDTOY();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["roleId"] = this.roleId;
+        data["tenantId"] = this.tenantId;
+        data["userName"] = this.userName;
+        data["subDomain"] = this.subDomain;
+        data["isActive"] = this.isActive;
+        return data;
+    }
+}
+
+export interface IUserDTOY {
+    id?: number;
+    roleId?: number;
+    tenantId?: number;
+    userName?: string | undefined;
+    subDomain?: string | undefined;
     isActive?: boolean;
 }
 
@@ -21162,7 +22385,7 @@ export interface IAddNewCustomerDTO {
 export class AddNewVehicleToCustomerDTO implements IAddNewVehicleToCustomerDTO {
     customerVehicle?: CustomerVehicleDTO;
     plate?: PlateDTO;
-    colorID?: number;
+    colorID?: number | undefined;
 
     constructor(data?: IAddNewVehicleToCustomerDTO) {
         if (data) {
@@ -21200,7 +22423,7 @@ export class AddNewVehicleToCustomerDTO implements IAddNewVehicleToCustomerDTO {
 export interface IAddNewVehicleToCustomerDTO {
     customerVehicle?: CustomerVehicleDTO;
     plate?: PlateDTO;
-    colorID?: number;
+    colorID?: number | undefined;
 }
 
 export class ApiResponse_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
@@ -21827,6 +23050,54 @@ export interface IApiResponse_1OfOfDistrictDTOAndBLLAnd_0AndCulture_neutralAndPu
     result?: DistrictDTO;
 }
 
+export class ApiResponse_1OfOfEmployeeWithDetails2DTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfEmployeeWithDetails2DTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: EmployeeWithDetails2DTO;
+
+    constructor(data?: IApiResponse_1OfOfEmployeeWithDetails2DTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"];
+            this.statusCode = _data["statusCode"];
+            this.message = _data["message"];
+            this.result = _data["result"] ? EmployeeWithDetails2DTO.fromJS(_data["result"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): ApiResponse_1OfOfEmployeeWithDetails2DTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApiResponse_1OfOfEmployeeWithDetails2DTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success;
+        data["statusCode"] = this.statusCode;
+        data["message"] = this.message;
+        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IApiResponse_1OfOfEmployeeWithDetails2DTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: EmployeeWithDetails2DTO;
+}
+
 export class ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
@@ -22161,6 +23432,54 @@ export interface IApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutr
     statusCode?: number;
     message?: string | undefined;
     result?: MaintainedImageDTO;
+}
+
+export class ApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: NewMaintenanceCardDTO;
+
+    constructor(data?: IApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"];
+            this.statusCode = _data["statusCode"];
+            this.message = _data["message"];
+            this.result = _data["result"] ? NewMaintenanceCardDTO.fromJS(_data["result"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): ApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success;
+        data["statusCode"] = this.statusCode;
+        data["message"] = this.message;
+        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: NewMaintenanceCardDTO;
 }
 
 export class ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
@@ -23555,6 +24874,102 @@ export interface IApiResponse_1OfOfWheelDriveDTOAndBLLAnd_0AndCulture_neutralAnd
     result?: WheelDriveDTO;
 }
 
+export class ApiResponse_1OfOfAddNewVehicleToCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfAddNewVehicleToCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: AddNewVehicleToCustomerDTO;
+
+    constructor(data?: IApiResponse_1OfOfAddNewVehicleToCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"];
+            this.statusCode = _data["statusCode"];
+            this.message = _data["message"];
+            this.result = _data["result"] ? AddNewVehicleToCustomerDTO.fromJS(_data["result"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): ApiResponse_1OfOfAddNewVehicleToCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApiResponse_1OfOfAddNewVehicleToCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success;
+        data["statusCode"] = this.statusCode;
+        data["message"] = this.message;
+        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IApiResponse_1OfOfAddNewVehicleToCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: AddNewVehicleToCustomerDTO;
+}
+
+export class ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: boolean;
+
+    constructor(data?: IApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"];
+            this.statusCode = _data["statusCode"];
+            this.message = _data["message"];
+            this.result = _data["result"];
+        }
+    }
+
+    static fromJS(data: any): ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success;
+        data["statusCode"] = this.statusCode;
+        data["message"] = this.message;
+        data["result"] = this.result;
+        return data;
+    }
+}
+
+export interface IApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: boolean;
+}
+
 export class ApiResponse_1OfOfIEnumerable_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfCityDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
@@ -24283,6 +25698,62 @@ export interface IApiResponse_1OfOfIEnumerable_1OfOfDistrictDTOAndBLLAnd_0AndCul
     result?: DistrictDTO[] | undefined;
 }
 
+export class ApiResponse_1OfOfIEnumerable_1OfOfEmployeeWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfEmployeeWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: EmployeeWithDetailsDTO[] | undefined;
+
+    constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfEmployeeWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"];
+            this.statusCode = _data["statusCode"];
+            this.message = _data["message"];
+            if (Array.isArray(_data["result"])) {
+                this.result = [] as any;
+                for (let item of _data["result"])
+                    this.result!.push(EmployeeWithDetailsDTO.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): ApiResponse_1OfOfIEnumerable_1OfOfEmployeeWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApiResponse_1OfOfIEnumerable_1OfOfEmployeeWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success;
+        data["statusCode"] = this.statusCode;
+        data["message"] = this.message;
+        if (Array.isArray(this.result)) {
+            data["result"] = [];
+            for (let item of this.result)
+                data["result"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IApiResponse_1OfOfIEnumerable_1OfOfEmployeeWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: EmployeeWithDetailsDTO[] | undefined;
+}
+
 export class ApiResponse_1OfOfIEnumerable_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
@@ -24785,6 +26256,62 @@ export interface IApiResponse_1OfOfIEnumerable_1OfOfMaintenaceServiceDTOAndBLLAn
     statusCode?: number;
     message?: string | undefined;
     result?: MaintenaceServiceDTO[] | undefined;
+}
+
+export class ApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: MaintenanceCardWithFullDetailsDTO[] | undefined;
+
+    constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"];
+            this.statusCode = _data["statusCode"];
+            this.message = _data["message"];
+            if (Array.isArray(_data["result"])) {
+                this.result = [] as any;
+                for (let item of _data["result"])
+                    this.result!.push(MaintenanceCardWithFullDetailsDTO.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): ApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success;
+        data["statusCode"] = this.statusCode;
+        data["message"] = this.message;
+        if (Array.isArray(this.result)) {
+            data["result"] = [];
+            for (let item of this.result)
+                data["result"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: MaintenanceCardWithFullDetailsDTO[] | undefined;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
@@ -25347,6 +26874,62 @@ export interface IApiResponse_1OfOfIEnumerable_1OfOfRoleDTOAndBLLAnd_0AndCulture
     result?: RoleDTO[] | undefined;
 }
 
+export class ApiResponse_1OfOfIEnumerable_1OfOfRolePermissionWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfRolePermissionWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: RolePermissionWithDetailsDTO[] | undefined;
+
+    constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfRolePermissionWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"];
+            this.statusCode = _data["statusCode"];
+            this.message = _data["message"];
+            if (Array.isArray(_data["result"])) {
+                this.result = [] as any;
+                for (let item of _data["result"])
+                    this.result!.push(RolePermissionWithDetailsDTO.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): ApiResponse_1OfOfIEnumerable_1OfOfRolePermissionWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApiResponse_1OfOfIEnumerable_1OfOfRolePermissionWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success;
+        data["statusCode"] = this.statusCode;
+        data["message"] = this.message;
+        if (Array.isArray(this.result)) {
+            data["result"] = [];
+            for (let item of this.result)
+                data["result"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IApiResponse_1OfOfIEnumerable_1OfOfRolePermissionWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: RolePermissionWithDetailsDTO[] | undefined;
+}
+
 export class ApiResponse_1OfOfIEnumerable_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfRolePermssionDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
@@ -25459,6 +27042,62 @@ export interface IApiResponse_1OfOfIEnumerable_1OfOfRoleRouteDTOAndBLLAnd_0AndCu
     result?: RoleRouteDTO[] | undefined;
 }
 
+export class ApiResponse_1OfOfIEnumerable_1OfOfRoleRouteWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfRoleRouteWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: RoleRouteWithDetailsDTO[] | undefined;
+
+    constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfRoleRouteWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"];
+            this.statusCode = _data["statusCode"];
+            this.message = _data["message"];
+            if (Array.isArray(_data["result"])) {
+                this.result = [] as any;
+                for (let item of _data["result"])
+                    this.result!.push(RoleRouteWithDetailsDTO.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): ApiResponse_1OfOfIEnumerable_1OfOfRoleRouteWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApiResponse_1OfOfIEnumerable_1OfOfRoleRouteWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success;
+        data["statusCode"] = this.statusCode;
+        data["message"] = this.message;
+        if (Array.isArray(this.result)) {
+            data["result"] = [];
+            for (let item of this.result)
+                data["result"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IApiResponse_1OfOfIEnumerable_1OfOfRoleRouteWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: RoleRouteWithDetailsDTO[] | undefined;
+}
+
 export class ApiResponse_1OfOfIEnumerable_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfServicePartDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
@@ -25513,6 +27152,62 @@ export interface IApiResponse_1OfOfIEnumerable_1OfOfServicePartDTOAndBLLAnd_0And
     statusCode?: number;
     message?: string | undefined;
     result?: ServicePartDTO[] | undefined;
+}
+
+export class ApiResponse_1OfOfIEnumerable_1OfOfServiceTableWithServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfServiceTableWithServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: ServiceTableWithServiceTypeDTO[] | undefined;
+
+    constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfServiceTableWithServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"];
+            this.statusCode = _data["statusCode"];
+            this.message = _data["message"];
+            if (Array.isArray(_data["result"])) {
+                this.result = [] as any;
+                for (let item of _data["result"])
+                    this.result!.push(ServiceTableWithServiceTypeDTO.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): ApiResponse_1OfOfIEnumerable_1OfOfServiceTableWithServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApiResponse_1OfOfIEnumerable_1OfOfServiceTableWithServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success;
+        data["statusCode"] = this.statusCode;
+        data["message"] = this.message;
+        if (Array.isArray(this.result)) {
+            data["result"] = [];
+            for (let item of this.result)
+                data["result"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IApiResponse_1OfOfIEnumerable_1OfOfServiceTableWithServiceTypeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: ServiceTableWithServiceTypeDTO[] | undefined;
 }
 
 export class ApiResponse_1OfOfIEnumerable_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfServiceTableDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
@@ -25907,6 +27602,62 @@ export interface IApiResponse_1OfOfIEnumerable_1OfOfTransmissionDTOAndBLLAnd_0An
     result?: TransmissionDTO[] | undefined;
 }
 
+export class ApiResponse_1OfOfIEnumerable_1OfOfUserWithRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfUserWithRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: UserWithRoleDTO[] | undefined;
+
+    constructor(data?: IApiResponse_1OfOfIEnumerable_1OfOfUserWithRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"];
+            this.statusCode = _data["statusCode"];
+            this.message = _data["message"];
+            if (Array.isArray(_data["result"])) {
+                this.result = [] as any;
+                for (let item of _data["result"])
+                    this.result!.push(UserWithRoleDTO.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): ApiResponse_1OfOfIEnumerable_1OfOfUserWithRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApiResponse_1OfOfIEnumerable_1OfOfUserWithRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success;
+        data["statusCode"] = this.statusCode;
+        data["message"] = this.message;
+        if (Array.isArray(this.result)) {
+            data["result"] = [];
+            for (let item of this.result)
+                data["result"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IApiResponse_1OfOfIEnumerable_1OfOfUserWithRoleDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: UserWithRoleDTO[] | undefined;
+}
+
 export class ApiResponse_1OfOfIEnumerable_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfIEnumerable_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
@@ -26299,6 +28050,62 @@ export interface IApiResponse_1OfOfIEnumerable_1OfOfWheelDriveDTOAndBLLAnd_0AndC
     result?: WheelDriveDTO[] | undefined;
 }
 
+export class ApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: CustomerVehicleWithDetailsDTO[] | undefined;
+
+    constructor(data?: IApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"];
+            this.statusCode = _data["statusCode"];
+            this.message = _data["message"];
+            if (Array.isArray(_data["result"])) {
+                this.result = [] as any;
+                for (let item of _data["result"])
+                    this.result!.push(CustomerVehicleWithDetailsDTO.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): ApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success;
+        data["statusCode"] = this.statusCode;
+        data["message"] = this.message;
+        if (Array.isArray(this.result)) {
+            data["result"] = [];
+            for (let item of this.result)
+                data["result"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: CustomerVehicleWithDetailsDTO[] | undefined;
+}
+
 export class ApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
@@ -26347,6 +28154,66 @@ export interface IApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPub
     result?: string | undefined;
 }
 
+export class MaintenanceFilter implements IMaintenanceFilter {
+    employeeFirstName?: string | undefined;
+    employeeLastName?: string | undefined;
+    employeeFatherName?: string | undefined;
+    vehicleBrandName?: string | undefined;
+    vehicleModelName?: string | undefined;
+    serviceName?: string | undefined;
+    customerFirstName?: string | undefined;
+
+    constructor(data?: IMaintenanceFilter) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.employeeFirstName = _data["employeeFirstName"];
+            this.employeeLastName = _data["employeeLastName"];
+            this.employeeFatherName = _data["employeeFatherName"];
+            this.vehicleBrandName = _data["vehicleBrandName"];
+            this.vehicleModelName = _data["vehicleModelName"];
+            this.serviceName = _data["serviceName"];
+            this.customerFirstName = _data["customerFirstName"];
+        }
+    }
+
+    static fromJS(data: any): MaintenanceFilter {
+        data = typeof data === 'object' ? data : {};
+        let result = new MaintenanceFilter();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["employeeFirstName"] = this.employeeFirstName;
+        data["employeeLastName"] = this.employeeLastName;
+        data["employeeFatherName"] = this.employeeFatherName;
+        data["vehicleBrandName"] = this.vehicleBrandName;
+        data["vehicleModelName"] = this.vehicleModelName;
+        data["serviceName"] = this.serviceName;
+        data["customerFirstName"] = this.customerFirstName;
+        return data;
+    }
+}
+
+export interface IMaintenanceFilter {
+    employeeFirstName?: string | undefined;
+    employeeLastName?: string | undefined;
+    employeeFatherName?: string | undefined;
+    vehicleBrandName?: string | undefined;
+    vehicleModelName?: string | undefined;
+    serviceName?: string | undefined;
+    customerFirstName?: string | undefined;
+}
+
 function formatDate(d: Date) {
     return d.getFullYear() + '-' + 
         (d.getMonth() < 9 ? ('0' + (d.getMonth()+1)) : (d.getMonth()+1)) + '-' +
@@ -26356,6 +28223,13 @@ function formatDate(d: Date) {
 export interface FileParameter {
     data: any;
     fileName: string;
+}
+
+export interface FileResponse {
+    data: Blob;
+    status: number;
+    fileName?: string;
+    headers?: { [name: string]: any };
 }
 
 export class ApiException extends Error {

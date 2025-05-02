@@ -1,0 +1,188 @@
+<!-- parent -->
+<div>
+    <!-- First row (input with buttons) -->
+    <div class="mb-4 relative">
+    <!-- 3D Floating Car Key Mockup  -->
+        <div class="absolute right-5 -top-10 w-32 h-32 opacity-80 z-10 hidden md:block">
+            <img src="keyCar.png" alt="Car Key" class="w-full h-full object-contain transform rotate-12 hover:rotate-6 transition-transform duration-500">
+        </div>
+    <!-- Form Container -->
+        <div class="relative bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6">
+            <form [formGroup]="form">
+                <div class="w-full flex flex-col md:flex-row gap-4 mb-4">
+                    <!-- Phone Number Input -->
+                    @if (viewGetCustomerByPhoneNumber) {
+                    <div class="w-full md:w-[35%] relative">
+                        <ngx-intl-tel-input
+                        [cssClass]="classC"
+                        [separateDialCode]="separateDialCode"
+                        [preferredCountries]="preferredCountries"
+                        [selectedCountryISO]="CountryISO.Lebanon"
+                        [searchCountryFlag]="true"
+
+                        formControlName="phoneNumber"
+                        ></ngx-intl-tel-input>
+                    </div>
+                    }
+                
+                    <!-- Name Inputs in container for grid layout -->
+                    <div class="w-full md:w-[65%] flex flex-col sm:flex-row gap-4">
+                        @if (viewGetCustomerByFirstName || viewGetCustomerByFirstAndLastName) {
+                            <div class="relative flex-1">
+                            <input
+                                type="text"
+                                formControlName="firstName"
+                                placeholder="First Name"
+                                class="w-full px-3 py-2 text-gray-800 dark:text-gray-100 bg-white dark:bg-[#2a2b2f] rounded-lg border border-gray-300 dark:border-gray-600 focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none shadow-sm transition-all duration-200"
+                            />
+                            </div>
+                        }
+                    
+                        @if(viewGetCustomerByLastName || viewGetCustomerByFirstAndLastName){
+                            <div class="relative flex-1">
+                            <input
+                                type="text"
+                                formControlName="lastName"
+                                placeholder="Last Name"
+                                class="w-full px-3 py-2 text-gray-800 dark:text-gray-100 bg-white dark:bg-[#2a2b2f] rounded-lg border border-gray-300 dark:border-gray-600 focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none shadow-sm transition-all duration-200"
+                            />
+                            </div>
+                        }
+                    </div>
+                </div>  
+            </form>
+            <!-- Action Buttons-->
+            <div class="flex gap-4 mt-6">
+                @if (viewAddNewCustomer) {
+                    <!-- Add -->
+                    <button 
+                    class="relative overflow-hidden px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+                    (click)="openFormToAddCustomer()"
+                    >
+                    <div class="absolute -right-4 -top-4 w-8 h-8 bg-blue-400 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+                    <div class="absolute -left-4 -bottom-4 w-10 h-10 bg-blue-300 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+                    <i class="bi bi-plus-circle mr-2"></i> Add New Customer
+                    </button>
+                    <!-- Add Customer Form (when opened) -->
+                    @if(openCustomerAddingForm){
+                        <app-add-customer-form 
+                        (closeForm)="openCustomerAddingForm = false" 
+                        (submitForm)="handleAddCustomer($event)"
+                        class="relative z-10"
+                        ></app-add-customer-form>
+                    }
+                }
+                
+                @if (viewRelatedToTheSearch) {
+                    <!-- Clear -->
+                    <button 
+                    class="relative overflow-hidden px-3 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+                    (click)="removeSearch()"
+                    >
+                    <div class="absolute -right-4 -top-4 w-8 h-8 bg-red-400 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+                    <i class="bi bi-x-circle mr-2"></i> Clear Search
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+    <!-- Second Row -->
+    @if (viewRelatedToTheSearch) {
+        <!-- Block -->
+        <div class="relative bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 my-2 w-full 
+        min-h-[calc(80vh-200px)] flex flex-col items-center justify-center">
+            <!-- Search State -->   
+            @if (searchText) {
+                <div class="flex flex-col items-center justify-center gap-4 animate-fade-in">
+                    <i class="bi bi-search text-4xl text-blue-500 search-icon "></i>
+                    <span class="text-gray-800 text-xl dark:text-white">
+                        Start searching for a customer...
+                    </span>
+                </div>
+            }
+            <!-- No Results State -->
+            @if (noResult) {
+                <div class="flex flex-col items-center justify-center gap-4 p-8 animate-fade-in">
+                    <i class="bi bi-emoji-frown text-5xl text-blue-500"></i>
+                    <h1 class="text-center text-2xl font-medium text-gray-700 dark:text-white">No customers found</h1>
+                    <button 
+                        class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors shadow-md hover:shadow-lg"
+                        (click)="removeSearch()"
+                    >
+                        Reset Search
+                    </button>
+                </div>
+            }
+            <!-- Customer Cards container -->
+            <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-4" *ngIf="customers$ | async as customers">
+                <!-- Customer Cards -->
+                <div *ngFor="let customer of customers" 
+                    class="relative bg-[#f9f9f9] dark:bg-gray-800 rounded-xl shadow-3xl  hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-600 dark:border-gray-700 transform hover:-translate-y-1 hover:scale-[1.02] cursor-pointer group"
+                    [@cardAnimation]>
+                    <!-- 3D Mockup Effect Layers -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-700 dark:to-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+                    <div class="absolute -right-4 -top-4 w-16 h-16 bg-blue-400 rounded-full opacity-10 group-hover:opacity-20 transition-all duration-500"></div>
+                    <div class="absolute -left-4 -bottom-4 w-20 h-20 bg-purple-400 rounded-full opacity-10 group-hover:opacity-20 transition-all duration-500"></div>
+                    <!-- Card Content -->
+                    <div class="p-6 flex flex-col h-full">
+                        <!-- Customer Icon -->
+                        <div class="w-16 h-16 bg-blue-300 dark:bg-blue-900 rounded-full flex items-center justify-center mb-4 mx-auto shadow-inner">
+                            <i class="bi bi-person-badge text-2xl text-blue-900 dark:text-blue-300"></i>
+                        </div>
+                        <!-- Customer Info with Labels -->
+                        <div class="space-y-3 text-center">
+                            <div>
+                                <p class="text-lg font-semibold text-gray-800 dark:text-white">{{ customer.firstName }}</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-600 dark:text-gray-300">{{ customer.fatherName }}</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-600 dark:text-gray-300">{{ customer.lastName }}</p>
+                            </div>
+                        </div>
+                        <!-- View Button (appears on hover) -->
+                        <button 
+                        (click)="handleSelectCustomer(customer)"
+                        class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:bg-blue-600">
+                            View Customer's Vehicle
+                            <i class="bi bi-arrow-right ml-2"></i>
+                        </button>
+        
+                        <!-- Decorative 3D Element -->
+                        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+}   
+</div>
+<!-- Children -->   
+
+@if(selectedCustomer && secondStep == true){
+<app-second-select-acar [selectedCustomer] = "selectedCustomer"  
+(close)="this.secondStep  = false" (selectedVehicle)="handleVehicleSelection($event)"
+></app-second-select-acar>
+}
+
+@if(selectedVehicle && thirdStep == true){
+<app-third-view-selected-vehicle [selectedVehicle] = "selectedVehicle" 
+(close)="this.thirdStep =false" (stepBack)="this.secondStep = true" (maintenanceDTO)="getAddedMaitenance($event)"
+></app-third-view-selected-vehicle>
+}
+
+@if (selectedCustomer && selectedVehicle  && fourthStep == true) {
+<app-fourth-view-maintenance 
+[selectedVehicle]="this.selectedVehicle" [selectedCustomer]="this.selectedCustomer" [maintenanceCard]="this.createdMaintenance"
+(moveToService)="moveToService()"
+(close)="this.fourthStep = false"   (stepBack)="this.thirdStep = true" 
+></app-fourth-view-maintenance>
+}
+
+@if (fifthStep == true) {
+<app-fifth-add-services
+[maintenanceCard]="this.createdMaintenance"
+(close)="this.fifthStep = false"   (stepBack)="this.fourthStep = true"
+>
+</app-fifth-add-services>
+}

@@ -3,7 +3,6 @@ import { SidebarComponent } from "../../components/sidebar/sidebar.component";
 import { RouterOutlet } from '@angular/router';
 import { SidebarStateService } from '../../../core/services/sidebarState/sidebar-state.service';
 import { CommonModule } from '@angular/common';
-import { UserService } from '../../../core/services/userService/user-service.service';
 import { NavbarAfterLoginComponent } from "../../components/navbar-after-login/navbar-after-login.component";
 import { FooterComponent } from "../../components/footer/footer.component";
 
@@ -16,7 +15,7 @@ import { FooterComponent } from "../../components/footer/footer.component";
 export class LayoutAfterLoginComponent {
   isSidebarOpen = false;
 
-  constructor(private sidebarState: SidebarStateService, private userService: UserService) {
+  constructor(private sidebarState: SidebarStateService) {
     this.sidebarState.isSidebarOpen$.subscribe((isOpen) => {
       this.isSidebarOpen = isOpen;
     });
@@ -24,14 +23,6 @@ export class LayoutAfterLoginComponent {
 
   toggleSidebar() {
     this.sidebarState.toggleSidebar();
-  }
-
-  isAtBottom = false;
-
-  onContainerScroll(event: any) {
-    const element = event.target;
-    const atBottom = element.scrollHeight - element.scrollTop === element.clientHeight;
-    this.isAtBottom = atBottom;
   }
 
 }

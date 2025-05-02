@@ -1,10 +1,12 @@
-	<footer class=" p-1 px-2 bg-[#212227]">
+	<footer class="z-1 p-1 px-2 bg-[#212227] dark:bg-gray-700">
 		<div class="sm:flex sm:items-center sm:justify-between">
 			<!-- Logo -->
-			<a href="#" class="flex items-center mb-3 sm:mb-0">
-				<img src="https://flowbite.com/docs/images/logo.svg" class="mr-4 h-8" alt="Flowbite Logo" />
-				<span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Garage Master</span>
-			</a>
+			<div class="flex py-2 text-center my-font">
+				@if (tenant) {
+				  <img [src]="imageUrl" alt="Downloaded Image bg-white" class="w-12 h-10 object-cover" />
+				  <h1 class="text-2xl ml-1 px-2 py-1 text-white">{{ tenant }}</h1>
+				}
+			  </div>
 			<!-- Items -->
 			<ul class="flex flex-wrap items-center m-2">
 				<li>
@@ -17,7 +19,7 @@
 			</ul>
 		</div>
 		<!-- Copy Right -->
-		<span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 Garage Master. All Rights Reserved.
+		<span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2025 Garage Master. All Rights Reserved.
     </span>
 	</footer>
 	

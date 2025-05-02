@@ -1,0 +1,103 @@
+<app-generic-form [title]="'Selected Vehicle'" [showBackButton]="true"
+(closeModal)="closeMenu()" (clickBackButton)="back()">
+
+    <form class="p-4 space-y-4">
+    <!-- Maintenance Card -->
+    <div class="bg-gray-200 dark:bg-[#131212]  p-4 rounded-lg shadow flex flex-col gap-2 text-gray-900 dark:text-white">
+        <div class="flex items-center gap-3 mb-2">
+        <i class="text-2xl text-blue-400 bi bi-tools"></i>
+        <div>
+            <p class="text-lg font-bold">Maintenance Card</p>
+            <p class="text-md text-gray-500 dark:text-gray-400">Maintenance No.</p>
+        </div>
+        </div>
+        <input
+        type="text"
+        [value]="maintenanceCard?.maintenanceNumberForEachTenant"
+        disabled
+        class="mt-2 px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#2a2b2f] text-md text-gray-800 dark:text-gray-100"
+        />
+    </div>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <!-- Customer Info -->
+        <div class="bg-gray-200 dark:bg-[#131212]  p-4 rounded-lg shadow flex flex-col gap-2 text-gray-900 dark:text-white">
+        <div class="flex items-center gap-3 mb-2">
+            <i class="text-2xl text-green-400 bi bi-person"></i>
+            <div>
+            <p class="text-lg font-bold">Customer</p>
+            <p class="text-md text-gray-500 dark:text-gray-400">Name & Phone</p>
+            </div>
+        </div>
+        <input
+            type="text"
+            [value]="selectedCustomer?.firstName + ' ' + selectedCustomer?.lastName"
+            disabled
+            class="px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#2a2b2f] text-md text-gray-800 dark:text-gray-100"
+        />
+        <input
+            type="text"
+            [value]="customerPhoneNumber?.number || 'No phone number'"
+            disabled
+            class="px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#2a2b2f] text-md text-gray-800 dark:text-gray-100"
+        />
+        </div>
+
+        <!-- Vehicle Info -->
+        <div class="bg-gray-200 dark:bg-[#131212] p-4 rounded-lg shadow text-gray-900 dark:text-white space-y-2">
+        <div class="flex items-center gap-3 mb-2">
+            <i class="text-2xl text-red-400 bi bi-car-front-fill"></i>
+            <div>
+            <p class="text-lg font-bold">Vehicle</p>
+            <p class="text-md text-gray-500 dark:text-gray-400">Details</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <input
+            type="text"
+            [value]="selectedVehicle?.vehicleModel?.vehicleBrand?.name + ' - ' + selectedVehicle?.vehicleModel?.name"
+            disabled
+            class="px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#2a2b2f] text-md text-gray-800 dark:text-gray-100"
+            />
+            <input
+            type="text"
+            [value]="selectedVehicle?.customerVehiclePlates?.[0]?.plate?.letters ?? 'N/A'"
+            disabled
+            class="px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#2a2b2f] text-md text-gray-800 dark:text-gray-100"
+            />
+            <input
+            type="text"
+            [value]="selectedVehicle?.customerVehiclePlates?.[0]?.plate?.numbers ?? 'N/A'"
+            disabled
+            class="px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#2a2b2f] text-md text-gray-800 dark:text-gray-100"
+            />
+            <input
+            type="text"
+            [value]="selectedVehicle?.customerVehicleColors?.[0]?.color?.name ?? 'N/A'"
+            disabled
+            class="px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#2a2b2f] text-md text-gray-800 dark:text-gray-100"
+            />
+            <input
+            type="text"
+            [value]="maintenanceCard?.kilometers ?? 'N/A'"
+            disabled
+            class="px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#2a2b2f] text-md text-gray-800 dark:text-gray-100"
+            />
+        </div>
+        </div>
+    </div>
+    </form>
+    <!-- Action Buttons -->
+    <div class="w-full py-2 px-4">
+        <button
+        class="cursor-pointer
+        w-full p-2 bg-blue-600 dark:bg-blue-800 dark:hover:bg-blue-600 hover:bg-blue-800  text-white rounded transition-colors duration-200"
+        (click)="openServiceForm()"
+        >
+        Start Adding Services
+        </button>
+    </div>
+</app-generic-form>
