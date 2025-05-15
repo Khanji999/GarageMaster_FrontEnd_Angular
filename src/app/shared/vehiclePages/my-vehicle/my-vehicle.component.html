@@ -1,0 +1,56 @@
+<div class="container mx-auto px-4 ">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+<div *ngFor="let vehicle of customerVehicles" 
+        class="bg-white dark:bg-gray-800 shadow-lg rounded-xl overflow-hidden transition-transform transform hover:-translate-y-1 hover:shadow-2xl">
+
+    <!-- Vehicle Image -->
+    <div class="relative aspect-w-16 aspect-h-9 bg-gray-100 dark:bg-gray-700">
+    <img 
+        src="customerCar.jpg" 
+        alt="Vehicle Image"
+        class="w-full h-full object-contain p-4" 
+    />
+    <span class="absolute top-2 right-2 bg-blue-600 text-white text-xs font-semibold px-2 py-1 rounded shadow">
+        {{ vehicle.yearModel || 'N/A' }}
+    </span>
+    </div>
+
+    <!-- Vehicle Info -->
+    <div class="p-5 text-gray-800 dark:text-gray-100 space-y-2">
+    <h3 class="text-xl font-bold text-blue-700 dark:text-blue-400">
+       {{ vehicle.vehicleModel?.vehicleBrand?.name || 'Unknown Brand' }}  {{ vehicle.vehicleModel?.name || 'Unknown Model' }}
+    </h3>
+    <p class="text-sm text-gray-600 dark:text-gray-300">VIN: <span class="font-medium">{{ vehicle.vin || 'N/A' }}</span></p>
+    <div class="grid grid-cols-2 gap-2 text-sm">
+        <p><span class="font-semibold">Cylinders:</span> {{ vehicle.numberOfCylinders || 'N/A' }}</p>
+        <p><span class="font-semibold">Gears:</span> {{ vehicle.transmissionGears || 'N/A' }}</p>
+        <p><span class="font-semibold">Transmission:</span> {{ vehicle.transmission?.name || 'N/A' }}</p>
+        <p><span class="font-semibold">Fuel:</span> {{ vehicle.engineFuel?.engineFuelType || 'N/A' }}</p>
+        <p><span class="font-semibold">Charger:</span> {{ vehicle.engineCharger?.engineChargerName || 'N/A' }}</p>
+        <p><span class="font-semibold">Drive:</span> {{ vehicle.wheelDrive?.name || 'N/A' }}</p>
+        <p><span class="font-semibold">Structure:</span> {{ vehicle.engineStructure?.engineType || 'N/A' }}</p>
+    </div>
+
+    <!-- Plates Section -->
+    <div *ngIf="vehicle.customerVehiclePlates?.length" class="mt-3">
+        <p class="font-semibold text-sm mb-1">Plates:</p>
+        <ul class="text-sm list-disc pl-5 space-y-1">
+        <li *ngFor="let plate of vehicle.customerVehiclePlates">
+            {{ plate.plate?.letters }} - {{ plate.plate?.numbers }}
+        </li>
+        </ul>
+    </div>
+
+    <!-- Colors Section -->
+    <div *ngIf="vehicle.customerVehicleColors?.length" class="mt-3">
+        <p class="font-semibold text-sm mb-1">Colors:</p>
+        <ul class="text-sm list-disc pl-5 space-y-1">
+        <li *ngFor="let color of vehicle.customerVehicleColors">
+            {{ color.color?.name }}
+        </li>
+        </ul>
+    </div>
+    </div>
+</div>
+</div>
+</div>

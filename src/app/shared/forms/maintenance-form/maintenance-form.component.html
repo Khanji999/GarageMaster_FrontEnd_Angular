@@ -1,0 +1,213 @@
+<app-generic-form [title]="'View Maintenace Card'" (closeModal)="closeFormAndDestroy()">
+<form [formGroup]="form" class="my-3">
+    <!-- First Row -->
+    <h3 class="text-lg font-bold text-black dark:text-[#eee] m-3">Maintenance Information</h3>
+    <div class="flex flex-wrap gap-2 m-3">
+        <div class="relative flex-1 min-w-[200px]">
+            <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Card Number</label>
+            <div class="relative">
+                <input
+                class="px-3 py-2 pr-10
+                    text-md text-gray-800 dark:text-gray-100
+                    input-class w-full 
+                    bg-zinc-300 dark:bg-[#2a2b2f] 
+                    rounded border border-gray-300 dark:border-gray-700 
+                    focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                formControlName="maintenanceNumber"
+                readonly
+                />
+                <span
+                class="absolute top-1/2 right-3 -translate-y-1/2 w-4 h-4 rounded-full"
+                [ngClass]="{
+                'bg-green-500': form.get('status')?.value === 'Completed',
+                'bg-orange-500': form.get('status')?.value === 'Pending',
+                'bg-red-500': form.get('status')?.value === 'Canceled',
+                }">
+                </span>
+            </div>
+        </div>
+    </div>
+    <!-- Second Row -->
+    <div class="flex flex-row gap-2 m-3">
+            <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Ready to be Delivered</label>
+            <i class="bi bi-check-circle text-green-500" *ngIf="form.get('isReadyToBeDelivered')?.value"></i>
+            <i class="bi bi-x-circle text-red-500" *ngIf="!form.get('isReadyToBeDelivered')?.value"></i>
+    </div>
+    
+    <!-- Third Row -->
+    <div class="flex flex-wrap gap-2 m-3">
+        <div class="flex-1 min-w-[200px]">
+            <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Date In</label>
+            <input  class="px-3 py-2 
+                text-md text-gray-800 dark:text-gray-100
+                input-class w-full 
+                bg-zinc-300 dark:bg-[#2a2b2f] 
+                rounded border border-gray-300 dark:border-gray-700 
+                focus:outline-none cursor-default"  formControlName="dateIn" readonly />
+        </div> 
+        <div class="flex-1 min-w-[200px]">
+            <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Date Out</label>
+            <input  class="px-3 py-2 
+                text-md text-gray-800 dark:text-gray-100
+                input-class w-full 
+                bg-zinc-300 dark:bg-[#2a2b2f] 
+                rounded border border-gray-300 dark:border-gray-700 
+                focus:outline-none cursor-default"  formControlName="dateOut" readonly />
+        </div>
+    </div>
+    <!-- Fourth Row -->
+    <h3 class="text-lg font-bold text-black dark:text-[#eee] m-3">Customer Information</h3>
+    <div class="flex flex-wrap gap-2 m-3">
+        <div class="flex-1 min-w-[200px]">
+            <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Customer Frist Name</label>
+            <input  class="px-3 py-2 
+                text-md text-gray-800 dark:text-gray-100
+                input-class w-full 
+                bg-zinc-300 dark:bg-[#2a2b2f] 
+                rounded border border-gray-300 dark:border-gray-700 
+                focus:outline-none cursor-default"  formControlName="customerFirstName" readonly />
+        </div> 
+        <div class="flex-1 min-w-[200px]">
+            <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Customer Father Name</label>
+            <input  class="px-3 py-2 
+                text-md text-gray-800 dark:text-gray-100
+                input-class w-full 
+                bg-zinc-300 dark:bg-[#2a2b2f] 
+                rounded border border-gray-300 dark:border-gray-700 
+                focus:outline-none cursor-default"  formControlName="customerFatherName" readonly />
+        </div>
+        <div class="flex-1 min-w-[200px]">
+            <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Customer Last Name</label>
+            <input  class="px-3 py-2 
+                text-md text-gray-800 dark:text-gray-100
+                input-class w-full 
+                bg-zinc-300 dark:bg-[#2a2b2f] 
+                rounded border border-gray-300 dark:border-gray-700 
+                focus:outline-none cursor-default"  formControlName="customerLastName" readonly />
+        </div>
+    </div>
+    <!-- Fifth Row -->
+    <h3 class="text-lg font-bold text-black dark:text-[#eee] m-3">Customer Vehicle Information</h3>
+    <div class="flex flex-wrap gap-2 m-3">
+        <div class="flex-1 min-w-[200px]">
+            <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Vehicle Identification Number (VIN)</label>
+            <input  class="px-3 py-2 
+                text-md text-gray-800 dark:text-gray-100
+                input-class w-full 
+                bg-zinc-300 dark:bg-[#2a2b2f] 
+                rounded border border-gray-300 dark:border-gray-700 
+                focus:outline-none cursor-default"  formControlName="vin" readonly />
+        </div> 
+    </div>
+    <!-- Sixth Row -->
+    <div class="flex flex-wrap gap-2 m-3">
+        <div class="flex-1 min-w-[200px]">
+            <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Vehicle Brand </label>
+            <input  class="px-3 py-2 
+                text-md text-gray-800 dark:text-gray-100
+                input-class w-full 
+                bg-zinc-300 dark:bg-[#2a2b2f] 
+                rounded border border-gray-300 dark:border-gray-700 
+                focus:outline-none cursor-default"  formControlName="brand" readonly />
+        </div> 
+        <div class="flex-1 min-w-[200px]">
+            <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Vehicle Model</label>
+            <input  class="px-3 py-2 
+                text-md text-gray-800 dark:text-gray-100
+                input-class w-full 
+                bg-zinc-300 dark:bg-[#2a2b2f] 
+                rounded border border-gray-300 dark:border-gray-700 
+                focus:outline-none cursor-default"  formControlName="model" readonly />
+        </div> 
+        <div class="flex-1 min-w-[200px]">
+            <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Vehicle Model Year </label>
+            <input  class="px-3 py-2 
+                text-md text-gray-800 dark:text-gray-100
+                input-class w-full 
+                bg-zinc-300 dark:bg-[#2a2b2f] 
+                rounded border border-gray-300 dark:border-gray-700 
+                focus:outline-none cursor-default"  formControlName="yearModel" readonly />
+        </div> 
+    </div>
+    <!-- Seventh Row -->
+    <div class="flex flex-wrap gap-2 m-3">
+        <div class="flex-1 min-w-[200px]">
+            <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Vehicle Plate</label>
+            <input  class="px-3 py-2 
+                text-md text-gray-800 dark:text-gray-100
+                input-class w-full 
+                bg-zinc-300 dark:bg-[#2a2b2f] 
+                rounded border border-gray-300 dark:border-gray-700 
+                focus:outline-none cursor-default"  formControlName="plate" readonly />
+        </div> 
+        <div class="flex-1 min-w-[200px]">
+            <label class="block text-sm font-medium text-black dark:text-gray-400 mb-2">Vehicle Color </label>
+            <input  class="px-3 py-2 
+                text-md text-gray-800 dark:text-gray-100
+                input-class w-full 
+                bg-zinc-300 dark:bg-[#2a2b2f] 
+                rounded border border-gray-300 dark:border-gray-700 
+                focus:outline-none cursor-default"  formControlName="color" readonly />
+        </div> 
+    </div>
+    <h3 class="text-lg font-bold text-black dark:text-[#eee] m-3">Services Information</h3>
+    <div class="overflow-x-auto m-3">
+        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 border border-gray-300 dark:border-gray-600">
+            <thead class="bg-[#6B7C9D]  text-white">
+                <tr>
+                <th class="px-4 py-2 text-left">Service Name</th>
+                <th class="px-4 py-2 text-left">Service Cost</th>
+                <th class="px-4 py-2 text-left">Is Completed</th>
+                <th class="px-4 py-2 text-left">Is Pending</th>
+                <th class="px-4 py-2 text-left">Is Canceled</th>
+                <th class="px-4 py-2 text-left">Employees </th>
+                </tr>
+            </thead>
+            <tbody class="bg-zinc-300 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+                <tr *ngFor="let s of maintenance.maintenaceServices">
+                <td class="px-4 py-2">{{ s.service?.name }}</td>
+                <td class="px-4 py-2">{{ s.cost }}</td>
+                <td class="px-4 py-2">
+                    <span [ngClass]="s.isCompleted ? 'text-green-500' : 'text-gray-500'">
+                    {{ s.isCompleted ? 'Yes' : 'No' }}
+                    </span>
+                </td>
+                <td class="px-4 py-2">
+                    <span [ngClass]="s.isPending ? 'text-orange-500' : 'text-gray-500'">
+                    {{ s.isPending ? 'Yes' : 'No' }}
+                    </span>
+                </td>
+                <td class="px-4 py-2">
+                    <span [ngClass]="s.isCanceled ? 'text-red-500' : 'text-gray-500'">
+                    {{ s.isCanceled ? 'Yes' : 'No' }}
+                    </span>
+                </td>
+                <td class="px-4 py-2">
+                    <ng-container *ngIf="s.employeeMaintaineds?.length">
+                    <ul class="list-disc pl-4">
+                        <li *ngFor="let emp of s.employeeMaintaineds">
+                            {{ emp.employee?.firstName }} {{ emp.employee?.lastName }}
+                        </li>
+                    </ul>
+                    </ng-container>
+                </td>
+            </tbody>
+        </table>
+        <p class="text-lg font-semibold text-gray-800 dark:text-gray-200">
+            Total Cost: {{ totalCost }}
+        </p>
+    </div>
+</form>
+<button 
+  (click)="generatePDF()"
+  class="flex my-4 mx-3 items-center gap-2 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition duration-200 shadow-md"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+       viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round"
+          d="M12 11c0-1.1-.9-2-2-2H5a2 2 0 100 4h5c1.1 0 2-.9 2-2zM5 15h5c1.1 0 2-.9 2-2m-7 0a2 2 0 110-4h5a2 2 0 010 4zm7 4l4 4m0 0l4-4m-4 4V4" />
+  </svg>
+  Generate PDF
+</button>
+
+</app-generic-form>

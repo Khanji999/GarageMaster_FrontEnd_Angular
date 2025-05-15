@@ -2,10 +2,6 @@
 <div>
     <!-- First row (input with buttons) -->
     <div class="mb-4 relative">
-    <!-- 3D Floating Car Key Mockup  -->
-        <div class="absolute right-5 -top-10 w-32 h-32 opacity-80 z-10 hidden md:block">
-            <img src="keyCar.png" alt="Car Key" class="w-full h-full object-contain transform rotate-12 hover:rotate-6 transition-transform duration-500">
-        </div>
     <!-- Form Container -->
         <div class="relative bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6">
             <form [formGroup]="form">
@@ -19,7 +15,6 @@
                         [preferredCountries]="preferredCountries"
                         [selectedCountryISO]="CountryISO.Lebanon"
                         [searchCountryFlag]="true"
-
                         formControlName="phoneNumber"
                         ></ngx-intl-tel-input>
                     </div>
@@ -67,7 +62,6 @@
                     @if(openCustomerAddingForm){
                         <app-add-customer-form 
                         (closeForm)="openCustomerAddingForm = false" 
-                        (submitForm)="handleAddCustomer($event)"
                         class="relative z-10"
                         ></app-add-customer-form>
                     }

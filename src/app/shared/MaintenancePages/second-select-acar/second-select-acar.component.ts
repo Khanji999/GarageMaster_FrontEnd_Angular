@@ -42,14 +42,6 @@ export class SecondSelectACarComponent  implements OnInit{
     { header: 'Color', key: 'customerVehicleColors.0.color.name' },
     { header: 'Plate-Number', key: 'customerVehiclePlates.0.plate.numbers' },
     { header: 'Plate-Letters', key: 'customerVehiclePlates.0.plate.letters' },
-    // { header: 'Wheel Drive', key: 'wheelDrive.abbreviation' },
-    // { header: 'Engine Type', key: 'engineStructure.engineType' },
-    // { header: 'Cylinders', key: 'numberOfCylinders' },
-    // { header: 'Engine Charger', key: 'engineCharger.engineChargerName' },
-    // { header: 'Fuel Type', key: 'engineFuel.engineFuelType' },
-    // { header: 'Transmission', key: 'transmission.name' },
-    // { header: 'Gears', key: 'transmissionGears' },
-    // { header: 'VIN', key: 'vin' }
     ];
 
   constructor(
@@ -84,6 +76,7 @@ export class SecondSelectACarComponent  implements OnInit{
     if($event.id)
       this.deleteId = $event.id ;
   }
+  
   onCancel() {
     this.showDeleteDialog = false
   }

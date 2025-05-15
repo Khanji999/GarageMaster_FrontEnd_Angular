@@ -51,7 +51,7 @@ export const appConfig: ApplicationConfig = {
 
     { provide: API_BASE_URL,
         useValue: 'http://localhost:5000',
-        // useValue: "http://192.168.1.4:5000",
+        // useValue: "http://192.168.1.6:5000",
     },
     
 ],

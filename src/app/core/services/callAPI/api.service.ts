@@ -1839,6 +1839,58 @@ export class CustomerContro {
     /**
      * @return OK
      */
+    getNumberOfCustomers(httpContext?: HttpContext): Observable<ApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        let url_ = this.baseUrl + "/api/CustomerContro/getNumberOfCustomers";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetNumberOfCustomers(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetNumberOfCustomers(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+        }));
+    }
+
+    protected processGetNumberOfCustomers(response: HttpResponseBase): Observable<ApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @return OK
+     */
     getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/CustomerContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
@@ -3064,6 +3116,167 @@ export class CustomerVehicleContro {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = ApiResponse_1OfOfAddNewVehicleToCustomerDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @return OK
+     */
+    getYourVehicles(httpContext?: HttpContext): Observable<ApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        let url_ = this.baseUrl + "/api/CustomerVehicleContro/getYourVehicles";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetYourVehicles(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetYourVehicles(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+        }));
+    }
+
+    protected processGetYourVehicles(response: HttpResponseBase): Observable<ApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @return OK
+     */
+    getAllVehicles(httpContext?: HttpContext): Observable<ApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        let url_ = this.baseUrl + "/api/CustomerVehicleContro/getAllVehicles";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetAllVehicles(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetAllVehicles(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+        }));
+    }
+
+    protected processGetAllVehicles(response: HttpResponseBase): Observable<ApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return OK
+     */
+    updateVehicle(body: CustomerVehicleWithDetailsDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/CustomerVehicleContro/updateVehicle";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdateVehicle(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdateVehicle(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+        }));
+    }
+
+    protected processUpdateVehicle(response: HttpResponseBase): Observable<ApiResponse_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -5336,6 +5549,58 @@ export class EmployeeContro {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
             result200 = ApiResponse_1OfOfEmployeeWithDetails2DTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @return OK
+     */
+    getNumberOfEmployees(httpContext?: HttpContext): Observable<ApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        let url_ = this.baseUrl + "/api/EmployeeContro/getNumberOfEmployees";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetNumberOfEmployees(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetNumberOfEmployees(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+        }));
+    }
+
+    protected processGetNumberOfEmployees(response: HttpResponseBase): Observable<ApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -8079,6 +8344,228 @@ export class MaintenaceCardContro {
     }
 
     protected processGetAllMaintenanceWithDetails(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return OK
+     */
+    generatePdf(body: MaintenanceCardWithFullDetailsDTO | undefined, httpContext?: HttpContext): Observable<FileResponse> {
+        let url_ = this.baseUrl + "/api/MaintenaceCardContro/generate-pdf";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGeneratePdf(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGeneratePdf(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<FileResponse>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<FileResponse>;
+        }));
+    }
+
+    protected processGeneratePdf(response: HttpResponseBase): Observable<FileResponse> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200 || status === 206) {
+            const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
+            let fileNameMatch = contentDisposition ? /filename\*=(?:(\\?['"])(.*?)\1|(?:[^\s]+'.*?')?([^;\n]*))/g.exec(contentDisposition) : undefined;
+            let fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[3] || fileNameMatch[2] : undefined;
+            if (fileName) {
+                fileName = decodeURIComponent(fileName);
+            } else {
+                fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
+                fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
+            }
+            return _observableOf({ fileName: fileName, data: responseBlob as any, status: status, headers: _headers });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return OK
+     */
+    updateMaintenance(body: MaintenanceCardWithFullDetailsDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/MaintenaceCardContro/updateMaintenance";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdateMaintenance(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdateMaintenance(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+        }));
+    }
+
+    protected processUpdateMaintenance(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @return OK
+     */
+    getMaintenanceByEmpId(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        let url_ = this.baseUrl + "/api/MaintenaceCardContro/getMaintenanceByEmpId";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetMaintenanceByEmpId(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetMaintenanceByEmpId(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+        }));
+    }
+
+    protected processGetMaintenanceByEmpId(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @return OK
+     */
+    getMaintenanceByCustomerId(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        let url_ = this.baseUrl + "/api/MaintenaceCardContro/getMaintenanceByCustomerId";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetMaintenanceByCustomerId(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetMaintenanceByCustomerId(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+        }));
+    }
+
+    protected processGetMaintenanceByCustomerId(response: HttpResponseBase): Observable<ApiResponse_1OfOfIEnumerable_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -16256,6 +16743,172 @@ export class UserContro {
     /**
      * @return OK
      */
+    getNumberOfUsers(httpContext?: HttpContext): Observable<ApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        let url_ = this.baseUrl + "/api/UserContro/getNumberOfUsers";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetNumberOfUsers(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetNumberOfUsers(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+        }));
+    }
+
+    protected processGetNumberOfUsers(response: HttpResponseBase): Observable<ApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return OK
+     */
+    addUserWithEmpOrCust(body: AddingUserDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfAddingUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/UserContro/addUserWithEmpOrCustAsync";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("post", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processAddUserWithEmpOrCust(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processAddUserWithEmpOrCust(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfAddingUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfAddingUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+        }));
+    }
+
+    protected processAddUserWithEmpOrCust(response: HttpResponseBase): Observable<ApiResponse_1OfOfAddingUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfAddingUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return OK
+     */
+    deleteUserWithData(body: UserWithRoleDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        let url_ = this.baseUrl + "/api/UserContro/deleteUserWithData";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("delete", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processDeleteUserWithData(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processDeleteUserWithData(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e>;
+        }));
+    }
+
+    protected processDeleteUserWithData(response: HttpResponseBase): Observable<ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfBooleanAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
+     * @return OK
+     */
     getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
         let url_ = this.baseUrl + "/api/UserContro/GetAll";
         url_ = url_.replace(/[?&]$/, "");
@@ -18991,11 +19644,11 @@ export interface ICustomerContactNumberDTO {
 }
 
 export class CustomerDTO implements ICustomerDTO {
-    id?: number;
-    userId?: number;
-    tenantId?: number;
-    genderId?: number;
-    streetId?: number;
+    id?: number | undefined;
+    userId?: number | undefined;
+    tenantId?: number | undefined;
+    genderId?: number | undefined;
+    streetId?: number | undefined;
     firstName?: string | undefined;
     fatherName?: string | undefined;
     lastName?: string | undefined;
@@ -19044,11 +19697,11 @@ export class CustomerDTO implements ICustomerDTO {
 }
 
 export interface ICustomerDTO {
-    id?: number;
-    userId?: number;
-    tenantId?: number;
-    genderId?: number;
-    streetId?: number;
+    id?: number | undefined;
+    userId?: number | undefined;
+    tenantId?: number | undefined;
+    genderId?: number | undefined;
+    streetId?: number | undefined;
     firstName?: string | undefined;
     fatherName?: string | undefined;
     lastName?: string | undefined;
@@ -19147,11 +19800,10 @@ export interface ICustomerVehicleColorDTO {
 }
 
 export class CustomerVehicleColorWithDetailsDTO implements ICustomerVehicleColorWithDetailsDTO {
-    id?: number;
-    tenantId?: number;
-    isActive?: boolean;
+    id?: number | undefined;
+    isActive?: boolean | undefined;
     color?: ColorDTO;
-    date?: Date;
+    date?: Date | undefined;
 
     constructor(data?: ICustomerVehicleColorWithDetailsDTO) {
         if (data) {
@@ -19165,7 +19817,6 @@ export class CustomerVehicleColorWithDetailsDTO implements ICustomerVehicleColor
     init(_data?: any) {
         if (_data) {
             this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
             this.isActive = _data["isActive"];
             this.color = _data["color"] ? ColorDTO.fromJS(_data["color"]) : <any>undefined;
             this.date = _data["date"] ? new Date(_data["date"].toString()) : <any>undefined;
@@ -19182,7 +19833,6 @@ export class CustomerVehicleColorWithDetailsDTO implements ICustomerVehicleColor
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
         data["isActive"] = this.isActive;
         data["color"] = this.color ? this.color.toJSON() : <any>undefined;
         data["date"] = this.date ? this.date.toISOString() : <any>undefined;
@@ -19191,11 +19841,10 @@ export class CustomerVehicleColorWithDetailsDTO implements ICustomerVehicleColor
 }
 
 export interface ICustomerVehicleColorWithDetailsDTO {
-    id?: number;
-    tenantId?: number;
-    isActive?: boolean;
+    id?: number | undefined;
+    isActive?: boolean | undefined;
     color?: ColorDTO;
-    date?: Date;
+    date?: Date | undefined;
 }
 
 export class CustomerVehicleDTO implements ICustomerVehicleDTO {
@@ -19431,12 +20080,11 @@ export interface ICustomerVehiclePlateDTO {
 }
 
 export class CustomerVehiclePlateWithDetailsDTO implements ICustomerVehiclePlateWithDetailsDTO {
-    id?: number;
-    tenantId?: number;
-    plateId?: number;
-    isActive?: boolean;
+    id?: number | undefined;
+    plateId?: number | undefined;
+    isActive?: boolean | undefined;
     plate?: PlateDTO;
-    date?: Date;
+    date?: Date | undefined;
 
     constructor(data?: ICustomerVehiclePlateWithDetailsDTO) {
         if (data) {
@@ -19450,7 +20098,6 @@ export class CustomerVehiclePlateWithDetailsDTO implements ICustomerVehiclePlate
     init(_data?: any) {
         if (_data) {
             this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
             this.plateId = _data["plateId"];
             this.isActive = _data["isActive"];
             this.plate = _data["plate"] ? PlateDTO.fromJS(_data["plate"]) : <any>undefined;
@@ -19468,7 +20115,6 @@ export class CustomerVehiclePlateWithDetailsDTO implements ICustomerVehiclePlate
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
         data["plateId"] = this.plateId;
         data["isActive"] = this.isActive;
         data["plate"] = this.plate ? this.plate.toJSON() : <any>undefined;
@@ -19478,17 +20124,22 @@ export class CustomerVehiclePlateWithDetailsDTO implements ICustomerVehiclePlate
 }
 
 export interface ICustomerVehiclePlateWithDetailsDTO {
-    id?: number;
-    tenantId?: number;
-    plateId?: number;
-    isActive?: boolean;
+    id?: number | undefined;
+    plateId?: number | undefined;
+    isActive?: boolean | undefined;
     plate?: PlateDTO;
-    date?: Date;
+    date?: Date | undefined;
 }
 
 export class CustomerVehicleWithDetailsDTO implements ICustomerVehicleWithDetailsDTO {
-    id?: number;
-    tenantId?: number;
+    id?: number | undefined;
+    customerId?: number;
+    vehicleModelId?: number;
+    engineStructureId?: number | undefined;
+    engineFuelId?: number | undefined;
+    engineChargerId?: number | undefined;
+    transmissionId?: number | undefined;
+    wheelDriveId?: number | undefined;
     customer?: CustomerDTO;
     vehicleModel?: VehicleModelWithDetailsDTO;
     engineFuel?: EngineFuelDTO;
@@ -19499,7 +20150,7 @@ export class CustomerVehicleWithDetailsDTO implements ICustomerVehicleWithDetail
     customerVehiclePlates?: CustomerVehiclePlateWithDetailsDTO[] | undefined;
     customerVehicleColors?: CustomerVehicleColorWithDetailsDTO[] | undefined;
     vin?: string | undefined;
-    yearModel?: number;
+    yearModel?: number | undefined;
     numberOfCylinders?: number | undefined;
     transmissionGears?: number | undefined;
 
@@ -19515,7 +20166,13 @@ export class CustomerVehicleWithDetailsDTO implements ICustomerVehicleWithDetail
     init(_data?: any) {
         if (_data) {
             this.id = _data["id"];
-            this.tenantId = _data["tenantId"];
+            this.customerId = _data["customerId"];
+            this.vehicleModelId = _data["vehicleModelId"];
+            this.engineStructureId = _data["engineStructureId"];
+            this.engineFuelId = _data["engineFuelId"];
+            this.engineChargerId = _data["engineChargerId"];
+            this.transmissionId = _data["transmissionId"];
+            this.wheelDriveId = _data["wheelDriveId"];
             this.customer = _data["customer"] ? CustomerDTO.fromJS(_data["customer"]) : <any>undefined;
             this.vehicleModel = _data["vehicleModel"] ? VehicleModelWithDetailsDTO.fromJS(_data["vehicleModel"]) : <any>undefined;
             this.engineFuel = _data["engineFuel"] ? EngineFuelDTO.fromJS(_data["engineFuel"]) : <any>undefined;
@@ -19550,7 +20207,13 @@ export class CustomerVehicleWithDetailsDTO implements ICustomerVehicleWithDetail
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
-        data["tenantId"] = this.tenantId;
+        data["customerId"] = this.customerId;
+        data["vehicleModelId"] = this.vehicleModelId;
+        data["engineStructureId"] = this.engineStructureId;
+        data["engineFuelId"] = this.engineFuelId;
+        data["engineChargerId"] = this.engineChargerId;
+        data["transmissionId"] = this.transmissionId;
+        data["wheelDriveId"] = this.wheelDriveId;
         data["customer"] = this.customer ? this.customer.toJSON() : <any>undefined;
         data["vehicleModel"] = this.vehicleModel ? this.vehicleModel.toJSON() : <any>undefined;
         data["engineFuel"] = this.engineFuel ? this.engineFuel.toJSON() : <any>undefined;
@@ -19577,8 +20240,14 @@ export class CustomerVehicleWithDetailsDTO implements ICustomerVehicleWithDetail
 }
 
 export interface ICustomerVehicleWithDetailsDTO {
-    id?: number;
-    tenantId?: number;
+    id?: number | undefined;
+    customerId?: number;
+    vehicleModelId?: number;
+    engineStructureId?: number | undefined;
+    engineFuelId?: number | undefined;
+    engineChargerId?: number | undefined;
+    transmissionId?: number | undefined;
+    wheelDriveId?: number | undefined;
     customer?: CustomerDTO;
     vehicleModel?: VehicleModelWithDetailsDTO;
     engineFuel?: EngineFuelDTO;
@@ -19589,7 +20258,7 @@ export interface ICustomerVehicleWithDetailsDTO {
     customerVehiclePlates?: CustomerVehiclePlateWithDetailsDTO[] | undefined;
     customerVehicleColors?: CustomerVehicleColorWithDetailsDTO[] | undefined;
     vin?: string | undefined;
-    yearModel?: number;
+    yearModel?: number | undefined;
     numberOfCylinders?: number | undefined;
     transmissionGears?: number | undefined;
 }
@@ -19915,16 +20584,16 @@ export interface IEmployeeWithDetailsDTO {
 }
 
 export class EmployeeDTO implements IEmployeeDTO {
-    id?: number;
-    userId?: number;
-    nationalityId?: number;
-    genderId?: number;
-    streetId?: number;
+    id?: number | undefined;
+    userId?: number | undefined;
+    nationalityId?: number | undefined;
+    genderId?: number | undefined;
+    streetId?: number | undefined;
     phoneNumber?: string | undefined;
     countryCode?: string | undefined;
-    hireDate?: Date;
-    terminationDate?: Date;
-    birthDate?: Date;
+    hireDate?: Date | undefined;
+    terminationDate?: Date | undefined;
+    birthDate?: Date | undefined;
     firstName?: string | undefined;
     lastName?: string | undefined;
     fatherName?: string | undefined;
@@ -19983,26 +20652,26 @@ export class EmployeeDTO implements IEmployeeDTO {
 }
 
 export interface IEmployeeDTO {
-    id?: number;
-    userId?: number;
-    nationalityId?: number;
-    genderId?: number;
-    streetId?: number;
+    id?: number | undefined;
+    userId?: number | undefined;
+    nationalityId?: number | undefined;
+    genderId?: number | undefined;
+    streetId?: number | undefined;
     phoneNumber?: string | undefined;
     countryCode?: string | undefined;
-    hireDate?: Date;
-    terminationDate?: Date;
-    birthDate?: Date;
+    hireDate?: Date | undefined;
+    terminationDate?: Date | undefined;
+    birthDate?: Date | undefined;
     firstName?: string | undefined;
     lastName?: string | undefined;
     fatherName?: string | undefined;
 }
 
 export class EmployeeMaintainedDTO implements IEmployeeMaintainedDTO {
-    id?: number;
-    tenantId?: number;
-    maintenaceServiceId?: number;
-    employeeId?: number;
+    id?: number | undefined;
+    tenantId?: number | undefined;
+    maintenaceServiceId?: number | undefined;
+    employeeId?: number | undefined;
     startedDate?: Date | undefined;
     employee?: EmployeeDTO;
 
@@ -20046,10 +20715,10 @@ export class EmployeeMaintainedDTO implements IEmployeeMaintainedDTO {
 }
 
 export interface IEmployeeMaintainedDTO {
-    id?: number;
-    tenantId?: number;
-    maintenaceServiceId?: number;
-    employeeId?: number;
+    id?: number | undefined;
+    tenantId?: number | undefined;
+    maintenaceServiceId?: number | undefined;
+    employeeId?: number | undefined;
     startedDate?: Date | undefined;
     employee?: EmployeeDTO;
 }
@@ -20271,19 +20940,19 @@ export interface IMaintainedImageDTO {
 }
 
 export class NewMaintenanceCardDTO implements INewMaintenanceCardDTO {
-    id?: number;
-    maintenanceNumberForEachTenant?: number;
-    tenantId?: number;
-    customerVehicleId?: number;
+    id?: number | undefined;
+    maintenanceNumberForEachTenant?: number | undefined;
+    tenantId?: number | undefined;
+    customerVehicleId?: number | undefined;
     dateIn?: Date | undefined;
     dateOut?: Date | undefined;
     comments?: string | undefined;
-    kilometers?: number;
-    isCompleted?: boolean;
-    isPending?: boolean;
-    isCanceled?: boolean;
+    kilometers?: number | undefined;
+    isCompleted?: boolean | undefined;
+    isPending?: boolean | undefined;
+    isCanceled?: boolean | undefined;
     doesCheckedAfterFinishingMaintenace?: boolean;
-    isReadyToBeDelivered?: boolean;
+    isReadyToBeDelivered?: boolean | undefined;
     maintenaceServices?: MaintenaceServiceDTO[] | undefined;
 
     constructor(data?: INewMaintenanceCardDTO) {
@@ -20350,19 +21019,19 @@ export class NewMaintenanceCardDTO implements INewMaintenanceCardDTO {
 }
 
 export interface INewMaintenanceCardDTO {
-    id?: number;
-    maintenanceNumberForEachTenant?: number;
-    tenantId?: number;
-    customerVehicleId?: number;
+    id?: number | undefined;
+    maintenanceNumberForEachTenant?: number | undefined;
+    tenantId?: number | undefined;
+    customerVehicleId?: number | undefined;
     dateIn?: Date | undefined;
     dateOut?: Date | undefined;
     comments?: string | undefined;
-    kilometers?: number;
-    isCompleted?: boolean;
-    isPending?: boolean;
-    isCanceled?: boolean;
+    kilometers?: number | undefined;
+    isCompleted?: boolean | undefined;
+    isPending?: boolean | undefined;
+    isCanceled?: boolean | undefined;
     doesCheckedAfterFinishingMaintenace?: boolean;
-    isReadyToBeDelivered?: boolean;
+    isReadyToBeDelivered?: boolean | undefined;
     maintenaceServices?: MaintenaceServiceDTO[] | undefined;
 }
 
@@ -20447,9 +21116,10 @@ export interface IMaintenaceCardDTO {
 }
 
 export class MaintenaceServiceDTO implements IMaintenaceServiceDTO {
-    id?: number;
-    maintenaceCardId?: number;
+    id?: number | undefined;
+    maintenaceCardId?: number | undefined;
     serviceId?: number | undefined;
+    service?: ServiceTableDTO;
     cost?: number | undefined;
     warrantyPeriod?: number | undefined;
     isCompleted?: boolean | undefined;
@@ -20457,7 +21127,7 @@ export class MaintenaceServiceDTO implements IMaintenaceServiceDTO {
     isCanceled?: boolean | undefined;
     isTested?: boolean | undefined;
     employeeMaintaineds?: EmployeeMaintainedDTO[] | undefined;
-
+    availableServices? : ServiceTableDTO[]
     constructor(data?: IMaintenaceServiceDTO) {
         if (data) {
             for (var property in data) {
@@ -20472,6 +21142,7 @@ export class MaintenaceServiceDTO implements IMaintenaceServiceDTO {
             this.id = _data["id"];
             this.maintenaceCardId = _data["maintenaceCardId"];
             this.serviceId = _data["serviceId"];
+            this.service = _data["service"] ? ServiceTableDTO.fromJS(_data["service"]) : <any>undefined;
             this.cost = _data["cost"];
             this.warrantyPeriod = _data["warrantyPeriod"];
             this.isCompleted = _data["isCompleted"];
@@ -20498,6 +21169,7 @@ export class MaintenaceServiceDTO implements IMaintenaceServiceDTO {
         data["id"] = this.id;
         data["maintenaceCardId"] = this.maintenaceCardId;
         data["serviceId"] = this.serviceId;
+        data["service"] = this.service ? this.service.toJSON() : <any>undefined;
         data["cost"] = this.cost;
         data["warrantyPeriod"] = this.warrantyPeriod;
         data["isCompleted"] = this.isCompleted;
@@ -20514,9 +21186,10 @@ export class MaintenaceServiceDTO implements IMaintenaceServiceDTO {
 }
 
 export interface IMaintenaceServiceDTO {
-    id?: number;
-    maintenaceCardId?: number;
+    id?: number | undefined;
+    maintenaceCardId?: number | undefined;
     serviceId?: number | undefined;
+    service?: ServiceTableDTO;
     cost?: number | undefined;
     warrantyPeriod?: number | undefined;
     isCompleted?: boolean | undefined;
@@ -20527,22 +21200,21 @@ export interface IMaintenaceServiceDTO {
 }
 
 export class MaintenanceCardWithFullDetailsDTO implements IMaintenanceCardWithFullDetailsDTO {
-    id?: number;
-    maintenanceNumberForEachTenant?: number;
-    tenantId?: number;
-    customerVehicleId?: number;
+    id?: number | undefined;
+    maintenanceNumberForEachTenant?: number | undefined;
+    tenantId?: number | undefined;
+    customerVehicleId?: number | undefined;
     dateIn?: Date | undefined;
     dateOut?: Date | undefined;
     comments?: string | undefined;
-    kilometers?: number;
-    isCompleted?: boolean;
-    isPending?: boolean;
-    isCanceled?: boolean;
-    doesCheckedAfterFinishingMaintenace?: boolean;
-    isReadyToBeDelivered?: boolean;
+    kilometers?: number | undefined;
+    isCompleted?: boolean | undefined;
+    isPending?: boolean | undefined;
+    isCanceled?: boolean | undefined;
+    doesCheckedAfterFinishingMaintenace?: boolean | undefined;
+    isReadyToBeDelivered?: boolean | undefined;
     customerVehicle?: CustomerVehicleWithDetailsDTO;
     maintenaceServices?: MaintenaceServiceDTO[] | undefined;
-
     constructor(data?: IMaintenanceCardWithFullDetailsDTO) {
         if (data) {
             for (var property in data) {
@@ -20609,19 +21281,19 @@ export class MaintenanceCardWithFullDetailsDTO implements IMaintenanceCardWithFu
 }
 
 export interface IMaintenanceCardWithFullDetailsDTO {
-    id?: number;
-    maintenanceNumberForEachTenant?: number;
-    tenantId?: number;
-    customerVehicleId?: number;
+    id?: number | undefined;
+    maintenanceNumberForEachTenant?: number | undefined;
+    tenantId?: number | undefined;
+    customerVehicleId?: number | undefined;
     dateIn?: Date | undefined;
     dateOut?: Date | undefined;
     comments?: string | undefined;
-    kilometers?: number;
-    isCompleted?: boolean;
-    isPending?: boolean;
-    isCanceled?: boolean;
-    doesCheckedAfterFinishingMaintenace?: boolean;
-    isReadyToBeDelivered?: boolean;
+    kilometers?: number | undefined;
+    isCompleted?: boolean | undefined;
+    isPending?: boolean | undefined;
+    isCanceled?: boolean | undefined;
+    doesCheckedAfterFinishingMaintenace?: boolean | undefined;
+    isReadyToBeDelivered?: boolean | undefined;
     customerVehicle?: CustomerVehicleWithDetailsDTO;
     maintenaceServices?: MaintenaceServiceDTO[] | undefined;
 }
@@ -21459,8 +22131,9 @@ export interface IServiceTableWithServiceTypeDTO {
 }
 
 export class ServiceTableDTO implements IServiceTableDTO {
-    id?: number;
-    serviceTypeId?: number;
+    id?: number | undefined;
+    serviceTypeId?: number | undefined;
+    serviceType?: ServiceTypeDTO;
     name?: string | undefined;
     nameInArabic?: string | undefined;
 
@@ -21477,6 +22150,7 @@ export class ServiceTableDTO implements IServiceTableDTO {
         if (_data) {
             this.id = _data["id"];
             this.serviceTypeId = _data["serviceTypeId"];
+            this.serviceType = _data["serviceType"] ? ServiceTypeDTO.fromJS(_data["serviceType"]) : <any>undefined;
             this.name = _data["name"];
             this.nameInArabic = _data["nameInArabic"];
         }
@@ -21493,6 +22167,7 @@ export class ServiceTableDTO implements IServiceTableDTO {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["serviceTypeId"] = this.serviceTypeId;
+        data["serviceType"] = this.serviceType ? this.serviceType.toJSON() : <any>undefined;
         data["name"] = this.name;
         data["nameInArabic"] = this.nameInArabic;
         return data;
@@ -21500,8 +22175,9 @@ export class ServiceTableDTO implements IServiceTableDTO {
 }
 
 export interface IServiceTableDTO {
-    id?: number;
-    serviceTypeId?: number;
+    id?: number | undefined;
+    serviceTypeId?: number | undefined;
+    serviceType?: ServiceTypeDTO;
     name?: string | undefined;
     nameInArabic?: string | undefined;
 }
@@ -21800,6 +22476,94 @@ export interface ITransmissionDTO {
     id?: number;
     name?: string | undefined;
     letters?: string | undefined;
+}
+
+export class AddingUserDTO implements IAddingUserDTO {
+    id?: number | undefined;
+    roleId?: number | undefined;
+    subDomain?: string | undefined;
+    userName?: string | undefined;
+    password?: string | undefined;
+    isActive?: boolean | undefined;
+    isFirstTimeLoggedin?: boolean | undefined;
+    customers?: CustomerDTO[] | undefined;
+    employees?: EmployeeDTO[] | undefined;
+    role?: Role;
+
+    constructor(data?: IAddingUserDTO) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.roleId = _data["roleId"];
+            this.subDomain = _data["subDomain"];
+            this.userName = _data["userName"];
+            this.password = _data["password"];
+            this.isActive = _data["isActive"];
+            this.isFirstTimeLoggedin = _data["isFirstTimeLoggedin"];
+            if (Array.isArray(_data["customers"])) {
+                this.customers = [] as any;
+                for (let item of _data["customers"])
+                    this.customers!.push(CustomerDTO.fromJS(item));
+            }
+            if (Array.isArray(_data["employees"])) {
+                this.employees = [] as any;
+                for (let item of _data["employees"])
+                    this.employees!.push(EmployeeDTO.fromJS(item));
+            }
+            this.role = _data["role"] ? Role.fromJS(_data["role"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): AddingUserDTO {
+        data = typeof data === 'object' ? data : {};
+        let result = new AddingUserDTO();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["roleId"] = this.roleId;
+        data["subDomain"] = this.subDomain;
+        data["userName"] = this.userName;
+        data["password"] = this.password;
+        data["isActive"] = this.isActive;
+        data["isFirstTimeLoggedin"] = this.isFirstTimeLoggedin;
+        if (Array.isArray(this.customers)) {
+            data["customers"] = [];
+            for (let item of this.customers)
+                data["customers"].push(item.toJSON());
+        }
+        if (Array.isArray(this.employees)) {
+            data["employees"] = [];
+            for (let item of this.employees)
+                data["employees"].push(item.toJSON());
+        }
+        data["role"] = this.role ? this.role.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IAddingUserDTO {
+    id?: number | undefined;
+    roleId?: number | undefined;
+    subDomain?: string | undefined;
+    userName?: string | undefined;
+    password?: string | undefined;
+    isActive?: boolean | undefined;
+    isFirstTimeLoggedin?: boolean | undefined;
+    customers?: CustomerDTO[] | undefined;
+    employees?: EmployeeDTO[] | undefined;
+    role?: Role;
 }
 
 export class LoginDTO implements ILoginDTO {
@@ -22954,6 +23718,54 @@ export interface IApiResponse_1OfOfCustomerVehiclePlateDTOAndBLLAnd_0AndCulture_
     result?: CustomerVehiclePlateDTO;
 }
 
+export class ApiResponse_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: CustomerVehicleWithDetailsDTO;
+
+    constructor(data?: IApiResponse_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"];
+            this.statusCode = _data["statusCode"];
+            this.message = _data["message"];
+            this.result = _data["result"] ? CustomerVehicleWithDetailsDTO.fromJS(_data["result"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): ApiResponse_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApiResponse_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success;
+        data["statusCode"] = this.statusCode;
+        data["message"] = this.message;
+        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IApiResponse_1OfOfCustomerVehicleWithDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: CustomerVehicleWithDetailsDTO;
+}
+
 export class ApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfCustomerVipStatusDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
     success?: boolean;
     statusCode?: number;
@@ -23576,6 +24388,54 @@ export interface IApiResponse_1OfOfMaintenaceServiceDTOAndBLLAnd_0AndCulture_neu
     statusCode?: number;
     message?: string | undefined;
     result?: MaintenaceServiceDTO;
+}
+
+export class ApiResponse_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: MaintenanceCardWithFullDetailsDTO;
+
+    constructor(data?: IApiResponse_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"];
+            this.statusCode = _data["statusCode"];
+            this.message = _data["message"];
+            this.result = _data["result"] ? MaintenanceCardWithFullDetailsDTO.fromJS(_data["result"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): ApiResponse_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApiResponse_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success;
+        data["statusCode"] = this.statusCode;
+        data["message"] = this.message;
+        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IApiResponse_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: MaintenanceCardWithFullDetailsDTO;
 }
 
 export class ApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfMenuDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
@@ -24536,6 +25396,54 @@ export interface IApiResponse_1OfOfTransmissionDTOAndBLLAnd_0AndCulture_neutralA
     statusCode?: number;
     message?: string | undefined;
     result?: TransmissionDTO;
+}
+
+export class ApiResponse_1OfOfAddingUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfAddingUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: AddingUserDTO;
+
+    constructor(data?: IApiResponse_1OfOfAddingUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"];
+            this.statusCode = _data["statusCode"];
+            this.message = _data["message"];
+            this.result = _data["result"] ? AddingUserDTO.fromJS(_data["result"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): ApiResponse_1OfOfAddingUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApiResponse_1OfOfAddingUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success;
+        data["statusCode"] = this.statusCode;
+        data["message"] = this.message;
+        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IApiResponse_1OfOfAddingUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: AddingUserDTO;
 }
 
 export class ApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfUserDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
@@ -28106,6 +29014,54 @@ export interface IApiResponse_1OfOfList_1OfOfCustomerVehicleWithDetailsDTOAndBLL
     result?: CustomerVehicleWithDetailsDTO[] | undefined;
 }
 
+export class ApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: number;
+
+    constructor(data?: IApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.success = _data["success"];
+            this.statusCode = _data["statusCode"];
+            this.message = _data["message"];
+            this.result = _data["result"];
+        }
+    }
+
+    static fromJS(data: any): ApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+        data = typeof data === 'object' ? data : {};
+        let result = new ApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["success"] = this.success;
+        data["statusCode"] = this.statusCode;
+        data["message"] = this.message;
+        data["result"] = this.result;
+        return data;
+    }
+}
+
+export interface IApiResponse_1OfOfInt32AndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
+    success?: boolean;
+    statusCode?: number;
+    message?: string | undefined;
+    result?: number;
+}
+
 export class ApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e implements IApiResponse_1OfOfStringAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e {
     success?: boolean;
     statusCode?: number;
@@ -28212,6 +29168,3946 @@ export interface IMaintenanceFilter {
     vehicleModelName?: string | undefined;
     serviceName?: string | undefined;
     customerFirstName?: string | undefined;
+}
+
+export class City implements ICity {
+    id?: number;
+    countryId?: number;
+    tenantId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    country?: Country;
+    districts?: District[] | undefined;
+
+    constructor(data?: ICity) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.countryId = _data["countryId"];
+            this.tenantId = _data["tenantId"];
+            this.name = _data["name"];
+            this.nameInArabic = _data["nameInArabic"];
+            this.country = _data["country"] ? Country.fromJS(_data["country"]) : <any>undefined;
+            if (Array.isArray(_data["districts"])) {
+                this.districts = [] as any;
+                for (let item of _data["districts"])
+                    this.districts!.push(District.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): City {
+        data = typeof data === 'object' ? data : {};
+        let result = new City();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["countryId"] = this.countryId;
+        data["tenantId"] = this.tenantId;
+        data["name"] = this.name;
+        data["nameInArabic"] = this.nameInArabic;
+        data["country"] = this.country ? this.country.toJSON() : <any>undefined;
+        if (Array.isArray(this.districts)) {
+            data["districts"] = [];
+            for (let item of this.districts)
+                data["districts"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface ICity {
+    id?: number;
+    countryId?: number;
+    tenantId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    country?: Country;
+    districts?: District[] | undefined;
+}
+
+export class Color implements IColor {
+    id?: number;
+    tenantId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    customerVehicleColors?: CustomerVehicleColor[] | undefined;
+    tenant?: Tenant;
+
+    constructor(data?: IColor) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.name = _data["name"];
+            this.nameInArabic = _data["nameInArabic"];
+            if (Array.isArray(_data["customerVehicleColors"])) {
+                this.customerVehicleColors = [] as any;
+                for (let item of _data["customerVehicleColors"])
+                    this.customerVehicleColors!.push(CustomerVehicleColor.fromJS(item));
+            }
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): Color {
+        data = typeof data === 'object' ? data : {};
+        let result = new Color();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["name"] = this.name;
+        data["nameInArabic"] = this.nameInArabic;
+        if (Array.isArray(this.customerVehicleColors)) {
+            data["customerVehicleColors"] = [];
+            for (let item of this.customerVehicleColors)
+                data["customerVehicleColors"].push(item.toJSON());
+        }
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IColor {
+    id?: number;
+    tenantId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    customerVehicleColors?: CustomerVehicleColor[] | undefined;
+    tenant?: Tenant;
+}
+
+export class Controller implements IController {
+    id?: number;
+    controllerName?: string | undefined;
+    rolePermissions?: RolePermission[] | undefined;
+
+    constructor(data?: IController) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.controllerName = _data["controllerName"];
+            if (Array.isArray(_data["rolePermissions"])) {
+                this.rolePermissions = [] as any;
+                for (let item of _data["rolePermissions"])
+                    this.rolePermissions!.push(RolePermission.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): Controller {
+        data = typeof data === 'object' ? data : {};
+        let result = new Controller();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["controllerName"] = this.controllerName;
+        if (Array.isArray(this.rolePermissions)) {
+            data["rolePermissions"] = [];
+            for (let item of this.rolePermissions)
+                data["rolePermissions"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IController {
+    id?: number;
+    controllerName?: string | undefined;
+    rolePermissions?: RolePermission[] | undefined;
+}
+
+export class Country implements ICountry {
+    id?: number;
+    tenantId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    cities?: City[] | undefined;
+
+    constructor(data?: ICountry) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.name = _data["name"];
+            this.nameInArabic = _data["nameInArabic"];
+            if (Array.isArray(_data["cities"])) {
+                this.cities = [] as any;
+                for (let item of _data["cities"])
+                    this.cities!.push(City.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): Country {
+        data = typeof data === 'object' ? data : {};
+        let result = new Country();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["name"] = this.name;
+        data["nameInArabic"] = this.nameInArabic;
+        if (Array.isArray(this.cities)) {
+            data["cities"] = [];
+            for (let item of this.cities)
+                data["cities"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface ICountry {
+    id?: number;
+    tenantId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    cities?: City[] | undefined;
+}
+
+export class Customer implements ICustomer {
+    id?: number;
+    userId?: number;
+    tenantId?: number;
+    genderId?: number;
+    streetId?: number | undefined;
+    firstName?: string | undefined;
+    lastName?: string | undefined;
+    fatherName?: string | undefined;
+    customerContactNumbers?: CustomerContactNumber[] | undefined;
+    customerVehicles?: CustomerVehicle[] | undefined;
+    customerVipStatuses?: CustomerVipStatus[] | undefined;
+    gender?: Gender;
+    montlyCustomerVisits?: MontlyCustomerVisit[] | undefined;
+    street?: Street;
+    tenant?: Tenant;
+    user?: User;
+
+    constructor(data?: ICustomer) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.userId = _data["userId"];
+            this.tenantId = _data["tenantId"];
+            this.genderId = _data["genderId"];
+            this.streetId = _data["streetId"];
+            this.firstName = _data["firstName"];
+            this.lastName = _data["lastName"];
+            this.fatherName = _data["fatherName"];
+            if (Array.isArray(_data["customerContactNumbers"])) {
+                this.customerContactNumbers = [] as any;
+                for (let item of _data["customerContactNumbers"])
+                    this.customerContactNumbers!.push(CustomerContactNumber.fromJS(item));
+            }
+            if (Array.isArray(_data["customerVehicles"])) {
+                this.customerVehicles = [] as any;
+                for (let item of _data["customerVehicles"])
+                    this.customerVehicles!.push(CustomerVehicle.fromJS(item));
+            }
+            if (Array.isArray(_data["customerVipStatuses"])) {
+                this.customerVipStatuses = [] as any;
+                for (let item of _data["customerVipStatuses"])
+                    this.customerVipStatuses!.push(CustomerVipStatus.fromJS(item));
+            }
+            this.gender = _data["gender"] ? Gender.fromJS(_data["gender"]) : <any>undefined;
+            if (Array.isArray(_data["montlyCustomerVisits"])) {
+                this.montlyCustomerVisits = [] as any;
+                for (let item of _data["montlyCustomerVisits"])
+                    this.montlyCustomerVisits!.push(MontlyCustomerVisit.fromJS(item));
+            }
+            this.street = _data["street"] ? Street.fromJS(_data["street"]) : <any>undefined;
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+            this.user = _data["user"] ? User.fromJS(_data["user"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): Customer {
+        data = typeof data === 'object' ? data : {};
+        let result = new Customer();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["userId"] = this.userId;
+        data["tenantId"] = this.tenantId;
+        data["genderId"] = this.genderId;
+        data["streetId"] = this.streetId;
+        data["firstName"] = this.firstName;
+        data["lastName"] = this.lastName;
+        data["fatherName"] = this.fatherName;
+        if (Array.isArray(this.customerContactNumbers)) {
+            data["customerContactNumbers"] = [];
+            for (let item of this.customerContactNumbers)
+                data["customerContactNumbers"].push(item.toJSON());
+        }
+        if (Array.isArray(this.customerVehicles)) {
+            data["customerVehicles"] = [];
+            for (let item of this.customerVehicles)
+                data["customerVehicles"].push(item.toJSON());
+        }
+        if (Array.isArray(this.customerVipStatuses)) {
+            data["customerVipStatuses"] = [];
+            for (let item of this.customerVipStatuses)
+                data["customerVipStatuses"].push(item.toJSON());
+        }
+        data["gender"] = this.gender ? this.gender.toJSON() : <any>undefined;
+        if (Array.isArray(this.montlyCustomerVisits)) {
+            data["montlyCustomerVisits"] = [];
+            for (let item of this.montlyCustomerVisits)
+                data["montlyCustomerVisits"].push(item.toJSON());
+        }
+        data["street"] = this.street ? this.street.toJSON() : <any>undefined;
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        data["user"] = this.user ? this.user.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface ICustomer {
+    id?: number;
+    userId?: number;
+    tenantId?: number;
+    genderId?: number;
+    streetId?: number | undefined;
+    firstName?: string | undefined;
+    lastName?: string | undefined;
+    fatherName?: string | undefined;
+    customerContactNumbers?: CustomerContactNumber[] | undefined;
+    customerVehicles?: CustomerVehicle[] | undefined;
+    customerVipStatuses?: CustomerVipStatus[] | undefined;
+    gender?: Gender;
+    montlyCustomerVisits?: MontlyCustomerVisit[] | undefined;
+    street?: Street;
+    tenant?: Tenant;
+    user?: User;
+}
+
+export class CustomerContactNumber implements ICustomerContactNumber {
+    id?: number;
+    tenantId?: number;
+    customerId?: number;
+    number?: string | undefined;
+    countryCode?: string | undefined;
+    customer?: Customer;
+    tenant?: Tenant;
+
+    constructor(data?: ICustomerContactNumber) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.customerId = _data["customerId"];
+            this.number = _data["number"];
+            this.countryCode = _data["countryCode"];
+            this.customer = _data["customer"] ? Customer.fromJS(_data["customer"]) : <any>undefined;
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): CustomerContactNumber {
+        data = typeof data === 'object' ? data : {};
+        let result = new CustomerContactNumber();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["customerId"] = this.customerId;
+        data["number"] = this.number;
+        data["countryCode"] = this.countryCode;
+        data["customer"] = this.customer ? this.customer.toJSON() : <any>undefined;
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface ICustomerContactNumber {
+    id?: number;
+    tenantId?: number;
+    customerId?: number;
+    number?: string | undefined;
+    countryCode?: string | undefined;
+    customer?: Customer;
+    tenant?: Tenant;
+}
+
+export class CustomerVehicle implements ICustomerVehicle {
+    id?: number;
+    tenantId?: number;
+    customerId?: number;
+    vehicleModelId?: number;
+    engineStructureId?: number | undefined;
+    engineFuelId?: number | undefined;
+    engineChargerId?: number | undefined;
+    transmissionId?: number | undefined;
+    wheelDriveId?: number | undefined;
+    vin?: string | undefined;
+    yearModel?: number;
+    numberOfCylinders?: number | undefined;
+    transmissionGears?: number | undefined;
+    customer?: Customer;
+    customerVehicleColors?: CustomerVehicleColor[] | undefined;
+    customerVehiclePlates?: CustomerVehiclePlate[] | undefined;
+    engineCharger?: EngineCharger;
+    engineFuel?: EngineFuel;
+    engineStructure?: EngineStructure;
+    maintenaceCards?: MaintenaceCard[] | undefined;
+    tenant?: Tenant;
+    transmission?: Transmission;
+    vehicleModel?: VehicleModel;
+    wheelDrive?: WheelDrive;
+
+    constructor(data?: ICustomerVehicle) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.customerId = _data["customerId"];
+            this.vehicleModelId = _data["vehicleModelId"];
+            this.engineStructureId = _data["engineStructureId"];
+            this.engineFuelId = _data["engineFuelId"];
+            this.engineChargerId = _data["engineChargerId"];
+            this.transmissionId = _data["transmissionId"];
+            this.wheelDriveId = _data["wheelDriveId"];
+            this.vin = _data["vin"];
+            this.yearModel = _data["yearModel"];
+            this.numberOfCylinders = _data["numberOfCylinders"];
+            this.transmissionGears = _data["transmissionGears"];
+            this.customer = _data["customer"] ? Customer.fromJS(_data["customer"]) : <any>undefined;
+            if (Array.isArray(_data["customerVehicleColors"])) {
+                this.customerVehicleColors = [] as any;
+                for (let item of _data["customerVehicleColors"])
+                    this.customerVehicleColors!.push(CustomerVehicleColor.fromJS(item));
+            }
+            if (Array.isArray(_data["customerVehiclePlates"])) {
+                this.customerVehiclePlates = [] as any;
+                for (let item of _data["customerVehiclePlates"])
+                    this.customerVehiclePlates!.push(CustomerVehiclePlate.fromJS(item));
+            }
+            this.engineCharger = _data["engineCharger"] ? EngineCharger.fromJS(_data["engineCharger"]) : <any>undefined;
+            this.engineFuel = _data["engineFuel"] ? EngineFuel.fromJS(_data["engineFuel"]) : <any>undefined;
+            this.engineStructure = _data["engineStructure"] ? EngineStructure.fromJS(_data["engineStructure"]) : <any>undefined;
+            if (Array.isArray(_data["maintenaceCards"])) {
+                this.maintenaceCards = [] as any;
+                for (let item of _data["maintenaceCards"])
+                    this.maintenaceCards!.push(MaintenaceCard.fromJS(item));
+            }
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+            this.transmission = _data["transmission"] ? Transmission.fromJS(_data["transmission"]) : <any>undefined;
+            this.vehicleModel = _data["vehicleModel"] ? VehicleModel.fromJS(_data["vehicleModel"]) : <any>undefined;
+            this.wheelDrive = _data["wheelDrive"] ? WheelDrive.fromJS(_data["wheelDrive"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): CustomerVehicle {
+        data = typeof data === 'object' ? data : {};
+        let result = new CustomerVehicle();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["customerId"] = this.customerId;
+        data["vehicleModelId"] = this.vehicleModelId;
+        data["engineStructureId"] = this.engineStructureId;
+        data["engineFuelId"] = this.engineFuelId;
+        data["engineChargerId"] = this.engineChargerId;
+        data["transmissionId"] = this.transmissionId;
+        data["wheelDriveId"] = this.wheelDriveId;
+        data["vin"] = this.vin;
+        data["yearModel"] = this.yearModel;
+        data["numberOfCylinders"] = this.numberOfCylinders;
+        data["transmissionGears"] = this.transmissionGears;
+        data["customer"] = this.customer ? this.customer.toJSON() : <any>undefined;
+        if (Array.isArray(this.customerVehicleColors)) {
+            data["customerVehicleColors"] = [];
+            for (let item of this.customerVehicleColors)
+                data["customerVehicleColors"].push(item.toJSON());
+        }
+        if (Array.isArray(this.customerVehiclePlates)) {
+            data["customerVehiclePlates"] = [];
+            for (let item of this.customerVehiclePlates)
+                data["customerVehiclePlates"].push(item.toJSON());
+        }
+        data["engineCharger"] = this.engineCharger ? this.engineCharger.toJSON() : <any>undefined;
+        data["engineFuel"] = this.engineFuel ? this.engineFuel.toJSON() : <any>undefined;
+        data["engineStructure"] = this.engineStructure ? this.engineStructure.toJSON() : <any>undefined;
+        if (Array.isArray(this.maintenaceCards)) {
+            data["maintenaceCards"] = [];
+            for (let item of this.maintenaceCards)
+                data["maintenaceCards"].push(item.toJSON());
+        }
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        data["transmission"] = this.transmission ? this.transmission.toJSON() : <any>undefined;
+        data["vehicleModel"] = this.vehicleModel ? this.vehicleModel.toJSON() : <any>undefined;
+        data["wheelDrive"] = this.wheelDrive ? this.wheelDrive.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface ICustomerVehicle {
+    id?: number;
+    tenantId?: number;
+    customerId?: number;
+    vehicleModelId?: number;
+    engineStructureId?: number | undefined;
+    engineFuelId?: number | undefined;
+    engineChargerId?: number | undefined;
+    transmissionId?: number | undefined;
+    wheelDriveId?: number | undefined;
+    vin?: string | undefined;
+    yearModel?: number;
+    numberOfCylinders?: number | undefined;
+    transmissionGears?: number | undefined;
+    customer?: Customer;
+    customerVehicleColors?: CustomerVehicleColor[] | undefined;
+    customerVehiclePlates?: CustomerVehiclePlate[] | undefined;
+    engineCharger?: EngineCharger;
+    engineFuel?: EngineFuel;
+    engineStructure?: EngineStructure;
+    maintenaceCards?: MaintenaceCard[] | undefined;
+    tenant?: Tenant;
+    transmission?: Transmission;
+    vehicleModel?: VehicleModel;
+    wheelDrive?: WheelDrive;
+}
+
+export class CustomerVehicleColor implements ICustomerVehicleColor {
+    id?: number;
+    tenantId?: number;
+    colorId?: number;
+    customerVehicleId?: number;
+    date?: Date;
+    isActive?: boolean;
+    color?: Color;
+    customerVehicle?: CustomerVehicle;
+    tenant?: Tenant;
+
+    constructor(data?: ICustomerVehicleColor) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.colorId = _data["colorId"];
+            this.customerVehicleId = _data["customerVehicleId"];
+            this.date = _data["date"] ? new Date(_data["date"].toString()) : <any>undefined;
+            this.isActive = _data["isActive"];
+            this.color = _data["color"] ? Color.fromJS(_data["color"]) : <any>undefined;
+            this.customerVehicle = _data["customerVehicle"] ? CustomerVehicle.fromJS(_data["customerVehicle"]) : <any>undefined;
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): CustomerVehicleColor {
+        data = typeof data === 'object' ? data : {};
+        let result = new CustomerVehicleColor();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["colorId"] = this.colorId;
+        data["customerVehicleId"] = this.customerVehicleId;
+        data["date"] = this.date ? this.date.toISOString() : <any>undefined;
+        data["isActive"] = this.isActive;
+        data["color"] = this.color ? this.color.toJSON() : <any>undefined;
+        data["customerVehicle"] = this.customerVehicle ? this.customerVehicle.toJSON() : <any>undefined;
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface ICustomerVehicleColor {
+    id?: number;
+    tenantId?: number;
+    colorId?: number;
+    customerVehicleId?: number;
+    date?: Date;
+    isActive?: boolean;
+    color?: Color;
+    customerVehicle?: CustomerVehicle;
+    tenant?: Tenant;
+}
+
+export class CustomerVehicleImage implements ICustomerVehicleImage {
+    id?: number;
+    tenantId?: number;
+    maintenanceCardId?: number;
+    vehicleImageTypeId?: number;
+    imgUrl?: string | undefined;
+    maintenanceCard?: MaintenaceCard;
+    tenant?: Tenant;
+    vehicleImageType?: CustomerVehicleImageType;
+
+    constructor(data?: ICustomerVehicleImage) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.maintenanceCardId = _data["maintenanceCardId"];
+            this.vehicleImageTypeId = _data["vehicleImageTypeId"];
+            this.imgUrl = _data["imgUrl"];
+            this.maintenanceCard = _data["maintenanceCard"] ? MaintenaceCard.fromJS(_data["maintenanceCard"]) : <any>undefined;
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+            this.vehicleImageType = _data["vehicleImageType"] ? CustomerVehicleImageType.fromJS(_data["vehicleImageType"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): CustomerVehicleImage {
+        data = typeof data === 'object' ? data : {};
+        let result = new CustomerVehicleImage();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["maintenanceCardId"] = this.maintenanceCardId;
+        data["vehicleImageTypeId"] = this.vehicleImageTypeId;
+        data["imgUrl"] = this.imgUrl;
+        data["maintenanceCard"] = this.maintenanceCard ? this.maintenanceCard.toJSON() : <any>undefined;
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        data["vehicleImageType"] = this.vehicleImageType ? this.vehicleImageType.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface ICustomerVehicleImage {
+    id?: number;
+    tenantId?: number;
+    maintenanceCardId?: number;
+    vehicleImageTypeId?: number;
+    imgUrl?: string | undefined;
+    maintenanceCard?: MaintenaceCard;
+    tenant?: Tenant;
+    vehicleImageType?: CustomerVehicleImageType;
+}
+
+export class CustomerVehicleImageType implements ICustomerVehicleImageType {
+    id?: number;
+    tenantId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    customerVehicleImages?: CustomerVehicleImage[] | undefined;
+
+    constructor(data?: ICustomerVehicleImageType) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.name = _data["name"];
+            this.nameInArabic = _data["nameInArabic"];
+            if (Array.isArray(_data["customerVehicleImages"])) {
+                this.customerVehicleImages = [] as any;
+                for (let item of _data["customerVehicleImages"])
+                    this.customerVehicleImages!.push(CustomerVehicleImage.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): CustomerVehicleImageType {
+        data = typeof data === 'object' ? data : {};
+        let result = new CustomerVehicleImageType();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["name"] = this.name;
+        data["nameInArabic"] = this.nameInArabic;
+        if (Array.isArray(this.customerVehicleImages)) {
+            data["customerVehicleImages"] = [];
+            for (let item of this.customerVehicleImages)
+                data["customerVehicleImages"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface ICustomerVehicleImageType {
+    id?: number;
+    tenantId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    customerVehicleImages?: CustomerVehicleImage[] | undefined;
+}
+
+export class CustomerVehiclePlate implements ICustomerVehiclePlate {
+    id?: number;
+    tenantId?: number;
+    plateId?: number;
+    customerVehicleId?: number;
+    date?: Date;
+    isActive?: boolean;
+    customerVehicle?: CustomerVehicle;
+    plate?: Plate;
+    tenant?: Tenant;
+
+    constructor(data?: ICustomerVehiclePlate) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.plateId = _data["plateId"];
+            this.customerVehicleId = _data["customerVehicleId"];
+            this.date = _data["date"] ? new Date(_data["date"].toString()) : <any>undefined;
+            this.isActive = _data["isActive"];
+            this.customerVehicle = _data["customerVehicle"] ? CustomerVehicle.fromJS(_data["customerVehicle"]) : <any>undefined;
+            this.plate = _data["plate"] ? Plate.fromJS(_data["plate"]) : <any>undefined;
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): CustomerVehiclePlate {
+        data = typeof data === 'object' ? data : {};
+        let result = new CustomerVehiclePlate();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["plateId"] = this.plateId;
+        data["customerVehicleId"] = this.customerVehicleId;
+        data["date"] = this.date ? this.date.toISOString() : <any>undefined;
+        data["isActive"] = this.isActive;
+        data["customerVehicle"] = this.customerVehicle ? this.customerVehicle.toJSON() : <any>undefined;
+        data["plate"] = this.plate ? this.plate.toJSON() : <any>undefined;
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface ICustomerVehiclePlate {
+    id?: number;
+    tenantId?: number;
+    plateId?: number;
+    customerVehicleId?: number;
+    date?: Date;
+    isActive?: boolean;
+    customerVehicle?: CustomerVehicle;
+    plate?: Plate;
+    tenant?: Tenant;
+}
+
+export class CustomerVipStatus implements ICustomerVipStatus {
+    id?: number;
+    tenantId?: number;
+    vipStatusId?: number;
+    customerId?: number;
+    joiningDate?: Date;
+    expiryDate?: Date;
+    customer?: Customer;
+    tenant?: Tenant;
+    vipStatus?: VipStatus;
+
+    constructor(data?: ICustomerVipStatus) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.vipStatusId = _data["vipStatusId"];
+            this.customerId = _data["customerId"];
+            this.joiningDate = _data["joiningDate"] ? new Date(_data["joiningDate"].toString()) : <any>undefined;
+            this.expiryDate = _data["expiryDate"] ? new Date(_data["expiryDate"].toString()) : <any>undefined;
+            this.customer = _data["customer"] ? Customer.fromJS(_data["customer"]) : <any>undefined;
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+            this.vipStatus = _data["vipStatus"] ? VipStatus.fromJS(_data["vipStatus"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): CustomerVipStatus {
+        data = typeof data === 'object' ? data : {};
+        let result = new CustomerVipStatus();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["vipStatusId"] = this.vipStatusId;
+        data["customerId"] = this.customerId;
+        data["joiningDate"] = this.joiningDate ? this.joiningDate.toISOString() : <any>undefined;
+        data["expiryDate"] = this.expiryDate ? this.expiryDate.toISOString() : <any>undefined;
+        data["customer"] = this.customer ? this.customer.toJSON() : <any>undefined;
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        data["vipStatus"] = this.vipStatus ? this.vipStatus.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface ICustomerVipStatus {
+    id?: number;
+    tenantId?: number;
+    vipStatusId?: number;
+    customerId?: number;
+    joiningDate?: Date;
+    expiryDate?: Date;
+    customer?: Customer;
+    tenant?: Tenant;
+    vipStatus?: VipStatus;
+}
+
+export class District implements IDistrict {
+    id?: number;
+    tenantId?: number;
+    cityId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    city?: City;
+    streets?: Street[] | undefined;
+
+    constructor(data?: IDistrict) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.cityId = _data["cityId"];
+            this.name = _data["name"];
+            this.nameInArabic = _data["nameInArabic"];
+            this.city = _data["city"] ? City.fromJS(_data["city"]) : <any>undefined;
+            if (Array.isArray(_data["streets"])) {
+                this.streets = [] as any;
+                for (let item of _data["streets"])
+                    this.streets!.push(Street.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): District {
+        data = typeof data === 'object' ? data : {};
+        let result = new District();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["cityId"] = this.cityId;
+        data["name"] = this.name;
+        data["nameInArabic"] = this.nameInArabic;
+        data["city"] = this.city ? this.city.toJSON() : <any>undefined;
+        if (Array.isArray(this.streets)) {
+            data["streets"] = [];
+            for (let item of this.streets)
+                data["streets"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IDistrict {
+    id?: number;
+    tenantId?: number;
+    cityId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    city?: City;
+    streets?: Street[] | undefined;
+}
+
+export class Employee implements IEmployee {
+    id?: number;
+    userId?: number;
+    tenantId?: number;
+    nationalityId?: number;
+    genderId?: number;
+    streetId?: number;
+    phoneNumber?: string | undefined;
+    countryCode?: string | undefined;
+    hireDate?: Date | undefined;
+    terminationDate?: Date | undefined;
+    birthDate?: Date | undefined;
+    promotionDate?: Date | undefined;
+    firstName?: string | undefined;
+    lastName?: string | undefined;
+    fatherName?: string | undefined;
+    employeeMaintaineds?: EmployeeMaintained[] | undefined;
+    gender?: Gender;
+    nationality?: Nationality;
+    street?: Street;
+    tenant?: Tenant;
+    user?: User;
+
+    constructor(data?: IEmployee) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.userId = _data["userId"];
+            this.tenantId = _data["tenantId"];
+            this.nationalityId = _data["nationalityId"];
+            this.genderId = _data["genderId"];
+            this.streetId = _data["streetId"];
+            this.phoneNumber = _data["phoneNumber"];
+            this.countryCode = _data["countryCode"];
+            this.hireDate = _data["hireDate"] ? new Date(_data["hireDate"].toString()) : <any>undefined;
+            this.terminationDate = _data["terminationDate"] ? new Date(_data["terminationDate"].toString()) : <any>undefined;
+            this.birthDate = _data["birthDate"] ? new Date(_data["birthDate"].toString()) : <any>undefined;
+            this.promotionDate = _data["promotionDate"] ? new Date(_data["promotionDate"].toString()) : <any>undefined;
+            this.firstName = _data["firstName"];
+            this.lastName = _data["lastName"];
+            this.fatherName = _data["fatherName"];
+            if (Array.isArray(_data["employeeMaintaineds"])) {
+                this.employeeMaintaineds = [] as any;
+                for (let item of _data["employeeMaintaineds"])
+                    this.employeeMaintaineds!.push(EmployeeMaintained.fromJS(item));
+            }
+            this.gender = _data["gender"] ? Gender.fromJS(_data["gender"]) : <any>undefined;
+            this.nationality = _data["nationality"] ? Nationality.fromJS(_data["nationality"]) : <any>undefined;
+            this.street = _data["street"] ? Street.fromJS(_data["street"]) : <any>undefined;
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+            this.user = _data["user"] ? User.fromJS(_data["user"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): Employee {
+        data = typeof data === 'object' ? data : {};
+        let result = new Employee();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["userId"] = this.userId;
+        data["tenantId"] = this.tenantId;
+        data["nationalityId"] = this.nationalityId;
+        data["genderId"] = this.genderId;
+        data["streetId"] = this.streetId;
+        data["phoneNumber"] = this.phoneNumber;
+        data["countryCode"] = this.countryCode;
+        data["hireDate"] = this.hireDate ? formatDate(this.hireDate) : <any>undefined;
+        data["terminationDate"] = this.terminationDate ? formatDate(this.terminationDate) : <any>undefined;
+        data["birthDate"] = this.birthDate ? formatDate(this.birthDate) : <any>undefined;
+        data["promotionDate"] = this.promotionDate ? formatDate(this.promotionDate) : <any>undefined;
+        data["firstName"] = this.firstName;
+        data["lastName"] = this.lastName;
+        data["fatherName"] = this.fatherName;
+        if (Array.isArray(this.employeeMaintaineds)) {
+            data["employeeMaintaineds"] = [];
+            for (let item of this.employeeMaintaineds)
+                data["employeeMaintaineds"].push(item.toJSON());
+        }
+        data["gender"] = this.gender ? this.gender.toJSON() : <any>undefined;
+        data["nationality"] = this.nationality ? this.nationality.toJSON() : <any>undefined;
+        data["street"] = this.street ? this.street.toJSON() : <any>undefined;
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        data["user"] = this.user ? this.user.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IEmployee {
+    id?: number;
+    userId?: number;
+    tenantId?: number;
+    nationalityId?: number;
+    genderId?: number;
+    streetId?: number;
+    phoneNumber?: string | undefined;
+    countryCode?: string | undefined;
+    hireDate?: Date | undefined;
+    terminationDate?: Date | undefined;
+    birthDate?: Date | undefined;
+    promotionDate?: Date | undefined;
+    firstName?: string | undefined;
+    lastName?: string | undefined;
+    fatherName?: string | undefined;
+    employeeMaintaineds?: EmployeeMaintained[] | undefined;
+    gender?: Gender;
+    nationality?: Nationality;
+    street?: Street;
+    tenant?: Tenant;
+    user?: User;
+}
+
+export class EmployeeMaintained implements IEmployeeMaintained {
+    id?: number;
+    tenantId?: number;
+    maintenaceServiceId?: number;
+    employeeId?: number;
+    startedDate?: Date | undefined;
+    finishedDate?: Date | undefined;
+    employee?: Employee;
+    maintainedImages?: MaintainedImage[] | undefined;
+    maintenaceService?: MaintenaceService;
+    tenant?: Tenant;
+
+    constructor(data?: IEmployeeMaintained) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.maintenaceServiceId = _data["maintenaceServiceId"];
+            this.employeeId = _data["employeeId"];
+            this.startedDate = _data["startedDate"] ? new Date(_data["startedDate"].toString()) : <any>undefined;
+            this.finishedDate = _data["finishedDate"] ? new Date(_data["finishedDate"].toString()) : <any>undefined;
+            this.employee = _data["employee"] ? Employee.fromJS(_data["employee"]) : <any>undefined;
+            if (Array.isArray(_data["maintainedImages"])) {
+                this.maintainedImages = [] as any;
+                for (let item of _data["maintainedImages"])
+                    this.maintainedImages!.push(MaintainedImage.fromJS(item));
+            }
+            this.maintenaceService = _data["maintenaceService"] ? MaintenaceService.fromJS(_data["maintenaceService"]) : <any>undefined;
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): EmployeeMaintained {
+        data = typeof data === 'object' ? data : {};
+        let result = new EmployeeMaintained();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["maintenaceServiceId"] = this.maintenaceServiceId;
+        data["employeeId"] = this.employeeId;
+        data["startedDate"] = this.startedDate ? this.startedDate.toISOString() : <any>undefined;
+        data["finishedDate"] = this.finishedDate ? this.finishedDate.toISOString() : <any>undefined;
+        data["employee"] = this.employee ? this.employee.toJSON() : <any>undefined;
+        if (Array.isArray(this.maintainedImages)) {
+            data["maintainedImages"] = [];
+            for (let item of this.maintainedImages)
+                data["maintainedImages"].push(item.toJSON());
+        }
+        data["maintenaceService"] = this.maintenaceService ? this.maintenaceService.toJSON() : <any>undefined;
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IEmployeeMaintained {
+    id?: number;
+    tenantId?: number;
+    maintenaceServiceId?: number;
+    employeeId?: number;
+    startedDate?: Date | undefined;
+    finishedDate?: Date | undefined;
+    employee?: Employee;
+    maintainedImages?: MaintainedImage[] | undefined;
+    maintenaceService?: MaintenaceService;
+    tenant?: Tenant;
+}
+
+export class EngineCharger implements IEngineCharger {
+    id?: number;
+    engineChargerName?: string | undefined;
+    customerVehicles?: CustomerVehicle[] | undefined;
+
+    constructor(data?: IEngineCharger) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.engineChargerName = _data["engineChargerName"];
+            if (Array.isArray(_data["customerVehicles"])) {
+                this.customerVehicles = [] as any;
+                for (let item of _data["customerVehicles"])
+                    this.customerVehicles!.push(CustomerVehicle.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): EngineCharger {
+        data = typeof data === 'object' ? data : {};
+        let result = new EngineCharger();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["engineChargerName"] = this.engineChargerName;
+        if (Array.isArray(this.customerVehicles)) {
+            data["customerVehicles"] = [];
+            for (let item of this.customerVehicles)
+                data["customerVehicles"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IEngineCharger {
+    id?: number;
+    engineChargerName?: string | undefined;
+    customerVehicles?: CustomerVehicle[] | undefined;
+}
+
+export class EngineFuel implements IEngineFuel {
+    id?: number;
+    engineFuelType?: string | undefined;
+    customerVehicles?: CustomerVehicle[] | undefined;
+
+    constructor(data?: IEngineFuel) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.engineFuelType = _data["engineFuelType"];
+            if (Array.isArray(_data["customerVehicles"])) {
+                this.customerVehicles = [] as any;
+                for (let item of _data["customerVehicles"])
+                    this.customerVehicles!.push(CustomerVehicle.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): EngineFuel {
+        data = typeof data === 'object' ? data : {};
+        let result = new EngineFuel();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["engineFuelType"] = this.engineFuelType;
+        if (Array.isArray(this.customerVehicles)) {
+            data["customerVehicles"] = [];
+            for (let item of this.customerVehicles)
+                data["customerVehicles"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IEngineFuel {
+    id?: number;
+    engineFuelType?: string | undefined;
+    customerVehicles?: CustomerVehicle[] | undefined;
+}
+
+export class EngineStructure implements IEngineStructure {
+    id?: number;
+    engineType?: string | undefined;
+    customerVehicles?: CustomerVehicle[] | undefined;
+
+    constructor(data?: IEngineStructure) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.engineType = _data["engineType"];
+            if (Array.isArray(_data["customerVehicles"])) {
+                this.customerVehicles = [] as any;
+                for (let item of _data["customerVehicles"])
+                    this.customerVehicles!.push(CustomerVehicle.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): EngineStructure {
+        data = typeof data === 'object' ? data : {};
+        let result = new EngineStructure();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["engineType"] = this.engineType;
+        if (Array.isArray(this.customerVehicles)) {
+            data["customerVehicles"] = [];
+            for (let item of this.customerVehicles)
+                data["customerVehicles"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IEngineStructure {
+    id?: number;
+    engineType?: string | undefined;
+    customerVehicles?: CustomerVehicle[] | undefined;
+}
+
+export class Gender implements IGender {
+    id?: number;
+    name?: string | undefined;
+    customers?: Customer[] | undefined;
+    employees?: Employee[] | undefined;
+
+    constructor(data?: IGender) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            if (Array.isArray(_data["customers"])) {
+                this.customers = [] as any;
+                for (let item of _data["customers"])
+                    this.customers!.push(Customer.fromJS(item));
+            }
+            if (Array.isArray(_data["employees"])) {
+                this.employees = [] as any;
+                for (let item of _data["employees"])
+                    this.employees!.push(Employee.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): Gender {
+        data = typeof data === 'object' ? data : {};
+        let result = new Gender();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        if (Array.isArray(this.customers)) {
+            data["customers"] = [];
+            for (let item of this.customers)
+                data["customers"].push(item.toJSON());
+        }
+        if (Array.isArray(this.employees)) {
+            data["employees"] = [];
+            for (let item of this.employees)
+                data["employees"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IGender {
+    id?: number;
+    name?: string | undefined;
+    customers?: Customer[] | undefined;
+    employees?: Employee[] | undefined;
+}
+
+export class MaintainedImage implements IMaintainedImage {
+    id?: number;
+    employeeMaintainedId?: number;
+    tenantId?: number;
+    imgUrl?: string | undefined;
+    employeeMaintained?: EmployeeMaintained;
+    tenant?: Tenant;
+
+    constructor(data?: IMaintainedImage) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.employeeMaintainedId = _data["employeeMaintainedId"];
+            this.tenantId = _data["tenantId"];
+            this.imgUrl = _data["imgUrl"];
+            this.employeeMaintained = _data["employeeMaintained"] ? EmployeeMaintained.fromJS(_data["employeeMaintained"]) : <any>undefined;
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): MaintainedImage {
+        data = typeof data === 'object' ? data : {};
+        let result = new MaintainedImage();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["employeeMaintainedId"] = this.employeeMaintainedId;
+        data["tenantId"] = this.tenantId;
+        data["imgUrl"] = this.imgUrl;
+        data["employeeMaintained"] = this.employeeMaintained ? this.employeeMaintained.toJSON() : <any>undefined;
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IMaintainedImage {
+    id?: number;
+    employeeMaintainedId?: number;
+    tenantId?: number;
+    imgUrl?: string | undefined;
+    employeeMaintained?: EmployeeMaintained;
+    tenant?: Tenant;
+}
+
+export class MaintenaceCard implements IMaintenaceCard {
+    id?: number;
+    maintenanceNumberForEachTenant?: number;
+    tenantId?: number;
+    customerVehicleId?: number;
+    dateIn?: Date | undefined;
+    dateOut?: Date | undefined;
+    comments?: string | undefined;
+    kilometers?: number;
+    isCompleted?: boolean;
+    isPending?: boolean;
+    isCanceled?: boolean;
+    doesCheckedAfterFinishingMaintenace?: boolean;
+    isReadyToBeDelivered?: boolean;
+    customerSignature?: string | undefined;
+    customerVehicle?: CustomerVehicle;
+    customerVehicleImages?: CustomerVehicleImage[] | undefined;
+    maintenaceServices?: MaintenaceService[] | undefined;
+    tenant?: Tenant;
+
+    constructor(data?: IMaintenaceCard) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.maintenanceNumberForEachTenant = _data["maintenanceNumberForEachTenant"];
+            this.tenantId = _data["tenantId"];
+            this.customerVehicleId = _data["customerVehicleId"];
+            this.dateIn = _data["dateIn"] ? new Date(_data["dateIn"].toString()) : <any>undefined;
+            this.dateOut = _data["dateOut"] ? new Date(_data["dateOut"].toString()) : <any>undefined;
+            this.comments = _data["comments"];
+            this.kilometers = _data["kilometers"];
+            this.isCompleted = _data["isCompleted"];
+            this.isPending = _data["isPending"];
+            this.isCanceled = _data["isCanceled"];
+            this.doesCheckedAfterFinishingMaintenace = _data["doesCheckedAfterFinishingMaintenace"];
+            this.isReadyToBeDelivered = _data["isReadyToBeDelivered"];
+            this.customerSignature = _data["customerSignature"];
+            this.customerVehicle = _data["customerVehicle"] ? CustomerVehicle.fromJS(_data["customerVehicle"]) : <any>undefined;
+            if (Array.isArray(_data["customerVehicleImages"])) {
+                this.customerVehicleImages = [] as any;
+                for (let item of _data["customerVehicleImages"])
+                    this.customerVehicleImages!.push(CustomerVehicleImage.fromJS(item));
+            }
+            if (Array.isArray(_data["maintenaceServices"])) {
+                this.maintenaceServices = [] as any;
+                for (let item of _data["maintenaceServices"])
+                    this.maintenaceServices!.push(MaintenaceService.fromJS(item));
+            }
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): MaintenaceCard {
+        data = typeof data === 'object' ? data : {};
+        let result = new MaintenaceCard();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["maintenanceNumberForEachTenant"] = this.maintenanceNumberForEachTenant;
+        data["tenantId"] = this.tenantId;
+        data["customerVehicleId"] = this.customerVehicleId;
+        data["dateIn"] = this.dateIn ? this.dateIn.toISOString() : <any>undefined;
+        data["dateOut"] = this.dateOut ? this.dateOut.toISOString() : <any>undefined;
+        data["comments"] = this.comments;
+        data["kilometers"] = this.kilometers;
+        data["isCompleted"] = this.isCompleted;
+        data["isPending"] = this.isPending;
+        data["isCanceled"] = this.isCanceled;
+        data["doesCheckedAfterFinishingMaintenace"] = this.doesCheckedAfterFinishingMaintenace;
+        data["isReadyToBeDelivered"] = this.isReadyToBeDelivered;
+        data["customerSignature"] = this.customerSignature;
+        data["customerVehicle"] = this.customerVehicle ? this.customerVehicle.toJSON() : <any>undefined;
+        if (Array.isArray(this.customerVehicleImages)) {
+            data["customerVehicleImages"] = [];
+            for (let item of this.customerVehicleImages)
+                data["customerVehicleImages"].push(item.toJSON());
+        }
+        if (Array.isArray(this.maintenaceServices)) {
+            data["maintenaceServices"] = [];
+            for (let item of this.maintenaceServices)
+                data["maintenaceServices"].push(item.toJSON());
+        }
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IMaintenaceCard {
+    id?: number;
+    maintenanceNumberForEachTenant?: number;
+    tenantId?: number;
+    customerVehicleId?: number;
+    dateIn?: Date | undefined;
+    dateOut?: Date | undefined;
+    comments?: string | undefined;
+    kilometers?: number;
+    isCompleted?: boolean;
+    isPending?: boolean;
+    isCanceled?: boolean;
+    doesCheckedAfterFinishingMaintenace?: boolean;
+    isReadyToBeDelivered?: boolean;
+    customerSignature?: string | undefined;
+    customerVehicle?: CustomerVehicle;
+    customerVehicleImages?: CustomerVehicleImage[] | undefined;
+    maintenaceServices?: MaintenaceService[] | undefined;
+    tenant?: Tenant;
+}
+
+export class MaintenaceService implements IMaintenaceService {
+    id?: number;
+    tenantId?: number;
+    maintenaceCardId?: number;
+    serviceId?: number;
+    cost?: number;
+    warrantyPeriod?: number;
+    isCompleted?: boolean;
+    isPending?: boolean;
+    isCanceled?: boolean;
+    isTested?: boolean;
+    employeeMaintaineds?: EmployeeMaintained[] | undefined;
+    maintenaceCard?: MaintenaceCard;
+    service?: Service;
+    serviceParts?: ServicePart[] | undefined;
+    tenant?: Tenant;
+
+    constructor(data?: IMaintenaceService) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.maintenaceCardId = _data["maintenaceCardId"];
+            this.serviceId = _data["serviceId"];
+            this.cost = _data["cost"];
+            this.warrantyPeriod = _data["warrantyPeriod"];
+            this.isCompleted = _data["isCompleted"];
+            this.isPending = _data["isPending"];
+            this.isCanceled = _data["isCanceled"];
+            this.isTested = _data["isTested"];
+            if (Array.isArray(_data["employeeMaintaineds"])) {
+                this.employeeMaintaineds = [] as any;
+                for (let item of _data["employeeMaintaineds"])
+                    this.employeeMaintaineds!.push(EmployeeMaintained.fromJS(item));
+            }
+            this.maintenaceCard = _data["maintenaceCard"] ? MaintenaceCard.fromJS(_data["maintenaceCard"]) : <any>undefined;
+            this.service = _data["service"] ? Service.fromJS(_data["service"]) : <any>undefined;
+            if (Array.isArray(_data["serviceParts"])) {
+                this.serviceParts = [] as any;
+                for (let item of _data["serviceParts"])
+                    this.serviceParts!.push(ServicePart.fromJS(item));
+            }
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): MaintenaceService {
+        data = typeof data === 'object' ? data : {};
+        let result = new MaintenaceService();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["maintenaceCardId"] = this.maintenaceCardId;
+        data["serviceId"] = this.serviceId;
+        data["cost"] = this.cost;
+        data["warrantyPeriod"] = this.warrantyPeriod;
+        data["isCompleted"] = this.isCompleted;
+        data["isPending"] = this.isPending;
+        data["isCanceled"] = this.isCanceled;
+        data["isTested"] = this.isTested;
+        if (Array.isArray(this.employeeMaintaineds)) {
+            data["employeeMaintaineds"] = [];
+            for (let item of this.employeeMaintaineds)
+                data["employeeMaintaineds"].push(item.toJSON());
+        }
+        data["maintenaceCard"] = this.maintenaceCard ? this.maintenaceCard.toJSON() : <any>undefined;
+        data["service"] = this.service ? this.service.toJSON() : <any>undefined;
+        if (Array.isArray(this.serviceParts)) {
+            data["serviceParts"] = [];
+            for (let item of this.serviceParts)
+                data["serviceParts"].push(item.toJSON());
+        }
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IMaintenaceService {
+    id?: number;
+    tenantId?: number;
+    maintenaceCardId?: number;
+    serviceId?: number;
+    cost?: number;
+    warrantyPeriod?: number;
+    isCompleted?: boolean;
+    isPending?: boolean;
+    isCanceled?: boolean;
+    isTested?: boolean;
+    employeeMaintaineds?: EmployeeMaintained[] | undefined;
+    maintenaceCard?: MaintenaceCard;
+    service?: Service;
+    serviceParts?: ServicePart[] | undefined;
+    tenant?: Tenant;
+}
+
+export class Menu implements IMenu {
+    id?: number;
+    submenuId?: number | undefined;
+    roleId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    route?: string | undefined;
+    icon?: string | undefined;
+    menuOrder?: number | undefined;
+    inverseSubmenu?: Menu[] | undefined;
+    role?: Role;
+    submenu?: Menu;
+
+    constructor(data?: IMenu) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.submenuId = _data["submenuId"];
+            this.roleId = _data["roleId"];
+            this.name = _data["name"];
+            this.nameInArabic = _data["nameInArabic"];
+            this.route = _data["route"];
+            this.icon = _data["icon"];
+            this.menuOrder = _data["menuOrder"];
+            if (Array.isArray(_data["inverseSubmenu"])) {
+                this.inverseSubmenu = [] as any;
+                for (let item of _data["inverseSubmenu"])
+                    this.inverseSubmenu!.push(Menu.fromJS(item));
+            }
+            this.role = _data["role"] ? Role.fromJS(_data["role"]) : <any>undefined;
+            this.submenu = _data["submenu"] ? Menu.fromJS(_data["submenu"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): Menu {
+        data = typeof data === 'object' ? data : {};
+        let result = new Menu();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["submenuId"] = this.submenuId;
+        data["roleId"] = this.roleId;
+        data["name"] = this.name;
+        data["nameInArabic"] = this.nameInArabic;
+        data["route"] = this.route;
+        data["icon"] = this.icon;
+        data["menuOrder"] = this.menuOrder;
+        if (Array.isArray(this.inverseSubmenu)) {
+            data["inverseSubmenu"] = [];
+            for (let item of this.inverseSubmenu)
+                data["inverseSubmenu"].push(item.toJSON());
+        }
+        data["role"] = this.role ? this.role.toJSON() : <any>undefined;
+        data["submenu"] = this.submenu ? this.submenu.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IMenu {
+    id?: number;
+    submenuId?: number | undefined;
+    roleId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    route?: string | undefined;
+    icon?: string | undefined;
+    menuOrder?: number | undefined;
+    inverseSubmenu?: Menu[] | undefined;
+    role?: Role;
+    submenu?: Menu;
+}
+
+export class MontlyCustomerVisit implements IMontlyCustomerVisit {
+    id?: number;
+    customerId?: number;
+    tenantId?: number;
+    month?: Date;
+    visitCount?: number;
+    customer?: Customer;
+    tenant?: Tenant;
+
+    constructor(data?: IMontlyCustomerVisit) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.customerId = _data["customerId"];
+            this.tenantId = _data["tenantId"];
+            this.month = _data["month"] ? new Date(_data["month"].toString()) : <any>undefined;
+            this.visitCount = _data["visitCount"];
+            this.customer = _data["customer"] ? Customer.fromJS(_data["customer"]) : <any>undefined;
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): MontlyCustomerVisit {
+        data = typeof data === 'object' ? data : {};
+        let result = new MontlyCustomerVisit();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["customerId"] = this.customerId;
+        data["tenantId"] = this.tenantId;
+        data["month"] = this.month ? formatDate(this.month) : <any>undefined;
+        data["visitCount"] = this.visitCount;
+        data["customer"] = this.customer ? this.customer.toJSON() : <any>undefined;
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IMontlyCustomerVisit {
+    id?: number;
+    customerId?: number;
+    tenantId?: number;
+    month?: Date;
+    visitCount?: number;
+    customer?: Customer;
+    tenant?: Tenant;
+}
+
+export class Nationality implements INationality {
+    id?: number;
+    tenantId?: number;
+    name?: string | undefined;
+    employees?: Employee[] | undefined;
+    tenant?: Tenant;
+
+    constructor(data?: INationality) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.name = _data["name"];
+            if (Array.isArray(_data["employees"])) {
+                this.employees = [] as any;
+                for (let item of _data["employees"])
+                    this.employees!.push(Employee.fromJS(item));
+            }
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): Nationality {
+        data = typeof data === 'object' ? data : {};
+        let result = new Nationality();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["name"] = this.name;
+        if (Array.isArray(this.employees)) {
+            data["employees"] = [];
+            for (let item of this.employees)
+                data["employees"].push(item.toJSON());
+        }
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface INationality {
+    id?: number;
+    tenantId?: number;
+    name?: string | undefined;
+    employees?: Employee[] | undefined;
+    tenant?: Tenant;
+}
+
+export class PartBrand implements IPartBrand {
+    id?: number;
+    tenantId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    tenant?: Tenant;
+    vehicleParts?: VehiclePart[] | undefined;
+
+    constructor(data?: IPartBrand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.name = _data["name"];
+            this.nameInArabic = _data["nameInArabic"];
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+            if (Array.isArray(_data["vehicleParts"])) {
+                this.vehicleParts = [] as any;
+                for (let item of _data["vehicleParts"])
+                    this.vehicleParts!.push(VehiclePart.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): PartBrand {
+        data = typeof data === 'object' ? data : {};
+        let result = new PartBrand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["name"] = this.name;
+        data["nameInArabic"] = this.nameInArabic;
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        if (Array.isArray(this.vehicleParts)) {
+            data["vehicleParts"] = [];
+            for (let item of this.vehicleParts)
+                data["vehicleParts"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IPartBrand {
+    id?: number;
+    tenantId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    tenant?: Tenant;
+    vehicleParts?: VehiclePart[] | undefined;
+}
+
+export class PartCondition implements IPartCondition {
+    id?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    serviceParts?: ServicePart[] | undefined;
+
+    constructor(data?: IPartCondition) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            this.nameInArabic = _data["nameInArabic"];
+            if (Array.isArray(_data["serviceParts"])) {
+                this.serviceParts = [] as any;
+                for (let item of _data["serviceParts"])
+                    this.serviceParts!.push(ServicePart.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): PartCondition {
+        data = typeof data === 'object' ? data : {};
+        let result = new PartCondition();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["nameInArabic"] = this.nameInArabic;
+        if (Array.isArray(this.serviceParts)) {
+            data["serviceParts"] = [];
+            for (let item of this.serviceParts)
+                data["serviceParts"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IPartCondition {
+    id?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    serviceParts?: ServicePart[] | undefined;
+}
+
+export class PartImage implements IPartImage {
+    id?: number;
+    tenantId?: number;
+    partImageTypeId?: number;
+    servicePartId?: number;
+    imgUrl?: string | undefined;
+    partImageType?: PartImageType;
+    servicePart?: ServicePart;
+    tenant?: Tenant;
+
+    constructor(data?: IPartImage) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.partImageTypeId = _data["partImageTypeId"];
+            this.servicePartId = _data["servicePartId"];
+            this.imgUrl = _data["imgUrl"];
+            this.partImageType = _data["partImageType"] ? PartImageType.fromJS(_data["partImageType"]) : <any>undefined;
+            this.servicePart = _data["servicePart"] ? ServicePart.fromJS(_data["servicePart"]) : <any>undefined;
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): PartImage {
+        data = typeof data === 'object' ? data : {};
+        let result = new PartImage();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["partImageTypeId"] = this.partImageTypeId;
+        data["servicePartId"] = this.servicePartId;
+        data["imgUrl"] = this.imgUrl;
+        data["partImageType"] = this.partImageType ? this.partImageType.toJSON() : <any>undefined;
+        data["servicePart"] = this.servicePart ? this.servicePart.toJSON() : <any>undefined;
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IPartImage {
+    id?: number;
+    tenantId?: number;
+    partImageTypeId?: number;
+    servicePartId?: number;
+    imgUrl?: string | undefined;
+    partImageType?: PartImageType;
+    servicePart?: ServicePart;
+    tenant?: Tenant;
+}
+
+export class PartImageType implements IPartImageType {
+    id?: number;
+    tenantId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    partImages?: PartImage[] | undefined;
+    tenant?: Tenant;
+
+    constructor(data?: IPartImageType) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.name = _data["name"];
+            this.nameInArabic = _data["nameInArabic"];
+            if (Array.isArray(_data["partImages"])) {
+                this.partImages = [] as any;
+                for (let item of _data["partImages"])
+                    this.partImages!.push(PartImage.fromJS(item));
+            }
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): PartImageType {
+        data = typeof data === 'object' ? data : {};
+        let result = new PartImageType();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["name"] = this.name;
+        data["nameInArabic"] = this.nameInArabic;
+        if (Array.isArray(this.partImages)) {
+            data["partImages"] = [];
+            for (let item of this.partImages)
+                data["partImages"].push(item.toJSON());
+        }
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IPartImageType {
+    id?: number;
+    tenantId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    partImages?: PartImage[] | undefined;
+    tenant?: Tenant;
+}
+
+export class Permission implements IPermission {
+    id?: number;
+    name?: string | undefined;
+    rolePermissions?: RolePermission[] | undefined;
+
+    constructor(data?: IPermission) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            if (Array.isArray(_data["rolePermissions"])) {
+                this.rolePermissions = [] as any;
+                for (let item of _data["rolePermissions"])
+                    this.rolePermissions!.push(RolePermission.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): Permission {
+        data = typeof data === 'object' ? data : {};
+        let result = new Permission();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        if (Array.isArray(this.rolePermissions)) {
+            data["rolePermissions"] = [];
+            for (let item of this.rolePermissions)
+                data["rolePermissions"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IPermission {
+    id?: number;
+    name?: string | undefined;
+    rolePermissions?: RolePermission[] | undefined;
+}
+
+export class Plate implements IPlate {
+    id?: number;
+    tenantId?: number;
+    numbers?: string | undefined;
+    letters?: string | undefined;
+    customerVehiclePlates?: CustomerVehiclePlate[] | undefined;
+    tenant?: Tenant;
+
+    constructor(data?: IPlate) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.numbers = _data["numbers"];
+            this.letters = _data["letters"];
+            if (Array.isArray(_data["customerVehiclePlates"])) {
+                this.customerVehiclePlates = [] as any;
+                for (let item of _data["customerVehiclePlates"])
+                    this.customerVehiclePlates!.push(CustomerVehiclePlate.fromJS(item));
+            }
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): Plate {
+        data = typeof data === 'object' ? data : {};
+        let result = new Plate();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["numbers"] = this.numbers;
+        data["letters"] = this.letters;
+        if (Array.isArray(this.customerVehiclePlates)) {
+            data["customerVehiclePlates"] = [];
+            for (let item of this.customerVehiclePlates)
+                data["customerVehiclePlates"].push(item.toJSON());
+        }
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IPlate {
+    id?: number;
+    tenantId?: number;
+    numbers?: string | undefined;
+    letters?: string | undefined;
+    customerVehiclePlates?: CustomerVehiclePlate[] | undefined;
+    tenant?: Tenant;
+}
+
+export class Role implements IRole {
+    id?: number;
+    name?: string | undefined;
+    menus?: Menu[] | undefined;
+    rolePermissions?: RolePermission[] | undefined;
+    roleRoutes?: RoleRoute[] | undefined;
+    users?: User[] | undefined;
+
+    constructor(data?: IRole) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            if (Array.isArray(_data["menus"])) {
+                this.menus = [] as any;
+                for (let item of _data["menus"])
+                    this.menus!.push(Menu.fromJS(item));
+            }
+            if (Array.isArray(_data["rolePermissions"])) {
+                this.rolePermissions = [] as any;
+                for (let item of _data["rolePermissions"])
+                    this.rolePermissions!.push(RolePermission.fromJS(item));
+            }
+            if (Array.isArray(_data["roleRoutes"])) {
+                this.roleRoutes = [] as any;
+                for (let item of _data["roleRoutes"])
+                    this.roleRoutes!.push(RoleRoute.fromJS(item));
+            }
+            if (Array.isArray(_data["users"])) {
+                this.users = [] as any;
+                for (let item of _data["users"])
+                    this.users!.push(User.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): Role {
+        data = typeof data === 'object' ? data : {};
+        let result = new Role();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        if (Array.isArray(this.menus)) {
+            data["menus"] = [];
+            for (let item of this.menus)
+                data["menus"].push(item.toJSON());
+        }
+        if (Array.isArray(this.rolePermissions)) {
+            data["rolePermissions"] = [];
+            for (let item of this.rolePermissions)
+                data["rolePermissions"].push(item.toJSON());
+        }
+        if (Array.isArray(this.roleRoutes)) {
+            data["roleRoutes"] = [];
+            for (let item of this.roleRoutes)
+                data["roleRoutes"].push(item.toJSON());
+        }
+        if (Array.isArray(this.users)) {
+            data["users"] = [];
+            for (let item of this.users)
+                data["users"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IRole {
+    id?: number;
+    name?: string | undefined;
+    menus?: Menu[] | undefined;
+    rolePermissions?: RolePermission[] | undefined;
+    roleRoutes?: RoleRoute[] | undefined;
+    users?: User[] | undefined;
+}
+
+export class RolePermission implements IRolePermission {
+    id?: number;
+    roleId?: number;
+    permissionId?: number;
+    controllerId?: number | undefined;
+    controller?: Controller;
+    permission?: Permission;
+    role?: Role;
+
+    constructor(data?: IRolePermission) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.roleId = _data["roleId"];
+            this.permissionId = _data["permissionId"];
+            this.controllerId = _data["controllerId"];
+            this.controller = _data["controller"] ? Controller.fromJS(_data["controller"]) : <any>undefined;
+            this.permission = _data["permission"] ? Permission.fromJS(_data["permission"]) : <any>undefined;
+            this.role = _data["role"] ? Role.fromJS(_data["role"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): RolePermission {
+        data = typeof data === 'object' ? data : {};
+        let result = new RolePermission();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["roleId"] = this.roleId;
+        data["permissionId"] = this.permissionId;
+        data["controllerId"] = this.controllerId;
+        data["controller"] = this.controller ? this.controller.toJSON() : <any>undefined;
+        data["permission"] = this.permission ? this.permission.toJSON() : <any>undefined;
+        data["role"] = this.role ? this.role.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IRolePermission {
+    id?: number;
+    roleId?: number;
+    permissionId?: number;
+    controllerId?: number | undefined;
+    controller?: Controller;
+    permission?: Permission;
+    role?: Role;
+}
+
+export class RoleRoute implements IRoleRoute {
+    id?: number;
+    roleId?: number;
+    routeId?: number;
+    role?: Role;
+    route?: Route;
+
+    constructor(data?: IRoleRoute) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.roleId = _data["roleId"];
+            this.routeId = _data["routeId"];
+            this.role = _data["role"] ? Role.fromJS(_data["role"]) : <any>undefined;
+            this.route = _data["route"] ? Route.fromJS(_data["route"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): RoleRoute {
+        data = typeof data === 'object' ? data : {};
+        let result = new RoleRoute();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["roleId"] = this.roleId;
+        data["routeId"] = this.routeId;
+        data["role"] = this.role ? this.role.toJSON() : <any>undefined;
+        data["route"] = this.route ? this.route.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IRoleRoute {
+    id?: number;
+    roleId?: number;
+    routeId?: number;
+    role?: Role;
+    route?: Route;
+}
+
+export class Route implements IRoute {
+    id?: number;
+    name?: string | undefined;
+    roleRoutes?: RoleRoute[] | undefined;
+
+    constructor(data?: IRoute) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            if (Array.isArray(_data["roleRoutes"])) {
+                this.roleRoutes = [] as any;
+                for (let item of _data["roleRoutes"])
+                    this.roleRoutes!.push(RoleRoute.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): Route {
+        data = typeof data === 'object' ? data : {};
+        let result = new Route();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        if (Array.isArray(this.roleRoutes)) {
+            data["roleRoutes"] = [];
+            for (let item of this.roleRoutes)
+                data["roleRoutes"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IRoute {
+    id?: number;
+    name?: string | undefined;
+    roleRoutes?: RoleRoute[] | undefined;
+}
+
+export class Service implements IService {
+    id?: number;
+    tenantId?: number;
+    serviceTypeId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    maintenaceServices?: MaintenaceService[] | undefined;
+    serviceType?: ServiceType;
+    tenant?: Tenant;
+
+    constructor(data?: IService) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.serviceTypeId = _data["serviceTypeId"];
+            this.name = _data["name"];
+            this.nameInArabic = _data["nameInArabic"];
+            if (Array.isArray(_data["maintenaceServices"])) {
+                this.maintenaceServices = [] as any;
+                for (let item of _data["maintenaceServices"])
+                    this.maintenaceServices!.push(MaintenaceService.fromJS(item));
+            }
+            this.serviceType = _data["serviceType"] ? ServiceType.fromJS(_data["serviceType"]) : <any>undefined;
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): Service {
+        data = typeof data === 'object' ? data : {};
+        let result = new Service();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["serviceTypeId"] = this.serviceTypeId;
+        data["name"] = this.name;
+        data["nameInArabic"] = this.nameInArabic;
+        if (Array.isArray(this.maintenaceServices)) {
+            data["maintenaceServices"] = [];
+            for (let item of this.maintenaceServices)
+                data["maintenaceServices"].push(item.toJSON());
+        }
+        data["serviceType"] = this.serviceType ? this.serviceType.toJSON() : <any>undefined;
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IService {
+    id?: number;
+    tenantId?: number;
+    serviceTypeId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    maintenaceServices?: MaintenaceService[] | undefined;
+    serviceType?: ServiceType;
+    tenant?: Tenant;
+}
+
+export class ServicePart implements IServicePart {
+    id?: number;
+    tenantId?: number;
+    vehicelPartId?: number;
+    maintenaceServiceId?: number;
+    partConditionId?: number;
+    supplierId?: number;
+    cost?: number;
+    warrantyPeriod?: number;
+    sellingPricePerUnit?: number;
+    quantity?: number;
+    dateOfBuying?: Date;
+    comments?: string | undefined;
+    maintenaceService?: MaintenaceService;
+    partCondition?: PartCondition;
+    partImages?: PartImage[] | undefined;
+    supplier?: Supplier;
+    tenant?: Tenant;
+    vehicelPart?: VehiclePart;
+
+    constructor(data?: IServicePart) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.vehicelPartId = _data["vehicelPartId"];
+            this.maintenaceServiceId = _data["maintenaceServiceId"];
+            this.partConditionId = _data["partConditionId"];
+            this.supplierId = _data["supplierId"];
+            this.cost = _data["cost"];
+            this.warrantyPeriod = _data["warrantyPeriod"];
+            this.sellingPricePerUnit = _data["sellingPricePerUnit"];
+            this.quantity = _data["quantity"];
+            this.dateOfBuying = _data["dateOfBuying"] ? new Date(_data["dateOfBuying"].toString()) : <any>undefined;
+            this.comments = _data["comments"];
+            this.maintenaceService = _data["maintenaceService"] ? MaintenaceService.fromJS(_data["maintenaceService"]) : <any>undefined;
+            this.partCondition = _data["partCondition"] ? PartCondition.fromJS(_data["partCondition"]) : <any>undefined;
+            if (Array.isArray(_data["partImages"])) {
+                this.partImages = [] as any;
+                for (let item of _data["partImages"])
+                    this.partImages!.push(PartImage.fromJS(item));
+            }
+            this.supplier = _data["supplier"] ? Supplier.fromJS(_data["supplier"]) : <any>undefined;
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+            this.vehicelPart = _data["vehicelPart"] ? VehiclePart.fromJS(_data["vehicelPart"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): ServicePart {
+        data = typeof data === 'object' ? data : {};
+        let result = new ServicePart();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["vehicelPartId"] = this.vehicelPartId;
+        data["maintenaceServiceId"] = this.maintenaceServiceId;
+        data["partConditionId"] = this.partConditionId;
+        data["supplierId"] = this.supplierId;
+        data["cost"] = this.cost;
+        data["warrantyPeriod"] = this.warrantyPeriod;
+        data["sellingPricePerUnit"] = this.sellingPricePerUnit;
+        data["quantity"] = this.quantity;
+        data["dateOfBuying"] = this.dateOfBuying ? this.dateOfBuying.toISOString() : <any>undefined;
+        data["comments"] = this.comments;
+        data["maintenaceService"] = this.maintenaceService ? this.maintenaceService.toJSON() : <any>undefined;
+        data["partCondition"] = this.partCondition ? this.partCondition.toJSON() : <any>undefined;
+        if (Array.isArray(this.partImages)) {
+            data["partImages"] = [];
+            for (let item of this.partImages)
+                data["partImages"].push(item.toJSON());
+        }
+        data["supplier"] = this.supplier ? this.supplier.toJSON() : <any>undefined;
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        data["vehicelPart"] = this.vehicelPart ? this.vehicelPart.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IServicePart {
+    id?: number;
+    tenantId?: number;
+    vehicelPartId?: number;
+    maintenaceServiceId?: number;
+    partConditionId?: number;
+    supplierId?: number;
+    cost?: number;
+    warrantyPeriod?: number;
+    sellingPricePerUnit?: number;
+    quantity?: number;
+    dateOfBuying?: Date;
+    comments?: string | undefined;
+    maintenaceService?: MaintenaceService;
+    partCondition?: PartCondition;
+    partImages?: PartImage[] | undefined;
+    supplier?: Supplier;
+    tenant?: Tenant;
+    vehicelPart?: VehiclePart;
+}
+
+export class ServiceType implements IServiceType {
+    id?: number;
+    tenantId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    services?: Service[] | undefined;
+    tenant?: Tenant;
+
+    constructor(data?: IServiceType) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.name = _data["name"];
+            this.nameInArabic = _data["nameInArabic"];
+            if (Array.isArray(_data["services"])) {
+                this.services = [] as any;
+                for (let item of _data["services"])
+                    this.services!.push(Service.fromJS(item));
+            }
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): ServiceType {
+        data = typeof data === 'object' ? data : {};
+        let result = new ServiceType();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["name"] = this.name;
+        data["nameInArabic"] = this.nameInArabic;
+        if (Array.isArray(this.services)) {
+            data["services"] = [];
+            for (let item of this.services)
+                data["services"].push(item.toJSON());
+        }
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IServiceType {
+    id?: number;
+    tenantId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    services?: Service[] | undefined;
+    tenant?: Tenant;
+}
+
+export class StatusBenefit implements IStatusBenefit {
+    id?: number;
+    tenantId?: number;
+    vipStatusId?: number;
+    vipBenefitId?: number;
+    tenant?: Tenant;
+    vipBenefit?: VipBenefit;
+    vipStatus?: VipStatus;
+
+    constructor(data?: IStatusBenefit) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.vipStatusId = _data["vipStatusId"];
+            this.vipBenefitId = _data["vipBenefitId"];
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+            this.vipBenefit = _data["vipBenefit"] ? VipBenefit.fromJS(_data["vipBenefit"]) : <any>undefined;
+            this.vipStatus = _data["vipStatus"] ? VipStatus.fromJS(_data["vipStatus"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): StatusBenefit {
+        data = typeof data === 'object' ? data : {};
+        let result = new StatusBenefit();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["vipStatusId"] = this.vipStatusId;
+        data["vipBenefitId"] = this.vipBenefitId;
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        data["vipBenefit"] = this.vipBenefit ? this.vipBenefit.toJSON() : <any>undefined;
+        data["vipStatus"] = this.vipStatus ? this.vipStatus.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IStatusBenefit {
+    id?: number;
+    tenantId?: number;
+    vipStatusId?: number;
+    vipBenefitId?: number;
+    tenant?: Tenant;
+    vipBenefit?: VipBenefit;
+    vipStatus?: VipStatus;
+}
+
+export class Street implements IStreet {
+    id?: number;
+    tenantId?: number;
+    districtId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    customers?: Customer[] | undefined;
+    district?: District;
+    employees?: Employee[] | undefined;
+
+    constructor(data?: IStreet) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.districtId = _data["districtId"];
+            this.name = _data["name"];
+            this.nameInArabic = _data["nameInArabic"];
+            if (Array.isArray(_data["customers"])) {
+                this.customers = [] as any;
+                for (let item of _data["customers"])
+                    this.customers!.push(Customer.fromJS(item));
+            }
+            this.district = _data["district"] ? District.fromJS(_data["district"]) : <any>undefined;
+            if (Array.isArray(_data["employees"])) {
+                this.employees = [] as any;
+                for (let item of _data["employees"])
+                    this.employees!.push(Employee.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): Street {
+        data = typeof data === 'object' ? data : {};
+        let result = new Street();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["districtId"] = this.districtId;
+        data["name"] = this.name;
+        data["nameInArabic"] = this.nameInArabic;
+        if (Array.isArray(this.customers)) {
+            data["customers"] = [];
+            for (let item of this.customers)
+                data["customers"].push(item.toJSON());
+        }
+        data["district"] = this.district ? this.district.toJSON() : <any>undefined;
+        if (Array.isArray(this.employees)) {
+            data["employees"] = [];
+            for (let item of this.employees)
+                data["employees"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IStreet {
+    id?: number;
+    tenantId?: number;
+    districtId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    customers?: Customer[] | undefined;
+    district?: District;
+    employees?: Employee[] | undefined;
+}
+
+export class Supplier implements ISupplier {
+    id?: number;
+    tenantId?: number;
+    contactInfo?: string | undefined;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    address?: string | undefined;
+    serviceParts?: ServicePart[] | undefined;
+    tenant?: Tenant;
+
+    constructor(data?: ISupplier) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.contactInfo = _data["contactInfo"];
+            this.name = _data["name"];
+            this.nameInArabic = _data["nameInArabic"];
+            this.address = _data["address"];
+            if (Array.isArray(_data["serviceParts"])) {
+                this.serviceParts = [] as any;
+                for (let item of _data["serviceParts"])
+                    this.serviceParts!.push(ServicePart.fromJS(item));
+            }
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): Supplier {
+        data = typeof data === 'object' ? data : {};
+        let result = new Supplier();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["contactInfo"] = this.contactInfo;
+        data["name"] = this.name;
+        data["nameInArabic"] = this.nameInArabic;
+        data["address"] = this.address;
+        if (Array.isArray(this.serviceParts)) {
+            data["serviceParts"] = [];
+            for (let item of this.serviceParts)
+                data["serviceParts"].push(item.toJSON());
+        }
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface ISupplier {
+    id?: number;
+    tenantId?: number;
+    contactInfo?: string | undefined;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    address?: string | undefined;
+    serviceParts?: ServicePart[] | undefined;
+    tenant?: Tenant;
+}
+
+export class Tenant implements ITenant {
+    id?: number;
+    name?: string | undefined;
+    logoUrl?: string | undefined;
+    brandName?: string | undefined;
+    colors?: Color[] | undefined;
+    customerContactNumbers?: CustomerContactNumber[] | undefined;
+    customerVehicleColors?: CustomerVehicleColor[] | undefined;
+    customerVehicleImages?: CustomerVehicleImage[] | undefined;
+    customerVehiclePlates?: CustomerVehiclePlate[] | undefined;
+    customerVehicles?: CustomerVehicle[] | undefined;
+    customerVipStatuses?: CustomerVipStatus[] | undefined;
+    customers?: Customer[] | undefined;
+    employeeMaintaineds?: EmployeeMaintained[] | undefined;
+    employees?: Employee[] | undefined;
+    maintainedImages?: MaintainedImage[] | undefined;
+    maintenaceCards?: MaintenaceCard[] | undefined;
+    maintenaceServices?: MaintenaceService[] | undefined;
+    montlyCustomerVisits?: MontlyCustomerVisit[] | undefined;
+    nationalities?: Nationality[] | undefined;
+    partBrands?: PartBrand[] | undefined;
+    partImageTypes?: PartImageType[] | undefined;
+    partImages?: PartImage[] | undefined;
+    plates?: Plate[] | undefined;
+    serviceParts?: ServicePart[] | undefined;
+    serviceTypes?: ServiceType[] | undefined;
+    services?: Service[] | undefined;
+    statusBenefits?: StatusBenefit[] | undefined;
+    suppliers?: Supplier[] | undefined;
+    users?: User[] | undefined;
+    vehicleBrands?: VehicleBrand[] | undefined;
+    vehicleModels?: VehicleModel[] | undefined;
+    vehicleParts?: VehiclePart[] | undefined;
+    vipBenefits?: VipBenefit[] | undefined;
+    vipStatuses?: VipStatus[] | undefined;
+
+    constructor(data?: ITenant) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            this.logoUrl = _data["logoUrl"];
+            this.brandName = _data["brandName"];
+            if (Array.isArray(_data["colors"])) {
+                this.colors = [] as any;
+                for (let item of _data["colors"])
+                    this.colors!.push(Color.fromJS(item));
+            }
+            if (Array.isArray(_data["customerContactNumbers"])) {
+                this.customerContactNumbers = [] as any;
+                for (let item of _data["customerContactNumbers"])
+                    this.customerContactNumbers!.push(CustomerContactNumber.fromJS(item));
+            }
+            if (Array.isArray(_data["customerVehicleColors"])) {
+                this.customerVehicleColors = [] as any;
+                for (let item of _data["customerVehicleColors"])
+                    this.customerVehicleColors!.push(CustomerVehicleColor.fromJS(item));
+            }
+            if (Array.isArray(_data["customerVehicleImages"])) {
+                this.customerVehicleImages = [] as any;
+                for (let item of _data["customerVehicleImages"])
+                    this.customerVehicleImages!.push(CustomerVehicleImage.fromJS(item));
+            }
+            if (Array.isArray(_data["customerVehiclePlates"])) {
+                this.customerVehiclePlates = [] as any;
+                for (let item of _data["customerVehiclePlates"])
+                    this.customerVehiclePlates!.push(CustomerVehiclePlate.fromJS(item));
+            }
+            if (Array.isArray(_data["customerVehicles"])) {
+                this.customerVehicles = [] as any;
+                for (let item of _data["customerVehicles"])
+                    this.customerVehicles!.push(CustomerVehicle.fromJS(item));
+            }
+            if (Array.isArray(_data["customerVipStatuses"])) {
+                this.customerVipStatuses = [] as any;
+                for (let item of _data["customerVipStatuses"])
+                    this.customerVipStatuses!.push(CustomerVipStatus.fromJS(item));
+            }
+            if (Array.isArray(_data["customers"])) {
+                this.customers = [] as any;
+                for (let item of _data["customers"])
+                    this.customers!.push(Customer.fromJS(item));
+            }
+            if (Array.isArray(_data["employeeMaintaineds"])) {
+                this.employeeMaintaineds = [] as any;
+                for (let item of _data["employeeMaintaineds"])
+                    this.employeeMaintaineds!.push(EmployeeMaintained.fromJS(item));
+            }
+            if (Array.isArray(_data["employees"])) {
+                this.employees = [] as any;
+                for (let item of _data["employees"])
+                    this.employees!.push(Employee.fromJS(item));
+            }
+            if (Array.isArray(_data["maintainedImages"])) {
+                this.maintainedImages = [] as any;
+                for (let item of _data["maintainedImages"])
+                    this.maintainedImages!.push(MaintainedImage.fromJS(item));
+            }
+            if (Array.isArray(_data["maintenaceCards"])) {
+                this.maintenaceCards = [] as any;
+                for (let item of _data["maintenaceCards"])
+                    this.maintenaceCards!.push(MaintenaceCard.fromJS(item));
+            }
+            if (Array.isArray(_data["maintenaceServices"])) {
+                this.maintenaceServices = [] as any;
+                for (let item of _data["maintenaceServices"])
+                    this.maintenaceServices!.push(MaintenaceService.fromJS(item));
+            }
+            if (Array.isArray(_data["montlyCustomerVisits"])) {
+                this.montlyCustomerVisits = [] as any;
+                for (let item of _data["montlyCustomerVisits"])
+                    this.montlyCustomerVisits!.push(MontlyCustomerVisit.fromJS(item));
+            }
+            if (Array.isArray(_data["nationalities"])) {
+                this.nationalities = [] as any;
+                for (let item of _data["nationalities"])
+                    this.nationalities!.push(Nationality.fromJS(item));
+            }
+            if (Array.isArray(_data["partBrands"])) {
+                this.partBrands = [] as any;
+                for (let item of _data["partBrands"])
+                    this.partBrands!.push(PartBrand.fromJS(item));
+            }
+            if (Array.isArray(_data["partImageTypes"])) {
+                this.partImageTypes = [] as any;
+                for (let item of _data["partImageTypes"])
+                    this.partImageTypes!.push(PartImageType.fromJS(item));
+            }
+            if (Array.isArray(_data["partImages"])) {
+                this.partImages = [] as any;
+                for (let item of _data["partImages"])
+                    this.partImages!.push(PartImage.fromJS(item));
+            }
+            if (Array.isArray(_data["plates"])) {
+                this.plates = [] as any;
+                for (let item of _data["plates"])
+                    this.plates!.push(Plate.fromJS(item));
+            }
+            if (Array.isArray(_data["serviceParts"])) {
+                this.serviceParts = [] as any;
+                for (let item of _data["serviceParts"])
+                    this.serviceParts!.push(ServicePart.fromJS(item));
+            }
+            if (Array.isArray(_data["serviceTypes"])) {
+                this.serviceTypes = [] as any;
+                for (let item of _data["serviceTypes"])
+                    this.serviceTypes!.push(ServiceType.fromJS(item));
+            }
+            if (Array.isArray(_data["services"])) {
+                this.services = [] as any;
+                for (let item of _data["services"])
+                    this.services!.push(Service.fromJS(item));
+            }
+            if (Array.isArray(_data["statusBenefits"])) {
+                this.statusBenefits = [] as any;
+                for (let item of _data["statusBenefits"])
+                    this.statusBenefits!.push(StatusBenefit.fromJS(item));
+            }
+            if (Array.isArray(_data["suppliers"])) {
+                this.suppliers = [] as any;
+                for (let item of _data["suppliers"])
+                    this.suppliers!.push(Supplier.fromJS(item));
+            }
+            if (Array.isArray(_data["users"])) {
+                this.users = [] as any;
+                for (let item of _data["users"])
+                    this.users!.push(User.fromJS(item));
+            }
+            if (Array.isArray(_data["vehicleBrands"])) {
+                this.vehicleBrands = [] as any;
+                for (let item of _data["vehicleBrands"])
+                    this.vehicleBrands!.push(VehicleBrand.fromJS(item));
+            }
+            if (Array.isArray(_data["vehicleModels"])) {
+                this.vehicleModels = [] as any;
+                for (let item of _data["vehicleModels"])
+                    this.vehicleModels!.push(VehicleModel.fromJS(item));
+            }
+            if (Array.isArray(_data["vehicleParts"])) {
+                this.vehicleParts = [] as any;
+                for (let item of _data["vehicleParts"])
+                    this.vehicleParts!.push(VehiclePart.fromJS(item));
+            }
+            if (Array.isArray(_data["vipBenefits"])) {
+                this.vipBenefits = [] as any;
+                for (let item of _data["vipBenefits"])
+                    this.vipBenefits!.push(VipBenefit.fromJS(item));
+            }
+            if (Array.isArray(_data["vipStatuses"])) {
+                this.vipStatuses = [] as any;
+                for (let item of _data["vipStatuses"])
+                    this.vipStatuses!.push(VipStatus.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): Tenant {
+        data = typeof data === 'object' ? data : {};
+        let result = new Tenant();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["logoUrl"] = this.logoUrl;
+        data["brandName"] = this.brandName;
+        if (Array.isArray(this.colors)) {
+            data["colors"] = [];
+            for (let item of this.colors)
+                data["colors"].push(item.toJSON());
+        }
+        if (Array.isArray(this.customerContactNumbers)) {
+            data["customerContactNumbers"] = [];
+            for (let item of this.customerContactNumbers)
+                data["customerContactNumbers"].push(item.toJSON());
+        }
+        if (Array.isArray(this.customerVehicleColors)) {
+            data["customerVehicleColors"] = [];
+            for (let item of this.customerVehicleColors)
+                data["customerVehicleColors"].push(item.toJSON());
+        }
+        if (Array.isArray(this.customerVehicleImages)) {
+            data["customerVehicleImages"] = [];
+            for (let item of this.customerVehicleImages)
+                data["customerVehicleImages"].push(item.toJSON());
+        }
+        if (Array.isArray(this.customerVehiclePlates)) {
+            data["customerVehiclePlates"] = [];
+            for (let item of this.customerVehiclePlates)
+                data["customerVehiclePlates"].push(item.toJSON());
+        }
+        if (Array.isArray(this.customerVehicles)) {
+            data["customerVehicles"] = [];
+            for (let item of this.customerVehicles)
+                data["customerVehicles"].push(item.toJSON());
+        }
+        if (Array.isArray(this.customerVipStatuses)) {
+            data["customerVipStatuses"] = [];
+            for (let item of this.customerVipStatuses)
+                data["customerVipStatuses"].push(item.toJSON());
+        }
+        if (Array.isArray(this.customers)) {
+            data["customers"] = [];
+            for (let item of this.customers)
+                data["customers"].push(item.toJSON());
+        }
+        if (Array.isArray(this.employeeMaintaineds)) {
+            data["employeeMaintaineds"] = [];
+            for (let item of this.employeeMaintaineds)
+                data["employeeMaintaineds"].push(item.toJSON());
+        }
+        if (Array.isArray(this.employees)) {
+            data["employees"] = [];
+            for (let item of this.employees)
+                data["employees"].push(item.toJSON());
+        }
+        if (Array.isArray(this.maintainedImages)) {
+            data["maintainedImages"] = [];
+            for (let item of this.maintainedImages)
+                data["maintainedImages"].push(item.toJSON());
+        }
+        if (Array.isArray(this.maintenaceCards)) {
+            data["maintenaceCards"] = [];
+            for (let item of this.maintenaceCards)
+                data["maintenaceCards"].push(item.toJSON());
+        }
+        if (Array.isArray(this.maintenaceServices)) {
+            data["maintenaceServices"] = [];
+            for (let item of this.maintenaceServices)
+                data["maintenaceServices"].push(item.toJSON());
+        }
+        if (Array.isArray(this.montlyCustomerVisits)) {
+            data["montlyCustomerVisits"] = [];
+            for (let item of this.montlyCustomerVisits)
+                data["montlyCustomerVisits"].push(item.toJSON());
+        }
+        if (Array.isArray(this.nationalities)) {
+            data["nationalities"] = [];
+            for (let item of this.nationalities)
+                data["nationalities"].push(item.toJSON());
+        }
+        if (Array.isArray(this.partBrands)) {
+            data["partBrands"] = [];
+            for (let item of this.partBrands)
+                data["partBrands"].push(item.toJSON());
+        }
+        if (Array.isArray(this.partImageTypes)) {
+            data["partImageTypes"] = [];
+            for (let item of this.partImageTypes)
+                data["partImageTypes"].push(item.toJSON());
+        }
+        if (Array.isArray(this.partImages)) {
+            data["partImages"] = [];
+            for (let item of this.partImages)
+                data["partImages"].push(item.toJSON());
+        }
+        if (Array.isArray(this.plates)) {
+            data["plates"] = [];
+            for (let item of this.plates)
+                data["plates"].push(item.toJSON());
+        }
+        if (Array.isArray(this.serviceParts)) {
+            data["serviceParts"] = [];
+            for (let item of this.serviceParts)
+                data["serviceParts"].push(item.toJSON());
+        }
+        if (Array.isArray(this.serviceTypes)) {
+            data["serviceTypes"] = [];
+            for (let item of this.serviceTypes)
+                data["serviceTypes"].push(item.toJSON());
+        }
+        if (Array.isArray(this.services)) {
+            data["services"] = [];
+            for (let item of this.services)
+                data["services"].push(item.toJSON());
+        }
+        if (Array.isArray(this.statusBenefits)) {
+            data["statusBenefits"] = [];
+            for (let item of this.statusBenefits)
+                data["statusBenefits"].push(item.toJSON());
+        }
+        if (Array.isArray(this.suppliers)) {
+            data["suppliers"] = [];
+            for (let item of this.suppliers)
+                data["suppliers"].push(item.toJSON());
+        }
+        if (Array.isArray(this.users)) {
+            data["users"] = [];
+            for (let item of this.users)
+                data["users"].push(item.toJSON());
+        }
+        if (Array.isArray(this.vehicleBrands)) {
+            data["vehicleBrands"] = [];
+            for (let item of this.vehicleBrands)
+                data["vehicleBrands"].push(item.toJSON());
+        }
+        if (Array.isArray(this.vehicleModels)) {
+            data["vehicleModels"] = [];
+            for (let item of this.vehicleModels)
+                data["vehicleModels"].push(item.toJSON());
+        }
+        if (Array.isArray(this.vehicleParts)) {
+            data["vehicleParts"] = [];
+            for (let item of this.vehicleParts)
+                data["vehicleParts"].push(item.toJSON());
+        }
+        if (Array.isArray(this.vipBenefits)) {
+            data["vipBenefits"] = [];
+            for (let item of this.vipBenefits)
+                data["vipBenefits"].push(item.toJSON());
+        }
+        if (Array.isArray(this.vipStatuses)) {
+            data["vipStatuses"] = [];
+            for (let item of this.vipStatuses)
+                data["vipStatuses"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface ITenant {
+    id?: number;
+    name?: string | undefined;
+    logoUrl?: string | undefined;
+    brandName?: string | undefined;
+    colors?: Color[] | undefined;
+    customerContactNumbers?: CustomerContactNumber[] | undefined;
+    customerVehicleColors?: CustomerVehicleColor[] | undefined;
+    customerVehicleImages?: CustomerVehicleImage[] | undefined;
+    customerVehiclePlates?: CustomerVehiclePlate[] | undefined;
+    customerVehicles?: CustomerVehicle[] | undefined;
+    customerVipStatuses?: CustomerVipStatus[] | undefined;
+    customers?: Customer[] | undefined;
+    employeeMaintaineds?: EmployeeMaintained[] | undefined;
+    employees?: Employee[] | undefined;
+    maintainedImages?: MaintainedImage[] | undefined;
+    maintenaceCards?: MaintenaceCard[] | undefined;
+    maintenaceServices?: MaintenaceService[] | undefined;
+    montlyCustomerVisits?: MontlyCustomerVisit[] | undefined;
+    nationalities?: Nationality[] | undefined;
+    partBrands?: PartBrand[] | undefined;
+    partImageTypes?: PartImageType[] | undefined;
+    partImages?: PartImage[] | undefined;
+    plates?: Plate[] | undefined;
+    serviceParts?: ServicePart[] | undefined;
+    serviceTypes?: ServiceType[] | undefined;
+    services?: Service[] | undefined;
+    statusBenefits?: StatusBenefit[] | undefined;
+    suppliers?: Supplier[] | undefined;
+    users?: User[] | undefined;
+    vehicleBrands?: VehicleBrand[] | undefined;
+    vehicleModels?: VehicleModel[] | undefined;
+    vehicleParts?: VehiclePart[] | undefined;
+    vipBenefits?: VipBenefit[] | undefined;
+    vipStatuses?: VipStatus[] | undefined;
+}
+
+export class Transmission implements ITransmission {
+    id?: number;
+    name?: string | undefined;
+    letters?: string | undefined;
+    customerVehicles?: CustomerVehicle[] | undefined;
+
+    constructor(data?: ITransmission) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            this.letters = _data["letters"];
+            if (Array.isArray(_data["customerVehicles"])) {
+                this.customerVehicles = [] as any;
+                for (let item of _data["customerVehicles"])
+                    this.customerVehicles!.push(CustomerVehicle.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): Transmission {
+        data = typeof data === 'object' ? data : {};
+        let result = new Transmission();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["letters"] = this.letters;
+        if (Array.isArray(this.customerVehicles)) {
+            data["customerVehicles"] = [];
+            for (let item of this.customerVehicles)
+                data["customerVehicles"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface ITransmission {
+    id?: number;
+    name?: string | undefined;
+    letters?: string | undefined;
+    customerVehicles?: CustomerVehicle[] | undefined;
+}
+
+export class User implements IUser {
+    id?: number;
+    roleId?: number;
+    tenantId?: number;
+    subDomain?: string | undefined;
+    userName?: string | undefined;
+    password?: string | undefined;
+    isActive?: boolean;
+    isFirstTimeLoggedin?: boolean | undefined;
+    customers?: Customer[] | undefined;
+    employees?: Employee[] | undefined;
+    role?: Role;
+    tenant?: Tenant;
+
+    constructor(data?: IUser) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.roleId = _data["roleId"];
+            this.tenantId = _data["tenantId"];
+            this.subDomain = _data["subDomain"];
+            this.userName = _data["userName"];
+            this.password = _data["password"];
+            this.isActive = _data["isActive"];
+            this.isFirstTimeLoggedin = _data["isFirstTimeLoggedin"];
+            if (Array.isArray(_data["customers"])) {
+                this.customers = [] as any;
+                for (let item of _data["customers"])
+                    this.customers!.push(Customer.fromJS(item));
+            }
+            if (Array.isArray(_data["employees"])) {
+                this.employees = [] as any;
+                for (let item of _data["employees"])
+                    this.employees!.push(Employee.fromJS(item));
+            }
+            this.role = _data["role"] ? Role.fromJS(_data["role"]) : <any>undefined;
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): User {
+        data = typeof data === 'object' ? data : {};
+        let result = new User();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["roleId"] = this.roleId;
+        data["tenantId"] = this.tenantId;
+        data["subDomain"] = this.subDomain;
+        data["userName"] = this.userName;
+        data["password"] = this.password;
+        data["isActive"] = this.isActive;
+        data["isFirstTimeLoggedin"] = this.isFirstTimeLoggedin;
+        if (Array.isArray(this.customers)) {
+            data["customers"] = [];
+            for (let item of this.customers)
+                data["customers"].push(item.toJSON());
+        }
+        if (Array.isArray(this.employees)) {
+            data["employees"] = [];
+            for (let item of this.employees)
+                data["employees"].push(item.toJSON());
+        }
+        data["role"] = this.role ? this.role.toJSON() : <any>undefined;
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IUser {
+    id?: number;
+    roleId?: number;
+    tenantId?: number;
+    subDomain?: string | undefined;
+    userName?: string | undefined;
+    password?: string | undefined;
+    isActive?: boolean;
+    isFirstTimeLoggedin?: boolean | undefined;
+    customers?: Customer[] | undefined;
+    employees?: Employee[] | undefined;
+    role?: Role;
+    tenant?: Tenant;
+}
+
+export class VehicleBrand implements IVehicleBrand {
+    id?: number;
+    tenantId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    tenant?: Tenant;
+    vehicleModels?: VehicleModel[] | undefined;
+
+    constructor(data?: IVehicleBrand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.name = _data["name"];
+            this.nameInArabic = _data["nameInArabic"];
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+            if (Array.isArray(_data["vehicleModels"])) {
+                this.vehicleModels = [] as any;
+                for (let item of _data["vehicleModels"])
+                    this.vehicleModels!.push(VehicleModel.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): VehicleBrand {
+        data = typeof data === 'object' ? data : {};
+        let result = new VehicleBrand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["name"] = this.name;
+        data["nameInArabic"] = this.nameInArabic;
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        if (Array.isArray(this.vehicleModels)) {
+            data["vehicleModels"] = [];
+            for (let item of this.vehicleModels)
+                data["vehicleModels"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IVehicleBrand {
+    id?: number;
+    tenantId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    tenant?: Tenant;
+    vehicleModels?: VehicleModel[] | undefined;
+}
+
+export class VehicleModel implements IVehicleModel {
+    id?: number;
+    tenantId?: number;
+    vehicleBrandId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    customerVehicles?: CustomerVehicle[] | undefined;
+    tenant?: Tenant;
+    vehicleBrand?: VehicleBrand;
+
+    constructor(data?: IVehicleModel) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.vehicleBrandId = _data["vehicleBrandId"];
+            this.name = _data["name"];
+            this.nameInArabic = _data["nameInArabic"];
+            if (Array.isArray(_data["customerVehicles"])) {
+                this.customerVehicles = [] as any;
+                for (let item of _data["customerVehicles"])
+                    this.customerVehicles!.push(CustomerVehicle.fromJS(item));
+            }
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+            this.vehicleBrand = _data["vehicleBrand"] ? VehicleBrand.fromJS(_data["vehicleBrand"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): VehicleModel {
+        data = typeof data === 'object' ? data : {};
+        let result = new VehicleModel();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["vehicleBrandId"] = this.vehicleBrandId;
+        data["name"] = this.name;
+        data["nameInArabic"] = this.nameInArabic;
+        if (Array.isArray(this.customerVehicles)) {
+            data["customerVehicles"] = [];
+            for (let item of this.customerVehicles)
+                data["customerVehicles"].push(item.toJSON());
+        }
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        data["vehicleBrand"] = this.vehicleBrand ? this.vehicleBrand.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IVehicleModel {
+    id?: number;
+    tenantId?: number;
+    vehicleBrandId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    customerVehicles?: CustomerVehicle[] | undefined;
+    tenant?: Tenant;
+    vehicleBrand?: VehicleBrand;
+}
+
+export class VehiclePart implements IVehiclePart {
+    id?: number;
+    partBrandId?: number;
+    tenantId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    partNumber?: string | undefined;
+    partBrand?: PartBrand;
+    serviceParts?: ServicePart[] | undefined;
+    tenant?: Tenant;
+
+    constructor(data?: IVehiclePart) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.partBrandId = _data["partBrandId"];
+            this.tenantId = _data["tenantId"];
+            this.name = _data["name"];
+            this.nameInArabic = _data["nameInArabic"];
+            this.partNumber = _data["partNumber"];
+            this.partBrand = _data["partBrand"] ? PartBrand.fromJS(_data["partBrand"]) : <any>undefined;
+            if (Array.isArray(_data["serviceParts"])) {
+                this.serviceParts = [] as any;
+                for (let item of _data["serviceParts"])
+                    this.serviceParts!.push(ServicePart.fromJS(item));
+            }
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): VehiclePart {
+        data = typeof data === 'object' ? data : {};
+        let result = new VehiclePart();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["partBrandId"] = this.partBrandId;
+        data["tenantId"] = this.tenantId;
+        data["name"] = this.name;
+        data["nameInArabic"] = this.nameInArabic;
+        data["partNumber"] = this.partNumber;
+        data["partBrand"] = this.partBrand ? this.partBrand.toJSON() : <any>undefined;
+        if (Array.isArray(this.serviceParts)) {
+            data["serviceParts"] = [];
+            for (let item of this.serviceParts)
+                data["serviceParts"].push(item.toJSON());
+        }
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IVehiclePart {
+    id?: number;
+    partBrandId?: number;
+    tenantId?: number;
+    name?: string | undefined;
+    nameInArabic?: string | undefined;
+    partNumber?: string | undefined;
+    partBrand?: PartBrand;
+    serviceParts?: ServicePart[] | undefined;
+    tenant?: Tenant;
+}
+
+export class VipBenefit implements IVipBenefit {
+    id?: number;
+    tenantId?: number;
+    benefitName?: string | undefined;
+    benefitNameInArabic?: string | undefined;
+    statusBenefits?: StatusBenefit[] | undefined;
+    tenant?: Tenant;
+
+    constructor(data?: IVipBenefit) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.benefitName = _data["benefitName"];
+            this.benefitNameInArabic = _data["benefitNameInArabic"];
+            if (Array.isArray(_data["statusBenefits"])) {
+                this.statusBenefits = [] as any;
+                for (let item of _data["statusBenefits"])
+                    this.statusBenefits!.push(StatusBenefit.fromJS(item));
+            }
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): VipBenefit {
+        data = typeof data === 'object' ? data : {};
+        let result = new VipBenefit();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["benefitName"] = this.benefitName;
+        data["benefitNameInArabic"] = this.benefitNameInArabic;
+        if (Array.isArray(this.statusBenefits)) {
+            data["statusBenefits"] = [];
+            for (let item of this.statusBenefits)
+                data["statusBenefits"].push(item.toJSON());
+        }
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IVipBenefit {
+    id?: number;
+    tenantId?: number;
+    benefitName?: string | undefined;
+    benefitNameInArabic?: string | undefined;
+    statusBenefits?: StatusBenefit[] | undefined;
+    tenant?: Tenant;
+}
+
+export class VipStatus implements IVipStatus {
+    id?: number;
+    tenantId?: number;
+    statusName?: string | undefined;
+    statusNameInArabic?: string | undefined;
+    minVisitCount?: number;
+    customerVipStatuses?: CustomerVipStatus[] | undefined;
+    statusBenefits?: StatusBenefit[] | undefined;
+    tenant?: Tenant;
+
+    constructor(data?: IVipStatus) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.statusName = _data["statusName"];
+            this.statusNameInArabic = _data["statusNameInArabic"];
+            this.minVisitCount = _data["minVisitCount"];
+            if (Array.isArray(_data["customerVipStatuses"])) {
+                this.customerVipStatuses = [] as any;
+                for (let item of _data["customerVipStatuses"])
+                    this.customerVipStatuses!.push(CustomerVipStatus.fromJS(item));
+            }
+            if (Array.isArray(_data["statusBenefits"])) {
+                this.statusBenefits = [] as any;
+                for (let item of _data["statusBenefits"])
+                    this.statusBenefits!.push(StatusBenefit.fromJS(item));
+            }
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): VipStatus {
+        data = typeof data === 'object' ? data : {};
+        let result = new VipStatus();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["statusName"] = this.statusName;
+        data["statusNameInArabic"] = this.statusNameInArabic;
+        data["minVisitCount"] = this.minVisitCount;
+        if (Array.isArray(this.customerVipStatuses)) {
+            data["customerVipStatuses"] = [];
+            for (let item of this.customerVipStatuses)
+                data["customerVipStatuses"].push(item.toJSON());
+        }
+        if (Array.isArray(this.statusBenefits)) {
+            data["statusBenefits"] = [];
+            for (let item of this.statusBenefits)
+                data["statusBenefits"].push(item.toJSON());
+        }
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IVipStatus {
+    id?: number;
+    tenantId?: number;
+    statusName?: string | undefined;
+    statusNameInArabic?: string | undefined;
+    minVisitCount?: number;
+    customerVipStatuses?: CustomerVipStatus[] | undefined;
+    statusBenefits?: StatusBenefit[] | undefined;
+    tenant?: Tenant;
+}
+
+export class WheelDrive implements IWheelDrive {
+    id?: number;
+    name?: string | undefined;
+    abbreviation?: string | undefined;
+    customerVehicles?: CustomerVehicle[] | undefined;
+
+    constructor(data?: IWheelDrive) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+            this.abbreviation = _data["abbreviation"];
+            if (Array.isArray(_data["customerVehicles"])) {
+                this.customerVehicles = [] as any;
+                for (let item of _data["customerVehicles"])
+                    this.customerVehicles!.push(CustomerVehicle.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): WheelDrive {
+        data = typeof data === 'object' ? data : {};
+        let result = new WheelDrive();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        data["abbreviation"] = this.abbreviation;
+        if (Array.isArray(this.customerVehicles)) {
+            data["customerVehicles"] = [];
+            for (let item of this.customerVehicles)
+                data["customerVehicles"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IWheelDrive {
+    id?: number;
+    name?: string | undefined;
+    abbreviation?: string | undefined;
+    customerVehicles?: CustomerVehicle[] | undefined;
 }
 
 function formatDate(d: Date) {

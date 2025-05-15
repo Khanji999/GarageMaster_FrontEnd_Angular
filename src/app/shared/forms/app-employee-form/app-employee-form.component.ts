@@ -220,8 +220,6 @@ export class AppEmployeeFormComponent implements OnInit {
   handleAddEmployee(employee:EmployeeWithDetails2DTO){
       this.employeeContro.addNewEmployee(employee).subscribe(
         (response) => {
-          console.log("hdo")
-
           if(response.statusCode == 200) {
             this.toastr.success("Employee Added");
             this.closeFormAndDestroy();

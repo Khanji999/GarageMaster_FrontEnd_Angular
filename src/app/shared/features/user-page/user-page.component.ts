@@ -18,10 +18,11 @@ export class UserPageComponent  implements OnInit{
 //
 
   users?: UserWithRoleDTO[] | any;
+  selectedRowForDelete?: UserWithRoleDTO;
   columns = [
     { header: 'Username', key: 'processedData' },     
     { header: 'Role', key: 'role.name' },     
-    { header: 'Is Active', key: 'user.isActive' },     
+    // { header: 'Is Active', key: 'user.isActive' },     
     ]
   
   constructor(private userContro : UserContro ,
@@ -47,11 +48,14 @@ export class UserPageComponent  implements OnInit{
   openUserForm() {
     this.addNewUser = true;
   }
-  deleteVehicle($event: any) {
-  throw new Error('Method not implemented.');
+  deleteUser($event: UserWithRoleDTO) {
+    this.selectedRowForDelete = $event;
+    console.log(3)
+    this.userContro.deleteUserWithData(this.selectedRowForDelete).subscribe(
+      (response) => {
+        this.getUsers();
+      })
   }
-  updateVehicle($event: any) {
-  throw new Error('Method not implemented.');
-  }
+
 
 }

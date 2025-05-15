@@ -18,16 +18,15 @@
  <!-- Main Content Area -->
   <div class="flex flex-1 flex-col h-screen overflow-y-auto"> 
     <!-- Header -->
-    <div class="top-0 z-20 w-full">
-      <div>
+    <div class="top-0 w-full relative">
         <span
-          class="mobile text-white hidden absolute text-4xl top-2 left-2"
+          class="mobile absolute  text-white hidden text-4xl top-2 left-2"
           appHoverScale 
           (click)="toggleSidebar()"
         >
           <i class="bi-filter-left px-2 rounded-md"></i>
         </span>
-      </div>
+
       <app-navbar-after-login></app-navbar-after-login>
     </div>
 

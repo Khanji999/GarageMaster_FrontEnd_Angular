@@ -46,61 +46,82 @@
 
         <h3 class="text-lg font-bold text-black dark:text-[#eee] mb-3">Selected Services</h3>
         <div class="overflow-x-auto">
+<table class="min-w-full table-auto border-collapse border border-gray-300">
+  <thead>
+    <tr class="border border-blue-800 dark:border-gray-800 bg-[#6B7C9D] text-black dark:bg-[#131212] dark:text-white">
+      <th class="p-2 text-center font-medium tracking-wider">Service Name</th>
+      <th class="p-2 text-center font-medium tracking-wider">Cost</th>
+      <th class="p-2 text-center font-medium tracking-wider">Employee</th>
+      <th class="p-2 text-center font-medium tracking-wider">Selected Employees</th>
+      <th class="p-2 text-center font-medium tracking-wider">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let service of selectedServices; let i = index"
+      class="border border-blue-800 dark:border-gray-800 bg-white dark:bg-[#F9F6EE] text-center text-sm font-medium text-gray-700 tracking-wider"
+    >
+      <!-- Service Name -->
+      <td class="border border-gray-300 px-4 py-2">{{ service.name }}</td>
 
-        <table class="min-w-full table-auto border-collapse border border-gray-300">
-            <thead>
-            <tr class="border border-blue-800 dark:border-gray-800
-            bg-[#6B7C9D] text-black dark:bg-[#131212] dark:text-white ">
-                <th class="p-2 text-center font-medium tracking-wider">Service Name</th>
-                <th class="p-2 text-center font-medium tracking-wider">Cost</th>
-                <th class="p-2 text-center font-medium tracking-wider">Employee</th>
-                <th class="p-2 text-center font-medium tracking-wider">Selected Employees</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr 
-            class="border border-blue-800 dark:border-gray-800 
-              bg-white dark:bg-[#F9F6EE] 
-              text-center text-sm font-medium text-gray-700 tracking-wider
-              "
-       *ngFor="let service of selectedServices; let i = index">
-              <td class="border border-gray-300 px-4 py-2">{{ service.name  }}</td>
-              <td class="border border-gray-300 px-4 py-2">
-                  <input type="number" [(ngModel)]="costs[i]" min="0" 
-                  class="w-full p-2
-                  py-3 text-gray-800 dark:text-gray-100 bg-white dark:bg-[#2a2b2f] rounded-lg border border-gray-300 dark:border-gray-600 focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none shadow-sm transition-all duration-200"
-                  />
-              </td>
-              <td class="border border-gray-300 px-4 py-2">
-                <select 
-                  (change)="onEmployeeSelect($event, i)" 
-                  class="         
-                  w-full              
-                  p-2
-                  py-3
-                  text-md text-gray-800 dark:text-gray-100
-                  bg-white dark:bg-[#2a2b2f] 
-                  rounded-md border border-gray-300 dark:border-gray-700 
-                  focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none
-                  transition-all duration-200"
-                >
-                  <option value="">Select an Employee</option>
-                  <option *ngFor="let emp of Employees" [value]="emp.id">
-                    {{ emp.firstName }} {{ emp.fatherName }} {{ emp.lastName }}
-                  </option>
-                </select>
-              </td>
-              <td class="border border-gray-300 px-4 py-2">
-                  <div *ngFor="let emp of selectedEmployees[i]" class="text-sm">
-                    ✅ {{ emp.firstName }} {{ emp.fatherName }} {{ emp.lastName }}
-                  </div>
-                <div *ngIf="!selectedEmployees[i]?.length">
-                  <span class="text-gray-400">No employees selected</span>
-                </div>
-              </td>
-                </tr>
-            </tbody>
-        </table>
+      <!-- Cost -->
+      <td class="border border-gray-300 px-4 py-2">
+        <input
+          type="number"
+          [(ngModel)]="costs[i]"
+          min="0"
+          class="w-full p-2 py-3 text-gray-800 dark:text-gray-100 bg-white dark:bg-[#2a2b2f] rounded-lg border border-gray-300 dark:border-gray-600 focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none shadow-sm transition-all duration-200"
+        />
+      </td>
+
+      <!-- Employee Select -->
+      <td class="border border-gray-300 px-4 py-2">
+        <select
+          (change)="onEmployeeSelect($event, i)"
+          class="w-full p-2 py-3 text-md text-gray-800 dark:text-gray-100 bg-white dark:bg-[#2a2b2f] rounded-md border border-gray-300 dark:border-gray-700 focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none transition-all duration-200"
+        >
+          <option value="">Select an Employee</option>
+          <option *ngFor="let emp of Employees" [value]="emp.id">
+            {{ emp.firstName }} {{ emp.fatherName }} {{ emp.lastName }}
+          </option>
+        </select>
+      </td>
+
+<td class="border border-gray-300 px-4 py-2 align-top w-64"> <!-- Fixed width -->
+  <div class="space-y-1">
+    <div *ngFor="let emp of selectedEmployees[i]; let j = index" class="flex justify-between items-center text-sm bg-gray-100 dark:bg-gray-700 rounded px-2 py-1">
+      <span>
+        ✅ {{ emp.firstName }} {{ emp.fatherName }} {{ emp.lastName }}
+      </span>
+      <button
+        type="button"
+        class="text-xs bg-red-500 hover:bg-red-700 text-white rounded px-1"
+        (click)="removeEmployee(i, j)"
+      >
+        ✕
+      </button>
+    </div>
+    <div *ngIf="!selectedEmployees[i]?.length" class="text-gray-400 text-sm">
+      No employees selected
+    </div>
+  </div>
+</td>
+
+
+      <!-- Actions (Remove Service) -->
+      <td class="border border-gray-300 px-4 py-2">
+        <button
+          type="button"
+          class="px-3 py-1 bg-red-500 hover:bg-red-700 text-white text-sm rounded"
+          (click)="removeService(i)"
+        >
+          Remove
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
         </div>
           <button
           class="cursor-pointer

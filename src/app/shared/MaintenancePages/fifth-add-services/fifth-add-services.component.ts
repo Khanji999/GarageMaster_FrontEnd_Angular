@@ -154,6 +154,11 @@ export class FifthAddServicesComponent implements OnInit{
 
     }
   }
+      removeService(index: number): void {
+      this.selectedServices.splice(index, 1);
+      this.costs.splice(index, 1);
+      this.selectedEmployees.splice(index, 1);
+    }
   closeMenu(){
     this.close.emit(); 
   }
@@ -161,6 +166,9 @@ export class FifthAddServicesComponent implements OnInit{
     this.closeMenu();
     this.stepBack.emit(); 
   }
+  removeEmployee(serviceIndex: number, employeeIndex: number): void {
+  this.selectedEmployees[serviceIndex].splice(employeeIndex, 1);
+}
 
 
 }

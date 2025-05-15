@@ -68,7 +68,6 @@ export class FirstSearchForCustomerComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private customerContro :  CustomerContro,
-    private customerUserContro : CustomerUserContro,
     private helloPermission : PermissionService
   ) {}
 
@@ -152,21 +151,7 @@ export class FirstSearchForCustomerComponent implements OnInit {
         this.openCustomerAddingForm = true;
     }
   }
-  handleAddCustomer(newCustomer : AddNewCustomerDTO){
-    if(this.openCustomerAddingForm){
-      var requestTheNewCustomer = new AddNewCustomerDTO();
-      requestTheNewCustomer = newCustomer;
-      this.customerUserContro.addNewCustomer(requestTheNewCustomer).subscribe(
-        (response) => {
-          console.log(response.result);
-        },
-        (error) => {
-          console.error(error.message);
-        }
-      );
-    }
-  }
-  //
+  
   removeSearch(){
     this.selectedCustomer = null
     this.form.reset(); 

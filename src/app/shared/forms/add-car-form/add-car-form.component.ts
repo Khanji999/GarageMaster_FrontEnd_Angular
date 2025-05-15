@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, output, Output } from '@angular/core';
 import { AddNewVehicleToCustomerDTO, ColorContro, ColorDTO, CustomerVehicleContro, CustomerVehicleDTO, CustomerVehicleWithDetailsDTO, EngineChargerContro, EngineChargerDTO, EngineFuelContro, EngineFuelDTO, EngineStructureContro, EngineStructureDTO, PlateDTO, TransmissionContro, TransmissionDTO, VehicleBrandContro, VehicleBrandDTO, VehicleModelContro, VehicleModelDTO, WheelDriveContro, WheelDriveDTO } from '../../../core/services/callAPI/api.service';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl,FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { GenericFormComponent } from "../../components/generic-form/generic-form.component";
 import { OpenConfirmationDialogGenericComponent } from "../../components/open-confirmation-dialog-generic/open-confirmation-dialog-generic.component";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-car-form',
@@ -28,7 +29,7 @@ export class AddCarFormComponent  implements OnInit {
 
 // Related to Update :
   @Input() carData?: CustomerVehicleWithDetailsDTO | null;  
-
+    updating?: CustomerVehicleWithDetailsDTO;
   constructor(
     private brandContro: VehicleBrandContro,
     private modelContro : VehicleModelContro ,
@@ -39,41 +40,103 @@ export class AddCarFormComponent  implements OnInit {
     private gearBoxContro : TransmissionContro,
     private colorContro : ColorContro,
     private fb: FormBuilder,
+    private customerVehicleContro : CustomerVehicleContro,
+    private toastr: ToastrService
   ){}
 
   ngOnInit() {
-    this.form = this.fb.group({
-      vin: ['', Validators.required],
-      brand: ['', Validators.required],
-      model: ['', Validators.required],
-      engineFuel: ['', Validators.required],
-      gearBox: ['', Validators.required],
-      engineStructure: ['', Validators.required],
-      engineCharger: ['',Validators.required],
-      wheelDriver: ['', Validators.required],
-      color:['', Validators.required],
-      plateNumber:['', Validators.required],
-      plateLetter:['', Validators.required],
-      numberOfCylinders: ['', [Validators.required, Validators.min(1), Validators.max(16)]],
-      modelYear: ['',[Validators.required, Validators.min(1886), Validators.max(new Date().getFullYear())]],
-      numberOfGear : ['', [Validators.required, Validators.min(1), Validators.max(16)]],
+    // Build Form
+  this.form = new FormGroup({
+    vin: new FormControl('', Validators.required),
+    brand: new FormControl('', Validators.required),
+    model: new FormControl('', Validators.required),
+    engineFuel: new FormControl('', Validators.required),
+    gearBox: new FormControl('', Validators.required),
+    engineStructure: new FormControl('', Validators.required),
+    engineCharger: new FormControl('', Validators.required),
+    wheelDriver: new FormControl('', Validators.required),
+    color: new FormControl('', Validators.required),
+    plateNumber: new FormControl('', Validators.required),
+    plateLetter: new FormControl('', Validators.required),
+    numberOfCylinders: new FormControl('', [Validators.required, Validators.min(1), Validators.max(16)]),
+    modelYear: new FormControl('', [Validators.required, Validators.min(1886), Validators.max(new Date().getFullYear())]),
+    numberOfGear: new FormControl('', [Validators.required, Validators.min(1), Validators.max(16)]),
+  });
+    if (this.carData) {
+    this.form.get('vin')?.valueChanges.subscribe(val => {
+      if (this.carData) {
+        this.carData.vin = val;
+      }
     });
 
+    this.form.get('model')?.valueChanges.subscribe(val => {
+      if (this.carData) {
+        this.carData.vehicleModelId = val;
+      }
+    });
+
+    this.form.get('engineFuel')?.valueChanges.subscribe(val => {
+      if (this.carData) {
+        this.carData.engineFuelId = val;
+      }
+    });
+
+    this.form.get('gearBox')?.valueChanges.subscribe(val => {
+      if (this.carData) {
+        this.carData.transmissionId = val;
+      }
+    });
+
+    this.form.get('engineStructure')?.valueChanges.subscribe(val => {
+      if (this.carData) {
+        this.carData.engineStructureId = val;
+      }
+    });
+
+    this.form.get('engineCharger')?.valueChanges.subscribe(val => {
+      if (this.carData) {
+        this.carData.engineChargerId = val;
+      }
+    });
+
+    this.form.get('wheelDriver')?.valueChanges.subscribe(val => {
+      if (this.carData) {
+        this.carData.wheelDriveId = val;
+      }
+    });
+
+    this.form.get('numberOfCylinders')?.valueChanges.subscribe(val => {
+      if (this.carData) {
+        this.carData.numberOfCylinders = val;
+      }
+    });
+
+    this.form.get('modelYear')?.valueChanges.subscribe(val => {
+      if (this.carData) {
+        this.carData.yearModel = val;
+      }
+    });
+
+    this.form.get('numberOfGear')?.valueChanges.subscribe(val => {
+      if (this.carData) {
+        this.carData.transmissionGears = val;
+      }
+    });
+    
+  }
+    // Patching  Data To Forms
     if(this.carData){
       this.form.patchValue({
         brand: this.carData.vehicleModel?.vehicleBrand?.id ,
       });
-    
       if(this.carData.vehicleModel?.vehicleBrand?.id) {
         this.getAllModelsByBrandID(this.carData.vehicleModel.vehicleBrand.id);
       }
-    
       setTimeout(() => {
         this.form.patchValue({
           model: this.carData?.vehicleModel?.id,
         });
       }, 0);
-      
       this.form.patchValue({
         vin: this.carData.vin,
         engineFuel: this.carData.engineFuel?.id,
@@ -89,7 +152,7 @@ export class AddCarFormComponent  implements OnInit {
         modelYear:this.carData.yearModel,
       });
     }
-
+    // Get Menu Items
     this.getAllBrands();
     this.getAllengineFuels();
     this.getAllengineStructures();
@@ -99,11 +162,13 @@ export class AddCarFormComponent  implements OnInit {
     this.getColors();
     this.form.get('brand')?.valueChanges.subscribe((brandId: number) => {
       if (brandId) {
+        this.models = [];
         this.getAllModelsByBrandID(brandId);
       } else {
         this.models = [];
       }
     });
+
   }
 
   getAllBrands(): void {
@@ -113,7 +178,6 @@ export class AddCarFormComponent  implements OnInit {
       }
     );
   }
-
   getAllModelsByBrandID(id :number): void {
     this.modelContro.getAllModelsByBrandID(id).subscribe(
       (response: any) => {
@@ -121,7 +185,6 @@ export class AddCarFormComponent  implements OnInit {
       }
     );
   }
-
   getAllengineFuels(): void {
   this.engineFuelContro.getAll().subscribe(
       (response: any) => {
@@ -129,7 +192,6 @@ export class AddCarFormComponent  implements OnInit {
       }
     );
   }
-
   getAllengineStructures(): void {
     this.engineStructureContro.getAll().subscribe(
       (response: any) => {
@@ -137,7 +199,6 @@ export class AddCarFormComponent  implements OnInit {
       }
     );
   }
-
   getAllengineCharger(): void {
     this.engineChargerContro.getAll().subscribe(
       (response: any) => {
@@ -145,7 +206,6 @@ export class AddCarFormComponent  implements OnInit {
       }
     );
   }
-
   getAllgearBox(): void {
     this.gearBoxContro.getAll().subscribe(
       (response: any) => {
@@ -153,7 +213,6 @@ export class AddCarFormComponent  implements OnInit {
       }
     );
   }
-
   getColors(): void {
     this.colorContro.getAll().subscribe(
       (response: any) => {
@@ -161,7 +220,6 @@ export class AddCarFormComponent  implements OnInit {
       }
     );
   }
-
   getAllWheelDrive(): void {
     this.wheelDriveContro.getAll().subscribe(
       (response: any) => {
@@ -174,14 +232,12 @@ export class AddCarFormComponent  implements OnInit {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
     }
-    if (this.form.valid) {
+    // get value from the Form to Save new Object in Backend
+    if (this.form.valid && this.carData == null) {
       const dtoRequest = new AddNewVehicleToCustomerDTO();
-
       dtoRequest.customerVehicle = new CustomerVehicleDTO();
       dtoRequest.plate = new PlateDTO();
-
       dtoRequest.colorID =  this.form.value.color;
-
       dtoRequest.customerVehicle.vehicleModelId = this.form.value.model ;
       dtoRequest.customerVehicle.engineStructureId = this.form.value.engineStructure ;
       dtoRequest.customerVehicle.engineFuelId = this.form.value.engineFuel ;
@@ -192,30 +248,35 @@ export class AddCarFormComponent  implements OnInit {
       dtoRequest.customerVehicle.yearModel = this.form.value.modelYear ;
       dtoRequest.customerVehicle.transmissionGears = this.form.value.numberOfGear ;
       dtoRequest.customerVehicle.numberOfCylinders = this.form.value.numberOfCylinders ;
-
       dtoRequest.plate.numbers = this.form.value.plateNumber;
       dtoRequest.plate.letters = this.form.value.plateLetter;
-  
       this.pendingDTO= dtoRequest
       this.showConfirm = true;   
     }
+    else if (this.form.valid && this.carData != null){
+      this.showConfirm = true;   
+      }
   }
-
-  closeFormAndDestroy(): void {
-    this.closeForm.emit(); 
-  }
-
   onConfirm() {
     if (this.pendingDTO) {
-      console.log("Sending DTO:", this.pendingDTO);
       this.submitForm.emit(this.pendingDTO);
       this.closeFormAndDestroy();
     }
-    this.showConfirm = false;
+    else if ( this.carData) {
+      this.customerVehicleContro.updateVehicle(this.carData).subscribe(
+        (response) => {
+          this.closeFormAndDestroy();
+        }
+      )
+    }    
   }
-  
+
   onCancel() {
     this.showConfirm = false;
     this.pendingDTO = undefined!;
   }
+  closeFormAndDestroy(): void {
+    this.closeForm.emit(); 
+  }
+
 }

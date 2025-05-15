@@ -8,24 +8,8 @@ flex justify-between px-6  bg-[#212227] dark:bg-gray-700">
   <div class="flex">
     <ul class="flex items-center space-x-6 ">
       <li>
-        <i class="bi bi-bell text-xl"></i>
+          <p class="text-white" (click)="logout()">Logout</p>
       </li>
-      <li class="font-semibold text-xl">
-        <div class="relative">
-          <!-- Profile Icon Button -->
-          <button class="flex items-center space-x-2 focus:outline-none">
-            <div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center">
-              <i class="bi bi-person"></i> 
-            </div>
-          </button>
-          <!-- Dropdown Menu (hidden by default) -->
-          <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden">
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
-          </div>
-        </div>  
-        </li>
   
     </ul>
   </div>

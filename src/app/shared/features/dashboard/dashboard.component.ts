@@ -1,59 +1,63 @@
-import { Component, OnInit } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { GenericTableComponent } from "../../components/generic-table/generic-table.component";
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { MaintenaceCardContro, MaintenanceCardWithFullDetailsDTO, MaintenanceFilter } from '../../../core/services/callAPI/api.service';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CustomerContro, EmployeeContro, MaintenaceCardContro, MaintenanceCardWithFullDetailsDTO, UserContro } from '../../../core/services/callAPI/api.service';
+import { GenericRadialCounterChartComponent } from "../../components/generic-radial-counter-chart/generic-radial-counter-chart.component";
+import { PermissionService } from '../../../core/services/permissionService/permission.service';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [ReactiveFormsModule, GenericTableComponent , CommonModule ],
+  imports: [CommonModule, GenericRadialCounterChartComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
+ 
 })
-export class DashboardComponent implements OnInit{
-  form!: FormGroup;
-  maintenances: MaintenanceCardWithFullDetailsDTO[] = []
-  columns = [
-    { header: 'Brand', key: 'id' }]
-    showOverlay = false;
+export class DashboardComponent {
 
+  maintenance? : MaintenanceCardWithFullDetailsDTO[];
+  
+  customerCount = 0;
+  employeeCount = 0;
+  userCount = 0;
 
+  canSeeNumbOfCust = false;
+  canSeeNumbOfEmp = false;
+  canSeeNumbOfUser = false;
+  carSeeMaintCard = false;
 
-  constructor(private fb: FormBuilder,
-    private maintenanceContr: MaintenaceCardContro
-    ){}
-
-  ngOnInit(): void {
-    this.form = this.fb.group({
-      empFirstName: [''],
-      empLastName: [''],
-      empFatherName: [''],
-      custFirstName: [''],
-      custFatherName: [''],
-      custLastName: [''],
-      servName: [''],
-      vehBrand: [''],
-      vehModel: [''],
-    })
-  }
-
-  submit(){
-    const cardFilter = new MaintenanceFilter();
-    cardFilter.employeeFirstName = this.form.value.empFirstName;
-    cardFilter.employeeFatherName = this.form.value.empFatherName
-    cardFilter.employeeLastName = this.form.value.empLastName
-    cardFilter.customerFirstName = this.form.value.empFatherName
-    cardFilter.serviceName = this.form.value.servName
-    cardFilter.vehicleBrandName = this.form.value.vehBrand
-    cardFilter.vehicleModelName = this.form.value.vehModel
-    this.maintenanceContr.getAllMaintenanceWithDetails(cardFilter).subscribe(
-      (response) => {
-        console.log(response.result);
-        this.maintenances = response.result!
-      }
-    )
-
+  constructor(
+    private customerContro: CustomerContro,
+    private employeeContro: EmployeeContro,
+    private userContro: UserContro,
+    private helloPermission : PermissionService,
+    private maintenanceContro: MaintenaceCardContro
     
+  ) {}
+  ngOnInit(): void {
+    // this.canSeeNumbOfCust = this.helloPermission.hasPermission("CustomerContro","getNumberOfCustomers")
+    // this.canSeeNumbOfEmp = this.helloPermission.hasPermission("EmployeeContro","getNumberOfEmployees")
+    // this.canSeeNumbOfUser = this.helloPermission.hasPermission("UserContro","getNumberOfUsers")
+    this.carSeeMaintCard =  this.helloPermission.hasPermission("MaintenaceCardContro","getMaintenanceByCustomerId")
+    // if(this.canSeeNumbOfCust == true){
+    //   this.customerContro.getNumberOfCustomers().subscribe(res => {
+    //     this.customerCount = res.result!;
+    //   });
+    // }
+    // if(this.canSeeNumbOfEmp == true){
+    //   this.employeeContro.getNumberOfEmployees().subscribe(res => {
+    //     this.employeeCount = res.result!;
+    //   });
+    // }
+    // if(this.canSeeNumbOfUser == true){
+    //   this.userContro.getNumberOfUsers().subscribe(res => {  
+    //     this.userCount = res.result!;
+    //   });
+    // }
+    if(this.carSeeMaintCard ==true){
+      this.maintenanceContro.getMaintenanceByCustomerId().subscribe(
+        (response) => {
+          this.maintenance = response.result!
+        }
+      )
+    }
   }
 }

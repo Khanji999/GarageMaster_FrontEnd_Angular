@@ -1,0 +1,31 @@
+<div class="flex flex-col gap-2 justify-center w-full ">
+    <app-generic-table    
+    class="w-full"
+    [data]="customerVehicles"
+    [columns]="columns"
+    [showActions]="true"
+    [canUpdate]="true"
+    [canDelete]="false"
+    (updateClicked)="updateVehicle($event)"
+    >
+    </app-generic-table>
+    <div>
+    <button
+        (click)="openAddCarForm()"
+        class="w-full sm:w-auto px-4 py-2 
+            bg-blue-600 dark:bg-blue-500 
+            hover:bg-blue-700 dark:hover:bg-blue-400 
+            text-white dark:text-gray-900  cursor-pointer
+            rounded transition-colors duration-300 ease-in-out">
+        <i class="bi bi-plus-lg mr-2"></i> Add New Vehicle
+    </button>
+    </div>
+</div>
+
+@if(carAddForm){
+    <app-add-customer-with-car 
+    [carData]="this.selectedVeh"
+    (closeForm)="this.carAddForm = false" (added)="this.getVehicles()">
+    </app-add-customer-with-car>
+}
+

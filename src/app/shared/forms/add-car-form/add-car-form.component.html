@@ -1,5 +1,5 @@
 <app-generic-form [title]="'Add New Car'" (closeModal)="closeFormAndDestroy()">
-        <form class="px-2"[formGroup]="form">
+        <form class="px-2"[formGroup]="form" (ngSubmit)="submit()">
             <!-- VIN Details -->
             <div class="my-6">
                 <h3 class="text-lg font-bold text-black dark:text-[#eee] mb-3">Vehicle VIN</h3>
@@ -113,7 +113,8 @@
                         text-md text-gray-800 dark:text-gray-100
                         bg-white dark:bg-[#2a2b2f] 
                         rounded border border-gray-300 dark:border-gray-700 
-                        focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"                                formControlName="color">
+                        focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                        formControlName="color">
                         <option value="" disabled selected>Select a Color</option>
                         <option *ngFor="let color of colors" [value]="color.id">
                             {{ color.name }} 
@@ -276,7 +277,8 @@
                     input-class w-full 
                     bg-white dark:bg-[#2a2b2f] 
                     rounded border border-gray-300 dark:border-gray-700 
-                    focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"                             formControlName="modelYear">
+                    focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none" 
+                                                formControlName="modelYear">
                     <p class="text-red-500 text-sm mt-1" *ngIf="form.controls['modelYear'].invalid && form.controls['modelYear'].touched">
                     Please Enter a Year
                     </p>

@@ -1,86 +1,79 @@
-<div class="p-6 bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-2xl w-full mx-auto my-4">
-    <form class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" [formGroup]="form">
-      <!-- Reusable Input Component -->
-      <div class="relative group">
-        <label class="text-sm text-gray-600 font-medium block mb-1">Employee First Name</label>
-        <input type="text"
-        formControlName="empFirstName"
-        placeholder="John" class="w-full px-3 py-2 text-gray-800 dark:text-gray-100 bg-white dark:bg-[#2a2b2f] rounded-lg border border-gray-300 dark:border-gray-600 focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none shadow-sm transition-all duration-200">
-      </div>
-  
-      <div class="relative group">
-        <label class="text-sm text-gray-600 font-medium block mb-1">Employee Last Name</label>
-        <input type="text" 
-        formControlName="empLastName"
-        placeholder="Doe" class="w-full px-3 py-2 text-gray-800 dark:text-gray-100 bg-white dark:bg-[#2a2b2f] rounded-lg border border-gray-300 dark:border-gray-600 focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none shadow-sm transition-all duration-200">
-        
-      </div>
-  
-      <div class="relative group">
-        <label class="text-sm text-gray-600 font-medium block mb-1">Father's Name</label>
-        <input type="text" 
-        formControlName="empFatherName"
-        placeholder="Michael" class="w-full px-3 py-2 text-gray-800 dark:text-gray-100 bg-white dark:bg-[#2a2b2f] rounded-lg border border-gray-300 dark:border-gray-600 focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none shadow-sm transition-all duration-200">
-      </div>
-  
-      <div class="relative group">
-        <label class="text-sm text-gray-600 font-medium block mb-1">Vehicle Brand</label>
-        <input type="text" 
-        formControlName="vehBrand"
-        placeholder="Toyota" class="w-full px-3 py-2 text-gray-800 dark:text-gray-100 bg-white dark:bg-[#2a2b2f] rounded-lg border border-gray-300 dark:border-gray-600 focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none shadow-sm transition-all duration-200">
-      </div>
-  
-      <div class="relative group">
-        <label class="text-sm text-gray-600 font-medium block mb-1">Vehicle Model</label>
-        <input type="text" 
-        formControlName="vehModel"
-        placeholder="Corolla" class="w-full px-3 py-2 text-gray-800 dark:text-gray-100 bg-white dark:bg-[#2a2b2f] rounded-lg border border-gray-300 dark:border-gray-600 focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none shadow-sm transition-all duration-200">
-      </div>
-  
-      <div class="relative group">
-        <label class="text-sm text-gray-600 font-medium block mb-1">Service Name</label>
-        <input type="text" 
-        formControlName="servName"
-        placeholder="Oil Change" class="w-full px-3 py-2 text-gray-800 dark:text-gray-100 bg-white dark:bg-[#2a2b2f] rounded-lg border border-gray-300 dark:border-gray-600 focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none shadow-sm transition-all duration-200">
-      </div>
-  
-      <div class="relative group">
-        <label class="text-sm text-gray-600 font-medium block mb-1">Customer First Name</label>
-        <input type="text"
-        placeholder="Sarah" 
-        formControlName="custFirstName"
-        class="w-full px-3 py-2 text-gray-800 dark:text-gray-100 bg-white dark:bg-[#2a2b2f] rounded-lg border border-gray-300 dark:border-gray-600 focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none shadow-sm transition-all duration-200">
-      </div>
-      <div class="relative group">
-        <label class="text-sm text-gray-600 font-medium block mb-1">Customer Last Name</label>
-        <input type="text"
-        placeholder="John" 
-        formControlName="custLastName"
-        class="w-full px-3 py-2 text-gray-800 dark:text-gray-100 bg-white dark:bg-[#2a2b2f] rounded-lg border border-gray-300 dark:border-gray-600 focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none shadow-sm transition-all duration-200">
-      </div>
-      <div class="relative group">
-        <label class="text-sm text-gray-600 font-medium block mb-1">Customer Father Name</label>
-        <input type="text"
-        placeholder="Doe" 
-        formControlName="custFatherName"
-        class="w-full px-3 py-2 text-gray-800 dark:text-gray-100 bg-white dark:bg-[#2a2b2f] rounded-lg border border-gray-300 dark:border-gray-600 focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none shadow-sm transition-all duration-200">
-      </div>
-  
-      <!-- Submit -->
-      <div class="col-span-full flex justify-end">
-        <button
-        (click)="submit()"
-        type="submit" class="bg-orange-500 hover:bg-orange-600 text-white font-bold px-6 py-2 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-0.5">
-          Apply Filters
-        </button>
-      </div>
-    </form>
-  </div>
 
-  <app-generic-table
-  class="w-full"
-  [data]="maintenances"
-  [columns]="columns"
-  >
-  </app-generic-table>
-  
+@if(carSeeMaintCard){
+<div class="container mx-auto px-4 py-10">
+      <div *ngIf="maintenance?.length; else noData">
+        <div class="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <!-- Each card -->
+          <div
+            *ngFor="let card of maintenance"
+            class="bg-white/80 dark:bg-gray-800/80 border border-gray-200 dark:border-gray-700 shadow-xl rounded-xl transition-transform duration-300 hover:scale-[1.02] flex flex-col"
+            style="aspect-ratio: 4 / 2; max-width: 100%;"
+          >
+            <!-- Image -->
+            <div class="relative h-32">
+              <img
+                src="mainCar.jpg"
+                alt="Vehicle Image"
+                class="w-full h-full object-cover rounded-t-xl"
+              />
+              <div class="absolute inset-0  flex items-end">
+                <h3 class="text-white text-base font-bold truncate">
+                  {{ card.customerVehicle?.vehicleModel?.name || 'Unknown Model' }}
+                </h3>
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="p-4 text-gray-800 dark:text-gray-200 space-y-2 text-sm flex-1">
+              <div class="grid grid-cols-2 gap-2">
+                <p><strong>VIN:</strong> {{ card.customerVehicle?.vin }}</p>
+                <p><strong>Year:</strong> {{ card.customerVehicle?.yearModel }}</p>
+                <p><strong>Cylinders:</strong> {{ card.customerVehicle?.numberOfCylinders }}</p>
+              </div>
+
+              <!-- Plates -->
+              <div *ngIf="card.customerVehicle?.customerVehiclePlates?.length">
+                <p class="font-semibold">Plates:</p>
+                <div class="flex flex-wrap gap-1">
+                  <span *ngFor="let plate of card.customerVehicle?.customerVehiclePlates"
+                        class="bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full text-xs font-medium">
+                    {{ plate.plate?.letters }}-{{ plate.plate?.numbers }}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Colors -->
+              <div *ngIf="card.customerVehicle?.customerVehicleColors?.length">
+                <p class="font-semibold">Colors:</p>
+                <div class="flex flex-wrap gap-1">
+                  <span *ngFor="let color of card.customerVehicle?.customerVehicleColors"
+                        class="bg-pink-100 text-pink-700 px-2 py-0.5 rounded-full text-xs font-medium">
+                    {{ color.color?.name }}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Services -->
+              <div *ngIf="card.maintenaceServices?.length">
+                <p class="font-semibold text-indigo-600">Services:</p>
+                <div class="flex flex-wrap gap-1">
+                  <span *ngFor="let service of card.maintenaceServices"
+                        class="bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-xs font-medium">
+                    {{ service.service?.name }} ({{ service.service?.serviceType?.name }})
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End card -->
+        </div>
+      </div>
+
+      <!-- Fallback if no data -->
+      <ng-template #noData>
+        <div class="text-center text-gray-600 dark:text-gray-300 py-12 text-lg">
+          No maintenance cards found.
+        </div>
+      </ng-template>
+</div>
+}
