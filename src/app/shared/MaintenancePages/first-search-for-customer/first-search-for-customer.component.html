@@ -176,7 +176,8 @@
 @if (fifthStep == true) {
 <app-fifth-add-services
 [maintenanceCard]="this.createdMaintenance"
-(close)="this.fifthStep = false"   (stepBack)="this.fourthStep = true"
+(close)="this.fifthStep = false" 
+(m)="getAddedMaitenance($event)"  (stepBack)="this.fourthStep = true"
 >
 </app-fifth-add-services>
 }

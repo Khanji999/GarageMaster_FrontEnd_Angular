@@ -35,13 +35,23 @@ class="flex flex-col md:flex-row items-center bg-white dark:bg-[#2a2b2f] rounded
     </div>
 
     <!-- Action -->
-    <div class="flex justify-end mt-4">
-    <button
-        class="text-blue-500 hover:text-blue-700"
-        (click)="openMainteancePopup(row)"
-    >
-        <i class="bi bi-eye-fill text-xl"></i>
-    </button>
+    <div class="flex gap-4">
+        <div class="flex  justify-end mt-4">
+        <button
+            class="text-blue-500 hover:text-blue-700"
+            (click)="openMainteancePopup(row)"
+        >
+            <i class="bi bi-eye-fill text-xl"></i>
+        </button>
+        </div>
+        <div class="flex justify-end mt-4">
+        <button
+            class="text-blue-500 hover:text-blue-700"
+            (click)="openMainteancePopupforUpdate(row)"
+        >
+        <i class="bi bi-pen"></i>
+        </button>
+        </div>
     </div>
 </div>
 </div>
@@ -53,4 +63,10 @@ class="flex flex-col md:flex-row items-center bg-white dark:bg-[#2a2b2f] rounded
 [maintenance]="selectedMaintenance!"
 (closeForm)="showViewMaintenancePopup = false"
 ></app-maintenance-form>
+}
+@if (showUpdateMaintenancePopup) {
+<app-update-services-in-maintenance
+[maintenance]="selectedMaintenance!"
+(closeForm)="showUpdateMaintenancePopup = false"
+></app-update-services-in-maintenance>
 }

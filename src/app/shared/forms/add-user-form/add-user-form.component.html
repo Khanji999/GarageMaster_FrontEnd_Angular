@@ -505,11 +505,3 @@
         </button>
     </div>
 </app-generic-form>
-
-@if (showConfirm) {
-    <app-open-confirmation-dialog-generic 
-    [title]="'Are you sure you want to submit this User?'"
-    (submit)="onConfirm()"
-    (close)="onCancel()">
-</app-open-confirmation-dialog-generic>
-}

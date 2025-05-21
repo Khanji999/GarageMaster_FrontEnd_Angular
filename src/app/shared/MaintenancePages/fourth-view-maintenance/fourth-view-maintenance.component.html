@@ -1,7 +1,7 @@
 <app-generic-form [title]="'Selected Vehicle'" [showBackButton]="true"
 (closeModal)="closeMenu()" (clickBackButton)="back()">
 
-    <form class="p-4 space-y-4">
+    <form class="p-4 space-y-4" [formGroup]="form">
     <!-- Maintenance Card -->
     <div class="bg-gray-200 dark:bg-[#131212]  p-4 rounded-lg shadow flex flex-col gap-2 text-gray-900 dark:text-white">
         <div class="flex items-center gap-3 mb-2">
@@ -89,15 +89,51 @@
         </div>
         </div>
     </div>
+<div formArrayName="notes" class="space-y-3 m-3">
+  <div *ngFor="let control of notes.controls; let i = index" class="flex gap-2 items-center">
+    <div class="flex flex-1 flex-col">
+        <input
+        [formControlName]="i"
+        type="text"
+        placeholder="Enter note"
+        class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-700 rounded bg-white dark:bg-[#2a2b2f] text-gray-800 dark:text-gray-100"
+        />
+        <div *ngIf="control.invalid && control.touched" class="text-red-500 text-sm">
+        Note is required
+        </div>
+    </div>
+    <button type="button" (click)="removeNote(i)" class="text-red-600 hover:underline">🗑 Remove</button>
+  </div>
+</div>
+
+<!-- Action buttons -->
+<div class="m-4 flex gap-3">
+    <button type="button" (click)="addNote()" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+    Add Note
+    </button>
+
+    <button type="button" (click)="clearNotes()" class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">
+    Clear All
+    </button>
+</div>
     </form>
+    <p class="text-md text-red-500 mx-auto dark:text-gray-400">Customer has an access to see these Notes</p>
     <!-- Action Buttons -->
-    <div class="w-full py-2 px-4">
+    <div class="flex my-4  gap-3">
         <button
-        class="cursor-pointer
+        class="cursor-pointer disabled:opacity-50
         w-full p-2 bg-blue-600 dark:bg-blue-800 dark:hover:bg-blue-600 hover:bg-blue-800  text-white rounded transition-colors duration-200"
         (click)="openServiceForm()"
+        [disabled]="notes.length === 0"
         >
         Start Adding Services
+        </button>
+        <button
+            [disabled]="notes.length === 0"
+            class="  cursor-pointer disabled:opacity-50
+            w-full p-2 bg-yellow-600 dark:bg-blue-800 dark:hover:bg-blue-600 hover:bg-yellow-800  text-white rounded transition-colors duration-200"
+            (click)="createMaintenanceWithoutServices()">
+            Add Card Without Services
         </button>
     </div>
 </app-generic-form>

@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MaintenanceFormComponent } from "../../forms/maintenance-form/maintenance-form.component";
 import { UpdateMaintenanceFormComponent } from "../../forms/update-maintenance-form/update-maintenance-form.component";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-get-all-maintenances',
@@ -54,7 +55,8 @@ export class GetAllMaintenancesComponent implements OnInit{
 
   constructor(private fb: FormBuilder,
     private maintenanceContr: MaintenaceCardContro,
-    private router: Router
+    private router: Router,
+    private toaster : ToastrService
     ){}
     showAllFilters = false;
 
@@ -93,6 +95,9 @@ export class GetAllMaintenancesComponent implements OnInit{
     cardFilter.vehicleModelName = this.form.value.vehModel
     this.maintenanceContr.getAllMaintenanceWithDetails(cardFilter).subscribe(
       (response) => {
+      if (!response.result || response.result.length === 0) {
+          this.toaster.warning("You do not have Maintenacne Cards, Adds One and Comes back")
+        }
       this.maintenances = response.result!.map((main: any) => {
           const status = main.isCompleted
             ? 'completed'

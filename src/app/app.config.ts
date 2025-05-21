@@ -10,11 +10,25 @@ import { titleReducer } from './core/services/titleService/title.reducer';
 import { provideStore } from '@ngrx/store';
 import { ToastrModule } from 'ngx-toastr';
 import { StatusToastInterceptor } from './core/interceptors/statusCodeHandler/status-code.interceptor';
+import { JwtModule } from "@auth0/angular-jwt";
 
+    
+export function tokenGetter() {
+  return localStorage.getItem("access_token");
+}
 
 export const appConfig: ApplicationConfig = {
     
+
   providers: [
+    importProvidersFrom(
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: tokenGetter,
+
+            },
+        }),
+    ),
     importProvidersFrom(
         BrowserAnimationsModule,
         ToastrModule.forRoot({

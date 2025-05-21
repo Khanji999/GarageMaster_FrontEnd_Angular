@@ -4,7 +4,7 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-layout-before-login',
-  imports: [NavbarBeforeLoginComponent, RouterOutlet],
+  imports: [ RouterOutlet],
   templateUrl: './layout-before-login.component.html',
   styleUrl: './layout-before-login.component.scss'
 })

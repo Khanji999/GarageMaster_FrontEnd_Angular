@@ -9,7 +9,7 @@ import { OpenConfirmationDialogGenericComponent } from "../../components/open-co
 
 @Component({
   selector: 'app-add-user-form',
-  imports: [GenericFormComponent, NgxIntlTelInputModule, ReactiveFormsModule, CommonModule, OpenConfirmationDialogGenericComponent],
+  imports: [GenericFormComponent, NgxIntlTelInputModule, ReactiveFormsModule, CommonModule],
   templateUrl: './add-user-form.component.html',
   styleUrl: './add-user-form.component.scss'
 })
@@ -38,7 +38,6 @@ export class AddUserFormComponent implements OnInit{
 
   roles: RoleDTO[] = [];
   selectedRole = 0;
-  showConfirm = false;
 
   constructor(private fb: FormBuilder,
               private tenantContro : TenantContro,
@@ -50,150 +49,150 @@ export class AddUserFormComponent implements OnInit{
               private toastr: ToastrService,
               private userContro : UserContro
   ){}
-ngOnInit(): void {
-  this.newUser = new AddingUserDTO();
-  this.newUser.employees = [new EmployeeDTO()];
-  this.newUser.customers = [new CustomerDTO()];
+  ngOnInit(): void {
+    this.newUser = new AddingUserDTO();
+    this.newUser.employees = [new EmployeeDTO()];
+    this.newUser.customers = [new CustomerDTO()];
 
-  this.form = this.fb.group({
-    userName: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9]*$')]],
-    password: ['', Validators.required],
-    confirmPassword: ['', Validators.required],
-    roleId: ['', Validators.required],
+    this.form = this.fb.group({
+      userName: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9]*$')]],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+      roleId: ['', Validators.required],
 
-    // Customer fields
-    firstName: [''],
-    FatherName: [''],
-    lastName: [''],
-    phoneNumber: [''],
-    country: [''],
-    city: [''],
-    District: [''],
-    street: [''],
-    theGender: ['Male'],
+      // Customer fields
+      firstName: [''],
+      FatherName: [''],
+      lastName: [''],
+      phoneNumber: [''],
+      country: [''],
+      city: [''],
+      District: [''],
+      street: [''],
+      theGender: ['Male'],
 
-    // Employee fields
-    EmpfirstName: [''],
-    EmpFatherName: [''],
-    EmplastName: [''],
-    EmpphoneNumber: [''],
-    Empcountry: [''],
-    Empcity: [''],
-    EmpDistrict: [''],
-    Empstreet: [''],
-    EmptheGender: ['Male'],
-  }, {
-    validators: this.matchPasswords('password', 'confirmPassword')
-  });
+      // Employee fields
+      EmpfirstName: [''],
+      EmpFatherName: [''],
+      EmplastName: [''],
+      EmpphoneNumber: [''],
+      Empcountry: [''],
+      Empcity: [''],
+      EmpDistrict: [''],
+      Empstreet: [''],
+      EmptheGender: ['Male'],
+    }, {
+      validators: this.matchPasswords('password', 'confirmPassword')
+    });
 
-  this.form.get('userName')?.valueChanges.subscribe(val => {
-    this.newUser!.userName = val;
-    this.username = val;
-    this.newUser!.subDomain= this.subDomain;
-  });
+    this.form.get('userName')?.valueChanges.subscribe(val => {
+      this.newUser!.userName = val;
+      this.username = val;
+      this.newUser!.subDomain= this.subDomain;
+    });
 
-  this.form.get('confirmPassword')?.valueChanges.subscribe(val => {
-    this.newUser!.password = val;
-  });
+    this.form.get('confirmPassword')?.valueChanges.subscribe(val => {
+      this.newUser!.password = val;
+    });
 
-  this.form.get('roleId')?.valueChanges.subscribe(roleId => {
-    this.selectedRole = roleId;
-    this.newUser!.roleId = roleId;
-    this.removeRoleSpecificFields();
-    if (roleId == 3) {
-      this.addCustomerFields();
-      this.form.get('country')?.valueChanges.subscribe((countryID: number) => {
-        this.cities = [];
-        this.streets = [];
-        this.districts = [];
-        this.form.patchValue({ city: "", District: "", street: "" });
-        if (countryID) this.getAllCitiesByCountryIDforUI(countryID);
-      });
+    this.form.get('roleId')?.valueChanges.subscribe(roleId => {
+      this.selectedRole = roleId;
+      this.newUser!.roleId = roleId;
+      this.removeRoleSpecificFields();
+      if (roleId == 3) {
+        this.addCustomerFields();
+        this.form.get('country')?.valueChanges.subscribe((countryID: number) => {
+          this.cities = [];
+          this.streets = [];
+          this.districts = [];
+          this.form.patchValue({ city: "", District: "", street: "" });
+          if (countryID) this.getAllCitiesByCountryIDforUI(countryID);
+        });
 
-      this.form.get('city')?.valueChanges.subscribe((CityID: number) => {
-        this.streets = [];
-        this.districts = [];
-        this.form.patchValue({ District: "", street: "" });
-        if (CityID) this.getAllDistrictsByCityIDforUI(CityID);
-      });
+        this.form.get('city')?.valueChanges.subscribe((CityID: number) => {
+          this.streets = [];
+          this.districts = [];
+          this.form.patchValue({ District: "", street: "" });
+          if (CityID) this.getAllDistrictsByCityIDforUI(CityID);
+        });
 
-      this.form.get('District')?.valueChanges.subscribe((DistrictID: number) => {
-        this.form.patchValue({ street: "" });
-        if (DistrictID) this.getAllStreetsByDistrictIDforUI(DistrictID);
-        else this.streets = [];
-      });
+        this.form.get('District')?.valueChanges.subscribe((DistrictID: number) => {
+          this.form.patchValue({ street: "" });
+          if (DistrictID) this.getAllStreetsByDistrictIDforUI(DistrictID);
+          else this.streets = [];
+        });
 
-      this.form.get('firstName')?.valueChanges.subscribe(val => {
-        this.newUser!.customers![0].firstName = val;
-      });
-      this.form.get('FatherName')?.valueChanges.subscribe(val => {
-        this.newUser!.customers![0].fatherName = val;
-      });
-      this.form.get('lastName')?.valueChanges.subscribe(val => {
-        this.newUser!.customers![0].lastName = val;
-      });
-      this.form.get('street')?.valueChanges.subscribe(val => {
-        this.newUser!.customers![0].streetId = val;
-      });
-      this.form.get('theGender')?.valueChanges.subscribe(val => {
+        this.form.get('firstName')?.valueChanges.subscribe(val => {
+          this.newUser!.customers![0].firstName = val;
+        });
+        this.form.get('FatherName')?.valueChanges.subscribe(val => {
+          this.newUser!.customers![0].fatherName = val;
+        });
+        this.form.get('lastName')?.valueChanges.subscribe(val => {
+          this.newUser!.customers![0].lastName = val;
+        });
+        this.form.get('street')?.valueChanges.subscribe(val => {
+          this.newUser!.customers![0].streetId = val;
+        });
+        this.form.get('theGender')?.valueChanges.subscribe(val => {
+          console.log(val);
+        this.newUser!.customers![0].genderId = val == 'Male' ? 1 : 2;
+        console.log(this.newUser!.customers![0].genderId);
+        });
+
+      } else {
+        // 🔵 Employee role
+        this.addEmployeeFields();
+        this.form.get('Empcountry')?.valueChanges.subscribe((countryID: number) => {
+          this.cities = [];
+          this.streets = [];
+          this.districts = [];
+          this.form.patchValue({ city: "", District: "", street: "" });
+          if (countryID) this.getAllCitiesByCountryIDforUI(countryID);
+        });
+
+        this.form.get('Empcity')?.valueChanges.subscribe((CityID: number) => {
+          this.streets = [];
+          this.districts = [];
+          this.form.patchValue({ District: "", street: "" });
+          if (CityID) this.getAllDistrictsByCityIDforUI(CityID);
+        });
+
+        this.form.get('EmpDistrict')?.valueChanges.subscribe((DistrictID: number) => {
+          this.form.patchValue({ street: "" });
+          if (DistrictID) this.getAllStreetsByDistrictIDforUI(DistrictID);
+          else this.streets = [];
+        });
+
+        this.form.get('EmpfirstName')?.valueChanges.subscribe(val => {
+          this.newUser!.employees![0].firstName = val;
+        });
+        this.form.get('EmpFatherName')?.valueChanges.subscribe(val => {
+          this.newUser!.employees![0].fatherName = val;
+        });
+        this.form.get('EmplastName')?.valueChanges.subscribe(val => {
+          this.newUser!.employees![0].lastName = val;
+        });
+        this.form.get('EmpphoneNumber')?.valueChanges.subscribe(val => {
+          this.newUser!.employees![0].phoneNumber = val?.nationalNumber;
+          this.newUser!.employees![0].countryCode = val?.dialCode;
+          this.newUser!.employees![0].nationalityId = 1;
+        });
+        this.form.get('Empstreet')?.valueChanges.subscribe(val => {
+          this.newUser!.employees![0].streetId = val;
+        });
+        this.form.get('EmptheGender')?.valueChanges.subscribe(val => {
         console.log(val);
-      this.newUser!.customers![0].genderId = val == 'Male' ? 1 : 2;
-      console.log(this.newUser!.customers![0].genderId);
-      });
+        this.newUser!.employees![0].genderId = val == 'Male' ? 1 : 2;
+        console.log(this.newUser!.employees![0].genderId)
+        });
+      }
+    });
 
-    } else {
-      // 🔵 Employee role
-      this.addEmployeeFields();
-      this.form.get('Empcountry')?.valueChanges.subscribe((countryID: number) => {
-        this.cities = [];
-        this.streets = [];
-        this.districts = [];
-        this.form.patchValue({ city: "", District: "", street: "" });
-        if (countryID) this.getAllCitiesByCountryIDforUI(countryID);
-      });
-
-      this.form.get('Empcity')?.valueChanges.subscribe((CityID: number) => {
-        this.streets = [];
-        this.districts = [];
-        this.form.patchValue({ District: "", street: "" });
-        if (CityID) this.getAllDistrictsByCityIDforUI(CityID);
-      });
-
-      this.form.get('EmpDistrict')?.valueChanges.subscribe((DistrictID: number) => {
-        this.form.patchValue({ street: "" });
-        if (DistrictID) this.getAllStreetsByDistrictIDforUI(DistrictID);
-        else this.streets = [];
-      });
-
-      this.form.get('EmpfirstName')?.valueChanges.subscribe(val => {
-        this.newUser!.employees![0].firstName = val;
-      });
-      this.form.get('EmpFatherName')?.valueChanges.subscribe(val => {
-        this.newUser!.employees![0].fatherName = val;
-      });
-      this.form.get('EmplastName')?.valueChanges.subscribe(val => {
-        this.newUser!.employees![0].lastName = val;
-      });
-      this.form.get('EmpphoneNumber')?.valueChanges.subscribe(val => {
-        this.newUser!.employees![0].phoneNumber = val?.nationalNumber;
-        this.newUser!.employees![0].countryCode = val?.dialCode;
-        this.newUser!.employees![0].nationalityId = 1;
-      });
-      this.form.get('Empstreet')?.valueChanges.subscribe(val => {
-        this.newUser!.employees![0].streetId = val;
-      });
-      this.form.get('EmptheGender')?.valueChanges.subscribe(val => {
-      console.log(val);
-      this.newUser!.employees![0].genderId = val == 'Male' ? 1 : 2;
-      console.log(this.newUser!.employees![0].genderId)
-      });
-    }
-  });
-
-  this.getTenantName();
-  this.getRoles();
-  this.getAllCountryforUI();
-}
+    this.getTenantName();
+    this.getRoles();
+    this.getAllCountryforUI();
+  }
   getTenantName(): void {
     this.tenantContro.getCurrentTenant().subscribe((response) => {
       this.subDomain = response.result!.name;
@@ -301,26 +300,17 @@ ngOnInit(): void {
   submit() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      console.log(1)
     }
     else{
-      console.log(this.newUser)
-      this.showConfirm = true;
-    }
-  }
-  onConfirm() {
-    this.userContro.addUserWithEmpOrCust(this.newUser).subscribe(
+      this.userContro.addUserWithEmpOrCust(this.newUser).subscribe(
       (response) => {
         if(response.statusCode == 200){
           this.toastr.success('A new User Was Added');
           this.closeMenu();
-          this.onCancel();
         }
       }
     )
   }
-  
-  onCancel() {
-    this.showConfirm = false;
   }
+
 }

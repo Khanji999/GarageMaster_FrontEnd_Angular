@@ -1,32 +1,38 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { GenericFormComponent } from "../../components/generic-form/generic-form.component";
-import { EmployeeContro, EmployeeDTO, MaintenaceCardContro, MaintenaceServiceDTO, MaintenanceCardWithFullDetailsDTO } from '../../../core/services/callAPI/api.service';
-import { FormGroup, FormBuilder, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EmployeeContro, EmployeeDTO, MaintenaceCardContro, MaintenaceServiceDTO, MaintenanceCardWithFullDetailsDTO, MaintenanceServiceNoteDTO } from '../../../core/services/callAPI/api.service';
 import { CommonModule, DatePipe } from '@angular/common';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
-  selector: 'app-maintenance-form',
-  imports: [GenericFormComponent,CommonModule , ReactiveFormsModule],
-  templateUrl: './maintenance-form.component.html',
-  styleUrl: './maintenance-form.component.scss',
+  selector: 'app-update-services-in-maintenance',
+  imports: [GenericFormComponent, ReactiveFormsModule , CommonModule , FormsModule],
+  templateUrl: './update-services-in-maintenance.component.html',
+  styleUrl: './update-services-in-maintenance.component.scss',
   providers: [DatePipe],
 })
-export class MaintenanceFormComponent implements OnInit{
+export class UpdateServicesInMaintenanceComponent implements OnInit{
   @Input() maintenance!: MaintenanceCardWithFullDetailsDTO;
   @Output() closeForm = new EventEmitter<void>(); 
 
-  closeFormAndDestroy() {
-    this.closeForm.emit(); 
-  }
+  currentUserId!: number;
   form!: FormGroup;
-
+  
   constructor(private fb: FormBuilder,
           private datePipe: DatePipe,
           private maintenanceContro : MaintenaceCardContro,
-          private employeeContro : EmployeeContro
+          private jwtHelper: JwtHelperService,
+          private employeeContro: EmployeeContro
   ) {}
 
   ngOnInit(): void {
+    this.maintenance = structuredClone(this.maintenance);
+    const token = localStorage.getItem('token'); // or your auth service
+      if (token) {
+        const decodedToken = this.jwtHelper.decodeToken(token);
+        this.currentUserId = decodedToken?.sub; // adjust based on your token structure
+      }
     this.form = this.fb.group({
       maintenanceNumber: [''] ,
       dateIn:[''] ,
@@ -68,36 +74,19 @@ export class MaintenanceFormComponent implements OnInit{
       color:this.maintenance.customerVehicle?.customerVehicleColors?.[0].color?.name,
       services:this.maintenance.maintenaceServices
     });
+
     if(this.maintenance.maintenaceServices){
         setTimeout(() => this.preloadEmployeesFromNotes(), 0); 
     }
   }
-  getStatus(m: MaintenanceCardWithFullDetailsDTO): string {
-    if (m.isCanceled) return 'Canceled';
-    if (m.isCompleted) return 'Completed';
-    if (m.isPending) return 'Pending';
-    return 'Unknown';
-  }
 
-  get totalCost(): number {
-    return this.maintenance.maintenaceServices
-      ?.reduce((sum, service) => sum + (service.cost || 0), 0) || 0;
-  }
-  
-  generatePDF() {
-    console.log(this.maintenance)
-    this.maintenanceContro.generatePdf(this.maintenance).subscribe(
-      (response) => {
-        const blob = new Blob([response.data], { type: 'application/pdf' });
-      
-        // Create a URL for the Blob
-        const url = URL.createObjectURL(blob);
-        
-        // Open the PDF in a new tab
-        window.open(url);
-      }
-    )
-  }
+employeeMap = new Map<number, EmployeeDTO>();
+loadingEmployeeIds = new Set<number>();
+
+getEmployeeName(userId: number): string | null {
+  const emp = this.employeeMap.get(userId);
+  return emp ? `${emp.firstName} ${emp.lastName}` : null;
+}
   preloadEmployeesFromNotes(): void {
   const allNotes = this.maintenance!.maintenaceServices!.flatMap(s => s.maintenanceServiceNotes || []);
   const uniqueUserIds = Array.from(new Set(allNotes.map(n => n.createdBy).filter(id => id)));
@@ -106,9 +95,6 @@ export class MaintenanceFormComponent implements OnInit{
     this.fetchEmployee(userId!);
   }
 }
-employeeMap = new Map<number, EmployeeDTO>();
-loadingEmployeeIds = new Set<number>();
-
 fetchEmployee(userId: number): void {
   // If we already have the employee, don't fetch again
   if (this.employeeMap.has(userId) || this.loadingEmployeeIds.has(userId)) {
@@ -132,9 +118,39 @@ fetchEmployee(userId: number): void {
   });
 }
 
-getEmployeeName(userId: number): string | null {
-  const emp = this.employeeMap.get(userId);
-  return emp ? `${emp.firstName} ${emp.lastName}` : null;
-}
+  closeFormAndDestroy() {
+    this.closeForm.emit(); 
+  }
+  getStatus(m: MaintenanceCardWithFullDetailsDTO): string {
+    if (m.isCanceled) return 'Canceled';
+    if (m.isCompleted) return 'Completed';
+    if (m.isPending) return 'Pending';
+    return 'Unknown';
+  }
+
+  setStatusForService(serviceItem: MaintenaceServiceDTO, status: 'completed' | 'pending' | 'canceled') {
+    serviceItem.isCompleted = status === 'completed';
+    serviceItem.isPending = status === 'pending';
+    serviceItem.isCanceled = status === 'canceled';
+  }
+  addNoteToService2(service: any): void {
+    if (!Array.isArray(service.maintenanceServiceNotes)) {
+      service.maintenanceServiceNotes = [];
+    }
+  
+    service.maintenanceServiceNotes.push(new MaintenanceServiceNoteDTO());
+  }
+  removeNewNote(service: any, noteIndex: number) {
+    service.maintenanceServiceNotes.splice(noteIndex, 1);
+  }
+   saveUpdatedMaintenance() {
+    this.maintenanceContro.updateMaintenance(this.maintenance).subscribe(
+      (response) => {
+        if (response.statusCode === 200) {
+          this.closeFormAndDestroy();
+        }
+      }
+    );
+  }
 
 }

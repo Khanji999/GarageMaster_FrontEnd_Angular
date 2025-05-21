@@ -5,10 +5,11 @@ import { MaintenaceCardContro, MaintenanceCardWithFullDetailsDTO } from '../../.
 import { CommonModule } from '@angular/common';
 import { MaintenanceFormComponent } from '../../forms/maintenance-form/maintenance-form.component';
 import { UpdateMaintenanceFormComponent } from '../../forms/update-maintenance-form/update-maintenance-form.component';
+import { UpdateServicesInMaintenanceComponent } from "../../forms/update-services-in-maintenance/update-services-in-maintenance.component";
 
 @Component({
   selector: 'app-my-maintenance',
-  imports: [ReactiveFormsModule, CommonModule, MaintenanceFormComponent],
+  imports: [ReactiveFormsModule, CommonModule, MaintenanceFormComponent, UpdateServicesInMaintenanceComponent],
   templateUrl: './my-maintenance.component.html',
   styleUrl: './my-maintenance.component.scss'
 })
@@ -22,6 +23,7 @@ export class MyMaintenanceComponent implements OnInit{
     { header: 'Customer Vehicle', key: 'vehicleDetails' },
   ]
   showViewMaintenancePopup = false;
+  showUpdateMaintenancePopup = false;
   selectedMaintenance?: MaintenanceCardWithFullDetailsDTO;
 
   constructor(private fb: FormBuilder,
@@ -49,10 +51,16 @@ export class MyMaintenanceComponent implements OnInit{
   }
 
   openMainteancePopup(row : any){
+  this.selectedMaintenance = undefined;
   this.showViewMaintenancePopup = true
   this.selectedMaintenance = row;
   }
-
+  openMainteancePopupforUpdate(row : any){
+  this.selectedMaintenance = undefined;
+  this.showUpdateMaintenancePopup = true
+  this.selectedMaintenance = row;
+  }
+  // Services filtered form backend to get only fits with my employee Id ,
   getMyMaint(){
     this.maintenanceContr.getMaintenanceByEmpId().subscribe(
       (response) => {

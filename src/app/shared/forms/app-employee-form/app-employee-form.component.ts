@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { GenericFormComponent } from "../../components/generic-form/generic-form.component";
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
-import { CityContro, CityDTO, CountryContro, CountryDTO, DistrictContro, DistrictDTO, EmployeeContro, EmployeeWithDetails2DTO, EmployeeWithDetailsDTO, NationalityContro, NationalityDTO, RoleContro, RoleDTO, StreetContro, StreetDTO, UserDTO, UserWithRoleDTO } from '../../../core/services/callAPI/api.service';
+import { CityContro, CityDTO, CountryContro, CountryDTO, DistrictContro, DistrictDTO, EmployeeContro, EmployeeWithDetails2DTO, EmployeeWithDetailsDTO, NationalityContro, NationalityDTO, RoleContro, RoleDTO, StreetContro, StreetDTO, TenantContro, UserDTO, UserWithRoleDTO } from '../../../core/services/callAPI/api.service';
 import { CommonModule, DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
 import { CountryISO, NgxIntlTelInputModule, SearchCountryField } from 'ngx-intl-tel-input';
 import { OpenConfirmationDialogGenericComponent } from "../../components/open-confirmation-dialog-generic/open-confirmation-dialog-generic.component";
@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-employee-form',
-  imports: [GenericFormComponent, NgxIntlTelInputModule, ReactiveFormsModule, CommonModule, OpenConfirmationDialogGenericComponent],
+  imports: [GenericFormComponent, NgxIntlTelInputModule, ReactiveFormsModule, CommonModule],
   templateUrl: './app-employee-form.component.html',
   styleUrl: './app-employee-form.component.scss'
 })
@@ -45,6 +45,8 @@ export class AppEmployeeFormComponent implements OnInit {
     private nationalityContro : NationalityContro,
     private employeeContro : EmployeeContro,
     private toastr : ToastrService,
+    private tenantContro : TenantContro,
+    
   ){}
 
   ngOnInit(): void {
@@ -202,19 +204,14 @@ export class AppEmployeeFormComponent implements OnInit {
       dto.user.roleId = this.form.value.role;
       dto.user.isActive = true;
       console.log("Sending DTO:", dto);
-      dto.user.subDomain = "ExpertVehicle"
-      this.pendingDTO = dto;  
-      this.showConfirm = true;   
+      this.tenantContro.getCurrentTenant().subscribe((response) => {
+        dto.user!.subDomain  = response.result!.name;
+    });
+    this.handleAddEmployee(dto);
     }
   }
   closeFormAndDestroy(): void {
     this.closeForm.emit(); 
-  }
-  onConfirm() {
-    this.handleAddEmployee(this.pendingDTO);
-  }
-  onCancel() {
-    this.showConfirm = false;
   }
 
   handleAddEmployee(employee:EmployeeWithDetails2DTO){

@@ -5,7 +5,7 @@ import { CountryISO, NgxIntlTelInputModule, SearchCountryField } from 'ngx-intl-
 import { AddCustomerFormComponent } from '../../forms/add-customer-form/add-customer-form.component';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { debounceTime, distinctUntilChanged, map, Observable, of, switchMap } from 'rxjs';
-import { AddNewCustomerDTO, CustomerContro, CustomerDTO, CustomerUserContro, CustomerVehicleWithDetailsDTO, MaintenaceCardDTO, UserDTO } from '../../../core/services/callAPI/api.service';
+import { AddNewCustomerDTO, CustomerContro, CustomerDTO, CustomerUserContro, CustomerVehicleWithDetailsDTO, MaintenaceCardDTO, MaintenanceCardWithFullDetailsDTO, UserDTO } from '../../../core/services/callAPI/api.service';
 import { PermissionService } from '../../../core/services/permissionService/permission.service';
 import { SecondSelectACarComponent } from "../second-select-acar/second-select-acar.component";
 import { ThirdViewSelectedVehicleComponent } from "../third-view-selected-vehicle/third-view-selected-vehicle.component";
@@ -63,7 +63,7 @@ export class FirstSearchForCustomerComponent implements OnInit {
 
   fifthStep = false;
 
-  createdMaintenance : MaintenaceCardDTO | any = null;
+  createdMaintenance : MaintenanceCardWithFullDetailsDTO | any = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -161,12 +161,12 @@ export class FirstSearchForCustomerComponent implements OnInit {
     this.selectedCustomer = customer; 
     this.secondStep = true;
   }       
-  // when select a vehicle second child ( third step ) will apear
+  // when select a vehicle second child ( third step ) will appear
   handleVehicleSelection($event: CustomerVehicleWithDetailsDTO) {
     this.selectedVehicle = $event;
     this.thirdStep = true; }
-  
-  getAddedMaitenance($event: MaintenaceCardDTO) {
+    // when add a km third child ( 4 step ) will appear
+  getAddedMaitenance($event: MaintenanceCardWithFullDetailsDTO) {
     this.createdMaintenance = $event;
     this.fourthStep = true;
   }

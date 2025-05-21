@@ -8,12 +8,11 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-customer-with-car',
-  imports: [GenericFormComponent, OpenConfirmationDialogGenericComponent ,ReactiveFormsModule , CommonModule],
+  imports: [GenericFormComponent ,ReactiveFormsModule , CommonModule],
   templateUrl: './add-customer-with-car.component.html',
   styleUrl: './add-customer-with-car.component.scss'
 })
 export class AddCustomerWithCarComponent implements OnInit{
-  showConfirm = false;
   car? : AddNewVehicleToCustomerDTO;
   form!: FormGroup;
   customers : CustomerDTO[] = [];
@@ -290,7 +289,7 @@ export class AddCustomerWithCarComponent implements OnInit{
   closeMenu(): void {
     this.closeForm.emit(); 
   }
-  onConfirm() {
+  submit() {
     if(!this.carData){
       this.customerVehicleContro.addNewVehicleToCustomer(this.car).subscribe(
         (response) => {
@@ -298,7 +297,6 @@ export class AddCustomerWithCarComponent implements OnInit{
             this.toastr.success("Car Was Added");
             this.added.emit();
             this.closeMenu();
-            this.onCancel();
           }
         }
       ) 
@@ -309,16 +307,9 @@ export class AddCustomerWithCarComponent implements OnInit{
           this.toastr.success("Car Was Updated");
           this.added.emit();
           this.closeMenu();
-          this.onCancel();
         }
       )
     }
   }
 
-  onCancel() {
-    this.showConfirm = false;
-  }
-  submit() {
-    this.showConfirm = true;
-  }
 }

@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-customer-form',
-  imports: [ReactiveFormsModule, NgxIntlTelInputModule, CommonModule, OpenConfirmationDialogGenericComponent, GenericFormComponent],
+  imports: [ReactiveFormsModule, NgxIntlTelInputModule, CommonModule, GenericFormComponent],
   templateUrl: './add-customer-form.component.html',
   styleUrl: './add-customer-form.component.scss'
 })
@@ -24,6 +24,7 @@ export class AddCustomerFormComponent implements OnInit {
   cities : CityDTO[]=[];
   districts : DistrictDTO[] = [];
   streets : StreetDTO[] =[];
+  
   classC="px-3 py-2 w- text-md text-gray-800 dark:text-gray-100 input-class sm:w-1/2 p-2 bg-white dark:bg-[#2a2b2f] rounded border border-gray-300 dark:border-gray-700 focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none";
   separateDialCode = true;
   SearchCountryField = SearchCountryField;
@@ -78,7 +79,6 @@ export class AddCustomerFormComponent implements OnInit {
     });
     this.form.get('District')?.valueChanges.subscribe((DistrictID: number) => {
       if (DistrictID) {
-        this.districts = []
         this.getAllStreetsByDistrictIDforUI(DistrictID);
         this.form.patchValue({ street: "" }); 
       } else {
@@ -146,9 +146,14 @@ export class AddCustomerFormComponent implements OnInit {
         console.error("Phone number is missing!");
       }
   
-      console.log("Sending DTO:", dto);
-      this.pendingDTO = dto;     
-      this.showConfirm = true;   
+      this.customerUserContro.addNewCustomer(dto).subscribe(
+        (response) => {
+          if(response.statusCode == 200) {
+            this.toastr.success("A new Customer was added"); 
+            this.closeFormAndDestroy();
+          }
+        },
+      );   
     }
   }
   
@@ -156,23 +161,4 @@ export class AddCustomerFormComponent implements OnInit {
     this.closeForm.emit(); 
   }
 
-  onConfirm() {
-    if (this.pendingDTO) {
-      this.customerUserContro.addNewCustomer(this.pendingDTO).subscribe(
-        (response) => {
-          if(response.statusCode == 200) {
-            this.toastr.success("A new Customer was added"); 
-            this.closeFormAndDestroy();
-          }
-          this.toastr.error(response.message);
-        },
-      );
-    }
-    this.showConfirm = false;
-  }
-  
-  onCancel() {
-    this.showConfirm = false;
-    this.pendingDTO = undefined!;
-  }
 }

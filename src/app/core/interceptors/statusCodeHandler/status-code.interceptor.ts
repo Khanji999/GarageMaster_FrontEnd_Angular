@@ -18,9 +18,6 @@ export class StatusToastInterceptor implements HttpInterceptor {
           
             const message = event.headers.get('X-Api-Message') || 'Operation completed';
             const status = event.status;
-            if (status === 204) {
-              this.toastr.warning(message);
-            } 
           }
         },
   

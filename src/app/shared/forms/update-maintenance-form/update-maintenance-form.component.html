@@ -166,124 +166,294 @@
         </div>
 </form>
 
-<!-- Services Table Section -->
-<div class="p-4">
-    <div *ngIf="maintenance?.maintenaceServices!.length > 0" 
-            class="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden shadow-sm">
-        <div class="overflow-y-auto" style="max-height: 500px;">
-            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                <thead class="bg-gray-50 dark:bg-gray-800 sticky top-0 z-10">
-                    <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider w-12">#</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider min-w-[200px]">Service Type</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider min-w-[200px]">Service Name</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider w-32">Cost</th>
-                    <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider w-24">Completed</th>
-                    <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider w-24">Pending</th>
-                    <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider w-24">Canceled</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider min-w-[150px]">Add Emp</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider min-w-[200px]">Employees</th>
-                    </tr>
-                </thead>
-                <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                    <tr *ngFor="let serviceItem of maintenance.maintenaceServices; let i = index" 
-                        class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">{{ i + 1 }}</td>
-                    
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <select
-                        class="w-full min-w-[180px] px-3 py-2 text-sm text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-700 rounded border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
-                        [(ngModel)]="serviceItem.service!.serviceTypeId"
-                        (change)="onServiceTypeChange(serviceItem, $event)">
-                        <option *ngFor="let type of serviceTypes" [value]="type.id">{{ type.name }}</option>
-                        </select>
+    <h3 class="text-lg font-bold text-black dark:text-[#eee] m-3">Description Information</h3>
+    <div class="m-3">
+        <table class="min-w-full  divide-y divide-gray-200 dark:divide-gray-700 border border-gray-800 dark:border-gray-600">
+            <thead class="bg-[#6B7C9D]  text-white">
+                <tr>
+                    <th class="px-4 py-2 text-left">Description</th>
+                </tr>
+            </thead>
+            <tbody class="bg-zinc-300  text-gray-900 ">
+                <tr *ngFor="let s of maintenance.maintenanceDescriptions; let i = index"
+                >
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                        <input
+                        placeholder="Enter Your Description"
+                        [(ngModel)]="s.text" 
+                        class="px-3 py-2 
+                        text-md text-gray-800 dark:text-gray-100
+                        input-class w-[90%] 
+                        bg-white dark:bg-[#2a2b2f] 
+                        rounded border border-gray-300 dark:border-gray-700 
+                        focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none" />
+                        <button
+                            *ngIf="!s.id"
+                            class="text-red-600 hover:text-red-800 m-4"
+                            (click)="removeDescription(i)"> 
+                            ✖
+                        </button>
                     </td>
-                    
-                    <!-- Service Name Dropdown (Wider) -->
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <select
-                        class="w-full min-w-[180px] px-3 py-2 text-sm text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-700 rounded border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
-                        [(ngModel)]="serviceItem.serviceId">
-                        <option value="" disabled selected>Select service</option>
-                        <option *ngFor="let svc of serviceItem.availableServices || []" [value]="svc.id">
-                            {{ svc.name }}
-                        </option>
-                        </select>
-                    </td>
-                    
-                    <!-- Cost Input -->
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <input 
-                        [(ngModel)]="serviceItem.cost" 
-                        class="w-full min-w-[180px]  px-3 py-2 text-sm text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-700 rounded border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
-                        type="number" 
-                        min="0"
-                        placeholder="Enter cost">
-                    </td>
-                    
-                    <!-- Status Checkboxes -->
-                    <td class="px-6 py-4 whitespace-nowrap text-center">
-                        <input type="checkbox"
-                        [checked]="serviceItem.isCompleted"
-                        (change)="setStatusForService(serviceItem, 'completed')"
-                        class="w-5 h-5 text-green-600 rounded focus:ring-green-500" />
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-center">
-                        <input type="checkbox"
-                        [checked]="serviceItem.isPending"
-                        (change)="setStatusForService(serviceItem, 'pending')"
-                        class="w-5 h-5 text-amber-500 rounded focus:ring-amber-500" />
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-center">
-                        <input type="checkbox"
-                        [checked]="serviceItem.isCanceled"
-                        (change)="setStatusForService(serviceItem, 'canceled')"
-                        class="w-5 h-5 bg-red-500 rounded focus:ring-red-500" />
-                    </td>
-                    
-                    <!-- Employee Dropdown (Wider) -->
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <select 
-                        class="w-full min-w-[150px] px-3 py-2 text-sm text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-700 rounded border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
-                        (change)="onEmployeeSelect($event, serviceItem)">
-                        <option value="">Select Employee</option>
-                        <option *ngFor="let emp of employees" [value]="emp.id">{{ emp.firstName }} {{ emp.lastName }}</option>
-                        </select>
-                    </td>
-                    
-                    <!-- Employee List -->
-                    <td class="px-6 py-4">
-                        <ul class="space-y-1">
-                        <li *ngFor="let empMaintained of serviceItem.employeeMaintaineds" class="flex items-center justify-between">
-                            <span class="text-sm text-gray-800 dark:text-gray-200">{{ empMaintained.employee?.firstName }} {{ empMaintained.employee?.lastName }}</span>
-                            <button 
-                            type="button" 
-                            (click)="removeEmployeeFromService(serviceItem, empMaintained?.employee!.id)" 
-                            class="ml-2 text-red-500 hover:text-red-700 dark:hover:text-red-400 transition-colors">
-                            ✕
-                            </button>
-                        </li>
-                        </ul>
-                    </td>
-                    </tr>
-                </tbody>
-            </table>
+                </tr>
+            </tbody>
+        </table>
+        <div class="m-3">
+            <button
+            class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            (click)="addDescription()"
+            >
+            Add Description
+            </button>
         </div>
     </div>
-</div>
+
+<hr class="m-2 bg-gray-200">
+    <!-- Services Table Section -->
+    <h3 class="text-lg font-bold text-black dark:text-[#eee] m-3">Services Information</h3>
+    <div class="m-3">
+        <div class="overflow-y-auto">
+                <table class="min-w-full divide-y divide-gray-200 border border-gray-800">
+                    <thead class="bg-[#6B7C9D] text-white">
+                        <tr>
+                        <th class="px-4 py-2 text-center w-12">#</th>
+                        <th class="px-4 py-2 text-center min-w-[200px]">Service Type</th>
+                        <th class="px-4 py-2 text-center min-w-[200px]">Service Name</th>
+                        <th class="px-4 py-2 text-center min-w-[300px]">Cost</th>
+                        <th class="px-4 py-2 text-center w-24">Completed</th>
+                        <th class="px-4 py-2 text-center w-24">Pending</th>
+                        <th class="px-4 py-2 text-center w-24">Canceled</th>
+                        <th class="px-4 py-2 text-center min-w-[150px]">Emp</th>
+                        <th class="px-4 py-2 text-center max-w-[7.5%]">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-zinc-300 dark:bg-gray-900 text-gray-900 dark:text-gray-100" >
+                        <!-- Service Row -->
+                    <ng-container *ngFor="let s of maintenance.maintenaceServices; let i = index">
+                    <!-- Service Row -->
+                    <tr>
+                        <td class="px-4 py-3 text-sm font-semibold text-gray-800 dark:text-gray-200">{{ i + 1 }}</td>
+                        <!-- Service Type Dropdown -->
+                        <td class="px-4 py-3">
+                        <select 
+                            class="w-full p-2
+                            text-md text-gray-800 dark:text-gray-100
+                            bg-white dark:bg-[#2a2b2f] 
+                            rounded border border-gray-300 dark:border-gray-700 
+                            focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                            [(ngModel)]="s.service!.serviceTypeId"
+                            (change)="onServiceTypeChange(s, $event)">
+                            <option *ngFor="let type of serviceTypes" [value]="type.id">{{ type.name }}</option>
+                        </select>
+                        </td>
+
+                        <!-- Service Name Dropdown -->
+                        <td class="px-4 py-3">
+                        <select 
+                            class="w-full p-2
+                            text-md text-gray-800 dark:text-gray-100
+                            bg-white dark:bg-[#2a2b2f] 
+                            rounded border border-gray-300 dark:border-gray-700 
+                            focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                            [(ngModel)]="s.serviceId">
+                            <option value="" disabled>Select service</option>
+                            <option *ngFor="let svc of s.availableServices || []" [value]="svc.id">{{ svc.name }}</option>
+                        </select>
+                        </td>
+
+                        <!-- Cost Input -->
+                        <td class="px-4 py-3">
+                        <input type="number"
+                            class=" p-2
+                            text-md text-gray-800 dark:text-gray-100
+                            input-class w-full 
+                            bg-white dark:bg-[#2a2b2f] 
+                            rounded border border-gray-300 dark:border-gray-700 
+                            focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"
+                            min="0" placeholder="Cost" [(ngModel)]="s.cost" />
+                        </td>
+
+                        <!-- Status Checkboxes -->
+     <!-- Completed -->
+<td class="px-4 py-3 text-center border border-gray-300 dark:border-gray-700">
+  <button (click)="setStatusForService(s, 'completed')"
+          class="w-8 h-8 flex items-center justify-center rounded-full transition
+                 text-gray-700"
+          [ngClass]="{
+            'bg-green-600': s.isCompleted,
+            'bg-gray-300 dark:bg-gray-600': !s.isCompleted
+          }"
+          title="Completed">
+    ✓
+  </button>
+</td>
+
+<!-- Pending -->
+<td class="px-4 py-3 text-center border border-gray-300 dark:border-gray-700">
+  <button (click)="setStatusForService(s, 'pending')"
+          class="w-8 h-8 flex items-center justify-center rounded-full transition
+                 text-gray-700"
+          [ngClass]="{
+            'bg-yellow-500 ': s.isPending,
+            'bg-gray-300 dark:bg-gray-600': !s.isPending
+          }"
+          title="Pending">
+    👁
+  </button>
+</td>
+
+<!-- Canceled -->
+<td class="px-4 py-3 text-center border border-gray-300 dark:border-gray-700">
+  <button (click)="setStatusForService(s, 'canceled')"
+          class="w-8 h-8 flex items-center justify-center rounded-full transition
+                 text-gray-700"
+          [ngClass]="{
+            'bg-red-600': s.isCanceled,
+            'bg-gray-300 dark:bg-gray-600': !s.isCanceled
+          }"
+          title="Canceled">
+    ✗
+  </button>
+</td>
+
+                        <!-- Employee Selector -->
+                        <td class="px-4 py-3 relative">
+                        <button type="button"
+                                (click)="toggleEmployeeDropdown(s)"
+                            class=" p-2
+                            text-md text-gray-800 dark:text-gray-100
+                            input-class w-full 
+                            bg-white dark:bg-[#2a2b2f] 
+                            rounded border border-gray-300 dark:border-gray-700 
+                            focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none" 
+                        >Select Emp
+                        </button>
+                        <div *ngIf="isDropdownOpen(s)"
+                            class="w-full absolute
+                            text-md text-gray-800 dark:text-gray-100
+                            bg-white dark:bg-[#2a2b2f] 
+                            rounded border border-gray-300 dark:border-gray-700 
+                            focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none overflow-y-auto">
+                            <label *ngFor="let emp of employees" class="flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <input type="checkbox" [checked]="isEmployeeAlreadySelected(s, emp)" (change)="toggleEmployeeForService(s, emp)" />
+                            <span class="ml-2">{{ emp.firstName }} {{ emp.lastName }}</span>
+                            </label>
+                        </div>
+                        </td>
+
+                        <!-- Remove service button -->
+                        <td  class="px-2 py-3 text-center">
+                        <button *ngIf="!s.id" (click)="removeNewService(i)"
+                        class="bg-red-600 text-white rounded px-2 py-1 hover:bg-red-700">
+                            ✖
+                        </button>
+                        </td>
+                    </tr>
+
+                    <!-- Notes -->
+                    <tr *ngFor="let note of s.maintenanceServiceNotes; let j = index">
+                    <td colspan="7"
+                    class="px-6 py-4">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <!-- Note -->
+                            <div>
+                            <label class="text-sm font-medium ">Note</label>
+                            <textarea [(ngModel)]="note.text"
+                            [disabled]="!!note.createdBy && note.createdBy != currentUserId"
+                            class=" p-2
+                            disabled:bg-[#353535] disabled:dark:bg-gray-700
+                            disabled:text-white disabled:cursor-not-allowed
+                            text-md text-gray-800 dark:text-gray-100
+                            input-class w-full 
+                            bg-white dark:bg-[#2a2b2f] 
+                            rounded border border-gray-300 dark:border-gray-700 
+                            focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none"            
+                            ></textarea>
+                            </div>
+
+                            <!-- Fault Code -->
+                            <div>
+                            <label class="text-sm font-medium ">Fault Code</label>
+                            <textarea [(ngModel)]="note.fualtCode"
+                            [disabled]="!!note.createdBy && note.createdBy != currentUserId"
+                            class=" p-2
+                            disabled:bg-[#353535] disabled:dark:bg-gray-700
+                            disabled:text-white disabled:cursor-not-allowed
+                            text-md text-gray-800 dark:text-gray-100
+                            input-class w-full 
+                            bg-white dark:bg-[#2a2b2f] 
+                            rounded border border-gray-300 dark:border-gray-700 
+                            focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none">
+                            </textarea>
+                            </div>
+
+                            <!-- How to Fix It -->
+                            <div>
+                            <label class="text-sm font-medium">How to Fix It</label>
+                            <textarea [(ngModel)]="note.howToFixIt"
+                            [disabled]="!!note.createdBy && note.createdBy != currentUserId"
+                            class=" p-2
+                            disabled:bg-[#353535] disabled:dark:bg-gray-700
+                            disabled:text-white disabled:cursor-not-allowed
+                            text-md text-gray-800 dark:text-gray-100
+                            input-class w-full 
+                            bg-white dark:bg-[#2a2b2f] 
+                            rounded border border-gray-300 dark:border-gray-700 
+                            focus:border-[#6B7C9D] focus:ring-3 focus:ring-[#6B7C9D] focus:outline-none">
+                            </textarea>
+                            </div>
+                            </div>
+
+                        <!-- Delete Note Button -->
+                        <div *ngIf="!note.id" class="mt-4 text-right">
+                            <button (click)="removeNewNote(s, j)" class="text-sm bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">
+                            Delete Note
+                            </button>
+                        </div>
+                        </td>
+                        <td colspan="2">
+                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">
+                            <span class="flex items-center space-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9.001 9.001 0 0112 3a9.001 9.001 0 016.879 14.804M15 11a3 3 0 11-6 0 3 3 0 016 0zm-6 8h6" />
+                            </svg>
+                            <span class="text-red-600">Created By</span>
+                            </span>
+                        </label>
+
+                        <div class="bg-red-100 dark:bg-red-800 text-red-800 dark:text-red-200 p-2 rounded text-lg font-medium shadow-sm">
+                            {{ getEmployeeName(note.createdBy!) || 'Loading...' }}
+                        </div>
+                        </td>
+                    </tr>
+
+                    <!-- Add Note Button -->
+                    <tr class="border-t border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-900">
+                        <td colspan="10" class="px-6 py-3 text-right">
+                        <button (click)="addNoteToService2(s)"
+                                class="bg-blue-600 text-white text-sm px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-[#6B7C9D]">
+                            + Add Note
+                        </button>
+                        </td>
+                    </tr>
+                    </ng-container>
+
+                    </tbody>
+                    </table>
+                </div>
+            </div>
 <!-- Action Buttons -->
-<div class="flex justify-between items-center p-4 border-t border-gray-200 dark:border-gray-700">
-    <button
-    class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
-    (click)="addNewService()">
-    + Add Service
-    </button>
-    <button 
-    class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
-    (click)="saveUpdatedMaintenance()">
-    Save Changes
-    </button>
-</div>
+    <div class="flex justify-between items-center p-4 border-t border-gray-200 dark:border-gray-700">
+        <button
+        class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+        (click)="addNewService()">
+        + Add Service
+        </button>
+        <button 
+        class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
+        (click)="saveUpdatedMaintenance()">
+        Save Changes
+        </button>
+    </div>
 
 
 </app-generic-form>

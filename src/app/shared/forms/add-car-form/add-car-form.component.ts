@@ -3,12 +3,11 @@ import { AddNewVehicleToCustomerDTO, ColorContro, ColorDTO, CustomerVehicleContr
 import { FormBuilder, FormControl,FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { GenericFormComponent } from "../../components/generic-form/generic-form.component";
-import { OpenConfirmationDialogGenericComponent } from "../../components/open-confirmation-dialog-generic/open-confirmation-dialog-generic.component";
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-car-form',
-  imports: [CommonModule, ReactiveFormsModule, GenericFormComponent,OpenConfirmationDialogGenericComponent],
+  imports: [CommonModule, ReactiveFormsModule, GenericFormComponent],
   templateUrl: './add-car-form.component.html',
   styleUrl: './add-car-form.component.scss'
 })
@@ -250,31 +249,18 @@ export class AddCarFormComponent  implements OnInit {
       dtoRequest.customerVehicle.numberOfCylinders = this.form.value.numberOfCylinders ;
       dtoRequest.plate.numbers = this.form.value.plateNumber;
       dtoRequest.plate.letters = this.form.value.plateLetter;
-      this.pendingDTO= dtoRequest
-      this.showConfirm = true;   
+      this.submitForm.emit(dtoRequest);
+
     }
     else if (this.form.valid && this.carData != null){
-      this.showConfirm = true;   
-      }
-  }
-  onConfirm() {
-    if (this.pendingDTO) {
-      this.submitForm.emit(this.pendingDTO);
-      this.closeFormAndDestroy();
-    }
-    else if ( this.carData) {
       this.customerVehicleContro.updateVehicle(this.carData).subscribe(
         (response) => {
           this.closeFormAndDestroy();
         }
-      )
-    }    
+      )   
+    }
   }
 
-  onCancel() {
-    this.showConfirm = false;
-    this.pendingDTO = undefined!;
-  }
   closeFormAndDestroy(): void {
     this.closeForm.emit(); 
   }

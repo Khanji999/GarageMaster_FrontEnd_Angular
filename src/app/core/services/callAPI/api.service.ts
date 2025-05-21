@@ -5612,6 +5612,63 @@ export class EmployeeContro {
     }
 
     /**
+     * @param id (optional) 
+     * @return OK
+     */
+    getEmpByUserId(id: number | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        let url_ = this.baseUrl + "/api/EmployeeContro/getEmpByUserId?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            observe: "response",
+            responseType: "blob",
+            context: httpContext,
+            headers: new HttpHeaders({
+                "Accept": "text/plain"
+            })
+        };
+
+        return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processGetEmpByUserId(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processGetEmpByUserId(response_ as any);
+                } catch (e) {
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+                }
+            } else
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+        }));
+    }
+
+    protected processGetEmpByUserId(response: HttpResponseBase): Observable<ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (response as any).error instanceof Blob ? (response as any).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = ApiResponse_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
+            return _observableOf(result200);
+            }));
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf(null as any);
+    }
+
+    /**
      * @return OK
      */
     getAll(httpContext?: HttpContext): Observable<ApiResponse_1OfOfIEnumerable_1OfOfEmployeeDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_nullAndCoreLibAnd_0AndCulture_neutralAndPublicKeyToken_7cec85d7bea7798e> {
@@ -8255,7 +8312,7 @@ export class MaintenaceCardContro {
      * @param body (optional) 
      * @return OK
      */
-    addingNewMaintenance(body: NewMaintenanceCardDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    addingNewMaintenance(body: MaintenanceCardWithFullDetailsDTO | undefined, httpContext?: HttpContext): Observable<ApiResponse_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         let url_ = this.baseUrl + "/api/MaintenaceCardContro/AddingNewMaintenance";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -8279,14 +8336,14 @@ export class MaintenaceCardContro {
                 try {
                     return this.processAddingNewMaintenance(response_ as any);
                 } catch (e) {
-                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+                    return _observableThrow(e) as any as Observable<ApiResponse_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
                 }
             } else
-                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
+                return _observableThrow(response_) as any as Observable<ApiResponse_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null>;
         }));
     }
 
-    protected processAddingNewMaintenance(response: HttpResponseBase): Observable<ApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
+    protected processAddingNewMaintenance(response: HttpResponseBase): Observable<ApiResponse_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -8297,7 +8354,7 @@ export class MaintenaceCardContro {
             return blobToText(responseBlob).pipe(_observableMergeMap((_responseText: string) => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = ApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
+            result200 = ApiResponse_1OfOfMaintenanceCardWithFullDetailsDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -20939,102 +20996,6 @@ export interface IMaintainedImageDTO {
     imgUrl?: string | undefined;
 }
 
-export class NewMaintenanceCardDTO implements INewMaintenanceCardDTO {
-    id?: number | undefined;
-    maintenanceNumberForEachTenant?: number | undefined;
-    tenantId?: number | undefined;
-    customerVehicleId?: number | undefined;
-    dateIn?: Date | undefined;
-    dateOut?: Date | undefined;
-    comments?: string | undefined;
-    kilometers?: number | undefined;
-    isCompleted?: boolean | undefined;
-    isPending?: boolean | undefined;
-    isCanceled?: boolean | undefined;
-    doesCheckedAfterFinishingMaintenace?: boolean;
-    isReadyToBeDelivered?: boolean | undefined;
-    maintenaceServices?: MaintenaceServiceDTO[] | undefined;
-
-    constructor(data?: INewMaintenanceCardDTO) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.id = _data["id"];
-            this.maintenanceNumberForEachTenant = _data["maintenanceNumberForEachTenant"];
-            this.tenantId = _data["tenantId"];
-            this.customerVehicleId = _data["customerVehicleId"];
-            this.dateIn = _data["dateIn"] ? new Date(_data["dateIn"].toString()) : <any>undefined;
-            this.dateOut = _data["dateOut"] ? new Date(_data["dateOut"].toString()) : <any>undefined;
-            this.comments = _data["comments"];
-            this.kilometers = _data["kilometers"];
-            this.isCompleted = _data["isCompleted"];
-            this.isPending = _data["isPending"];
-            this.isCanceled = _data["isCanceled"];
-            this.doesCheckedAfterFinishingMaintenace = _data["doesCheckedAfterFinishingMaintenace"];
-            this.isReadyToBeDelivered = _data["isReadyToBeDelivered"];
-            if (Array.isArray(_data["maintenaceServices"])) {
-                this.maintenaceServices = [] as any;
-                for (let item of _data["maintenaceServices"])
-                    this.maintenaceServices!.push(MaintenaceServiceDTO.fromJS(item));
-            }
-        }
-    }
-
-    static fromJS(data: any): NewMaintenanceCardDTO {
-        data = typeof data === 'object' ? data : {};
-        let result = new NewMaintenanceCardDTO();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["maintenanceNumberForEachTenant"] = this.maintenanceNumberForEachTenant;
-        data["tenantId"] = this.tenantId;
-        data["customerVehicleId"] = this.customerVehicleId;
-        data["dateIn"] = this.dateIn ? this.dateIn.toISOString() : <any>undefined;
-        data["dateOut"] = this.dateOut ? this.dateOut.toISOString() : <any>undefined;
-        data["comments"] = this.comments;
-        data["kilometers"] = this.kilometers;
-        data["isCompleted"] = this.isCompleted;
-        data["isPending"] = this.isPending;
-        data["isCanceled"] = this.isCanceled;
-        data["doesCheckedAfterFinishingMaintenace"] = this.doesCheckedAfterFinishingMaintenace;
-        data["isReadyToBeDelivered"] = this.isReadyToBeDelivered;
-        if (Array.isArray(this.maintenaceServices)) {
-            data["maintenaceServices"] = [];
-            for (let item of this.maintenaceServices)
-                data["maintenaceServices"].push(item.toJSON());
-        }
-        return data;
-    }
-}
-
-export interface INewMaintenanceCardDTO {
-    id?: number | undefined;
-    maintenanceNumberForEachTenant?: number | undefined;
-    tenantId?: number | undefined;
-    customerVehicleId?: number | undefined;
-    dateIn?: Date | undefined;
-    dateOut?: Date | undefined;
-    comments?: string | undefined;
-    kilometers?: number | undefined;
-    isCompleted?: boolean | undefined;
-    isPending?: boolean | undefined;
-    isCanceled?: boolean | undefined;
-    doesCheckedAfterFinishingMaintenace?: boolean;
-    isReadyToBeDelivered?: boolean | undefined;
-    maintenaceServices?: MaintenaceServiceDTO[] | undefined;
-}
-
 export class MaintenaceCardDTO implements IMaintenaceCardDTO {
     id?: number;
     customerVehicleId?: number | undefined;
@@ -21048,6 +21009,7 @@ export class MaintenaceCardDTO implements IMaintenaceCardDTO {
     isCanceled?: boolean | undefined;
     doesCheckedAfterFinishingMaintenace?: boolean | undefined;
     isReadyToBeDelivered?: boolean | undefined;
+    maintenanceDescriptions?: MaintenanceDescriptionDTO[] | undefined;
 
     constructor(data?: IMaintenaceCardDTO) {
         if (data) {
@@ -21072,6 +21034,11 @@ export class MaintenaceCardDTO implements IMaintenaceCardDTO {
             this.isCanceled = _data["isCanceled"];
             this.doesCheckedAfterFinishingMaintenace = _data["doesCheckedAfterFinishingMaintenace"];
             this.isReadyToBeDelivered = _data["isReadyToBeDelivered"];
+            if (Array.isArray(_data["maintenanceDescriptions"])) {
+                this.maintenanceDescriptions = [] as any;
+                for (let item of _data["maintenanceDescriptions"])
+                    this.maintenanceDescriptions!.push(MaintenanceDescriptionDTO.fromJS(item));
+            }
         }
     }
 
@@ -21096,6 +21063,11 @@ export class MaintenaceCardDTO implements IMaintenaceCardDTO {
         data["isCanceled"] = this.isCanceled;
         data["doesCheckedAfterFinishingMaintenace"] = this.doesCheckedAfterFinishingMaintenace;
         data["isReadyToBeDelivered"] = this.isReadyToBeDelivered;
+        if (Array.isArray(this.maintenanceDescriptions)) {
+            data["maintenanceDescriptions"] = [];
+            for (let item of this.maintenanceDescriptions)
+                data["maintenanceDescriptions"].push(item.toJSON());
+        }
         return data;
     }
 }
@@ -21113,6 +21085,7 @@ export interface IMaintenaceCardDTO {
     isCanceled?: boolean | undefined;
     doesCheckedAfterFinishingMaintenace?: boolean | undefined;
     isReadyToBeDelivered?: boolean | undefined;
+    maintenanceDescriptions?: MaintenanceDescriptionDTO[] | undefined;
 }
 
 export class MaintenaceServiceDTO implements IMaintenaceServiceDTO {
@@ -21127,14 +21100,15 @@ export class MaintenaceServiceDTO implements IMaintenaceServiceDTO {
     isCanceled?: boolean | undefined;
     isTested?: boolean | undefined;
     employeeMaintaineds?: EmployeeMaintainedDTO[] | undefined;
-    availableServices? : ServiceTableDTO[]
+    maintenanceServiceNotes?: MaintenanceServiceNoteDTO[] | undefined;
+    availableServices? : ServiceTableDTO[];
     constructor(data?: IMaintenaceServiceDTO) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
                     (<any>this)[property] = (<any>data)[property];
             }
-        }
+        }   
     }
 
     init(_data?: any) {
@@ -21153,6 +21127,11 @@ export class MaintenaceServiceDTO implements IMaintenaceServiceDTO {
                 this.employeeMaintaineds = [] as any;
                 for (let item of _data["employeeMaintaineds"])
                     this.employeeMaintaineds!.push(EmployeeMaintainedDTO.fromJS(item));
+            }
+            if (Array.isArray(_data["maintenanceServiceNotes"])) {
+                this.maintenanceServiceNotes = [] as any;
+                for (let item of _data["maintenanceServiceNotes"])
+                    this.maintenanceServiceNotes!.push(MaintenanceServiceNoteDTO.fromJS(item));
             }
         }
     }
@@ -21181,6 +21160,11 @@ export class MaintenaceServiceDTO implements IMaintenaceServiceDTO {
             for (let item of this.employeeMaintaineds)
                 data["employeeMaintaineds"].push(item.toJSON());
         }
+        if (Array.isArray(this.maintenanceServiceNotes)) {
+            data["maintenanceServiceNotes"] = [];
+            for (let item of this.maintenanceServiceNotes)
+                data["maintenanceServiceNotes"].push(item.toJSON());
+        }
         return data;
     }
 }
@@ -21197,6 +21181,7 @@ export interface IMaintenaceServiceDTO {
     isCanceled?: boolean | undefined;
     isTested?: boolean | undefined;
     employeeMaintaineds?: EmployeeMaintainedDTO[] | undefined;
+    maintenanceServiceNotes?: MaintenanceServiceNoteDTO[] | undefined;
 }
 
 export class MaintenanceCardWithFullDetailsDTO implements IMaintenanceCardWithFullDetailsDTO {
@@ -21215,6 +21200,8 @@ export class MaintenanceCardWithFullDetailsDTO implements IMaintenanceCardWithFu
     isReadyToBeDelivered?: boolean | undefined;
     customerVehicle?: CustomerVehicleWithDetailsDTO;
     maintenaceServices?: MaintenaceServiceDTO[] | undefined;
+    maintenanceDescriptions?: MaintenanceDescriptionDTO[] | undefined;
+
     constructor(data?: IMaintenanceCardWithFullDetailsDTO) {
         if (data) {
             for (var property in data) {
@@ -21244,6 +21231,11 @@ export class MaintenanceCardWithFullDetailsDTO implements IMaintenanceCardWithFu
                 this.maintenaceServices = [] as any;
                 for (let item of _data["maintenaceServices"])
                     this.maintenaceServices!.push(MaintenaceServiceDTO.fromJS(item));
+            }
+            if (Array.isArray(_data["maintenanceDescriptions"])) {
+                this.maintenanceDescriptions = [] as any;
+                for (let item of _data["maintenanceDescriptions"])
+                    this.maintenanceDescriptions!.push(MaintenanceDescriptionDTO.fromJS(item));
             }
         }
     }
@@ -21276,6 +21268,11 @@ export class MaintenanceCardWithFullDetailsDTO implements IMaintenanceCardWithFu
             for (let item of this.maintenaceServices)
                 data["maintenaceServices"].push(item.toJSON());
         }
+        if (Array.isArray(this.maintenanceDescriptions)) {
+            data["maintenanceDescriptions"] = [];
+            for (let item of this.maintenanceDescriptions)
+                data["maintenanceDescriptions"].push(item.toJSON());
+        }
         return data;
     }
 }
@@ -21296,6 +21293,115 @@ export interface IMaintenanceCardWithFullDetailsDTO {
     isReadyToBeDelivered?: boolean | undefined;
     customerVehicle?: CustomerVehicleWithDetailsDTO;
     maintenaceServices?: MaintenaceServiceDTO[] | undefined;
+    maintenanceDescriptions?: MaintenanceDescriptionDTO[] | undefined;
+}
+
+export class MaintenanceDescriptionDTO implements IMaintenanceDescriptionDTO {
+    id?: number | undefined;
+    tenantId?: number | undefined;
+    maintenanceCardId?: number | undefined;
+    text?: string | undefined;
+
+    constructor(data?: IMaintenanceDescriptionDTO) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.maintenanceCardId = _data["maintenanceCardId"];
+            this.text = _data["text"];
+        }
+    }
+
+    static fromJS(data: any): MaintenanceDescriptionDTO {
+        data = typeof data === 'object' ? data : {};
+        let result = new MaintenanceDescriptionDTO();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["maintenanceCardId"] = this.maintenanceCardId;
+        data["text"] = this.text;
+        return data;
+    }
+}
+
+export interface IMaintenanceDescriptionDTO {
+    id?: number | undefined;
+    tenantId?: number | undefined;
+    maintenanceCardId?: number | undefined;
+    text?: string | undefined;
+}
+
+export class MaintenanceServiceNoteDTO implements IMaintenanceServiceNoteDTO {
+    id?: number | undefined;
+    tenantId?: number | undefined;
+    maintenanceServiceId?: number | undefined;
+    text?: string | undefined;
+    fualtCode?: string | undefined;
+    howToFixIt?: string | undefined;
+    createdBy?: number | undefined;
+
+    constructor(data?: IMaintenanceServiceNoteDTO) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.maintenanceServiceId = _data["maintenanceServiceId"];
+            this.text = _data["text"];
+            this.fualtCode = _data["fualtCode"];
+            this.howToFixIt = _data["howToFixIt"];
+            this.createdBy = _data["createdBy"];
+        }
+    }
+
+    static fromJS(data: any): MaintenanceServiceNoteDTO {
+        data = typeof data === 'object' ? data : {};
+        let result = new MaintenanceServiceNoteDTO();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["maintenanceServiceId"] = this.maintenanceServiceId;
+        data["text"] = this.text;
+        data["fualtCode"] = this.fualtCode;
+        data["howToFixIt"] = this.howToFixIt;
+        data["createdBy"] = this.createdBy;
+        return data;
+    }
+}
+
+export interface IMaintenanceServiceNoteDTO {
+    id?: number | undefined;
+    tenantId?: number | undefined;
+    maintenanceServiceId?: number | undefined;
+    text?: string | undefined;
+    fualtCode?: string | undefined;
+    howToFixIt?: string | undefined;
+    createdBy?: number | undefined;
 }
 
 export class MenuDTO implements IMenuDTO {
@@ -24244,54 +24350,6 @@ export interface IApiResponse_1OfOfMaintainedImageDTOAndBLLAnd_0AndCulture_neutr
     statusCode?: number;
     message?: string | undefined;
     result?: MaintainedImageDTO;
-}
-
-export class ApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
-    success?: boolean;
-    statusCode?: number;
-    message?: string | undefined;
-    result?: NewMaintenanceCardDTO;
-
-    constructor(data?: IApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.success = _data["success"];
-            this.statusCode = _data["statusCode"];
-            this.message = _data["message"];
-            this.result = _data["result"] ? NewMaintenanceCardDTO.fromJS(_data["result"]) : <any>undefined;
-        }
-    }
-
-    static fromJS(data: any): ApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
-        data = typeof data === 'object' ? data : {};
-        let result = new ApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["success"] = this.success;
-        data["statusCode"] = this.statusCode;
-        data["message"] = this.message;
-        data["result"] = this.result ? this.result.toJSON() : <any>undefined;
-        return data;
-    }
-}
-
-export interface IApiResponse_1OfOfNewMaintenanceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
-    success?: boolean;
-    statusCode?: number;
-    message?: string | undefined;
-    result?: NewMaintenanceCardDTO;
 }
 
 export class ApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null implements IApiResponse_1OfOfMaintenaceCardDTOAndBLLAnd_0AndCulture_neutralAndPublicKeyToken_null {
@@ -30168,6 +30226,7 @@ export class Employee implements IEmployee {
     fatherName?: string | undefined;
     employeeMaintaineds?: EmployeeMaintained[] | undefined;
     gender?: Gender;
+    maintenanceCardTrackings?: MaintenanceCardTracking[] | undefined;
     nationality?: Nationality;
     street?: Street;
     tenant?: Tenant;
@@ -30205,6 +30264,11 @@ export class Employee implements IEmployee {
                     this.employeeMaintaineds!.push(EmployeeMaintained.fromJS(item));
             }
             this.gender = _data["gender"] ? Gender.fromJS(_data["gender"]) : <any>undefined;
+            if (Array.isArray(_data["maintenanceCardTrackings"])) {
+                this.maintenanceCardTrackings = [] as any;
+                for (let item of _data["maintenanceCardTrackings"])
+                    this.maintenanceCardTrackings!.push(MaintenanceCardTracking.fromJS(item));
+            }
             this.nationality = _data["nationality"] ? Nationality.fromJS(_data["nationality"]) : <any>undefined;
             this.street = _data["street"] ? Street.fromJS(_data["street"]) : <any>undefined;
             this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
@@ -30242,6 +30306,11 @@ export class Employee implements IEmployee {
                 data["employeeMaintaineds"].push(item.toJSON());
         }
         data["gender"] = this.gender ? this.gender.toJSON() : <any>undefined;
+        if (Array.isArray(this.maintenanceCardTrackings)) {
+            data["maintenanceCardTrackings"] = [];
+            for (let item of this.maintenanceCardTrackings)
+                data["maintenanceCardTrackings"].push(item.toJSON());
+        }
         data["nationality"] = this.nationality ? this.nationality.toJSON() : <any>undefined;
         data["street"] = this.street ? this.street.toJSON() : <any>undefined;
         data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
@@ -30268,6 +30337,7 @@ export interface IEmployee {
     fatherName?: string | undefined;
     employeeMaintaineds?: EmployeeMaintained[] | undefined;
     gender?: Gender;
+    maintenanceCardTrackings?: MaintenanceCardTracking[] | undefined;
     nationality?: Nationality;
     street?: Street;
     tenant?: Tenant;
@@ -30648,6 +30718,8 @@ export class MaintenaceCard implements IMaintenaceCard {
     customerVehicle?: CustomerVehicle;
     customerVehicleImages?: CustomerVehicleImage[] | undefined;
     maintenaceServices?: MaintenaceService[] | undefined;
+    maintenanceCardTrackings?: MaintenanceCardTracking[] | undefined;
+    maintenanceDescriptions?: MaintenanceDescription[] | undefined;
     tenant?: Tenant;
 
     constructor(data?: IMaintenaceCard) {
@@ -30685,6 +30757,16 @@ export class MaintenaceCard implements IMaintenaceCard {
                 this.maintenaceServices = [] as any;
                 for (let item of _data["maintenaceServices"])
                     this.maintenaceServices!.push(MaintenaceService.fromJS(item));
+            }
+            if (Array.isArray(_data["maintenanceCardTrackings"])) {
+                this.maintenanceCardTrackings = [] as any;
+                for (let item of _data["maintenanceCardTrackings"])
+                    this.maintenanceCardTrackings!.push(MaintenanceCardTracking.fromJS(item));
+            }
+            if (Array.isArray(_data["maintenanceDescriptions"])) {
+                this.maintenanceDescriptions = [] as any;
+                for (let item of _data["maintenanceDescriptions"])
+                    this.maintenanceDescriptions!.push(MaintenanceDescription.fromJS(item));
             }
             this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
         }
@@ -30724,6 +30806,16 @@ export class MaintenaceCard implements IMaintenaceCard {
             for (let item of this.maintenaceServices)
                 data["maintenaceServices"].push(item.toJSON());
         }
+        if (Array.isArray(this.maintenanceCardTrackings)) {
+            data["maintenanceCardTrackings"] = [];
+            for (let item of this.maintenanceCardTrackings)
+                data["maintenanceCardTrackings"].push(item.toJSON());
+        }
+        if (Array.isArray(this.maintenanceDescriptions)) {
+            data["maintenanceDescriptions"] = [];
+            for (let item of this.maintenanceDescriptions)
+                data["maintenanceDescriptions"].push(item.toJSON());
+        }
         data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
         return data;
     }
@@ -30747,6 +30839,8 @@ export interface IMaintenaceCard {
     customerVehicle?: CustomerVehicle;
     customerVehicleImages?: CustomerVehicleImage[] | undefined;
     maintenaceServices?: MaintenaceService[] | undefined;
+    maintenanceCardTrackings?: MaintenanceCardTracking[] | undefined;
+    maintenanceDescriptions?: MaintenanceDescription[] | undefined;
     tenant?: Tenant;
 }
 
@@ -30763,6 +30857,7 @@ export class MaintenaceService implements IMaintenaceService {
     isTested?: boolean;
     employeeMaintaineds?: EmployeeMaintained[] | undefined;
     maintenaceCard?: MaintenaceCard;
+    maintenanceServiceNotes?: MaintenanceServiceNote[] | undefined;
     service?: Service;
     serviceParts?: ServicePart[] | undefined;
     tenant?: Tenant;
@@ -30794,6 +30889,11 @@ export class MaintenaceService implements IMaintenaceService {
                     this.employeeMaintaineds!.push(EmployeeMaintained.fromJS(item));
             }
             this.maintenaceCard = _data["maintenaceCard"] ? MaintenaceCard.fromJS(_data["maintenaceCard"]) : <any>undefined;
+            if (Array.isArray(_data["maintenanceServiceNotes"])) {
+                this.maintenanceServiceNotes = [] as any;
+                for (let item of _data["maintenanceServiceNotes"])
+                    this.maintenanceServiceNotes!.push(MaintenanceServiceNote.fromJS(item));
+            }
             this.service = _data["service"] ? Service.fromJS(_data["service"]) : <any>undefined;
             if (Array.isArray(_data["serviceParts"])) {
                 this.serviceParts = [] as any;
@@ -30829,6 +30929,11 @@ export class MaintenaceService implements IMaintenaceService {
                 data["employeeMaintaineds"].push(item.toJSON());
         }
         data["maintenaceCard"] = this.maintenaceCard ? this.maintenaceCard.toJSON() : <any>undefined;
+        if (Array.isArray(this.maintenanceServiceNotes)) {
+            data["maintenanceServiceNotes"] = [];
+            for (let item of this.maintenanceServiceNotes)
+                data["maintenanceServiceNotes"].push(item.toJSON());
+        }
         data["service"] = this.service ? this.service.toJSON() : <any>undefined;
         if (Array.isArray(this.serviceParts)) {
             data["serviceParts"] = [];
@@ -30853,8 +30958,197 @@ export interface IMaintenaceService {
     isTested?: boolean;
     employeeMaintaineds?: EmployeeMaintained[] | undefined;
     maintenaceCard?: MaintenaceCard;
+    maintenanceServiceNotes?: MaintenanceServiceNote[] | undefined;
     service?: Service;
     serviceParts?: ServicePart[] | undefined;
+    tenant?: Tenant;
+}
+
+export class MaintenanceCardTracking implements IMaintenanceCardTracking {
+    id?: number;
+    maintenaceCardId?: number;
+    employeeId?: number;
+    tenantId?: number;
+    employee?: Employee;
+    maintenaceCard?: MaintenaceCard;
+    tenant?: Tenant;
+
+    constructor(data?: IMaintenanceCardTracking) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.maintenaceCardId = _data["maintenaceCardId"];
+            this.employeeId = _data["employeeId"];
+            this.tenantId = _data["tenantId"];
+            this.employee = _data["employee"] ? Employee.fromJS(_data["employee"]) : <any>undefined;
+            this.maintenaceCard = _data["maintenaceCard"] ? MaintenaceCard.fromJS(_data["maintenaceCard"]) : <any>undefined;
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): MaintenanceCardTracking {
+        data = typeof data === 'object' ? data : {};
+        let result = new MaintenanceCardTracking();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["maintenaceCardId"] = this.maintenaceCardId;
+        data["employeeId"] = this.employeeId;
+        data["tenantId"] = this.tenantId;
+        data["employee"] = this.employee ? this.employee.toJSON() : <any>undefined;
+        data["maintenaceCard"] = this.maintenaceCard ? this.maintenaceCard.toJSON() : <any>undefined;
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IMaintenanceCardTracking {
+    id?: number;
+    maintenaceCardId?: number;
+    employeeId?: number;
+    tenantId?: number;
+    employee?: Employee;
+    maintenaceCard?: MaintenaceCard;
+    tenant?: Tenant;
+}
+
+export class MaintenanceDescription implements IMaintenanceDescription {
+    id?: number;
+    tenantId?: number;
+    maintenanceCardId?: number;
+    text?: string | undefined;
+    maintenanceCard?: MaintenaceCard;
+    tenant?: Tenant;
+
+    constructor(data?: IMaintenanceDescription) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.maintenanceCardId = _data["maintenanceCardId"];
+            this.text = _data["text"];
+            this.maintenanceCard = _data["maintenanceCard"] ? MaintenaceCard.fromJS(_data["maintenanceCard"]) : <any>undefined;
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): MaintenanceDescription {
+        data = typeof data === 'object' ? data : {};
+        let result = new MaintenanceDescription();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["maintenanceCardId"] = this.maintenanceCardId;
+        data["text"] = this.text;
+        data["maintenanceCard"] = this.maintenanceCard ? this.maintenanceCard.toJSON() : <any>undefined;
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IMaintenanceDescription {
+    id?: number;
+    tenantId?: number;
+    maintenanceCardId?: number;
+    text?: string | undefined;
+    maintenanceCard?: MaintenaceCard;
+    tenant?: Tenant;
+}
+
+export class MaintenanceServiceNote implements IMaintenanceServiceNote {
+    id?: number;
+    tenantId?: number;
+    maintenanceServiceId?: number;
+    text?: string | undefined;
+    fualtCode?: string | undefined;
+    howToFixIt?: string | undefined;
+    createdBy?: number | undefined;
+    createdByNavigation?: User;
+    maintenanceService?: MaintenaceService;
+    tenant?: Tenant;
+
+    constructor(data?: IMaintenanceServiceNote) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.tenantId = _data["tenantId"];
+            this.maintenanceServiceId = _data["maintenanceServiceId"];
+            this.text = _data["text"];
+            this.fualtCode = _data["fualtCode"];
+            this.howToFixIt = _data["howToFixIt"];
+            this.createdBy = _data["createdBy"];
+            this.createdByNavigation = _data["createdByNavigation"] ? User.fromJS(_data["createdByNavigation"]) : <any>undefined;
+            this.maintenanceService = _data["maintenanceService"] ? MaintenaceService.fromJS(_data["maintenanceService"]) : <any>undefined;
+            this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): MaintenanceServiceNote {
+        data = typeof data === 'object' ? data : {};
+        let result = new MaintenanceServiceNote();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["tenantId"] = this.tenantId;
+        data["maintenanceServiceId"] = this.maintenanceServiceId;
+        data["text"] = this.text;
+        data["fualtCode"] = this.fualtCode;
+        data["howToFixIt"] = this.howToFixIt;
+        data["createdBy"] = this.createdBy;
+        data["createdByNavigation"] = this.createdByNavigation ? this.createdByNavigation.toJSON() : <any>undefined;
+        data["maintenanceService"] = this.maintenanceService ? this.maintenanceService.toJSON() : <any>undefined;
+        data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IMaintenanceServiceNote {
+    id?: number;
+    tenantId?: number;
+    maintenanceServiceId?: number;
+    text?: string | undefined;
+    fualtCode?: string | undefined;
+    howToFixIt?: string | undefined;
+    createdBy?: number | undefined;
+    createdByNavigation?: User;
+    maintenanceService?: MaintenaceService;
     tenant?: Tenant;
 }
 
@@ -32156,6 +32450,9 @@ export class Tenant implements ITenant {
     maintainedImages?: MaintainedImage[] | undefined;
     maintenaceCards?: MaintenaceCard[] | undefined;
     maintenaceServices?: MaintenaceService[] | undefined;
+    maintenanceCardTrackings?: MaintenanceCardTracking[] | undefined;
+    maintenanceDescriptions?: MaintenanceDescription[] | undefined;
+    maintenanceServiceNotes?: MaintenanceServiceNote[] | undefined;
     montlyCustomerVisits?: MontlyCustomerVisit[] | undefined;
     nationalities?: Nationality[] | undefined;
     partBrands?: PartBrand[] | undefined;
@@ -32253,6 +32550,21 @@ export class Tenant implements ITenant {
                 this.maintenaceServices = [] as any;
                 for (let item of _data["maintenaceServices"])
                     this.maintenaceServices!.push(MaintenaceService.fromJS(item));
+            }
+            if (Array.isArray(_data["maintenanceCardTrackings"])) {
+                this.maintenanceCardTrackings = [] as any;
+                for (let item of _data["maintenanceCardTrackings"])
+                    this.maintenanceCardTrackings!.push(MaintenanceCardTracking.fromJS(item));
+            }
+            if (Array.isArray(_data["maintenanceDescriptions"])) {
+                this.maintenanceDescriptions = [] as any;
+                for (let item of _data["maintenanceDescriptions"])
+                    this.maintenanceDescriptions!.push(MaintenanceDescription.fromJS(item));
+            }
+            if (Array.isArray(_data["maintenanceServiceNotes"])) {
+                this.maintenanceServiceNotes = [] as any;
+                for (let item of _data["maintenanceServiceNotes"])
+                    this.maintenanceServiceNotes!.push(MaintenanceServiceNote.fromJS(item));
             }
             if (Array.isArray(_data["montlyCustomerVisits"])) {
                 this.montlyCustomerVisits = [] as any;
@@ -32420,6 +32732,21 @@ export class Tenant implements ITenant {
             for (let item of this.maintenaceServices)
                 data["maintenaceServices"].push(item.toJSON());
         }
+        if (Array.isArray(this.maintenanceCardTrackings)) {
+            data["maintenanceCardTrackings"] = [];
+            for (let item of this.maintenanceCardTrackings)
+                data["maintenanceCardTrackings"].push(item.toJSON());
+        }
+        if (Array.isArray(this.maintenanceDescriptions)) {
+            data["maintenanceDescriptions"] = [];
+            for (let item of this.maintenanceDescriptions)
+                data["maintenanceDescriptions"].push(item.toJSON());
+        }
+        if (Array.isArray(this.maintenanceServiceNotes)) {
+            data["maintenanceServiceNotes"] = [];
+            for (let item of this.maintenanceServiceNotes)
+                data["maintenanceServiceNotes"].push(item.toJSON());
+        }
         if (Array.isArray(this.montlyCustomerVisits)) {
             data["montlyCustomerVisits"] = [];
             for (let item of this.montlyCustomerVisits)
@@ -32527,6 +32854,9 @@ export interface ITenant {
     maintainedImages?: MaintainedImage[] | undefined;
     maintenaceCards?: MaintenaceCard[] | undefined;
     maintenaceServices?: MaintenaceService[] | undefined;
+    maintenanceCardTrackings?: MaintenanceCardTracking[] | undefined;
+    maintenanceDescriptions?: MaintenanceDescription[] | undefined;
+    maintenanceServiceNotes?: MaintenanceServiceNote[] | undefined;
     montlyCustomerVisits?: MontlyCustomerVisit[] | undefined;
     nationalities?: Nationality[] | undefined;
     partBrands?: PartBrand[] | undefined;
@@ -32613,6 +32943,7 @@ export class User implements IUser {
     isFirstTimeLoggedin?: boolean | undefined;
     customers?: Customer[] | undefined;
     employees?: Employee[] | undefined;
+    maintenanceServiceNotes?: MaintenanceServiceNote[] | undefined;
     role?: Role;
     tenant?: Tenant;
 
@@ -32644,6 +32975,11 @@ export class User implements IUser {
                 this.employees = [] as any;
                 for (let item of _data["employees"])
                     this.employees!.push(Employee.fromJS(item));
+            }
+            if (Array.isArray(_data["maintenanceServiceNotes"])) {
+                this.maintenanceServiceNotes = [] as any;
+                for (let item of _data["maintenanceServiceNotes"])
+                    this.maintenanceServiceNotes!.push(MaintenanceServiceNote.fromJS(item));
             }
             this.role = _data["role"] ? Role.fromJS(_data["role"]) : <any>undefined;
             this.tenant = _data["tenant"] ? Tenant.fromJS(_data["tenant"]) : <any>undefined;
@@ -32677,6 +33013,11 @@ export class User implements IUser {
             for (let item of this.employees)
                 data["employees"].push(item.toJSON());
         }
+        if (Array.isArray(this.maintenanceServiceNotes)) {
+            data["maintenanceServiceNotes"] = [];
+            for (let item of this.maintenanceServiceNotes)
+                data["maintenanceServiceNotes"].push(item.toJSON());
+        }
         data["role"] = this.role ? this.role.toJSON() : <any>undefined;
         data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
         return data;
@@ -32694,6 +33035,7 @@ export interface IUser {
     isFirstTimeLoggedin?: boolean | undefined;
     customers?: Customer[] | undefined;
     employees?: Employee[] | undefined;
+    maintenanceServiceNotes?: MaintenanceServiceNote[] | undefined;
     role?: Role;
     tenant?: Tenant;
 }

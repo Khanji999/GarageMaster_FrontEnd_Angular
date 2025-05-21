@@ -6,7 +6,7 @@ import { PermissionService } from '../../../core/services/permissionService/perm
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, GenericRadialCounterChartComponent],
+  imports: [CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
  
